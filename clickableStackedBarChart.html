@@ -54,7 +54,6 @@ var svg = d3.select("body").append("svg")
 var data = [{score: 1, name:"1"}, {score: 1, name:"2"},{score: 2, name:"3"}, {score: 2, name:"4"}];
   total = {};
   data.forEach(function(d) {
-    var y0 = 0;
     if(!total[d.score]) {
       d.y0 = total[d.score] = 0;
       d.y1 = total[d.score] = 1;
@@ -89,19 +88,12 @@ var data = [{score: 1, name:"1"}, {score: 1, name:"2"},{score: 2, name:"3"}, {sc
       .attr("class", "g")
       .attr("transform", function(d) { return "translate(" + x(d.score) + ",0)"; });
 
-  state.selectAll("rect")
-      .data(function(d) {
-          console.log(d);
-          return d;})
-    .enter().append("rect")
+  state.append("rect")
       .attr("width", x.rangeBand())
-      .attr("y", function(d) {
-          console.log("GGGGG", d);
-          return y(d.y1); })
-      .attr("height", function(d) {
-          return y(d.y0) - y(d.y1); })
+      .attr("y", function(d) { return y(d.y1); })
+      .attr("height", function(d) { return y(d.y0) - y(d.y1); })
       .on("click", function(d) {console.log("click :" , d);})
-      .style("fill", function(d) { return "Blue"; });
+      .style("fill", "Blue");
 
 /*
   var legend = svg.selectAll(".legend")
