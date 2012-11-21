@@ -1,0 +1,6 @@
+[submodule "css/lessdss"]
+	path = css/lessdss
+	url = git://github.com/mrkrupski/LESS-Dynamic-Stylesheet.git
+[submodule "css/k-mixins"]
+	path = css/k-mixins
+	url = https://github.com/kanitw/k-mixins.git
