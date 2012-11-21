@@ -67,3 +67,11 @@ body {
 .bar-rect:hover {
   fill: #0b0763;
 }
+.selecting circle.selected {
+  stroke: #f00;
+}
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
