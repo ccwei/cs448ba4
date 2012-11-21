@@ -1,0 +1,3 @@
+[submodule "css/lessdss"]
+	path = css/lessdss
+	url = git://github.com/mrkrupski/LESS-Dynamic-Stylesheet.git
