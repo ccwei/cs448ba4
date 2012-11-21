@@ -21,9 +21,21 @@ body {
   display: none;
 }
 
+.selecting circle.selected {
+  stroke: #f00;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
 </style>
 <body>
+<div id="details">
+</div>
 <script src="./js/d3.v2.js"></script>
+<script src="./js/jquery.js"></script>
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -92,27 +104,34 @@ var data = [{score: 1, name:"1"}, {score: 1, name:"2"},{score: 2, name:"3"}, {sc
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.y1); })
       .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-      .on("click", function(d) {console.log("click :" , d);})
+      .on("click", function(d) {showDetails(d);})
       .style("fill", "Blue");
 
-/*
-  var legend = svg.selectAll(".legend")
-      .data(color.domain().slice().reverse())
-    .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+  svg.append("g")
+      .attr("class", "brush")
+      .call(d3.svg.brush().x(x)
+      .on("brushstart", brushstart)
+      .on("brush", brushmove)
+      .on("brushend", brushend))
+    .selectAll("rect")
+      .attr("height", height);
 
-  legend.append("rect")
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", color);
+  function brushstart() {
+    svg.classed("selecting", true);
+  }
 
-  legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function(d) { return d; });
-*/
+  function brushmove() {
+    var s = d3.event.target.extent();
+    console.log(s);
+    state.classed("selected", function(d) { return s[0] <= d && d <= s[1]; });
+  }
+
+  function brushend() {
+    svg.classed("selecting", !d3.event.target.empty());
+  }
+
+  function showDetails(d) {
+    console.log("click:", d);
+    $("#details").html("details!!" + d);
+  }
 </script>
