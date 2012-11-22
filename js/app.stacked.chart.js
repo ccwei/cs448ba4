@@ -112,8 +112,7 @@
             .attr("width", x.rangeBand())
             .attr("y", function(d) { return y(d.y1); })
             .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-            .on("click", function(d) {console.log("click :" , d);})
-            .style("fill", "Blue");
+            .on("click", function(d) {console.log("click :" , d);});
       }
     };
   })()
