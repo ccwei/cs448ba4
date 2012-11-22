@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <script src="./js/d3.v2.js"></script>
+  <script src="./js/jquery.js"></script>
+  <script src="./js/underscore.js"></script>
+  <script src="./js/backbone.js"></script>
+  <script src="./js/app.stacked.chart.js"></script>
+</head>
+<body>
+  <div id="details">
+  </div>
+
+  <script type="text/javascript">
+
+    var dir = new app.RevieweeDir(
+      [{score: 1, name:"1"}, {score: 1, name:"2"},{score: 2, name:"3"}, {score: 2, name:"4"}]
+    );
+    var chart = new app.StackedChart({
+      collection: dir
+    });
+    chart.render();
+  </script>
+
+</body>
