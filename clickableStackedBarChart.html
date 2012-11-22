@@ -1,36 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
-
-body {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.bar {
-  fill: steelblue;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.selecting circle.selected {
-  stroke: #f00;
-}
-
-.brush .extent {
-  stroke: #fff;
-  fill-opacity: .125;
-  shape-rendering: crispEdges;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 <body>
 <div id="details">
 </div>
@@ -101,10 +71,11 @@ var data = [{score: 1, name:"1"}, {score: 1, name:"2"},{score: 2, name:"3"}, {sc
       .attr("transform", function(d) { return "translate(" + x(d.score) + ",0)"; });
 
   state.append("rect")
+      .classed("bar-rect",true)
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.y1); })
       .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-      .on("click", function(d) {showDetails(d);})
+      .on("click", function(d) {console.log("click :" , d);})
       .style("fill", "Blue");
 
   svg.append("g")

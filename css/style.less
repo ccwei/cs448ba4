@@ -1,0 +1,41 @@
+@import "k-mixins/k-mixins.less";
+@import "lessdss/dss.less";
+
+@bar-color: #110b92;
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.bar-rect{
+  fill: @bar-color;
+}
+
+.bar-rect:hover {
+  fill: darken(@bar-color,10%);
+}
+
+.selecting circle.selected {
+  stroke: #f00;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
