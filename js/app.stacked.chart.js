@@ -151,9 +151,19 @@
   app.ReviewDir = Backbone.Collection.extend(
     (function(){ //use anonymous function here so we can have private variable for this class
       var total = {};
+      var that;
       return  {
         model: window.app.Review,
+        comparator: function(a, b){
+          return a.attributes.score - b.attributes.score;
+        },
         initialize: function() {
+          that = this;
+          // console.log("ReviewDir.Models");
+          // console.log(this);
+          // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
+        },
+        initPos: function(){
           var reviewData = _(this.models).pluck('attributes');
           reviewData.forEach(function(d) {
             if(!total[d.score]) {
@@ -184,25 +194,38 @@
     })()
   );
 
+  /*
+   * additional properties
+   * - outer_width
+   * - outer_height
+   */
   app.StackedChart = Backbone.View.extend((function(){ //use anonymous function here so we can have private variable for this class
 
     //TODO(kanitw): register to ReviewDir's event
 
     var x,y,xAxis,yAxis,svg,data;
-    var outer_width = 960,
-        outer_height = 500,
-        margin = {top: 20, right: 20, bottom: 30, left: 40};
+
     var that;
     return {
       initialize: function(){
-        console.log("models", this.collection.models);
+
+        //Init Collection and options
+
+        // console.log("models", this.collection.models);
         data = _(this.collection.models).pluck('attributes');
         //not sure if this is the right way to do it
         that = this;
-        console.log(data);
+        console.log(this);
 
-        var width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        //load options
+        var options = that.options;
+
+        var outer_width = options.outer_width || 960;
+        var outer_height = options.outer_height || 500;
+        var margin = options.margin || {top: 25, right: 20, bottom: 30, left: 40};
+
+        var width = outer_width - margin.left - margin.right,
+        height = outer_height - margin.top - margin.bottom;
 
         //init x, y, xAxis, yAxis, svg
         x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
@@ -239,11 +262,11 @@
             .attr("class", "y axis")
             .call(yAxis)
           .append("text")
-            .attr("transform", "rotate(-90)")
+            //.attr("transform", "rotate(-90)")
             .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Population");
+            .attr("dy", "-15")
+            .style("text-anchor", "middle")
+            .text("# of Teams");
 
         //For brush
         svg.append("g")
