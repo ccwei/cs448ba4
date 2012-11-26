@@ -107,7 +107,7 @@
           return total[score];
         },
 
-        showTeam: function(d){
+        showFeedback: function(d){
           var feedbacks = _.map(d.reviews, function(d) {
             return {notable: d.notable, constructive: d.constructive, questions: d.questions, ideas: d.ideas};
           });
@@ -219,7 +219,7 @@
             .attr("y", function(d) { return y(d.y1); })
             .attr("height", function(d) { return y(d.y0) - y(d.y1); })
             .on("click", function(d) {
-              that.collection.showTeam(d);
+              that.collection.showFeedback(d);
               console.log("click :" , d);});
       }
     };

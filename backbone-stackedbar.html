@@ -48,10 +48,12 @@
       }
     });
 
-    //Convert map to an array of object (teamid: id, score: average_score, reviews: reviews)
+    //Convert map to an array of object {teamid: id, score: average_score, reviews: reviews}
     var teamReviews = [];
     var count = 0;
-    for(var key in teamMap) teamReviews.push({teamid: key, reviews: teamMap[key]});
+    for(var key in teamMap) {
+      teamReviews.push({teamid: key, reviews: teamMap[key]});
+    }
     _.each(teamReviews, function(tr) {
       var sum = 0;
       _.each(tr.reviews, function(r) {
