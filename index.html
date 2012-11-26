@@ -35,22 +35,52 @@
     </div>
     <div class="span6">
       <div class="default-padding">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <ul class="nav">
-              <li>
-                <a>Showing ...</a>
-              </li>
-            </ul>
-            <ul class="nav pull-right">
-              <li>
-                <a href="#">View</a>
-              </li>
-            </ul>
+
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#tab-tag-cloud" data-toggle="tab">
+              Tag Cloud
+            </a>
+          </li>
+          <!-- <li>
+            <a href="#tab-tag-list">
+              Tag List
+            </a>
+          </li> -->
+          <li>
+            <a href="#tab-aggregate-grid" data-toggle="tab">
+              Aggregate View
+            </a>
+          </li>
+          <li class="active">
+            <a href="#tab-individual-review" data-toggle="tab">
+              Individual Reviews
+            </a>
+          </li>
+          <!-- <li>
+            <a href="#tab-word-tree">
+              Word Tree
+            </a>
+          </li> -->
+          <!-- <li class='pull-right no-link'>
+
+          </li> -->
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane" id="tab-tag-cloud">
+
+
+          </div>
+          <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
+          <div class="tab-pane" id="tab-aggregate-grid"></div>
+          <div class="tab-pane active" id="tab-individual-review">
+            <div id="feedbacks"></div>
+          </div>
+          <!-- <div class="tab-pane" id="tab-wordtree"></div> -->
         </div>
         <div id="details"></div>
         <div id="reviewee"></div>
-        <div id="feedbacks"></div>
+
       </div>
     </div>
   </div>
@@ -94,7 +124,7 @@
       var chart = new app.StackedChart({
         collection: dir,
         outer_width: 400,
-        outer_height: 500
+        outer_height: 300
 
       });
       chart.render();
