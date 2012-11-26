@@ -18,7 +18,7 @@
   app.RevieweeView = Backbone.View.extend(
     (function(){
       return {
-        el: "#reviewee",
+        el: "#reviewee", //TODO(kanitw): make sure we need this line.
         tagName: "reviewee",
         className: "reviewee-container",
         template: $("#revieweeTemplate").html(),
