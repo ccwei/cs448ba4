@@ -9,6 +9,21 @@
   <script src="./js/filter_ordinal.js"></script>
 
 </head>
+
+<script id="revieweeTemplate" type="text/template">
+  <h1><span><%= name %></span></h1>
+</script>
+
+<script id="feedbackTemplate" type="text/template">
+  <dl>
+      <dt>Notable:</dt><dd><%= notable %></dd>
+      <dt>Constructive:</dt><dd><%= constructive %></dd>
+      <dt>Questions:</dt><dd><%= questions %></dd>
+      <dt>Ideas:</dt><dd><%= ideas %></dd>
+  </dl>
+</script>
+<script src="./js/app.stacked.chart.js"></script>
+
 <body>
   <div id="chart">
   </div>
@@ -19,62 +34,48 @@
   <div id="feedbacks">
   </div>
 
-  <script id="revieweeTemplate" type="text/template">
-    <h1><span><%= name %></span></h1>
-  </script>
-
-  <script id="feedbackTemplate" type="text/template">
-    <dl>
-        <dt>Notable:</dt><dd><%= notable %></dd>
-        <dt>Constructive:</dt><dd><%= constructive %></dd>
-        <dt>Questions:</dt><dd><%= questions %></dd>
-        <dt>Ideas:</dt><dd><%= ideas %></dd>
-    </dl>
-  </script>
-
-  <script src="./js/app.stacked.chart.js"></script>
   <script type="text/javascript">
-  d3.tsv("./data/a4.tsv", function(data) {
-    data = _.filter(data, function(d){
-      d.score = +d.score
-      return !isNaN(d.score);
-    });
-    var teamMap = {};
-    _.each(data, function(d, idx) {
-      if (d["reviewed_id"] in teamMap) {
-        teamMap[d["reviewed_id"]].push(d);
-      } else {
-        teamMap[d["reviewed_id"]] = [d];
+    d3.tsv("./data/a4.tsv", function(data) {
+      data = _.filter(data, function(d){
+        d.score = +d.score
+        return !isNaN(d.score);
+      });
+      var teamMap = {};
+      _.each(data, function(d, idx) {
+        if (d["reviewed_id"] in teamMap) {
+          teamMap[d["reviewed_id"]].push(d);
+        } else {
+          teamMap[d["reviewed_id"]] = [d];
+        }
+      });
+
+      //Convert map to an array of object {teamid: id, score: average_score, reviews: reviews}
+      var teamReviews = [];
+      var count = 0;
+      for(var key in teamMap) {
+        teamReviews.push({teamid: key, reviews: teamMap[key]});
       }
-    });
-
-    //Convert map to an array of object {teamid: id, score: average_score, reviews: reviews}
-    var teamReviews = [];
-    var count = 0;
-    for(var key in teamMap) {
-      teamReviews.push({teamid: key, reviews: teamMap[key]});
-    }
-    _.each(teamReviews, function(tr) {
-      var sum = 0;
-      _.each(tr.reviews, function(r) {
-        sum += r.score;
+      _.each(teamReviews, function(tr) {
+        var sum = 0;
+        _.each(tr.reviews, function(r) {
+          sum += r.score;
+        })
+        if(tr.reviews.length > 10)
+          count++;
+        tr.score = Math.round(sum * 1.0 / tr.reviews.length);
       })
-      if(tr.reviews.length > 10)
-        count++;
-      tr.score = Math.round(sum * 1.0 / tr.reviews.length);
-    })
-    teamReviews.sort(function(a, b){
-            return a.score - b.score;
-    });
-    console.log(count, "teams have more than 10 reivews" );
-    console.log("teamReviews = ", teamReviews);
+      teamReviews.sort(function(a, b){
+              return a.score - b.score;
+      });
+      console.log(count, "teams have more than 10 reivews" );
+      console.log("teamReviews = ", teamReviews);
 
-    var dir = new app.ReviewDir(teamReviews);
-    var chart = new app.StackedChart({
-      collection: dir
+      var dir = new app.ReviewDir(teamReviews);
+      var chart = new app.StackedChart({
+        collection: dir
+      });
+      chart.render();
     });
-    chart.render();
-  });
   </script>
 
 </body>
