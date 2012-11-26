@@ -90,6 +90,9 @@
       var that;
       return  {
         model: window.app.Review,
+        comparator: function(a, b){
+          return a.attributes.score - b.attributes.score;
+        },
         initialize: function() {
           that = this;
           // console.log("ReviewDir.Models");
@@ -127,6 +130,11 @@
     })()
   );
 
+  /*
+   * additional properties
+   * - outer_width
+   * - outer_height
+   */
   app.StackedChart = Backbone.View.extend((function(){ //use anonymous function here so we can have private variable for this class
 
     //TODO(kanitw): register to ReviewDir's event
@@ -134,18 +142,31 @@
     var x,y,xAxis,yAxis,svg,data;
     var outer_width = 960,
         outer_height = 500,
-        margin = {top: 20, right: 20, bottom: 30, left: 40};
+        margin = {top: 25, right: 20, bottom: 30, left: 40};
     var that;
     return {
       initialize: function(){
-        console.log("models", this.collection.models);
+
+        //Init Collection and options
+
+        // console.log("models", this.collection.models);
         data = _(this.collection.models).pluck('attributes');
         //not sure if this is the right way to do it
         that = this;
-        console.log(data);
+        console.log(this);
 
-        var width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+
+        var options = that.options;
+        if(options.hasOwnProperty("outer_width")){
+          outer_width = options.outer_width;
+        }
+        if(options.hasOwnProperty('outer_height')){
+          outer_height = options.outer_height;
+        }
+
+
+        var width = outer_width - margin.left - margin.right,
+        height = outer_height - margin.top - margin.bottom;
 
         //init x, y, xAxis, yAxis, svg
         x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
@@ -182,11 +203,11 @@
             .attr("class", "y axis")
             .call(yAxis)
           .append("text")
-            .attr("transform", "rotate(-90)")
+            //.attr("transform", "rotate(-90)")
             .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text("Population");
+            .attr("dy", "-15")
+            .style("text-anchor", "middle")
+            .text("# of Teams");
 
         //For brush
         svg.append("g")
