@@ -7,6 +7,8 @@
   <script src="./js/underscore.js"></script>
   <script src="./js/backbone.js"></script>
   <script src="./js/filter_ordinal.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
 </head>
 
@@ -25,13 +27,62 @@
 <script src="./js/app.stacked.chart.js"></script>
 
 <body>
-  <div id="chart">
-  </div>
-  <div id="details">
-  </div>
-  <div id="reviewee">
-  </div>
-  <div id="feedbacks">
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="default-padding">
+        <div id="chart"></div>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="default-padding">
+
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#tab-tag-cloud" data-toggle="tab">
+              Tag Cloud
+            </a>
+          </li>
+          <!-- <li>
+            <a href="#tab-tag-list">
+              Tag List
+            </a>
+          </li> -->
+          <li>
+            <a href="#tab-aggregate-grid" data-toggle="tab">
+              Aggregate View
+            </a>
+          </li>
+          <li class="active">
+            <a href="#tab-individual-review" data-toggle="tab">
+              Individual Reviews
+            </a>
+          </li>
+          <!-- <li>
+            <a href="#tab-word-tree">
+              Word Tree
+            </a>
+          </li> -->
+          <!-- <li class='pull-right no-link'>
+
+          </li> -->
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane" id="tab-tag-cloud">
+
+
+          </div>
+          <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
+          <div class="tab-pane" id="tab-aggregate-grid"></div>
+          <div class="tab-pane active" id="tab-individual-review">
+            <div id="feedbacks"></div>
+          </div>
+          <!-- <div class="tab-pane" id="tab-wordtree"></div> -->
+        </div>
+        <div id="details"></div>
+        <div id="reviewee"></div>
+
+      </div>
+    </div>
   </div>
 
   <script type="text/javascript">
@@ -67,15 +118,14 @@
       console.log(count, "teams have more than 10 reivews" );
       console.log("teamReviews[0] = ", teamReviews[0]);
 
-      var dir = new app.ReviewDir(teamReviews,{
-          comparator: function(a, b){
-            return a.score - b.score;
-          }
-        });
+      var dir = new app.ReviewDir(teamReviews);
       dir.initPos(); //need to be called here
 
       var chart = new app.StackedChart({
-        collection: dir
+        collection: dir,
+        outer_width: 400,
+        outer_height: 300
+
       });
       chart.render();
     });
