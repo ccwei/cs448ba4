@@ -12,32 +12,60 @@
     <script src="./js/underscore.js"></script>
     <script src="./js/bootstrap.js"></script>
     <script>
-      var stopWords = ["a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the", "."];
+      
+      // Also exclude the number?
+      // normalize the case sensitivity (make them all small)
+      var stopWords = ["i", "you","?", "(", ")", ".", "a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the", "."];
 
       var fill = d3.scale.category20();
       var notable;
+      var wordToSentence = {};
       d3.tsv("./data/a4.tsv", function(data) {
           console.log(data);
           notable = _.chain(data)
                         .map(function(d){ return d["constructive"]; })
                         .filter(function(d){ return d;})
                         .value();
-          //console.log(notable);
+
+          console.log(notable);
           var notable_words = _.map(notable, function(d) {
-            return d.split(" ");
+            // should include other punctuations
+            return d.split(" ");            
           });
 
+          console.log("notable_words");
+          console.log(notable_words);
+
           //Count Word Frequency
-          var freq = {}
-          _.each(notable_words, function(words){
+          var freq = {};
+          
+          _.each(notable_words, function(words, index){
             _.each(words, function(w){
+              
+              // trim
+              w = w.replace("/^\s+|\s+$/g", '');
+
+              w = w.replace(/\d+|[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+
+              // toLowerCase
+              w = w.toLowerCase();
+
               if(w in freq){
                 freq[w]++;
               } else {
                 freq[w] = 1;
               }
+
+              if(w in wordToSentence){
+                wordToSentence[w] = wordToSentence[w].concat([index]);
+              } else {
+                wordToSentence[w] = [index];
+              }
+
             });
           });
+          console.log("word to sentence");
+          console.log(wordToSentence);
           console.log(freq);
 
           //Sort based Frequency
@@ -47,10 +75,16 @@
             return b[1] - a[1];
           });
           console.log(tuples);
+
           //Filter stop words
-          var topWords = tuples.slice(0, 200);
-          topWords = topWords.filter(function(w){ return stopWords.indexOf(w[0]) == -1; });
-          var maxCount = topWords[10][1];
+          var topWords = tuples.filter(function(w){ return stopWords.indexOf(w[0]) == -1; });
+
+          //Select top frequent k words
+          topWords = topWords.slice(0, 100);
+                  
+          console.log(topWords);
+
+          var maxCount = topWords[5][1];
           d3.layout.cloud().size([1000, 1000])
           .words(topWords.map(function(d) {
             return {text: d[0], size: 10 + (d[1] * 1.0)/maxCount * 90};
@@ -63,12 +97,17 @@
 
       });
 
+      // let's do hashmap of word -> sentence index
       function showOrigText(word) {
-        _.each(notable, function(sentence) {
-          if(sentence.indexOf(word) != -1) {
-            console.log(sentence);
-          }
+        _.each(wordToSentence[word], function(notableIndex, index){
+          console.log(index + ":\n" + notable[notableIndex]);
         });
+
+        // _.each(notable, function(sentence) {
+        //   if(sentence.indexOf(word) != -1) {
+        //     console.log(sentence);
+        //   }
+        // });
       }
 
       function draw(words) {
