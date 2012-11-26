@@ -40,26 +40,30 @@
           var freq = {};
           
           _.each(notable_words, function(words, index){
-            _.each(words, function(w){
-              
-              // trim
-              w = w.replace("/^\s+|\s+$/g", '');
+            _.each(words, function(w){                            
+                            
+              // w = w.replace(/^\s\s*/, '').replace(/\s\s*$/, '');        
+              // use jQuery.trim() for instead
+              w = $.trim(w);
 
-              w = w.replace(/\d+|[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+              // simply remove all punctuations and digits e.g. awesome and awesome! should mean the same
+              w = w.replace(/\d+|[\.,-\/#"!?+<>'$%\^&\*;:{}=\[\]\-_`~()]/g, '');              
 
-              // toLowerCase
-              w = w.toLowerCase();
+              if(w.length>0){
+                // toLowerCase
+                w = w.toLowerCase();
 
-              if(w in freq){
-                freq[w]++;
-              } else {
-                freq[w] = 1;
-              }
+                if(w in freq){
+                  freq[w]++;
+                } else {
+                  freq[w] = 1;
+                }
 
-              if(w in wordToSentence){
-                wordToSentence[w] = wordToSentence[w].concat([index]);
-              } else {
-                wordToSentence[w] = [index];
+                if(w in wordToSentence){
+                  wordToSentence[w] = wordToSentence[w].concat([index]);
+                } else {
+                  wordToSentence[w] = [index];
+                }
               }
 
             });
@@ -95,19 +99,13 @@
           .on("end", draw)
           .start();
 
-      });
+      });      
 
       // let's do hashmap of word -> sentence index
       function showOrigText(word) {
-        _.each(wordToSentence[word], function(notableIndex, index){
+        _.each(wordToSentence[word], function(notableIndex, index){          
           console.log(index + ":\n" + notable[notableIndex]);
-        });
-
-        // _.each(notable, function(sentence) {
-        //   if(sentence.indexOf(word) != -1) {
-        //     console.log(sentence);
-        //   }
-        // });
+        });        
       }
 
       function draw(words) {
