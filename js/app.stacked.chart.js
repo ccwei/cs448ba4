@@ -18,7 +18,7 @@
   app.RevieweeView = Backbone.View.extend(
     (function(){
       return {
-        el: $("#reviewee"),
+        el: "#reviewee",
         tagName: "reviewee",
         className: "reviewee-container",
         template: $("#revieweeTemplate").html(),
@@ -56,6 +56,70 @@
         }
     });
 
+  app.AggregatedFeedbackView = Backbone.View.extend({
+        render: function () {
+            var frame = $(".aggregated-feedback-frame");
+            var feedback = this.model.toJSON();
+            console.log("feedback = ", feedback);
+            frame.children('#feedback_notable').append($('<li/>')
+                                              .append(feedback.notable));
+            frame.children('#feedback_constructive').append($('<li/>')
+                                              .append(feedback.constructive));
+            frame.children('#feedback_questions').append($('<li/>')
+                                              .append(feedback.questions));
+            frame.children('#feedback_ideas').append($('<li/>')
+                                              .append(feedback.ideas));
+            return this;
+        }
+    });
+
+  app.AggregatedFeedbackFrameView = Backbone.View.extend({
+        tagName: "div",
+        className: "aggregated-feedback-frame",
+        template: $("#aggregatedFeedbackFrameTemplate").html(),
+
+        render: function (idx) {
+            var tmpl = _.template(this.template);
+            $(this.el).html(tmpl());
+            return this;
+        }
+    });
+
+
+  app.FeedbacksAggregatedView = Backbone.View.extend(
+    (function(){
+      return {
+        el: '#feedbacks',
+
+        initialize: function (feedbacks) {
+            this.collection = new app.FeedbackCollection(feedbacks);
+            this.render();
+        },
+        render: function () {
+            var that = this;
+            var aggregatedFeedbackView = new app.AggregatedFeedbackFrameView();
+            $(this.el).html(aggregatedFeedbackView.render().el);
+            //Create on click for each <li>
+            $('.' + aggregatedFeedbackView.className).delegate('li', 'click', function () {
+              var reviewIdx = $(this).index() - 1;
+              //TODO: link back to one by one view for the review idx reviewIdx
+            });
+            _.each(this.collection.models, function (item, idx) {
+                console.log("idx = ", idx);
+                that.renderAggregatedFeedback(item, idx);
+            }, this);
+        },
+        renderAggregatedFeedback: function (item, idx) {
+            var feedView = new app.AggregatedFeedbackView({
+                model: item
+            });
+            feedView.render();
+        }
+      };
+    })()
+  );
+
+
   app.FeedbacksView = Backbone.View.extend(
     (function(){
       return {
@@ -68,8 +132,8 @@
         render: function () {
             var that = this;
             $(this.el).html("");
-            _.each(this.collection.models, function (item) {
-                that.renderFeedback(item);
+            _.each(this.collection.models, function (item, idx) {
+                that.renderFeedback(item, idx);
             }, this);
         },
         renderFeedback: function (item) {
@@ -111,7 +175,7 @@
           var feedbacks = _.map(d.reviews, function(d) {
             return {notable: d.notable, constructive: d.constructive, questions: d.questions, ideas: d.ideas};
           });
-          var f = new app.FeedbacksView(feedbacks);
+          var f = new app.FeedbacksAggregatedView(feedbacks);
           new app.RevieweeView(d);
           console.log("number of reviews: ", feedbacks.length);
         }
