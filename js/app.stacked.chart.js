@@ -89,7 +89,7 @@
   app.FeedbacksAggregatedView = Backbone.View.extend(
     (function(){
       return {
-        el: '#feedbacks',
+        el: '#aggregate-feedbacks',
 
         initialize: function (feedbacks) {
             this.collection = new app.FeedbackCollection(feedbacks);

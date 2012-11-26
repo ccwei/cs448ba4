@@ -11,54 +11,47 @@
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
 </head>
-<body>
-  <div id="chart">
-  </div>
-  <div id="details">
-  </div>
-  <div id="reviewee">
-  </div>
-  <div id="feedbacks">
-  </div>
+
 <script id="revieweeTemplate" type="text/template">
   <h1><span><%= name %></span></h1>
 </script>
 
-  <script id="feedbackTemplate" type="text/template">
-    <dl>
-        <dt>Notable:</dt><dd><%= notable %></dd>
-        <dt>Constructive:</dt><dd><%= constructive %></dd>
-        <dt>Questions:</dt><dd><%= questions %></dd>
-        <dt>Ideas:</dt><dd><%= ideas %></dd>
-    </dl>
-  </script>
+<script id="feedbackTemplate" type="text/template">
+  <dl>
+      <dt>Notable:</dt><dd><%= notable %></dd>
+      <dt>Constructive:</dt><dd><%= constructive %></dd>
+      <dt>Questions:</dt><dd><%= questions %></dd>
+      <dt>Ideas:</dt><dd><%= ideas %></dd>
+  </dl>
+</script>
 
+<script id="aggregatedFeedbackFrameTemplate" type="text/template">
+  <h4>Notable</h4>
+  <div id="feedback_notable">
+    <ol>
+    </ol>
+  </div>
+  <h4>Constructive</h4>
+  <div id="feedback_constructive">
+    <ol>
+    </ol>
+  </div>
+  <h4>Questions</h4>
+  <div id="feedback_questions">
+    <ol>
+    </ol>
+  </div>
+  <h4>Ideas</h4>
+  <div id="feedback_ideas">
+    <ol>
+    </ol>
+  </div>
+</script>
 
 <body>
 
 
-  <script id="aggregatedFeedbackFrameTemplate" type="text/template">
-    <h4>Notable</h4>
-    <div id="feedback_notable">
-      <ol>
-      </ol>
-    </div>
-    <h4>Constructive</h4>
-    <div id="feedback_constructive">
-      <ol>
-      </ol>
-    </div>
-    <h4>Questions</h4>
-    <div id="feedback_questions">
-      <ol>
-      </ol>
-    </div>
-    <h4>Ideas</h4>
-    <div id="feedback_ideas">
-      <ol>
-      </ol>
-    </div>
-  </script>
+
 
 
   <div class="row-fluid">
@@ -106,7 +99,9 @@
 
           </div>
           <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
-          <div class="tab-pane" id="tab-aggregate-grid"></div>
+          <div class="tab-pane" id="tab-aggregate-grid">
+            <div id="aggregate-feedbacks"></div>
+          </div>
           <div class="tab-pane active" id="tab-individual-review">
             <div id="feedbacks"></div>
           </div>
