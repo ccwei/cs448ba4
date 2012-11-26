@@ -73,7 +73,7 @@
           _.each(that.collection.models, function (item) {
               that.renderFeedback(item);
           }, that);
-          return that;
+          return this;
         },
         renderFeedback: function (item) {
             var feedView = new app.FeedbackView({
@@ -253,6 +253,7 @@
             .on("click", function(d) {
               that.collection.showFeedback(d);
               console.log("click :" , d);});
+        return this;
       }
     };
   })()
