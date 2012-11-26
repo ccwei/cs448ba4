@@ -140,9 +140,7 @@
     //TODO(kanitw): register to ReviewDir's event
 
     var x,y,xAxis,yAxis,svg,data;
-    var outer_width = 960,
-        outer_height = 500,
-        margin = {top: 25, right: 20, bottom: 30, left: 40};
+
     var that;
     return {
       initialize: function(){
@@ -155,15 +153,12 @@
         that = this;
         console.log(this);
 
-
+        //load options
         var options = that.options;
-        if(options.hasOwnProperty("outer_width")){
-          outer_width = options.outer_width;
-        }
-        if(options.hasOwnProperty('outer_height')){
-          outer_height = options.outer_height;
-        }
 
+        var outer_width = options.outer_width || 960;
+        var outer_height = options.outer_height || 500;
+        var margin = options.margin || {top: 25, right: 20, bottom: 30, left: 40};
 
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
