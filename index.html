@@ -7,6 +7,8 @@
   <script src="./js/underscore.js"></script>
   <script src="./js/backbone.js"></script>
   <script src="./js/filter_ordinal.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
 </head>
 
@@ -67,15 +69,14 @@
       console.log(count, "teams have more than 10 reivews" );
       console.log("teamReviews[0] = ", teamReviews[0]);
 
-      var dir = new app.ReviewDir(teamReviews,{
-          comparator: function(a, b){
-            return a.score - b.score;
-          }
-        });
+      var dir = new app.ReviewDir(teamReviews);
       dir.initPos(); //need to be called here
 
       var chart = new app.StackedChart({
-        collection: dir
+        collection: dir,
+        outer_width: 400,
+        outer_height: 500
+
       });
       chart.render();
     });
