@@ -11,6 +11,55 @@ body {
   padding: 10px;
 }
 
+
+.alert.alert-small{
+  padding: 4px 15px 4px 6px;
+}
+
+table.feedback-grid
+{
+  margin:8px 4px 0;
+  // width:100%;
+  div.rel{
+    position:relative;
+  }
+  td {
+    padding: 3px;
+    width:50%;
+    position:relative;
+    border: 0;
+    .grid-cell{
+      background-color: white;
+      border: 1px solid #CCC;
+      .border-radius(4px);
+      margin:3px;
+      padding: 5px;
+      margin-bottom: 0;
+      resize:none;
+      overflow-y:scroll;
+
+      height:150px;
+
+    }
+
+  }
+  a.icon{
+    position:absolute;
+    right:8px;
+    bottom:4px;
+    background-color: rgba(255,255,255,0.75);
+    @include opacity(0.5);
+    img {
+      padding:3px;
+    }
+  }
+  input[readonly], textarea[readonly], input[disabled], textarea[disabled] {
+    //color:black !important;
+    cursor: default;
+    background-color: white !important;
+  }
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -43,3 +92,4 @@ body {
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
+

@@ -47,7 +47,7 @@
   app.FeedbackView = Backbone.View.extend({
         tagName: "feedback",
         className: "feedback-container",
-        template: $("#feedbackTemplate").html(),
+        template: $("#feedbackGridTemplate").html(),
 
         render: function () {
             var tmpl = _.template(this.template);
@@ -58,25 +58,29 @@
 
   app.FeedbacksView = Backbone.View.extend(
     (function(){
+      var that;
       return {
         el: '#feedbacks',
 
         initialize: function (feedbacks) {
-            this.collection = new app.FeedbackCollection(feedbacks);
-            this.render();
+          that=this;
+          this.collection = new app.FeedbackCollection(feedbacks);
+          this.render();
         },
         render: function () {
-            var that = this;
-            $(this.el).html("");
-            _.each(this.collection.models, function (item) {
-                that.renderFeedback(item);
-            }, this);
+
+          $(that.el).html("");
+          _.each(that.collection.models, function (item) {
+              that.renderFeedback(item);
+          }, that);
+          return that;
         },
         renderFeedback: function (item) {
             var feedView = new app.FeedbackView({
                 model: item
             });
             $(this.el).append(feedView.render().el);
+            $(this.el).append("<hr/>");
         }
       };
     })()
