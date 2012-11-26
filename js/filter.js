@@ -17,12 +17,7 @@
 (function(undefined) {
   window.Filter = Backbone.Model.extend({
     defaults: {
-      filter: {},
-      data: null,
-      y: {},
-      dimensionType: {},
-      ids: null,
-      id_type: null
+      filter: {}
     },
 
     initialize: function() {
@@ -32,12 +27,6 @@
       });
       this.bind('change:filter', function() {
         this.run();
-      });
-      this.bind('change:ids', function() {
-        this.run();  
-      });
-      this.bind('change:id_type', function() {
-        this.run();  
       });
     },
 
@@ -78,7 +67,7 @@
       self.set({data: leftovers});
       self.clearFilter();
     },
-    
+
     inliers: function() {
       var self = this;
       var leftovers = _(self.get('data')).filter(function(d,k) {
@@ -91,42 +80,23 @@
       self.set({data: leftovers});
       self.clearFilter();
     },
-    
+
     clearFilter: function() {
       this.set({filter: {}});
       this.trigger('change:filter');  // why necessary?
     },
 
     check: function(d) {
-      var filter = this.get('filter')
-      var dimensionType = this.get('dimensionType');
-      var y = this.get('y');
-      var ids = this.get('ids');
-      var id_type = this.get('id_type');
-      var data;
+      var filter = this.get('filter');
       for (key in this.get('filter')) {
-        if(dimensionType[key] == ORDINAL_TYPE || dimensionType[key]== ID_TYPE)
-          data = y[key](d[key])
-        else
-          data = d[key];
-        if ((data < filter[key].min) || (data > filter[key].max)) 
+        if ((d[key] < filter[key].min) || (d[key] > filter[key].max))
           return false;
       }
-      
-      var match = false;
-      if(ids) {
-        _(ids).each(function(id) {
-            if((d[id_type] + "").indexOf(id) != -1)
-                  match = true;
-        });
-        return match;
-      } 
-
       return true;
     }
 
   });
-  
+
   window.Selector = Backbone.Model.extend({
     defaults: {
       selected: null
@@ -136,7 +106,6 @@
     },
     deselect: function() {
       this.unset('selected');
-    },
-
+    }
   });
 })();

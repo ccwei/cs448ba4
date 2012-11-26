@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+  <script src="./js/d3.v2.js"></script>
+  <script src="./js/jquery.js"></script>
+  <script src="./js/underscore.js"></script>
+  <script src="./js/backbone.js"></script>
+  <script src="./js/filter_ordinal.js"></script>
+
+</head>
+
+<script id="revieweeTemplate" type="text/template">
+  <h1><span><%= name %></span></h1>
+</script>
+
+<script id="feedbackTemplate" type="text/template">
+  <dl>
+      <dt>Notable:</dt><dd><%= notable %></dd>
+      <dt>Constructive:</dt><dd><%= constructive %></dd>
+      <dt>Questions:</dt><dd><%= questions %></dd>
+      <dt>Ideas:</dt><dd><%= ideas %></dd>
+  </dl>
+</script>
+<script src="./js/app.stacked.chart.js"></script>
+
+<body>
+  <div id="chart">
+  </div>
+  <div id="details">
+  </div>
+  <div id="reviewee">
+  </div>
+  <div id="feedbacks">
+  </div>
+
+  <script type="text/javascript">
+    d3.tsv("./data/a4.tsv", function(data) {
+      data = _.filter(data, function(d){
+        d.score = +d.score
+        return !isNaN(d.score);
+      });
+      var teamMap = {};
+      _.each(data, function(d, idx) {
+        if (d["reviewed_id"] in teamMap) {
+          teamMap[d["reviewed_id"]].push(d);
+        } else {
+          teamMap[d["reviewed_id"]] = [d];
+        }
+      });
+
+      //Convert map to an array of object {teamid: id, score: average_score, reviews: reviews}
+      var teamReviews = [];
+      var count = 0;
+      for(var key in teamMap) {
+        teamReviews.push({teamid: key, reviews: teamMap[key]});
+      }
+      _.each(teamReviews, function(tr) {
+        var sum = 0;
+        _.each(tr.reviews, function(r) {
+          sum += r.score;
+        })
+        if(tr.reviews.length > 10)
+          count++;
+        tr.score = Math.round(sum * 1.0 / tr.reviews.length);
+      })
+      console.log(count, "teams have more than 10 reivews" );
+      console.log("teamReviews[0] = ", teamReviews[0]);
+
+      var dir = new app.ReviewDir(teamReviews,{
+          comparator: function(a, b){
+            return a.score - b.score;
+          }
+        });
+      dir.initPos(); //need to be called here
+
+      var chart = new app.StackedChart({
+        collection: dir
+      });
+      chart.render();
+    });
+  </script>
+
+</body>

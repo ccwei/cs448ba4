@@ -10,16 +10,95 @@
 
   window.app = window.app || {};
 
-  app.Reviewee = Backbone.Model.extend({}); //no special property for "reviewee" yet
+  app.Review = Backbone.Model.extend({}); //no special property for "review" yet
+  app.Reviewee = Backbone.Model.extend({});
+  app.Feedback = Backbone.Model.extend({});
 
-  app.RevieweeDir = Backbone.Collection.extend(
-    (function(){ //use anonymous function here so we can have private variable for this class
-      var total={};
+  //View for the reviewee
+  app.RevieweeView = Backbone.View.extend(
+    (function(){
+      return {
+        el: $("#reviewee"),
+        tagName: "reviewee",
+        className: "reviewee-container",
+        template: $("#revieweeTemplate").html(),
+        initialize: function (review) {
+            this.model = new app.Reviewee({name: review.teamid});
+            this.render();
+        },
+        render: function () {
+            var tmpl = _.template(this.template);
+            $(this.el).html(tmpl(this.model.toJSON()));
+            return this;
+        }
+      };
+    })()
+  );
+
+//======Feedback=========
+  app.FeedbackCollection = Backbone.Collection.extend(
+    (function(){
       return  {
-        model: window.app.Reviewee,
-        initialize: function() {
+        model: window.app.Feedback
+      };
+    })()
+  );
 
-          _(this.models).pluck('attributes').forEach(function(d) {
+  app.FeedbackView = Backbone.View.extend({
+        tagName: "feedback",
+        className: "feedback-container",
+        template: $("#feedbackTemplate").html(),
+
+        render: function () {
+            var tmpl = _.template(this.template);
+            $(this.el).html(tmpl(this.model.toJSON()));
+            return this;
+        }
+    });
+
+  app.FeedbacksView = Backbone.View.extend(
+    (function(){
+      return {
+        el: '#feedbacks',
+
+        initialize: function (feedbacks) {
+            this.collection = new app.FeedbackCollection(feedbacks);
+            this.render();
+        },
+        render: function () {
+            var that = this;
+            $(this.el).html("");
+            _.each(this.collection.models, function (item) {
+                that.renderFeedback(item);
+            }, this);
+        },
+        renderFeedback: function (item) {
+            var feedView = new app.FeedbackView({
+                model: item
+            });
+            $(this.el).append(feedView.render().el);
+        }
+      };
+    })()
+  );
+
+//======Feedback=========
+
+  app.ReviewDir = Backbone.Collection.extend(
+    (function(){ //use anonymous function here so we can have private variable for this class
+      var total = {};
+      var that;
+      return  {
+        model: window.app.Review,
+        initialize: function() {
+          that = this;
+          // console.log("ReviewDir.Models");
+          // console.log(this);
+          // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
+        },
+        initPos: function(){
+          var reviewData = _(this.models).pluck('attributes');
+          reviewData.forEach(function(d) {
             if(!total[d.score]) {
               d.y0 = total[d.score] = 0;
               d.y1 = total[d.score] = 1;
@@ -31,28 +110,38 @@
           });
         },
         total: function(score){
-          //return total number of reviewee with each score
+          //return total number of review with each score
           return total[score];
+        },
+
+        showFeedback: function(d){
+          var feedbacks = _.map(d.reviews, function(d) {
+            return {notable: d.notable, constructive: d.constructive, questions: d.questions, ideas: d.ideas};
+          });
+          var f = new app.FeedbacksView(feedbacks);
+          new app.RevieweeView(d);
+          console.log("number of reviews: ", feedbacks.length);
         }
-
         //TODO(kanitw): implement filter & event
-
       };
     })()
   );
 
   app.StackedChart = Backbone.View.extend((function(){ //use anonymous function here so we can have private variable for this class
 
-    //TODO(kanitw): register to RevieweeDir's event
+    //TODO(kanitw): register to ReviewDir's event
 
     var x,y,xAxis,yAxis,svg,data;
     var outer_width = 960,
         outer_height = 500,
         margin = {top: 20, right: 20, bottom: 30, left: 40};
-
+    var that;
     return {
       initialize: function(){
+        console.log("models", this.collection.models);
         data = _(this.collection.models).pluck('attributes');
+        //not sure if this is the right way to do it
+        that = this;
         console.log(data);
 
         var width = 960 - margin.left - margin.right,
@@ -73,7 +162,7 @@
           .orient("left")
           .tickFormat(d3.format(".2s"));
 
-        svg = d3.select("body").append("svg")
+        svg = d3.select("#chart").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")
@@ -98,6 +187,30 @@
             .attr("dy", ".71em")
             .style("text-anchor", "end")
             .text("Population");
+
+        //For brush
+        svg.append("g")
+            .attr("class", "brush")
+            .call(d3.svg.brush().x(x)
+            .on("brushstart", brushstart)
+            .on("brush", brushmove)
+            .on("brushend", brushend))
+          .selectAll("rect")
+            .attr("height", height);
+
+        function brushstart() {
+          svg.classed("selecting", true);
+        }
+
+        function brushmove() {
+
+        }
+
+        function brushend() {
+          svg.classed("selecting", !d3.event.target.empty());
+          var s = d3.event.target.extent();
+           /** To be factored **/
+        }
       },
       render: function(){
         //render
@@ -112,7 +225,9 @@
             .attr("width", x.rangeBand())
             .attr("y", function(d) { return y(d.y1); })
             .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-            .on("click", function(d) {console.log("click :" , d);});
+            .on("click", function(d) {
+              that.collection.showFeedback(d);
+              console.log("click :" , d);});
       }
     };
   })()
