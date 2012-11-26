@@ -47,7 +47,7 @@
   app.FeedbackView = Backbone.View.extend({
         tagName: "feedback",
         className: "feedback-container",
-        template: $("#feedbackTemplate").html(),
+        template: $("#feedbackGridTemplate").html(),
 
         render: function () {
             var tmpl = _.template(this.template);
@@ -122,25 +122,29 @@
 
   app.FeedbacksView = Backbone.View.extend(
     (function(){
+      var that;
       return {
         el: '#feedbacks',
 
         initialize: function (feedbacks) {
-            this.collection = new app.FeedbackCollection(feedbacks);
-            this.render();
+          that=this;
+          this.collection = new app.FeedbackCollection(feedbacks);
+          this.render();
         },
         render: function () {
-            var that = this;
-            $(this.el).html("");
-            _.each(this.collection.models, function (item, idx) {
-                that.renderFeedback(item, idx);
-            }, this);
+
+          $(that.el).html("");
+          _.each(that.collection.models, function (item) {
+              that.renderFeedback(item);
+          }, that);
+          return this;
         },
         renderFeedback: function (item) {
             var feedView = new app.FeedbackView({
                 model: item
             });
             $(this.el).append(feedView.render().el);
+            $(this.el).append("<hr/>");
         }
       };
     })()
@@ -185,7 +189,7 @@
           var feedbacks = _.map(d.reviews, function(d) {
             return {notable: d.notable, constructive: d.constructive, questions: d.questions, ideas: d.ideas};
           });
-          var f = new app.FeedbacksAggregatedView(feedbacks);
+          var f = new app.FeedbacksView(feedbacks);
           new app.RevieweeView(d);
           console.log("number of reviews: ", feedbacks.length);
         }
@@ -204,7 +208,9 @@
     //TODO(kanitw): register to ReviewDir's event
 
     var x,y,xAxis,yAxis,svg,data;
-
+    var outer_width = 960,
+        outer_height = 500,
+        margin = {top: 25, right: 20, bottom: 30, left: 40};
     var that;
     return {
       initialize: function(){
@@ -219,11 +225,12 @@
 
         //load options
         var options = that.options;
-
-        var outer_width = options.outer_width || 960;
-        var outer_height = options.outer_height || 500;
-        var margin = options.margin || {top: 25, right: 20, bottom: 30, left: 40};
-
+        if(options.hasOwnProperty("outer_width")){
+          outer_width = options.outer_width;
+        }
+        if(options.hasOwnProperty('outer_height')){
+          outer_height = options.outer_height;
+        }
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
 
@@ -308,6 +315,7 @@
             .on("click", function(d) {
               that.collection.showFeedback(d);
               console.log("click :" , d);});
+        return this;
       }
     };
   })()

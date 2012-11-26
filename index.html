@@ -24,15 +24,41 @@
   <h1><span><%= name %></span></h1>
 </script>
 
-  <script id="feedbackTemplate" type="text/template">
-    <dl>
-        <dt>Notable:</dt><dd><%= notable %></dd>
-        <dt>Constructive:</dt><dd><%= constructive %></dd>
-        <dt>Questions:</dt><dd><%= questions %></dd>
-        <dt>Ideas:</dt><dd><%= ideas %></dd>
-    </dl>
-  </script>
+<script id="feedbackTemplate" type="text/template">
+  <dl>
+      <dt>Notable:</dt><dd><%= notable %></dd>
+      <dt>Constructive:</dt><dd><%= constructive %></dd>
+      <dt>Questions:</dt><dd><%= questions %></dd>
+      <dt>Ideas:</dt><dd><%= ideas %></dd>
+  </dl>
+</script>
 
+<script id="feedbackGridTemplate" type="text/template">
+
+  <table class="feedback-grid">
+    <tr>
+      <td class="like">
+        <div class="grid-cell"><%= notable %></div>
+        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
+      </td>
+      <td class="wish">
+        <div class="grid-cell"><%= constructive %></div>
+        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="question">
+        <div class="grid-cell"><%= questions %></div>
+        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
+      </td>
+      <td class="big-idea">
+        <div class="grid-cell"><%= ideas %></div>
+        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
+      </td>
+    </tr>
+  </table>
+
+</script>
 
 <body>
 
@@ -69,7 +95,9 @@
     </div>
     <div class="span6">
       <div class="default-padding">
-
+        <div class="alert alert-info alert-small">
+          Showing [Submissions Aggregated /One Submission]
+        </div>
         <ul class="nav nav-tabs">
           <li>
             <a href="#tab-tag-cloud" data-toggle="tab">

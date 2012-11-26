@@ -52,6 +52,51 @@ body {
 .default-padding {
   padding: 10px;
 }
+.alert.alert-small {
+  padding: 4px 15px 4px 6px;
+}
+table.feedback-grid {
+  margin: 8px 4px 0;
+}
+table.feedback-grid div.rel {
+  position: relative;
+}
+table.feedback-grid td {
+  padding: 3px;
+  width: 50%;
+  position: relative;
+  border: 0;
+}
+table.feedback-grid td .grid-cell {
+  background-color: white;
+  border: 1px solid #CCC;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 3px;
+  padding: 5px;
+  margin-bottom: 0;
+  resize: none;
+  overflow-y: scroll;
+  height: 150px;
+}
+table.feedback-grid a.icon {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+@include opacity(0.5);
+table.feedback-grid a.icon img {
+  padding: 3px;
+}
+table.feedback-grid input[readonly],
+table.feedback-grid textarea[readonly],
+table.feedback-grid input[disabled],
+table.feedback-grid textarea[disabled] {
+  cursor: default;
+  background-color: white !important;
+}
 .axis path,
 .axis line {
   fill: none;
