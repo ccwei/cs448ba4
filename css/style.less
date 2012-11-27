@@ -2,7 +2,7 @@
 @import "lessdss/dss.less";
 
 @bar-color: #110b92;
-
+@hover-li-color: #ff0;
 body {
   font: 10px sans-serif;
 }
@@ -58,6 +58,11 @@ table.feedback-grid
     cursor: default;
     background-color: white !important;
   }
+}
+
+li.feedback:hover {
+  color: black;
+  background-color: @hover-li-color;
 }
 
 .axis path,

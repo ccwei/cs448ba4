@@ -61,13 +61,13 @@
             var frame = $(".aggregated-feedback-frame");
             var feedback = this.model.toJSON();
             console.log("feedback = ", feedback);
-            frame.children('#feedback_notable').append($('<li/>')
+            frame.children('#feedback_notable').append($('<li/>').addClass('feedback')
                                               .append(feedback.notable));
-            frame.children('#feedback_constructive').append($('<li/>')
+            frame.children('#feedback_constructive').append($('<li/>').addClass('feedback')
                                               .append(feedback.constructive));
-            frame.children('#feedback_questions').append($('<li/>')
+            frame.children('#feedback_questions').append($('<li/>').addClass('feedback')
                                               .append(feedback.questions));
-            frame.children('#feedback_ideas').append($('<li/>')
+            frame.children('#feedback_ideas').append($('<li/>').addClass('feedback')
                                               .append(feedback.ideas));
             return this;
         }

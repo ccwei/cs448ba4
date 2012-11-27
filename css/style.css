@@ -97,6 +97,10 @@ table.feedback-grid textarea[disabled] {
   cursor: default;
   background-color: white !important;
 }
+li.feedback:hover {
+  color: black;
+  background-color: #ffff00;
+}
 .axis path,
 .axis line {
   fill: none;
