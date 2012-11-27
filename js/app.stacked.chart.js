@@ -18,7 +18,7 @@
   app.RevieweeView = Backbone.View.extend(
     (function(){
       return {
-        el: "#reviewee",
+        el: "#reviewee", //TODO(kanitw): make sure we need this line.
         tagName: "reviewee",
         className: "reviewee-container",
         template: $("#revieweeTemplate").html(),
@@ -89,7 +89,7 @@
   app.FeedbacksAggregatedView = Backbone.View.extend(
     (function(){
       return {
-        el: '#feedbacks',
+        el: '#aggregate-feedbacks',
 
         initialize: function (feedbacks) {
             this.collection = new app.FeedbackCollection(feedbacks);
@@ -190,6 +190,7 @@
             return {notable: d.notable, constructive: d.constructive, questions: d.questions, ideas: d.ideas};
           });
           var f = new app.FeedbacksView(feedbacks);
+          var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
           new app.RevieweeView(d);
           console.log("number of reviews: ", feedbacks.length);
         }
