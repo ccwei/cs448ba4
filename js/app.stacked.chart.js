@@ -85,6 +85,24 @@
         }
     });
 
+  app.FeedbackModalView = Backbone.View.extend({
+        el: "#feedback-modal",
+        tagName: "div",
+        className: "feedback-modal",
+        template: $("#feedbackModalTemplate").html(),
+
+        initialize: function (feedback) {
+            this.render(feedback);
+        },
+        render: function (feedback) {
+            var feedbackView = new app.FeedbackView({ model: feedback});
+            var tmpl = _.template(this.template);
+            $(this.el).html(tmpl());
+            $(this.el).children('.feedbackModal').children('.modal-body').append($(feedbackView.render().el).children('.feedback-grid'));
+            $(this.el).children('.feedbackModal').modal('show');
+            return this;
+        }
+    });
 
   app.FeedbacksAggregatedView = Backbone.View.extend(
     (function(){
@@ -102,6 +120,7 @@
             //Create on click for each <li>
             $('.' + aggregatedFeedbackView.className).delegate('li', 'click', function () {
               var reviewIdx = $(this).index() - 1;
+              var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
               //TODO: link back to one by one view for the review idx reviewIdx
             });
             _.each(this.collection.models, function (item, idx) {
