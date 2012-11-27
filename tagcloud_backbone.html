@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tag Cloud</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="./js/d3.v2.js"></script>
+    <script src="./js/d3.layout.cloud.js"></script>
+    <script src="./js/underscore.js"></script>
+    <script src="./js/backbone.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/app.tagcloud.js"></script>
+    <script>
+    // Also exclude the number?
+    // normalize the case sensitivity (make them all small)
+    var stopWords = ["i", "you","?", "(", ")", ".", "a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all", "almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst", "amount",  "an", "and", "another", "any","anyhow","anyone","anything","anyway", "anywhere", "are", "around", "as",  "at", "back","be","became", "because","become","becomes", "becoming", "been", "before", "beforehand", "behind", "being", "below", "beside", "besides", "between", "beyond", "bill", "both", "bottom","but", "by", "call", "can", "cannot", "cant", "co", "con", "could", "couldnt", "cry", "de", "describe", "detail", "do", "done", "down", "due", "during", "each", "eg", "eight", "either", "eleven","else", "elsewhere", "empty", "enough", "etc", "even", "ever", "every", "everyone", "everything", "everywhere", "except", "few", "fifteen", "fify", "fill", "find", "fire", "first", "five", "for", "former", "formerly", "forty", "found", "four", "from", "front", "full", "further", "get", "give", "go", "had", "has", "hasnt", "have", "he", "hence", "her", "here", "hereafter", "hereby", "herein", "hereupon", "hers", "herself", "him", "himself", "his", "how", "however", "hundred", "ie", "if", "in", "inc", "indeed", "interest", "into", "is", "it", "its", "itself", "keep", "last", "latter", "latterly", "least", "less", "ltd", "made", "many", "may", "me", "meanwhile", "might", "mill", "mine", "more", "moreover", "most", "mostly", "move", "much", "must", "my", "myself", "name", "namely", "neither", "never", "nevertheless", "next", "nine", "no", "nobody", "none", "noone", "nor", "not", "nothing", "now", "nowhere", "of", "off", "often", "on", "once", "one", "only", "onto", "or", "other", "others", "otherwise", "our", "ours", "ourselves", "out", "over", "own","part", "per", "perhaps", "please", "put", "rather", "re", "same", "see", "seem", "seemed", "seeming", "seems", "serious", "several", "she", "should", "show", "side", "since", "sincere", "six", "sixty", "so", "some", "somehow", "someone", "something", "sometime", "sometimes", "somewhere", "still", "such", "system", "take", "ten", "than", "that", "the", "their", "them", "themselves", "then", "thence", "there", "thereafter", "thereby", "therefore", "therein", "thereupon", "these", "they", "thickv", "thin", "third", "this", "those", "though", "three", "through", "throughout", "thru", "thus", "to", "together", "too", "top", "toward", "towards", "twelve", "twenty", "two", "un", "under", "until", "up", "upon", "us", "very", "via", "was", "we", "well", "were", "what", "whatever", "when", "whence", "whenever", "where", "whereafter", "whereas", "whereby", "wherein", "whereupon", "wherever", "whether", "which", "while", "whither", "who", "whoever", "whole", "whom", "whose", "why", "will", "with", "within", "without", "would", "yet", "you", "your", "yours", "yourself", "yourselves", "the", "."];
+
+      var notable;
+      var wordToSentence = {};
+      d3.tsv("./data/a4.tsv", function(data) {
+          console.log(data);
+          notable = _.chain(data)
+                        .map(function(d){ return d["constructive"]; })
+                        .filter(function(d){ return d;})
+                        .value();
+
+          console.log(notable);
+          var notable_words = _.map(notable, function(d) {
+            // should include other punctuations
+            return d.split(" ");
+          });
+
+          console.log("notable_words");
+          console.log(notable_words);
+          //Count Word Frequency
+          var freq = {};
+
+          _.each(notable_words, function(words, index){
+            _.each(words, function(w){
+
+              // w = w.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+              // use jQuery.trim() for instead
+              w = $.trim(w);
+
+              // simply remove all punctuations and digits e.g. awesome and awesome! should mean the same
+              w = w.replace(/\d+|[\.,-\/#"!?+<>'$%\^&\*;:{}=\[\]\-_`~()]/g, '');
+
+              if(w.length>0){
+                // toLowerCase
+                w = w.toLowerCase();
+
+                if(w in freq){
+                  freq[w]++;
+                } else {
+                  freq[w] = 1;
+                }
+
+                if(w in wordToSentence){
+                  wordToSentence[w] = wordToSentence[w].concat([index]);
+                } else {
+                  wordToSentence[w] = [index];
+                }
+              }
+
+            });
+          });
+          console.log("word to sentence");
+          console.log(wordToSentence);
+          console.log(freq);
+
+          //Sort based Frequency
+          var tuples = [];
+          for(var key in freq) tuples.push([key, freq[key]]);
+          tuples.sort(function(a, b){
+            return b[1] - a[1];
+          });
+          console.log(tuples);
+
+          //Filter stop words
+          var topWords = tuples.filter(function(w){ return stopWords.indexOf(w[0]) == -1; });
+
+          //Select top frequent k words
+          topWords = topWords.slice(0, 100);
+
+          console.log(topWords);
+
+          var maxCount = topWords[5][1];
+          var tagCloud = new app.TagCloud(topWords);
+      });
+
+    </script>
+  </body>
+</html>
