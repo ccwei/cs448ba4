@@ -60,7 +60,7 @@
               //TODO: link back to one by one view for the review idx reviewIdx
             });
             _.each(this.collection.models, function (item, idx) {
-                console.log("idx = ", idx);
+                // console.log("idx = ", idx);
                 that.renderAggregatedFeedback(item, idx);
             }, this);
         },
