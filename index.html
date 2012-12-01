@@ -259,7 +259,7 @@
         collection: dir,
         outer_width: 400,
         outer_height: 300,
-        onItemClick: function(d){
+        onItemSelected: function(d){
           showIndividualView(true);
           console.log("onItemClick: ");
           console.log(d);
@@ -275,6 +275,9 @@
           var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
           new app.RevieweeView(d);
           console.log("number of reviews: ", feedbacks.length);
+        },
+        onItemDeselected: function(d){
+          showIndividualView(false);
         }
       });
       chart.render();
