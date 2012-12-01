@@ -89,6 +89,7 @@
 
       render: function(){
         function draw(words) {
+          d3.select(divid + " svg").remove();
           d3.select(divid).append("svg")
               .attr("width", width)
               .attr("height", height)
