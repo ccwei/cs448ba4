@@ -6,9 +6,10 @@
   <script src="./js/jquery.js"></script>
   <script src="./js/underscore.js"></script>
   <script src="./js/backbone.js"></script>
-  <script src="./js/filter_ordinal.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="./js/d3.layout.cloud.js"></script>
   <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 
 </head>
 
@@ -150,15 +151,22 @@
     </div>
   </div>
   <script src="./js/app.stacked.chart.js"></script>
+  <script src="./js/app.tagcloud.js"></script>
 
   <script type="text/javascript">
+
     d3.tsv("./data/a4.tsv", function(data) {
       data = _.filter(data, function(d){
         d.score = +d.score
         return !isNaN(d.score);
       });
       var teamMap = {};
+      var feedbackWords = [];
       _.each(data, function(d, idx) {
+        var words = d.notable.split(" ");
+        _(words).each(function (w) {
+          feedbackWords.push([w,d]);
+        });
         if (d["reviewed_id"] in teamMap) {
           teamMap[d["reviewed_id"]].push(d);
         } else {
@@ -194,6 +202,8 @@
 
       });
       chart.render();
+
+      var tagCloud = new app.TagCloud(feedbackWords);
     });
   </script>
   <div id="feedback-modal">
