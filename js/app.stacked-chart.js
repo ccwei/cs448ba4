@@ -20,37 +20,49 @@
 
     //TODO(kanitw): register to ReviewDir's event
 
-    var x,y,xAxis,yAxis,svg,data;
-    var outer_width = 960,
-        outer_height = 500,
-        margin = {top: 25, right: 20, bottom: 30, left: 40};
-    var that;
+
     return {
-      parseOptions: function(){
-        var options = that.options;
-        if(options.hasOwnProperty("outer_width")){
-          outer_width = options.outer_width;
-        }
-        if(options.hasOwnProperty('outer_height')){
-          outer_height = options.outer_height;
-        }
 
-        that.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
-        that.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
-      },
       initialize: function(){
-
+        var options = this.options;
         //Init Collection and options
 
         // console.log("models", this.collection.models);
-        data = _(this.collection.models).pluck('attributes');
+        this.data = _(this.collection.models).pluck('attributes');
         //not sure if this is the right way to do it
-        that = this;
 
-        that.parseOptions();
+        this.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
+        this.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
+
+
+      },
+      render: function(){
+        var options = this.options;
+        var outer_width = options.outer_width || 960;
+        var outer_height = options.outer_height || 500;
+        var margin = options.margin || {top: 25, right: 20, bottom: 30, left: 40};
+
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
 
+        //render
+        var that = this;
+
+        function brushstart() {
+          svg.classed("selecting", true);
+        }
+
+        function brushmove() {
+
+        }
+
+        function brushend() {
+          svg.classed("selecting", !d3.event.target.empty());
+          var s = d3.event.target.extent();
+           /** To be factored **/
+        }
+
+        var x,y,xAxis,yAxis,svg,data=this.data;
         //init x, y, xAxis, yAxis, svg
         x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
 
@@ -102,22 +114,7 @@
           .selectAll("rect")
             .attr("height", height);
 
-        function brushstart() {
-          svg.classed("selecting", true);
-        }
 
-        function brushmove() {
-
-        }
-
-        function brushend() {
-          svg.classed("selecting", !d3.event.target.empty());
-          var s = d3.event.target.extent();
-           /** To be factored **/
-        }
-      },
-      render: function(){
-        //render
 
         var state = svg.selectAll(".state")
                   .data(data)
