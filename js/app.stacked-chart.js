@@ -35,7 +35,8 @@
           outer_height = options.outer_height;
         }
 
-        that.onItemClick = options.onItemClick || function() { /*do nothing*/ };
+        that.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
+        that.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
       },
       initialize: function(){
 
@@ -130,13 +131,18 @@
             .attr("y", function(d) { return y(d.y1); })
             .attr("height", function(d) { return y(d.y0) - y(d.y1); })
             .on("click", function(d) {
+              var selected = d3.select(this).classed('selected');
+              console.log(this,selected);
               rects.each(function(r){
                 d3.select(this).classed('selected',function(){
-                  return r===d;
+                  return !selected && r===d; //the select must not be previously selected and is the clicked item.
                 });
               });
-
-              that.onItemClick(d);
+              if(!selected){
+                that.onItemSelected(d);
+              }else{
+                that.onItemDeselected(d);
+              }
 
               // console.log("click :" , d);
             });

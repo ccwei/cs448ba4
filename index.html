@@ -309,7 +309,7 @@
         collection: dir,
         outer_width: 400,
         outer_height: 300,
-        onItemClick: function(d){
+        onItemSelected: function(d){
           showIndividualView(true);
           console.log("onItemClick: ");
           console.log(d);
@@ -335,7 +335,9 @@
           });
 
           createTagCloud("ind-tab-tag-cloud", idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
-
+        },
+        onItemDeselected: function(d){
+          showIndividualView(false);
         }
       });
       chart.render();
