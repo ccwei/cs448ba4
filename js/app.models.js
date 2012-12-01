@@ -13,5 +13,6 @@
   app.Review = Backbone.Model.extend({}); //no special property for "review" yet
   app.Reviewee = Backbone.Model.extend({});
   app.Feedback = Backbone.Model.extend({});
+  app.IndScore = Backbone.Model.extend({});
 
 })(jQuery);
