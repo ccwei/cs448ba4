@@ -245,6 +245,7 @@
 
         //load options
         var options = that.options;
+        console.log("options = ", options);
         if(options.hasOwnProperty("outer_width")){
           outer_width = options.outer_width;
         }

@@ -132,7 +132,10 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane" id="tab-tag-cloud">
-
+            <div id="tag-cloud-notable"></div>
+            <div id="tag-cloud-constructive"></div>
+            <div id="tag-cloud-questions"></div>
+            <div id="tag-cloud-ideas"></div>
 
           </div>
           <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
@@ -161,12 +164,21 @@
         return !isNaN(d.score);
       });
       var teamMap = {};
-      var feedbackWords = [];
+      var notableFeedbackWords = [];
+      var constructiveFeedbackWords = [];
+      var questionsFeedbackWords = [];
+      var ideasFeedbackWords = [];
       _.each(data, function(d, idx) {
-        var words = d.notable.split(" ");
-        _(words).each(function (w) {
-          feedbackWords.push([w,d]);
-        });
+        var processWord = function(words, array) {
+          _(words).each(function (w) {
+            array.push([w,d]);
+          });
+        }
+        processWord(d.notable.split(" "), notableFeedbackWords);
+        processWord(d.constructive.split(" "), constructiveFeedbackWords);
+        processWord(d.questions.split(" "), questionsFeedbackWords);
+        processWord(d.ideas.split(" "), ideasFeedbackWords);
+
         if (d["reviewed_id"] in teamMap) {
           teamMap[d["reviewed_id"]].push(d);
         } else {
@@ -203,7 +215,14 @@
       });
       chart.render();
 
-      var tagCloud = new app.TagCloud(feedbackWords);
+      var notableTagCloud = new app.TagCloud("tag-cloud-notable");
+      notableTagCloud.loadData(notableFeedbackWords);
+      var constructiveTagCloud = new app.TagCloud("tag-cloud-constructive");
+      constructiveTagCloud.loadData(constructiveFeedbackWords);
+      var questionsTagCloud = new app.TagCloud("tag-cloud-questions");
+      questionsTagCloud.loadData(questionsFeedbackWords);
+      var ideasTagCloud = new app.TagCloud("tag-cloud-ideas");
+      ideasTagCloud.loadData(ideasFeedbackWords);
     });
   </script>
   <div id="feedback-modal">
