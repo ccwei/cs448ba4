@@ -96,8 +96,8 @@
       </div>
     </div>
     <div class="span6">
-      <div id="right-side">
-        <div id="agg-right-side">
+      <div id="right-side" class="tab-content">
+        <div id="agg-right-side" class="tab-pane active">
           <!--aggregated right side-->
           <div class="alert alert-info alert-small">
             Showing Submissions Aggregated
@@ -135,7 +135,7 @@
 
           <div id="reviewee"></div> <!-- TODO(kanitw): move this to somewhere it should be. -->
         </div>
-        <div id="ind-right-side">
+        <div id="ind-right-side" class="tab-pane">
           <div class="alert alert-success alert-small">
             Showing Individual Team
             <!---TODO(kanitw): Need better word here-->
@@ -195,7 +195,15 @@
   <script src="./js/app.tag-cloud.js"></script>
 
   <script type="text/javascript">
-
+    function showIndividualView(show){
+      if(show){
+        $("#agg-right-side").removeClass('active');
+        $("#ind-right-side").addClass('active');
+      }else{
+        $("#agg-right-side").addClass('active');
+        $("#ind-right-side").removeClass('active');
+      }
+    }
 
 
     d3.tsv("./data/a4.tsv", function(data) {
@@ -252,7 +260,7 @@
         outer_width: 400,
         outer_height: 300,
         onItemClick: function(d){
-          $("#ind-right-side").tab('show'); //TODO(kanitw): Wei this line does not work yet
+          showIndividualView(true);
           console.log("onItemClick: ");
           console.log(d);
 
