@@ -96,59 +96,90 @@
       </div>
     </div>
     <div class="span6">
-      <div class="default-padding">
-        <div class="alert alert-info alert-small">
-          Showing [Submissions Aggregated /One Submission]
-        </div>
-        <ul class="nav nav-tabs">
-          <li>
-            <a href="#tab-tag-cloud" data-toggle="tab">
-              Tag Cloud
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#tab-tag-list">
-              Tag List
-            </a>
-          </li> -->
-          <li>
-            <a href="#tab-aggregate-grid" data-toggle="tab">
-              Aggregate View
-            </a>
-          </li>
-          <li class="active">
-            <a href="#tab-individual-review" data-toggle="tab">
-              Individual Reviews
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#tab-word-tree">
-              Word Tree
-            </a>
-          </li> -->
-          <!-- <li class='pull-right no-link'>
+      <div id="right-side" class="">
+        <div class="tab-pane active" id="agg-right-side">
+          <!--aggregated right side-->
+          <div class="alert alert-info alert-small">
+            Showing Submissions Aggregated
+          </div>
+          <ul class="nav nav-tabs">
+            <li>
+              <a href="#agg-tab-tag-cloud" data-toggle="tab">
+                Tag Cloud
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#agg-tab-tag-list">
+                Tag List
+              </a>
+            </li> -->
+            <!-- <li>
+              <a href="#agg-tab-word-tree">
+                Word Tree
+              </a>
+            </li> -->
+            <!-- <li class='pull-right no-link'>
 
-          </li> -->
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane" id="tab-tag-cloud">
-            <div id="tag-cloud-notable"></div>
+            </li> -->
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane" id="agg-tab-tag-cloud"></div>
+	    <div id="tag-cloud-notable"></div>
             <div id="tag-cloud-constructive"></div>
             <div id="tag-cloud-questions"></div>
             <div id="tag-cloud-ideas"></div>
+            <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
 
+            <!-- <div class="tab-pane" id="tab-wordtree"></div> -->
           </div>
-          <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
-          <div class="tab-pane" id="tab-aggregate-grid">
-            <div id="aggregate-feedbacks"></div>
-          </div>
-          <div class="tab-pane active" id="tab-individual-review">
-            <div id="feedbacks"></div>
-          </div>
-          <!-- <div class="tab-pane" id="tab-wordtree"></div> -->
+
+          <div id="reviewee"></div> <!-- TODO(kanitw): move this to somewhere it should be. -->
         </div>
+        <div class="tab-pane" id="ind-right-side">
+          <div class="alert alert-success alert-small">
+            Showing Individual Team
+            <!---TODO(kanitw): Need better word here-->
+          </div>
+          <ul class="nav nav-tabs">
+            <li>
+              <a href="#ind-tab-tag-cloud" data-toggle="tab">
+                Tag Cloud
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#tab-tag-list">
+                Tag List
+              </a>
+            </li> -->
+            <li>
+              <a href="#ind-tab-aggregate-grid" data-toggle="tab">
+                Aggregate View
+              </a>
+            </li>
+            <li class="active">
+              <a href="#ind-tab-individual-review" data-toggle="tab">
+                Individual Reviews
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#tab-word-tree">
+                Word Tree
+              </a>
+            </li> -->
+            <!-- <li class='pull-right no-link'>
 
-        <div id="reviewee"></div> <!-- TODO(kanitw): move this to somewhere it should be. -->
+            </li> -->
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane" id="ind-tab-tag-cloud"></div>
+            <div class="tab-pane" id="ind-tab-aggregate-grid">
+              <div id="aggregate-feedbacks"></div>
+            </div>
+            <div class="tab-pane active" id="ind-tab-individual-review">
+              <div id="feedbacks"></div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -210,8 +241,24 @@
       var chart = new app.StackedChart({
         collection: dir,
         outer_width: 400,
-        outer_height: 300
+        outer_height: 300,
+        onItemClick: function(d){
+          $("#ind-right-side").tab('show'); //TODO(kanitw): Wei this line does not work yet
+          console.log("onItemClick: ");
+          console.log(d);
 
+          var feedbacks = _.map(d.reviews, function(r) {
+            // console.log(r);
+            return {notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas};
+          });
+          var f = new app.FeedbacksView({
+            collection:feedbacks,
+            el: '#feedbacks'
+          });
+          var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
+          new app.RevieweeView(d);
+          console.log("number of reviews: ", feedbacks.length);
+        }
       });
       chart.render();
 

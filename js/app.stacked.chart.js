@@ -49,7 +49,10 @@
         className: "feedback-container",
         template: $("#feedbackGridTemplate").html(),
 
+
         render: function () {
+            console.log("FeedbackView.render()");
+            // console.log(this.model);
             var tmpl = _.template(this.template);
             $(this.el).html(tmpl(this.model.toJSON()));
             return this;
@@ -60,7 +63,7 @@
         render: function () {
             var frame = $(".aggregated-feedback-frame");
             var feedback = this.model.toJSON();
-            console.log("feedback = ", feedback);
+            // console.log("feedback = ", feedback);
             frame.children('#feedback_notable').append($('<li/>').addClass('feedback')
                                               .append(feedback.notable));
             frame.children('#feedback_constructive').append($('<li/>').addClass('feedback')
@@ -143,12 +146,11 @@
     (function(){
       var that;
       return {
-        el: '#feedbacks',
 
-        initialize: function (feedbacks) {
+        initialize: function () {
           that=this;
-          this.collection = new app.FeedbackCollection(feedbacks);
-          this.render();
+          that.collection = new app.FeedbackCollection(that.collection);
+          that.render();
         },
         render: function () {
 
@@ -202,17 +204,9 @@
         total: function(score){
           //return total number of review with each score
           return total[score];
-        },
-
-        showFeedback: function(d){
-          var feedbacks = _.map(d.reviews, function(d) {
-            return {notable: d.notable, constructive: d.constructive, questions: d.questions, ideas: d.ideas};
-          });
-          var f = new app.FeedbacksView(feedbacks);
-          var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
-          new app.RevieweeView(d);
-          console.log("number of reviews: ", feedbacks.length);
         }
+
+
         //TODO(kanitw): implement filter & event
       };
     })()
@@ -222,6 +216,7 @@
    * additional properties
    * - outer_width
    * - outer_height
+   * - onItemClick: function()
    */
   app.StackedChart = Backbone.View.extend((function(){ //use anonymous function here so we can have private variable for this class
 
@@ -233,6 +228,17 @@
         margin = {top: 25, right: 20, bottom: 30, left: 40};
     var that;
     return {
+      parseOptions: function(){
+        var options = that.options;
+        if(options.hasOwnProperty("outer_width")){
+          outer_width = options.outer_width;
+        }
+        if(options.hasOwnProperty('outer_height')){
+          outer_height = options.outer_height;
+        }
+
+        that.onItemClick = options.onItemClick || function() { /*do nothing*/ };
+      },
       initialize: function(){
 
         //Init Collection and options
@@ -241,17 +247,8 @@
         data = _(this.collection.models).pluck('attributes');
         //not sure if this is the right way to do it
         that = this;
-        console.log(this);
 
-        //load options
-        var options = that.options;
-        console.log("options = ", options);
-        if(options.hasOwnProperty("outer_width")){
-          outer_width = options.outer_width;
-        }
-        if(options.hasOwnProperty('outer_height')){
-          outer_height = options.outer_height;
-        }
+        that.parseOptions();
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
 
@@ -334,8 +331,9 @@
             .attr("y", function(d) { return y(d.y1); })
             .attr("height", function(d) { return y(d.y0) - y(d.y1); })
             .on("click", function(d) {
-              that.collection.showFeedback(d);
-              console.log("click :" , d);});
+              that.onItemClick(d);
+              // console.log("click :" , d);
+            });
         return this;
       }
     };
