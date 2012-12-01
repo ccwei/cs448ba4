@@ -123,13 +123,21 @@
                 .enter().append("g")
                   .attr("class", "g")
                   .attr("transform", function(d) { return "translate(" + x(d.score) + ",0)"; });
-        state.append("rect")
-            .classed("bar-rect",true)
+        var rects = state.append("rect");
+
+        rects.classed("bar-rect",true)
             .attr("width", x.rangeBand())
             .attr("y", function(d) { return y(d.y1); })
             .attr("height", function(d) { return y(d.y0) - y(d.y1); })
             .on("click", function(d) {
+              rects.each(function(r){
+                d3.select(this).classed('selected',function(){
+                  return r===d;
+                });
+              });
+
               that.onItemClick(d);
+
               // console.log("click :" , d);
             });
         return this;

@@ -1,7 +1,8 @@
 @import "k-mixins/k-mixins.less";
 @import "lessdss/dss.less";
 
-@bar-color: #110b92;
+@bar-color: #dddddd;
+@selected-bar-color: #17803f;
 @hover-li-color: #ff0;
 body {
   font: 10px sans-serif;
@@ -80,11 +81,19 @@ li.feedback:hover {
 
 .bar-rect{
   fill: @bar-color;
+  &:hover {
+    fill: darken(@bar-color,10%);
+  }
+
+  &.selected{
+    fill: @selected-bar-color;
+    &:hover {
+      fill: darken(@selected-bar-color,10%);
+    }
+
+  }
 }
 
-.bar-rect:hover {
-  fill: darken(@bar-color,10%);
-}
 
 .selecting circle.selected {
   stroke: #f00;

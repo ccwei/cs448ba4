@@ -114,10 +114,16 @@ li.feedback:hover {
   display: none;
 }
 .bar-rect {
-  fill: #110b92;
+  fill: #dddddd;
 }
 .bar-rect:hover {
-  fill: #0b0763;
+  fill: #c4c4c4;
+}
+.bar-rect.selected {
+  fill: #17803f;
+}
+.bar-rect.selected:hover {
+  fill: #0f552a;
 }
 .selecting circle.selected {
   stroke: #f00;
