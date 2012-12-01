@@ -11,19 +11,21 @@
   window.app = window.app || {};
 
   //View for the reviewee
-  app.RevieweeView = Backbone.View.extend(
+  app.RevieweeDetailView = Backbone.View.extend(
     (function(){
       return {
         el: "#reviewee", //TODO(kanitw): make sure we need this line.
         tagName: "reviewee",
         className: "reviewee-container",
-        template: $("#revieweeTemplate").html(),
+        template: $("#revieweeDetailTemplate").html(),
         initialize: function (review) {
             this.model = new app.Reviewee({name: review.teamid});
+
             this.render();
         },
         render: function () {
             var tmpl = _.template(this.template);
+            console.log(this);
             $(this.el).html(tmpl(this.model.toJSON()));
             return this;
         }

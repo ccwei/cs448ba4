@@ -35,8 +35,8 @@
           outer_height = options.outer_height;
         }
 
-        that.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
-        that.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
+        that.onItemSelected = options.onItemSelected || function() { console.log("onItemSelected"); /*do nothing*/ };
+        that.onItemDeselected = options.onItemDeselected || function() { console.log("onItemDeselected");/*do nothing*/ };
       },
       initialize: function(){
 

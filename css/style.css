@@ -55,6 +55,18 @@ body {
 .alert.alert-small {
   padding: 4px 15px 4px 6px;
 }
+#root {
+  margin: 10px;
+}
+.well.white {
+  background-color: #fff;
+}
+.highlight {
+  background-color: #ffff00;
+}
+.display-none {
+  display: none;
+}
 table.feedback-grid {
   width: 100%;
   margin: 8px 4px 0;
