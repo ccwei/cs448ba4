@@ -51,8 +51,9 @@
       var that = this;
       var $frame = this.$frame;
 
+      //clean children first
       _(FEEDBACK_TYPE).each(function(type){
-        $frame.children('#feedback_'+type).children().remove();
+        $frame.find('#feedback_'+type+' ul').children().remove();
       });
 
       _.each(this.collection.models, function (item, idx) {
@@ -67,12 +68,24 @@
               console.log(li);
               li.highlight(that.keyword);
             }
-            $frame.children('#feedback_'+type).append(li);
+            $frame.find('#feedback_'+type+' ul').append(li);
           }
         });
 
         return this;
       }, this);
+
+      //hide empty category
+
+      _(FEEDBACK_TYPE).each(function(type){
+
+        if($frame.find('#feedback_'+type+' ul').children().length === 0){
+          console.log("removing " +type);
+          console.log($frame.find('#feedback_'+type));
+          $frame.find('#feedback_'+type).addClass('display-none');
+        }
+      });
+
     }
   });
 })(jQuery);

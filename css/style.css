@@ -64,6 +64,9 @@ body {
 .highlight {
   background-color: #ffff00;
 }
+.display-none {
+  display: none;
+}
 table.feedback-grid {
   width: 100%;
   margin: 8px 4px 0;
