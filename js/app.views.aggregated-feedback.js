@@ -48,6 +48,7 @@
       this.renderFeedbacks();
     },
     renderFeedbacks: function(){
+      //TODO(kanitw): Add "n items matched"
       var that = this;
       var $frame = this.$frame;
 
