@@ -81,7 +81,6 @@
       loadData: function(words) {
         words = findTopWords(words);
         data = words;
-        console.log("words = ", data);
 
         //TODO: find better count to be maxCount
         maxCount = words[5][1].count;
@@ -90,7 +89,6 @@
 
       render: function(){
         function draw(words) {
-          console.log("id = ", divid);
           d3.select(divid).append("svg")
               .attr("width", width)
               .attr("height", height)
@@ -114,7 +112,6 @@
         //render
         d3.layout.cloud().size([width, height])
           .words(data.map(function(d) {
-            console.log("d", d);
             return {text: d[0], size: 10 + (d[1].count * 1.0)/maxCount * 90};
           }))
           .rotate(function() { return ~~(Math.random() * 2) * 90; })
