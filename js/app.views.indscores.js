@@ -52,6 +52,15 @@
             console.log(item);
               that.renderFeedback(item);
           }, that);
+
+          var indScoreViewClassName = new app.IndScoreView().className;        
+
+          $('.' + indScoreViewClassName).delegate('span', 'click', function (d) {
+              console.log(" clicked!", d);
+              // var reviewIdx = $(this).index() - 1;
+              // var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
+              // //TODO: link back to one by one view for the review idx reviewIdx
+            });
           return this;
 
 
@@ -67,6 +76,9 @@
             var indScoreView = new app.IndScoreView({
                 model: item                
             });
+
+           
+
             $(this.el).append(indScoreView.render().el);
             $(this.el).append("<hr/>");
         }
