@@ -215,13 +215,29 @@
       });
       chart.render();
 
-      var notableTagCloud = new app.TagCloud("tag-cloud-notable");
+      var notableTagCloud = new app.TagCloud({
+        id: "tag-cloud-notable",
+        outer_width: 400,
+        outer_height: 400
+      });
       notableTagCloud.loadData(notableFeedbackWords);
-      var constructiveTagCloud = new app.TagCloud("tag-cloud-constructive");
+      var constructiveTagCloud = new app.TagCloud({
+        id: "tag-cloud-constructive",
+        outer_width: 400,
+        outer_height: 400
+      });
       constructiveTagCloud.loadData(constructiveFeedbackWords);
-      var questionsTagCloud = new app.TagCloud("tag-cloud-questions");
+      var questionsTagCloud = new app.TagCloud({
+        id: "tag-cloud-questions",
+        outer_width: 400,
+        outer_height: 400
+      });
       questionsTagCloud.loadData(questionsFeedbackWords);
-      var ideasTagCloud = new app.TagCloud("tag-cloud-ideas");
+      var ideasTagCloud = new app.TagCloud({
+        id: "tag-cloud-ideas",
+        outer_width: 400,
+        outer_height: 400
+      });
       ideasTagCloud.loadData(ideasFeedbackWords);
     });
   </script>
