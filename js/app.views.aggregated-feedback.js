@@ -24,20 +24,26 @@
         this.collection = new app.FeedbackCollection(feedbacks);
         this.render();
     },
+
     render: function () {
       var that = this;
+
+      var onSearchTextChange = function(){
+        console.log(this);
+        that.keyword = $(this).val();
+        that.renderFeedbacks();
+      };
+
       var tmpl = _.template(this.template);
-      this.$frame = $(this.el).html(tmpl()).delegate('li', 'click', function () {
+      this.$frame = $(this.el).html(tmpl()).delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
+
         var reviewIdx = $(this).index() - 1;
         var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
         //TODO: link back to one by one view for the review idx reviewIdx
       });
       console.log(this.$frame.find(".search-field"));
-      this.$frame.find(".search-field").bind('keydown',function(){
-        console.log(this);
-        that.keyword = $(this).val();
-        that.renderFeedbacks();
-      });
+      this.$frame.find(".search-field").on('change',onSearchTextChange);
+      this.$frame.find(".search-field").on('keyup',onSearchTextChange);
 
       this.renderFeedbacks();
     },
@@ -56,8 +62,12 @@
         // console.log("feedback = ", feedback);
         _(FEEDBACK_TYPE).each(function(type){
           if(that.keyword.length === 0 || feedback[type].indexOf(that.keyword)!=-1){
-            $frame.children('#feedback_'+type).append($('<li/>').addClass('feedback')
-                                            .append(feedback[type]));
+            var li = $('<li/>').addClass('feedback').append(feedback[type]);
+            if(that.keyword.length>0){
+              console.log(li);
+              li.highlight(that.keyword);
+            }
+            $frame.children('#feedback_'+type).append(li);
           }
         });
 
