@@ -199,8 +199,10 @@
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
+  <script src="./js/app.create-tag-cloud.js"></script>
 
   <script type="text/javascript">
+
     function showIndividualView(show){
       if(show){
         $("#agg-right-side").removeClass('active');
@@ -211,8 +213,8 @@
       }
     }
 
-
-    d3.tsv("./data/a4.tsv", function(data) {
+    $(document).ready(function() {
+      d3.tsv("./data/a4.tsv", function(data) {
       data = _.filter(data, function(d){
         d.score = +d.score
         return !isNaN(d.score);
@@ -222,20 +224,7 @@
       var constructiveFeedbackWords = [];
       var questionsFeedbackWords = [];
       var ideasFeedbackWords = [];
-      var processWord = function(review, notableWords, constructiveWords, questionsWords, ideasWords) {
-          _(review.notable.split(" ")).each(function (w) {
-            notableWords.push([w,review]);
-          });
-          _(review.constructive.split(" ")).each(function (w) {
-            constructiveWords.push([w,review]);
-          });
-          _(review.questions.split(" ")).each(function (w) {
-            questionsWords.push([w,review]);
-          });
-          _(review.ideas.split(" ")).each(function (w) {
-            ideasWords.push([w,review]);
-          });
-      };
+
       _.each(data, function(d, idx) {
         processWord(d, notableFeedbackWords, constructiveFeedbackWords, questionsFeedbackWords, ideasFeedbackWords);
 
@@ -266,43 +255,6 @@
 
       var dir = new app.ReviewDir(teamReviews);
       dir.initPos(); //need to be called here
-      var idvCloudCreated = false;
-      var notableTagCloud;
-      var constructiveTagCloud;
-      var questionsTagCloud;
-      var ideasTagCloud;
-      var createTagCloud = function(parentid, notableWords, constructiveWords, questionsWords, ideasWords) {
-        notableTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-notable",
-          outer_width: 400,
-          outer_height: 400
-        });
-        notableTagCloud.loadData(notableWords);
-
-        constructiveTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-constructive",
-          outer_width: 400,
-          outer_height: 400
-        });
-
-        constructiveTagCloud.loadData(constructiveWords);
-
-        questionsTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-questions",
-          outer_width: 400,
-          outer_height: 400
-        });
-
-        questionsTagCloud.loadData(questionsWords);
-
-        ideasTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-ideas",
-          outer_width: 400,
-          outer_height: 400
-        });
-
-        ideasTagCloud.loadData(ideasWords);
-      }
 
       var chart = new app.StackedChart({
         collection: dir,
@@ -313,9 +265,12 @@
           console.log("onItemClick: ");
           console.log(d);
 
-          var feedbacks = _.map(d.reviews, function(r) {
+          var feedbacks = [];
+
+          _.each(d.reviews, function(r) {
             // console.log(r);
-            return {notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas};
+            feedbacks.push({notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas});
+            processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
           });
           var f = new app.FeedbacksView({
             collection:feedbacks,
@@ -324,23 +279,17 @@
           var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
           new app.RevieweeView(d);
           console.log("number of reviews: ", feedbacks.length);
-          var idvNotableFeedbackWords = [];
-          var idvConstructiveFeedbackWords = [];
-          var idvQuestionsFeedbackWords = [];
-          var idvIdeasFeedbackWords = [];
-
-          _(d.reviews).each(function(r) {
-            processWord(r, idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
-          });
-
-          createTagCloud("ind-tab-tag-cloud", idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
-
+          render_tagCloud();
         }
       });
       chart.render();
       createTagCloud("agg-tab-tag-cloud", notableFeedbackWords, constructiveFeedbackWords, questionsFeedbackWords, ideasFeedbackWords);
 
+      });
     });
+
+
+
   </script>
   <div id="feedback-modal">
   </div>
