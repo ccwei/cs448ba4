@@ -96,8 +96,8 @@
       </div>
     </div>
     <div class="span6">
-      <div id="right-side" class="">
-        <div class="tab-pane active" id="agg-right-side">
+      <div id="right-side">
+        <div id="agg-right-side">
           <!--aggregated right side-->
           <div class="alert alert-info alert-small">
             Showing Submissions Aggregated
@@ -124,7 +124,7 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane" id="agg-tab-tag-cloud"></div>
-	    <div id="tag-cloud-notable"></div>
+      	    <div id="tag-cloud-notable"></div>
             <div id="tag-cloud-constructive"></div>
             <div id="tag-cloud-questions"></div>
             <div id="tag-cloud-ideas"></div>
@@ -135,7 +135,7 @@
 
           <div id="reviewee"></div> <!-- TODO(kanitw): move this to somewhere it should be. -->
         </div>
-        <div class="tab-pane" id="ind-right-side">
+        <div id="ind-right-side">
           <div class="alert alert-success alert-small">
             Showing Individual Team
             <!---TODO(kanitw): Need better word here-->
@@ -184,10 +184,19 @@
       </div>
     </div>
   </div>
-  <script src="./js/app.stacked.chart.js"></script>
-  <script src="./js/app.tagcloud.js"></script>
+  <script src="./js/app.models.js"></script>
+  <script src="./js/app.collections.js"></script>
+  <script src="./js/app.views.feedback.js"></script>
+  <script src="./js/app.views.feedbacks.js"></script>
+  <script src="./js/app.views.aggregated-feedback.js"></script>
+  <script src="./js/app.views.feedback-modal.js"></script>
+  <script src="./js/app.views.reviewee.js"></script>
+  <script src="./js/app.stacked-chart.js"></script>
+  <script src="./js/app.tag-cloud.js"></script>
 
   <script type="text/javascript">
+
+
 
     d3.tsv("./data/a4.tsv", function(data) {
       data = _.filter(data, function(d){
