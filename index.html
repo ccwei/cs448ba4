@@ -13,8 +13,13 @@
 
 </head>
 
-<script id="revieweeTemplate" type="text/template">
-  <h1><span><%= name %></span></h1>
+<script id="revieweeDetailTemplate" type="text/template">
+  <div>
+    <div class="icon">
+    </div>
+    <h3>Team Name</h3>
+    <%= name %>
+  </div>
 </script>
 
 <script id="feedbackTemplate" type="text/template">
@@ -66,7 +71,9 @@
 </script>
 
   <script id="aggregatedFeedbackFrameTemplate" type="text/template">
+    <input type="text" class="search-field" placeholder="search"></input>
     <h4>Notable</h4>
+
     <div id="feedback_notable">
       <ol>
       </ol>
@@ -89,13 +96,16 @@
   </script>
 
 
-  <div class="row-fluid">
+  <div class="row-fluid" id="root">
     <div class="span6">
-      <div class="default-padding">
-        <div id="chart"></div>
-      </div>
+      <div class="white well">
+        <div class="default-padding">
+          <div id="chart"></div>
+        </div>
+    </div>
     </div>
     <div class="span6">
+      <div class="white well">
       <div id="right-side" class="tab-content">
         <div id="agg-right-side" class="tab-pane active">
           <!--aggregated right side-->
@@ -190,6 +200,7 @@
 
       </div>
     </div>
+    </div>
   </div>
   <script src="./js/app.models.js"></script>
   <script src="./js/app.collections.js"></script>
@@ -197,7 +208,7 @@
   <script src="./js/app.views.feedbacks.js"></script>
   <script src="./js/app.views.aggregated-feedback.js"></script>
   <script src="./js/app.views.feedback-modal.js"></script>
-  <script src="./js/app.views.reviewee.js"></script>
+  <script src="./js/app.views.reviewee-detail.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
 
@@ -323,7 +334,7 @@
             el: '#feedbacks'
           });
           var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
-          new app.RevieweeView(d);
+          new app.RevieweeDetailView(d);
           console.log("number of reviews: ", feedbacks.length);
           var idvNotableFeedbackWords = [];
           var idvConstructiveFeedbackWords = [];
