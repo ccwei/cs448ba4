@@ -56,6 +56,7 @@ body {
   padding: 4px 15px 4px 6px;
 }
 table.feedback-grid {
+  width: 100%;
   margin: 8px 4px 0;
 }
 table.feedback-grid div.rel {
@@ -129,7 +130,8 @@ li.feedback:hover {
   stroke: #f00;
 }
 .brush .extent {
-  stroke: #fff;
+  stroke: #09f;
+  fill: #fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
