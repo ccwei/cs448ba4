@@ -24,23 +24,23 @@
     return {
 
       initialize: function(){
+        //put default option into init if need
+        _(this.options).defaults({
+          outer_width: 960,
+          outer_height: 500,
+          margin: {top: 25, right: 20, bottom: 30, left: 40}
+        });
         var options = this.options;
-        //Init Collection and options
-
-        // console.log("models", this.collection.models);
-        this.data = _(this.collection.models).pluck('attributes');
-        //not sure if this is the right way to do it
-
         this.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
         this.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
-
-
       },
       render: function(){
         var options = this.options;
-        var outer_width = options.outer_width || 960;
-        var outer_height = options.outer_height || 500;
-        var margin = options.margin || {top: 25, right: 20, bottom: 30, left: 40};
+        console.log(options);
+
+        var outer_width = options.outer_width;
+        var outer_height = options.outer_height;
+        var margin = options.margin;
 
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
@@ -62,7 +62,8 @@
            /** To be factored **/
         }
 
-        var x,y,xAxis,yAxis,svg,data=this.data;
+        var x,y,xAxis,yAxis,svg;
+        var data=_(this.collection.models).pluck('attributes');
         //init x, y, xAxis, yAxis, svg
         x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
 
