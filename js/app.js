@@ -8,6 +8,34 @@ function showIndividualView(show){
   }
 }
 
+function createTagCloud(parentid, reviews, cloudContainer) {
+  console.log("createTagCloud()");
+  cloudContainer["notableTagCloud"] = new app.TagCloud({
+    id: parentid + " .tag-cloud-notable",
+    outer_width: 400,
+    outer_height: 400
+  });
+  cloudContainer["constructiveTagCloud"] = new app.TagCloud({
+  id: parentid + " .tag-cloud-constructive",
+  outer_width: 400,
+  outer_height: 400
+  });
+  cloudContainer["questionsTagCloud"] = new app.TagCloud({
+    id: parentid + " .tag-cloud-questions",
+    outer_width: 400,
+    outer_height: 400
+  });
+  cloudContainer["ideasTagCloud"] = new app.TagCloud({
+    id: parentid + " .tag-cloud-ideas",
+    outer_width: 400,
+    outer_height: 400
+  });
+  cloudContainer["notableTagCloud"].loadData(reviews, "notable");
+  cloudContainer["constructiveTagCloud"].loadData(reviews, "constructive");
+  cloudContainer["questionsTagCloud"].loadData(reviews, "questions");
+  cloudContainer["ideasTagCloud"].loadData(reviews, "ideas");
+}
+
 $(document).ready(function() {
   d3.tsv("./data/a4.tsv", function(data) {
   data = _.filter(data, function(d){
@@ -15,14 +43,7 @@ $(document).ready(function() {
     return !isNaN(d.score);
   });
   var teamMap = {};
-  var notableFeedbackWords = [];
-  var constructiveFeedbackWords = [];
-  var questionsFeedbackWords = [];
-  var ideasFeedbackWords = [];
-
   _.each(data, function(d, idx) {
-    processWord(d, notableFeedbackWords, constructiveFeedbackWords, questionsFeedbackWords, ideasFeedbackWords);
-
     if (d["reviewed_id"] in teamMap) {
       teamMap[d["reviewed_id"]].push(d);
     } else {
@@ -46,7 +67,6 @@ $(document).ready(function() {
     tr.score = Math.round(sum * 1.0 / tr.reviews.length);
   });
   console.log(count, "teams have more than 10 reivews" );
-  console.log("teamReviews[0] = ", teamReviews[0]);
 
   var dir = new app.ReviewDir(teamReviews);
   dir.initPos(); //need to be called here
@@ -67,8 +87,13 @@ $(document).ready(function() {
     }
   });
   chart.render();
-  createTagCloud("agg-tab-tag-cloud", notableFeedbackWords, constructiveFeedbackWords, questionsFeedbackWords, ideasFeedbackWords);
-
+  var totalReviews = [];
+  _.each(_(teamReviews).pluck('reviews'), function(r) {
+    totalReviews = totalReviews.concat(r);
+  });
+  //For Tag Cloud
+  var cloudContainer = {};
+  createTagCloud('agg-tab-tag-cloud', totalReviews, cloudContainer);
   });
 });
 

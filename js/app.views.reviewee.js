@@ -15,12 +15,16 @@
     el: "#ind-right-side", //TODO(kanitw): make sure we need this line.
     initialize: function () {
 
+      this.createTagCloud('ind-tab-tag-cloud');
+      var that = this;
+      //Register event for render tag cloud when switch to the tab
+      $('a[data-toggle="tab"]').on('shown', function (e) {
+        if($(e.target).attr('href') === '#ind-tab-tag-cloud') {
+          that.render();
+        }
+      });
     },
     loadData: function(reviewee){
-      _.each(reviewee.reviews, function(r) {
-        // console.log(r);
-        processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
-      });
       var scores = _.map(reviewee.reviews, function(d, idx) {
         return {score: d.score};
       });
@@ -28,6 +32,7 @@
       // var scores = _(d.reviews).pluck("score");
 
       //TODO(kanitw): all these initialization should be in initialize and all these classes should have loadData so we can reuse views
+      this.reviewee = reviewee;
       this.revieweeDetailView =  new app.RevieweeDetailView(reviewee);
       this.indScoreView = new app.IndScoreView(reviewee);
       this.feedbacksView = new app.FeedbacksView({
@@ -41,21 +46,44 @@
 
       this.FeedbacksAggregatedView = new app.FeedbacksAggregatedView(reviewee.reviews);
 
-      //TODO(kanitw): this junkies for tagCloud should be Backbonified or at least classified
-      var idvNotableFeedbackWords = [];
-      var idvConstructiveFeedbackWords = [];
-      var idvQuestionsFeedbackWords = [];
-      var idvIdeasFeedbackWords = [];
-
-      _(reviewee.reviews).each(function(r) {
-        processWord(r, idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
-      });
-
-      render_tagCloud();
+      this.render();
+    },
+    createTagCloud: function (parentid) {
+        console.log("createTagCloud()");
+        this.notableTagCloud = new app.TagCloud({
+          id: parentid + " .tag-cloud-notable",
+          outer_width: 400,
+          outer_height: 400
+        });
+        this.constructiveTagCloud = new app.TagCloud({
+        id: parentid + " .tag-cloud-constructive",
+        outer_width: 400,
+        outer_height: 400
+        });
+        this.questionsTagCloud = new app.TagCloud({
+          id: parentid + " .tag-cloud-questions",
+          outer_width: 400,
+          outer_height: 400
+        });
+        this.ideasTagCloud = new app.TagCloud({
+          id: parentid + " .tag-cloud-ideas",
+          outer_width: 400,
+          outer_height: 400
+        });
     },
     render: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
+      var that = this;
+      if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud') {
+          console.log("render_tagCloud()", $("#ind-right-side .nav .active a").attr("href"));
+          this.notableTagCloud.loadData(this.reviewee.reviews, "notable");
+          setTimeout(function() {
+            that.constructiveTagCloud.loadData(that.reviewee.reviews, "constructive");
+            that.questionsTagCloud.loadData(that.reviewee.reviews, "questions");
+            that.ideasTagCloud.loadData(that.reviewee.reviews, "ideas");
+          }, 1000);
+      }
     }
   });
 
