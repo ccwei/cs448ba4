@@ -21,12 +21,34 @@
         initialize: function (review) {
             this.model = new app.Reviewee({name: review.teamid});
 
-            this.render();
+            this.render(review);
         },
-        render: function () {
+        render: function (review) {
             var tmpl = _.template(this.template);
-            console.log(this);
             $(this.el).html(tmpl(this.model.toJSON()));
+
+            var indTeamReviews = [];
+            _(review.reviews).each(function (r) {
+              indTeamReviews.push({teamid: r.user_id, score: Math.round(r.score), reviews:[r]});
+            });
+            var reviewDir = new app.ReviewDir(indTeamReviews);
+            reviewDir.initPos(); //need to be called here
+
+            var indChart = new app.StackedChart({
+              collection: reviewDir,
+              outer_width: 200,
+              outer_height: 150,
+              divid: "#revieweeDetailchart",
+              onItemSelected: function(d){
+                showIndividualView(true);
+                console.log("onItemClick: ");
+                console.log(d);
+                var feedbackModal = new app.FeedbackModalView(new app.Feedback(d.reviews[0]));
+              },
+              onItemDeselected: function(d){
+              }
+            });
+            indChart.render();
             return this;
         }
       };
