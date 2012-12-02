@@ -47,23 +47,23 @@
 
         //render
         var that = this;
+        var x,y,xAxis,yAxis,svg;
+        var data=_(this.collection.models).pluck('attributes');
 
-        function brushstart() {
+        var brushstart = function () {
           svg.classed("selecting", true);
-        }
+        };
 
-        function brushmove() {
+        var brushmove = function () {
 
-        }
+        };
 
-        function brushend() {
+        var brushend = function () {
           svg.classed("selecting", !d3.event.target.empty());
           var s = d3.event.target.extent();
            /** To be factored **/
-        }
+        };
 
-        var x,y,xAxis,yAxis,svg;
-        var data=_(this.collection.models).pluck('attributes');
         //init x, y, xAxis, yAxis, svg
         x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
 
