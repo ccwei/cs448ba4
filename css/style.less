@@ -1,8 +1,9 @@
 @import "k-mixins/k-mixins.less";
 @import "lessdss/dss.less";
 
-@bar-color: #110b92;
-@hover-li-color: #ff0;
+@bar-color: #dddddd;
+@selected-bar-color: #17803f;
+@hover-li-color: #ffff93;
 body {
   font: 10px sans-serif;
 }
@@ -15,8 +16,21 @@ body {
   padding: 4px 15px 4px 6px;
 }
 
+#root{
+  margin:10px;
+}
+
+.well.white{
+  background-color: #fff;
+}
+
+.highlight { background-color: yellow }
+
+.display-none { display: none; }
+
 table.feedback-grid
 {
+  width:100%;
   margin:8px 4px 0;
   // width:100%;
   div.rel{
@@ -80,18 +94,28 @@ li.feedback:hover {
 
 .bar-rect{
   fill: @bar-color;
+  &:hover {
+    fill: darken(@bar-color,10%);
+  }
+
+  &.selected{
+    fill: @selected-bar-color;
+    &:hover {
+      fill: darken(@selected-bar-color,10%);
+    }
+
+  }
 }
 
-.bar-rect:hover {
-  fill: darken(@bar-color,10%);
-}
 
 .selecting circle.selected {
   stroke: #f00;
 }
 
 .brush .extent {
-  stroke: #fff;
+  stroke: #09f;
+
+  fill:#fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }

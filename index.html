@@ -4,6 +4,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"/>
   <script src="./js/d3.v2.js"></script>
   <script src="./js/jquery.js"></script>
+  <script src="./js/jquery.highlight-4.js"></script>
   <script src="./js/underscore.js"></script>
   <script src="./js/backbone.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -13,12 +14,22 @@
 
 </head>
 
+
 <script id="indScoreTemplate" type="text/template">
   <h4><span><%= score %></span></h4>
 </script>
 
 <script id="revieweeTemplate" type="text/template">
   <h1><span><%= name %></span></h1>
+
+<script id="revieweeDetailTemplate" type="text/template">
+  <div>
+    <div class="icon">
+    </div>
+    <h3>Team Name</h3>
+    <%= name %>
+  </div>
+
 </script>
 
 <script id="feedbackTemplate" type="text/template">
@@ -70,36 +81,44 @@
 </script>
 
   <script id="aggregatedFeedbackFrameTemplate" type="text/template">
-    <h4>Notable</h4>
+    <input type="text" class="search-field" placeholder="search"></input>
+
     <div id="feedback_notable">
-      <ol>
-      </ol>
+      <h4>Notable</h4>
+      <ul>
+      </ul>
     </div>
-    <h4>Constructive</h4>
+
     <div id="feedback_constructive">
-      <ol>
-      </ol>
+      <h4>Constructive</h4>
+      <ul>
+      </ul>
     </div>
-    <h4>Questions</h4>
+
     <div id="feedback_questions">
-      <ol>
-      </ol>
+      <h4>Questions</h4>
+      <ul>
+      </ul>
     </div>
-    <h4>Ideas</h4>
+
     <div id="feedback_ideas">
-      <ol>
-      </ol>
+      <h4>Ideas</h4>
+      <ul>
+      </ul>
     </div>
   </script>
 
 
-  <div class="row-fluid">
+  <div class="row-fluid" id="root">
     <div class="span6">
-      <div class="default-padding">
-        <div id="chart"></div>
-      </div>
+      <div class="white well">
+        <div class="default-padding">
+          <div id="chart"></div>
+        </div>
+    </div>
     </div>
     <div class="span6">
+      <div class="white well">
       <div id="right-side" class="tab-content">
         <div id="agg-right-side" class="tab-pane active">
           <!--aggregated right side-->
@@ -127,23 +146,25 @@
             </li> -->
           </ul>
           <div class="tab-content">
-            <div class="tab-pane" id="agg-tab-tag-cloud"></div>
-      	    <div id="tag-cloud-notable"></div>
-            <div id="tag-cloud-constructive"></div>
-            <div id="tag-cloud-questions"></div>
-            <div id="tag-cloud-ideas"></div>
+            <div class="tab-pane" id="agg-tab-tag-cloud">
+              <div class="tag-cloud-notable"></div>
+              <div class="tag-cloud-constructive"></div>
+              <div class="tag-cloud-questions"></div>
+              <div class="tag-cloud-ideas"></div>
+            </div>
             <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
 
             <!-- <div class="tab-pane" id="tab-wordtree"></div> -->
           </div>
 
-          <div id="reviewee"></div> <!-- TODO(kanitw): move this to somewhere it should be. -->
+
         </div>
         <div id="ind-right-side" class="tab-pane">
           <div class="alert alert-success alert-small">
             Showing Individual Team
             <!---TODO(kanitw): Need better word here-->
           </div>
+          <div id="reviewee"></div>
           <ul class="nav nav-tabs">
             <li>
               <a href="#ind-tab-tag-cloud" data-toggle="tab">
@@ -175,7 +196,12 @@
             </li> -->
           </ul>
           <div class="tab-content">
-            <div class="tab-pane" id="ind-tab-tag-cloud"></div>
+            <div class="tab-pane" id="ind-tab-tag-cloud">
+              <div class="tag-cloud-notable"></div>
+              <div class="tag-cloud-constructive"></div>
+              <div class="tag-cloud-questions"></div>
+              <div class="tag-cloud-ideas"></div>
+            </div>
             <div class="tab-pane" id="ind-tab-aggregate-grid">
               <div id="aggregate-feedbacks"></div>
             </div>
@@ -195,6 +221,7 @@
 
       </div>
     </div>
+    </div>
   </div>
   <script src="./js/app.models.js"></script>
   <script src="./js/app.collections.js"></script>
@@ -205,10 +232,13 @@
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.views.indscore.js"></script>
   <script src="./js/app.views.indscores.js"></script>
+  <script src="./js/app.views.reviewee-detail.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
+  <script src="./js/app.create-tag-cloud.js"></script>
 
   <script type="text/javascript">
+
     function showIndividualView(show){
       if(show){
         $("#agg-right-side").removeClass('active');
@@ -219,8 +249,8 @@
       }
     }
 
-
-    d3.tsv("./data/a4.tsv", function(data) {
+    $(document).ready(function() {
+      d3.tsv("./data/a4.tsv", function(data) {
       data = _.filter(data, function(d){
         d.score = +d.score
         return !isNaN(d.score);
@@ -230,16 +260,9 @@
       var constructiveFeedbackWords = [];
       var questionsFeedbackWords = [];
       var ideasFeedbackWords = [];
+
       _.each(data, function(d, idx) {
-        var processWord = function(words, array) {
-          _(words).each(function (w) {
-            array.push([w,d]);
-          });
-        }
-        processWord(d.notable.split(" "), notableFeedbackWords);
-        processWord(d.constructive.split(" "), constructiveFeedbackWords);
-        processWord(d.questions.split(" "), questionsFeedbackWords);
-        processWord(d.ideas.split(" "), ideasFeedbackWords);
+        processWord(d, notableFeedbackWords, constructiveFeedbackWords, questionsFeedbackWords, ideasFeedbackWords);
 
         if (d["reviewed_id"] in teamMap) {
           teamMap[d["reviewed_id"]].push(d);
@@ -273,14 +296,17 @@
         collection: dir,
         outer_width: 400,
         outer_height: 300,
-        onItemClick: function(d){
+        onItemSelected: function(d){
           showIndividualView(true);
           console.log("onItemClick: ");
           console.log(d);
 
-          var feedbacks = _.map(d.reviews, function(r) {
+          var feedbacks = [];
+
+          _.each(d.reviews, function(r) {
             // console.log(r);
-            return {notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas};
+            feedbacks.push({notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas});
+            processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
           });
 
           var scores = _.map(d.reviews, function(d, idx) {
@@ -298,38 +324,35 @@
           });
 
           var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
+
           new app.RevieweeView(d);
           new app.IndScoreView(d);
+          new app.RevieweeDetailView(d);
           console.log("number of reviews: ", feedbacks.length);
+          var idvNotableFeedbackWords = [];
+          var idvConstructiveFeedbackWords = [];
+          var idvQuestionsFeedbackWords = [];
+          var idvIdeasFeedbackWords = [];
+
+          _(d.reviews).each(function(r) {
+            processWord(r, idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
+          });
+
+          render_tagCloud();
+
+        },
+        onItemDeselected: function(d){
+          showIndividualView(false);
         }
       });
       chart.render();
+      createTagCloud("agg-tab-tag-cloud", notableFeedbackWords, constructiveFeedbackWords, questionsFeedbackWords, ideasFeedbackWords);
 
-      var notableTagCloud = new app.TagCloud({
-        id: "tag-cloud-notable",
-        outer_width: 400,
-        outer_height: 400
       });
-      notableTagCloud.loadData(notableFeedbackWords);
-      var constructiveTagCloud = new app.TagCloud({
-        id: "tag-cloud-constructive",
-        outer_width: 400,
-        outer_height: 400
-      });
-      constructiveTagCloud.loadData(constructiveFeedbackWords);
-      var questionsTagCloud = new app.TagCloud({
-        id: "tag-cloud-questions",
-        outer_width: 400,
-        outer_height: 400
-      });
-      questionsTagCloud.loadData(questionsFeedbackWords);
-      var ideasTagCloud = new app.TagCloud({
-        id: "tag-cloud-ideas",
-        outer_width: 400,
-        outer_height: 400
-      });
-      ideasTagCloud.loadData(ideasFeedbackWords);
     });
+
+
+
   </script>
   <div id="feedback-modal">
   </div>

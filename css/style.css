@@ -55,7 +55,20 @@ body {
 .alert.alert-small {
   padding: 4px 15px 4px 6px;
 }
+#root {
+  margin: 10px;
+}
+.well.white {
+  background-color: #fff;
+}
+.highlight {
+  background-color: #ffff00;
+}
+.display-none {
+  display: none;
+}
 table.feedback-grid {
+  width: 100%;
   margin: 8px 4px 0;
 }
 table.feedback-grid div.rel {
@@ -99,7 +112,7 @@ table.feedback-grid textarea[disabled] {
 }
 li.feedback:hover {
   color: black;
-  background-color: #ffff00;
+  background-color: #ffff93;
 }
 .axis path,
 .axis line {
@@ -114,16 +127,23 @@ li.feedback:hover {
   display: none;
 }
 .bar-rect {
-  fill: #110b92;
+  fill: #dddddd;
 }
 .bar-rect:hover {
-  fill: #0b0763;
+  fill: #c4c4c4;
+}
+.bar-rect.selected {
+  fill: #17803f;
+}
+.bar-rect.selected:hover {
+  fill: #0f552a;
 }
 .selecting circle.selected {
   stroke: #f00;
 }
 .brush .extent {
-  stroke: #fff;
+  stroke: #09f;
+  fill: #fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
