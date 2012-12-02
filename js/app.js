@@ -55,6 +55,7 @@ $(document).ready(function() {
     collection: dir,
     outer_width: 400,
     outer_height: 300,
+    el: "#chart",
     onItemSelected: function(d){
       showIndividualView(true);
       console.log("onItemClick: ");
@@ -67,7 +68,6 @@ $(document).ready(function() {
         feedbacks.push({notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas});
         processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
       });
-
       var scores = _.map(d.reviews, function(d, idx) {
         return {score: d.score};
       });
@@ -84,7 +84,6 @@ $(document).ready(function() {
 
       var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
 
-      new app.RevieweeView(d);
       new app.IndScoreView(d);
       new app.RevieweeDetailView(d);
       console.log("number of reviews: ", feedbacks.length);

@@ -41,7 +41,7 @@
         var outer_width = options.outer_width;
         var outer_height = options.outer_height;
         var margin = options.margin;
-
+        var el = options.el;
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
 
@@ -77,9 +77,9 @@
         yAxis = d3.svg.axis()
           .scale(y)
           .orient("left")
-          .tickFormat(d3.format(".2s"));
+          .tickFormat(d3.format("0d"));
 
-        svg = d3.select("#chart").append("svg")
+        svg = d3.select(el).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")

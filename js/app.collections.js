@@ -28,20 +28,18 @@
 
   app.ReviewDir = Backbone.Collection.extend(
     (function(){ //use anonymous function here so we can have private variable for this class
-      var total = {};
-      var that;
       return  {
         model: window.app.Review,
         comparator: function(a, b){
           return a.attributes.score - b.attributes.score;
         },
         initialize: function() {
-          that = this;
           // console.log("ReviewDir.Models");
           // console.log(this);
           // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
         },
         initPos: function(){
+          var total = {};
           var reviewData = _(this.models).pluck('attributes');
           reviewData.forEach(function(d) {
             if(!total[d.score]) {
@@ -53,13 +51,7 @@
             }
             d.total = d.y1;
           });
-        },
-        total: function(score){
-          //return total number of review with each score
-          return total[score];
         }
-
-
         //TODO(kanitw): implement filter & event
       };
     })()
