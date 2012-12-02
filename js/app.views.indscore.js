@@ -15,8 +15,6 @@
       template: $("#indScoreTemplate").html(),
 
       render: function () {
-          console.log("IndScoreView.render()");
-          // console.log(this.model);
           var tmpl = _.template(this.template);
           $(this.el).html(tmpl(this.model.toJSON()));
           return this;

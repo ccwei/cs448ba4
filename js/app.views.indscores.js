@@ -22,21 +22,20 @@
 
         initialize: function (data) {
           that = this;
-          
+
           that.collection = new app.IndScoreCollection(that.collection);
 
           // console.log(data);
 
-          
-          
+
+
 
 
           // this.model = new app.IndScore({score: 1});
-          this.render();            
+          this.render();
 
         },
         render: function () {
-          console.log("RENDER");
           $(that.el).html("");
 
          // console.log('myscore');
@@ -49,11 +48,10 @@
 
           $(that.el).html("");
           _.each(that.collection.models, function (item) {
-            console.log(item);
               that.renderFeedback(item);
           }, that);
 
-          var indScoreViewClassName = new app.IndScoreView().className;        
+          var indScoreViewClassName = new app.IndScoreView().className;
 
           $('.' + indScoreViewClassName).delegate('span', 'click', function (d) {
               console.log(" clicked!", d);
@@ -71,13 +69,11 @@
         },
 
         renderFeedback: function (item) {
-            console.log('renderFeedback');
-            console.log(item);
             var indScoreView = new app.IndScoreView({
-                model: item                
+                model: item
             });
 
-           
+
 
             $(this.el).append(indScoreView.render().el);
             $(this.el).append("<hr/>");
