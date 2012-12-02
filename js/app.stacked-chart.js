@@ -41,7 +41,7 @@
         var outer_width = options.outer_width;
         var outer_height = options.outer_height;
         var margin = options.margin;
-        var divid = options.divid;
+        var el = options.el;
         var width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
 
@@ -79,7 +79,7 @@
           .orient("left")
           .tickFormat(d3.format("0d"));
 
-        svg = d3.select(divid).append("svg")
+        svg = d3.select(el).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")

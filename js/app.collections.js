@@ -51,7 +51,6 @@
             }
             d.total = d.y1;
           });
-          console.log("total = ", total);
         }
         //TODO(kanitw): implement filter & event
       };

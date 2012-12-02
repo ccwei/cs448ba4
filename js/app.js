@@ -55,7 +55,7 @@ $(document).ready(function() {
     collection: dir,
     outer_width: 400,
     outer_height: 300,
-    divid: "#chart",
+    el: "#chart",
     onItemSelected: function(d){
       showIndividualView(true);
       console.log("onItemClick: ");

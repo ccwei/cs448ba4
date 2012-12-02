@@ -18,17 +18,17 @@
         tagName: "reviewee",
         className: "reviewee-container",
         template: $("#revieweeDetailTemplate").html(),
-        initialize: function (review) {
-            this.model = new app.Reviewee({name: review.teamid});
+        initialize: function (reviewee) {
+            this.model = new app.Reviewee({name: reviewee.teamid});
 
-            this.render(review);
+            this.render(reviewee);
         },
-        render: function (review) {
+        render: function (reviewee) {
             var tmpl = _.template(this.template);
             $(this.el).html(tmpl(this.model.toJSON()));
 
             var indTeamReviews = [];
-            _(review.reviews).each(function (r) {
+            _(reviewee.reviews).each(function (r) {
               indTeamReviews.push({teamid: r.user_id, score: Math.round(r.score), reviews:[r]});
             });
             var reviewDir = new app.ReviewDir(indTeamReviews);
@@ -38,7 +38,7 @@
               collection: reviewDir,
               outer_width: 200,
               outer_height: 150,
-              divid: "#revieweeDetailchart",
+              el: "#revieweeDetailchart",
               onItemSelected: function(d){
                 showIndividualView(true);
                 console.log("onItemClick: ");
