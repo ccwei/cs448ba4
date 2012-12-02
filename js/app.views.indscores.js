@@ -11,75 +11,64 @@
   window.app = window.app || {};
 
   //View for the reviewee
-  app.IndScoresView = Backbone.View.extend(
-    (function(){
-      var that;
-      return {
-        // el: "#indscore",
-        // tagName: "indscores",
-        // className: "indscores-container",
-        // template: $("#indScoreTemplate").html(),
+  app.IndScoresView = Backbone.View.extend({
+    // el: "#indscore",
+    // tagName: "indscores",
+    // className: "indscores-container",
+    // template: $("#indScoreTemplate").html(),
 
-        initialize: function (data) {
-          that = this;
+    initialize: function (data) {
 
-          that.collection = new app.IndScoreCollection(that.collection);
+      this.collection = new app.IndScoreCollection(this.collection);
 
-          // console.log(data);
+      // console.log(data);
 
 
 
 
 
-          // this.model = new app.IndScore({score: 1});
-          this.render();
+      // this.model = new app.IndScore({score: 1});
+      this.render();
 
-        },
-        render: function () {
-          $(that.el).html("");
+    },
+    render: function () {
+      var that =this;
+      $(this.el).html("");
 
-         // console.log('myscore');
-         // console.log(scores);
+     // console.log('myscore');
+     // console.log(scores);
 
-         //  _.each(scores, function(item) {
-         //    console.log("score= ");
-         //    console.log(item);
-         //  });
+     //  _.each(scores, function(item) {
+     //    console.log("score= ");
+     //    console.log(item);
+     //  });
 
-          $(that.el).html("");
-          _.each(that.collection.models, function (item) {
-              that.renderFeedback(item);
-          }, that);
+      $(this.el).html("");
+      _.each(this.collection.models, function (item) {
+          that.renderFeedback(item);
+      }, this);
 
-          var indScoreViewClassName = new app.IndScoreView().className;
+      var indScoreViewClassName = new app.IndScoreView().className;
 
-          $('.' + indScoreViewClassName).delegate('span', 'click', function (d) {
-              console.log(" clicked!", d);
-              // var reviewIdx = $(this).index() - 1;
-              // var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
-              // //TODO: link back to one by one view for the review idx reviewIdx
-            });
-          return this;
+      $('.' + indScoreViewClassName).delegate('span', 'click', function (d) {
+          console.log(" clicked!", d);
+          // var reviewIdx = $(this).index() - 1;
+          // var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
+          // //TODO: link back to one by one view for the review idx reviewIdx
+        });
+      return this;
+    },
 
-
-            // var tmpl = _.template(this.template);
-            // $(this.el).html(tmpl(this.model.toJSON()));
-            // // $(this.el).html(tmpl);
-            // return this;
-        },
-
-        renderFeedback: function (item) {
-            var indScoreView = new app.IndScoreView({
-                model: item
-            });
+    renderFeedback: function (item) {
+        var indScoreView = new app.IndScoreView({
+            model: item
+        });
 
 
 
-            $(this.el).append(indScoreView.render().el);
-            $(this.el).append("<hr/>");
-        }
+        $(this.el).append(indScoreView.render().el);
+        $(this.el).append("<hr/>");
+    }
 
-      };
-    })()
-  );
+  });
 })(jQuery);
