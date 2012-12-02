@@ -63,7 +63,7 @@
         var feedback = item.toJSON();
         // console.log("feedback = ", feedback);
         _(FEEDBACK_TYPE).each(function(type){
-          if(that.keyword.length === 0 || feedback[type].indexOf(that.keyword)!=-1){
+          if(that.keyword.length === 0 || feedback[type].match(new RegExp(that.keyword, "i"))){
             var li = $('<li/>').addClass('feedback').append(feedback[type]);
             if(that.keyword.length>0){
               console.log(li);
