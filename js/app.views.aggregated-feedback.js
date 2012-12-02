@@ -17,7 +17,7 @@
     className: "aggregated-feedback-frame",
     template: $("#aggregatedFeedbackFrameTemplate").html(),
 
-    el: '#aggregate-feedbacks',
+    el: $('#aggregate-feedbacks'),
     keyword: "",
 
     initialize: function (feedbacks) {
@@ -35,27 +35,27 @@
       };
 
       var tmpl = _.template(this.template);
-      this.$frame = $(this.el).html(tmpl())
+      this.$el.html(tmpl())
         .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
 
         var reviewIdx = $(this).index() - 1;
         var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
         //TODO: link back to one by one view for the review idx reviewIdx
       });
-      console.log(this.$frame.find(".search-field"));
-      this.$frame.find(".search-field").on('change',onSearchTextChange);
-      this.$frame.find(".search-field").on('keyup',onSearchTextChange);
+      // console.log(this.$el.find(".search-field"));
+      this.$el.find(".search-field").on('change',onSearchTextChange);
+      this.$el.find(".search-field").on('keyup',onSearchTextChange);
 
       this.renderFeedbacks();
     },
     renderFeedbacks: function(){
       //TODO(kanitw): Add "n items matched"
       var that = this;
-      var $frame = this.$frame;
+      var $el = this.$el;
 
       //clean children first
       _(FEEDBACK_TYPE).each(function(type){
-        $frame.find('#feedback_'+type+' ul').children().remove();
+        $el.find('#feedback_'+type+' ul').children().remove();
       });
 
       _.each(this.collection.models, function (item, idx) {
@@ -70,7 +70,7 @@
               console.log(li);
               li.highlight(that.keyword);
             }
-            $frame.find('#feedback_'+type+' ul').append(li);
+            $el.find('#feedback_'+type+' ul').append(li);
           }
         });
 
@@ -81,10 +81,10 @@
 
       _(FEEDBACK_TYPE).each(function(type){
 
-        if($frame.find('#feedback_'+type+' ul').children().length === 0){
-          $frame.find('#feedback_'+type).addClass('display-none');
+        if($el.find('#feedback_'+type+' ul').children().length === 0){
+          $el.find('#feedback_'+type).addClass('display-none');
         }else {
-          $frame.find('#feedback_'+type).removeClass('display-none');
+          $el.find('#feedback_'+type).removeClass('display-none');
         }
       });
 

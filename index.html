@@ -43,6 +43,18 @@
       <dt>Ideas:</dt><dd><%= ideas %></dd>
   </dl>
 </script>
+<script id="feedbacksTemplate" type="text/template">
+  <div class="row-fluid">
+    <div class="span3">
+
+      <div class="indscores"></div>
+    </div>
+    <div class="span9">
+
+      <div class="feedbacks"></div>
+    </div>
+  </div>
+</script>
 
 <script id="feedbackGridTemplate" type="text/template">
 
@@ -209,17 +221,7 @@
             <div class="tab-pane" id="ind-tab-aggregate-grid">
               <div id="aggregate-feedbacks"></div>
             </div>
-            <div class="tab-pane active" id="ind-tab-individual-review">
-              <div class="row-fluid">
-                <div class="span3">
-                  <!-- <div>9.99</div> -->
-                  <div id="indscores"></div>
-                </div>
-                <div class="span9">
-                  <div id="feedbacks"></div>
-                </div>
-              </div>
-            </div>
+            <div class="tab-pane active" id="ind-tab-individual-review"></div>
           </div>
         </div>
 
