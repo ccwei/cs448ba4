@@ -81,9 +81,9 @@
       _(FEEDBACK_TYPE).each(function(type){
 
         if($frame.find('#feedback_'+type+' ul').children().length === 0){
-          console.log("removing " +type);
-          console.log($frame.find('#feedback_'+type));
           $frame.find('#feedback_'+type).addClass('display-none');
+        }else {
+          $frame.find('#feedback_'+type).removeClass('display-none');
         }
       });
 
