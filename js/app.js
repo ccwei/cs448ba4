@@ -8,33 +8,32 @@ function showIndividualView(show){
   }
 }
 
-function createTagCloud(parentid, reviews, notableTagCloud, constructiveTagCloud, questionsTagCloud, ideasTagCloud) {
+function createTagCloud(parentid, reviews, cloudContainer) {
   console.log("createTagCloud()");
-  notableTagCloud = new app.TagCloud({
+  cloudContainer["notableTagCloud"] = new app.TagCloud({
     id: parentid + " .tag-cloud-notable",
     outer_width: 400,
     outer_height: 400
   });
-  notableTagCloud.loadData(reviews, "notable");
-  constructiveTagCloud = new app.TagCloud({
+  cloudContainer["constructiveTagCloud"] = new app.TagCloud({
   id: parentid + " .tag-cloud-constructive",
   outer_width: 400,
   outer_height: 400
   });
-  questionsTagCloud = new app.TagCloud({
+  cloudContainer["questionsTagCloud"] = new app.TagCloud({
     id: parentid + " .tag-cloud-questions",
     outer_width: 400,
     outer_height: 400
   });
-  ideasTagCloud = new app.TagCloud({
+  cloudContainer["ideasTagCloud"] = new app.TagCloud({
     id: parentid + " .tag-cloud-ideas",
     outer_width: 400,
     outer_height: 400
   });
-  notableTagCloud.loadData(reviews, "notable");
-  constructiveTagCloud.loadData(reviews, "constructive");
-  questionsTagCloud.loadData(reviews, "questions");
-  ideasTagCloud.loadData(reviews, "ideas");
+  cloudContainer["notableTagCloud"].loadData(reviews, "notable");
+  cloudContainer["constructiveTagCloud"].loadData(reviews, "constructive");
+  cloudContainer["questionsTagCloud"].loadData(reviews, "questions");
+  cloudContainer["ideasTagCloud"].loadData(reviews, "ideas");
 }
 
 $(document).ready(function() {
@@ -93,8 +92,8 @@ $(document).ready(function() {
     totalReviews = totalReviews.concat(r);
   });
   //For Tag Cloud
-  var notableTagCloud, constructiveTagCloud, questionsTagCloud, ideasTagCloud;
-  createTagCloud('agg-tab-tag-cloud', totalReviews,notableTagCloud, constructiveTagCloud, questionsTagCloud, ideasTagCloud);
+  var cloudContainer = {};
+  createTagCloud('agg-tab-tag-cloud', totalReviews, cloudContainer);
   });
 });
 
