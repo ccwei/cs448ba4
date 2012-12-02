@@ -10,6 +10,14 @@
 
   window.app = window.app || {};
 
+  app.IndScoreCollection = Backbone.Collection.extend(
+    (function(){
+      return  {
+        model: window.app.IndScore
+      };
+    })()
+  );
+
   app.FeedbackCollection = Backbone.Collection.extend(
     (function(){
       return  {
