@@ -85,8 +85,7 @@ $(document).ready(function() {
     onItemDeselected: function(d){
       showIndividualView(false);
     }
-  });
-  chart.render();
+  }).render();
   var totalReviews = [];
   _.each(_(teamReviews).pluck('reviews'), function(r) {
     totalReviews = totalReviews.concat(r);
