@@ -35,7 +35,8 @@
       };
 
       var tmpl = _.template(this.template);
-      this.$frame = $(this.el).html(tmpl()).delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
+      this.$frame = $(this.el).html(tmpl())
+        .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
 
         var reviewIdx = $(this).index() - 1;
         var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
