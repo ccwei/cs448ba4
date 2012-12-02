@@ -10,32 +10,28 @@
 
   window.app = window.app || {};
 
-  app.FeedbacksView = Backbone.View.extend(
-    (function(){
-      var that;
-      return {
+  app.FeedbacksView = Backbone.View.extend({
+    initialize: function () {
+      this.collection = new app.FeedbackCollection(this.collection);
+      this.render();
+    },
+    render: function () {
+      var that = this;
 
-        initialize: function () {
-          that=this;
-          that.collection = new app.FeedbackCollection(that.collection);
-          that.render();
-        },
-        render: function () {
+      $(this.el).html("");
+      _.each(this.collection.models, function (item) {
+          that.renderFeedback(item);
+      }, this);
 
-          $(that.el).html("");
-          _.each(that.collection.models, function (item) {
-              that.renderFeedback(item);
-          }, that);
-          return this;
-        },
-        renderFeedback: function (item) {
-            var feedView = new app.FeedbackView({
-                model: item
-            });
-            $(this.el).append(feedView.render().el);
-            $(this.el).append("<hr/>");
-        }
-      };
-    })()
-  );
+      return this;
+    },
+    renderFeedback: function (item) {
+        var feedView = new app.FeedbackView({
+            model: item
+        });
+        $(this.el).append(feedView.render().el);
+        $(this.el).append("<hr/>");
+    }
+
+  });
 })(jQuery);

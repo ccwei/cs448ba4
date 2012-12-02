@@ -10,50 +10,38 @@
 
   window.app = window.app || {};
 
-  app.IndScoreCollection = Backbone.Collection.extend(
-    (function(){
-      return  {
-        model: window.app.IndScore
-      };
-    })()
-  );
+  app.IndScoreCollection = Backbone.Collection.extend({
+    model: window.app.IndScore
+  });
 
-  app.FeedbackCollection = Backbone.Collection.extend(
-    (function(){
-      return  {
+  app.FeedbackCollection = Backbone.Collection.extend({
         model: window.app.Feedback
-      };
-    })()
-  );
+  });
 
-  app.ReviewDir = Backbone.Collection.extend(
-    (function(){ //use anonymous function here so we can have private variable for this class
-      return  {
-        model: window.app.Review,
-        comparator: function(a, b){
-          return a.attributes.score - b.attributes.score;
-        },
-        initialize: function() {
-          // console.log("ReviewDir.Models");
-          // console.log(this);
-          // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
-        },
-        initPos: function(){
-          var total = {};
-          var reviewData = _(this.models).pluck('attributes');
-          reviewData.forEach(function(d) {
-            if(!total[d.score]) {
-              d.y0 = total[d.score] = 0;
-              d.y1 = total[d.score] = 1;
-            } else {
-              d.y0 = total[d.score];
-              d.y1 = total[d.score] = d.y0 + 1;
-            }
-            d.total = d.y1;
-          });
+  app.ReviewDir = Backbone.Collection.extend({
+    model: window.app.Review,
+    comparator: function(a, b){
+      return a.attributes.score - b.attributes.score;
+    },
+    initialize: function() {
+      // console.log("ReviewDir.Models");
+      // console.log(this);
+      // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
+    },
+    initPos: function(){
+      var total = {};
+      var reviewData = _(this.models).pluck('attributes');
+      reviewData.forEach(function(d) {
+        if(!total[d.score]) {
+          d.y0 = total[d.score] = 0;
+          d.y1 = total[d.score] = 1;
+        } else {
+          d.y0 = total[d.score];
+          d.y1 = total[d.score] = d.y0 + 1;
         }
-        //TODO(kanitw): implement filter & event
-      };
-    })()
-  );
+        d.total = d.y1;
+      });
+    }
+    //TODO(kanitw): implement filter & event
+  });
 })(jQuery);
