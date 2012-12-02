@@ -51,54 +51,15 @@ $(document).ready(function() {
   var dir = new app.ReviewDir(teamReviews);
   dir.initPos(); //need to be called here
 
+  var theReviewView = new app.RevieweeView();
+
   var chart = new app.StackedChart({
     collection: dir,
     outer_width: 400,
     outer_height: 300,
     onItemSelected: function(d){
       showIndividualView(true);
-      console.log("onItemClick: ");
-      console.log(d);
-
-      var feedbacks = [];
-
-      _.each(d.reviews, function(r) {
-        // console.log(r);
-        feedbacks.push({notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas});
-        processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
-      });
-
-      var scores = _.map(d.reviews, function(d, idx) {
-        return {score: d.score};
-      });
-
-      var indscore = new app.IndScoresView({
-        collection:scores,
-        el: '#indscores'
-      });
-
-      var f = new app.FeedbacksView({
-        collection:feedbacks,
-        el: '#feedbacks'
-      });
-
-      var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
-
-      new app.RevieweeView(d);
-      new app.IndScoreView(d);
-      new app.RevieweeDetailView(d);
-      console.log("number of reviews: ", feedbacks.length);
-      var idvNotableFeedbackWords = [];
-      var idvConstructiveFeedbackWords = [];
-      var idvQuestionsFeedbackWords = [];
-      var idvIdeasFeedbackWords = [];
-
-      _(d.reviews).each(function(r) {
-        processWord(r, idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
-      });
-
-      render_tagCloud();
-
+      theReviewView.loadData(d);
     },
     onItemDeselected: function(d){
       showIndividualView(false);
