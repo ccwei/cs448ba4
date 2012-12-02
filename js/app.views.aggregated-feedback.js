@@ -8,69 +8,85 @@
 (function ($) {
   "use strict"; // use strict mode for sublime linter according to http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 
-  window.app = window.app || {};
-  app.AggregatedFeedbackView = Backbone.View.extend({
+
+  var FEEDBACK_TYPE = ["notable","constructive","questions","ideas"];
+
+  //TODO(kanitw): should be renamed to FeedbacksGroupedView ???
+  app.FeedbacksAggregatedView = Backbone.View.extend({
+    tagName: "div",
+    className: "aggregated-feedback-frame",
+    template: $("#aggregatedFeedbackFrameTemplate").html(),
+
+    el: '#aggregate-feedbacks',
+    keyword: "",
+
+    initialize: function (feedbacks) {
+        this.collection = new app.FeedbackCollection(feedbacks);
+        this.render();
+    },
+
     render: function () {
-        var frame = $(".aggregated-feedback-frame");
-        var feedback = this.model.toJSON();
+      var that = this;
+
+      var onSearchTextChange = function(){
+        console.log(this);
+        that.keyword = $(this).val();
+        that.renderFeedbacks();
+      };
+
+      var tmpl = _.template(this.template);
+      this.$frame = $(this.el).html(tmpl()).delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
+
+        var reviewIdx = $(this).index() - 1;
+        var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
+        //TODO: link back to one by one view for the review idx reviewIdx
+      });
+      console.log(this.$frame.find(".search-field"));
+      this.$frame.find(".search-field").on('change',onSearchTextChange);
+      this.$frame.find(".search-field").on('keyup',onSearchTextChange);
+
+      this.renderFeedbacks();
+    },
+    renderFeedbacks: function(){
+      //TODO(kanitw): Add "n items matched"
+      var that = this;
+      var $frame = this.$frame;
+
+      //clean children first
+      _(FEEDBACK_TYPE).each(function(type){
+        $frame.find('#feedback_'+type+' ul').children().remove();
+      });
+
+      _.each(this.collection.models, function (item, idx) {
+        // var frame = $(".aggregated-feedback-frame");
+
+        var feedback = item.toJSON();
         // console.log("feedback = ", feedback);
-        frame.children('#feedback_notable').append($('<li/>').addClass('feedback')
-                                          .append(feedback.notable));
-        frame.children('#feedback_constructive').append($('<li/>').addClass('feedback')
-                                          .append(feedback.constructive));
-        frame.children('#feedback_questions').append($('<li/>').addClass('feedback')
-                                          .append(feedback.questions));
-        frame.children('#feedback_ideas').append($('<li/>').addClass('feedback')
-                                          .append(feedback.ideas));
+        _(FEEDBACK_TYPE).each(function(type){
+          if(that.keyword.length === 0 || feedback[type].indexOf(that.keyword)!=-1){
+            var li = $('<li/>').addClass('feedback').append(feedback[type]);
+            if(that.keyword.length>0){
+              console.log(li);
+              li.highlight(that.keyword);
+            }
+            $frame.find('#feedback_'+type+' ul').append(li);
+          }
+        });
+
         return this;
+      }, this);
+
+      //hide empty category
+
+      _(FEEDBACK_TYPE).each(function(type){
+
+        if($frame.find('#feedback_'+type+' ul').children().length === 0){
+          console.log("removing " +type);
+          console.log($frame.find('#feedback_'+type));
+          $frame.find('#feedback_'+type).addClass('display-none');
+        }
+      });
+
     }
   });
-
-  app.AggregatedFeedbackFrameView = Backbone.View.extend({
-        tagName: "div",
-        className: "aggregated-feedback-frame",
-        template: $("#aggregatedFeedbackFrameTemplate").html(),
-
-        render: function (idx) {
-            var tmpl = _.template(this.template);
-            $(this.el).html(tmpl());
-            return this;
-        }
-    });
-
-
-
-  app.FeedbacksAggregatedView = Backbone.View.extend(
-    (function(){
-      return {
-        el: '#aggregate-feedbacks',
-
-        initialize: function (feedbacks) {
-            this.collection = new app.FeedbackCollection(feedbacks);
-            this.render();
-        },
-        render: function () {
-            var that = this;
-            var aggregatedFeedbackView = new app.AggregatedFeedbackFrameView();
-            $(this.el).html(aggregatedFeedbackView.render().el);
-            //Create on click for each <li>
-            $('.' + aggregatedFeedbackView.className).delegate('li', 'click', function () {
-              var reviewIdx = $(this).index() - 1;
-              var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
-              //TODO: link back to one by one view for the review idx reviewIdx
-            });
-            _.each(this.collection.models, function (item, idx) {
-                // console.log("idx = ", idx);
-                that.renderAggregatedFeedback(item, idx);
-            }, this);
-        },
-        renderAggregatedFeedback: function (item, idx) {
-            var feedView = new app.AggregatedFeedbackView({
-                model: item
-            });
-            feedView.render();
-        }
-      };
-    })()
-  );
 })(jQuery);
