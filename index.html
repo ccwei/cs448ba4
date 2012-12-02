@@ -14,6 +14,15 @@
 
 </head>
 
+
+<script id="indScoreTemplate" type="text/template">
+  <h4><span><%= score %></span></h4>
+</script>
+
+<script id="revieweeTemplate" type="text/template">
+  <h1><span><%= name %></span></h1>
+</script>
+
 <script id="revieweeDetailTemplate" type="text/template">
   <div>
     <div class="icon">
@@ -21,6 +30,7 @@
     <h3>Team Name</h3>
     <%= name %>
   </div>
+
 </script>
 
 <script id="feedbackTemplate" type="text/template">
@@ -197,7 +207,15 @@
               <div id="aggregate-feedbacks"></div>
             </div>
             <div class="tab-pane active" id="ind-tab-individual-review">
-              <div id="feedbacks"></div>
+              <div class="row-fluid">
+                <div class="span3">
+                  <!-- <div>9.99</div> -->
+                  <div id="indscores"></div>
+                </div>
+                <div class="span9">
+                  <div id="feedbacks"></div>
+                </div>
+              </div>              
             </div>
           </div>
         </div>
@@ -212,6 +230,9 @@
   <script src="./js/app.views.feedbacks.js"></script>
   <script src="./js/app.views.aggregated-feedback.js"></script>
   <script src="./js/app.views.feedback-modal.js"></script>
+  <script src="./js/app.views.reviewee.js"></script>
+  <script src="./js/app.views.indscore.js"></script>
+  <script src="./js/app.views.indscores.js"></script>
   <script src="./js/app.views.reviewee-detail.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
@@ -288,11 +309,25 @@
             feedbacks.push({notable: r.notable, constructive: r.constructive, questions: r.questions, ideas: r.ideas});
             processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
           });
+
+          var scores = _.map(d.reviews, function(d, idx) {
+            return {score: d.score};
+          });
+
+          var indscore = new app.IndScoresView({
+            collection:scores,
+            el: '#indscores'
+          });
+
           var f = new app.FeedbacksView({
             collection:feedbacks,
             el: '#feedbacks'
           });
+
           var aggregatedFeedbackView = new app.FeedbacksAggregatedView(feedbacks);
+
+          new app.RevieweeView(d);
+          new app.IndScoreView(d);
           new app.RevieweeDetailView(d);
           console.log("number of reviews: ", feedbacks.length);
           var idvNotableFeedbackWords = [];
