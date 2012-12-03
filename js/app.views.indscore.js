@@ -10,7 +10,6 @@
 
   window.app = window.app || {};
   app.IndScoreView = Backbone.View.extend({
-      tagName: "indscore",
       className: "indscore-container",
       template: $("#indScoreTemplate").html(),
 

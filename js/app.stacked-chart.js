@@ -32,7 +32,7 @@
     },
     render: function(){
       var options = this.options;
-      console.log(options);
+      // console.log(options);
 
       var outer_width = options.outer_width;
       var outer_height = options.outer_height;
@@ -126,7 +126,7 @@
           .attr("height", function(d) { return y(d.y0) - y(d.y1); })
           .on("click", function(d) {
             var selected = d3.select(this).classed('selected');
-            console.log(this,selected);
+            // console.log(this,selected);
             rects.each(function(r){
               d3.select(this).classed('selected',function(){
                 return !selected && r===d; //the select must not be previously selected and is the clicked item.

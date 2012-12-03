@@ -10,14 +10,12 @@
 
   window.app = window.app || {};
   app.FeedbackView = Backbone.View.extend({
-      tagName: "feedback",
       className: "feedback-container",
-      template: $("#feedbackGridTemplate").html(),
+      template: _.template($("#feedbackGridTemplate").html()),
 
       render: function () {
           // console.log(this.model);
-          var tmpl = _.template(this.template);
-          $(this.el).html(tmpl(this.model.toJSON()));
+          $(this.el).html(this.template(this.model.toJSON()));
           return this;
       }
   });

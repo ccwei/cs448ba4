@@ -12,7 +12,7 @@
 
   //View for the reviewee
   app.RevieweeView = Backbone.View.extend({
-    el: "#ind-right-side", //TODO(kanitw): make sure we need this line.
+    // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
 
       this.createTagCloud('ind-tab-tag-cloud');
@@ -37,11 +37,12 @@
       this.indScoreView = new app.IndScoreView(reviewee);
       this.feedbacksView = new app.FeedbacksView({
         collection:reviewee.reviews,
-        el: '#feedbacks'
+        el: $('#ind-tab-individual-review')
+        // id: '#ind-tab-individual-review'
       });
       this.indScoresView = new app.IndScoresView({
         collection:scores,
-        el: '#indscores'
+        el: $('#indscores')
       });
 
       this.FeedbacksAggregatedView = new app.FeedbacksAggregatedView(reviewee.reviews);

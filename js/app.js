@@ -66,7 +66,6 @@ $(document).ready(function() {
       count++;
     tr.score = Math.round(sum * 1.0 / tr.reviews.length);
   });
-  console.log(count, "teams have more than 10 reivews" );
 
   var dir = new app.ReviewDir(teamReviews);
   dir.initPos(); //need to be called here
