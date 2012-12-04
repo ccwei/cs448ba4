@@ -16,7 +16,13 @@
     className: "feedbacks-view",
 
     initialize: function () {
-      this.collection = new app.FeedbackCollection(this.collection);
+      if(this.collection){
+        this.loadData(this.collection);
+      }
+    },
+
+    loadData: function(collection){
+      this.collection = new app.FeedbackCollection(collection);
       this.render();
     },
     render: function () {

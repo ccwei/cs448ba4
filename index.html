@@ -83,6 +83,57 @@
 
 </script>
 
+<script id="revieweeViewTemplate" type="text/template">
+  <div class="alert alert-success alert-small">
+    Showing Individual Team
+    <!---TODO(kanitw): Need better word here-->
+  </div>
+  <div id="reviewee-detail-<%=viewId%>"></div>
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="#ind-tab-tag-cloud" data-toggle="tab">
+        <!-- TODO this should become ind-tab-tag-cloud-<%=viewId%> -->
+        Tag Cloud
+      </a>
+    </li>
+    <!-- <li>
+      <a href="#tab-tag-list-<%=viewId%>">
+        Tag List
+      </a>
+    </li> -->
+    <li>
+      <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
+        Aggregate View
+      </a>
+    </li>
+    <li class="active">
+      <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
+        Individual Reviews
+      </a>
+    </li>
+    <!-- <li>
+      <a href="#tab-word-tree-<%=viewId%>">
+        Word Tree
+      </a>
+    </li> -->
+    <!-- <li class='pull-right no-link'>
+
+    </li> -->
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" id="ind-tab-tag-cloud">
+      <!-- TODO this should become ind-tab-tag-cloud-<%=viewId%> -->
+      <div class="tag-cloud-notable"></div>
+      <div class="tag-cloud-constructive"></div>
+      <div class="tag-cloud-questions"></div>
+      <div class="tag-cloud-ideas"></div>
+    </div>
+    <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
+    </div>
+    <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
+  </div>
+</script>
+
 <script id="feedbackModalTemplate" type="text/template">
   <div class="feedbackModal modal hide fade" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-header">
@@ -176,53 +227,7 @@
 
         </div>
         <div id="ind-right-side" class="tab-pane">
-          <div class="alert alert-success alert-small">
-            Showing Individual Team
-            <!---TODO(kanitw): Need better word here-->
-          </div>
-          <div id="reviewee"></div>
-          <ul class="nav nav-tabs">
-            <li>
-              <a href="#ind-tab-tag-cloud" data-toggle="tab">
-                Tag Cloud
-              </a>
-            </li>
-            <!-- <li>
-              <a href="#tab-tag-list">
-                Tag List
-              </a>
-            </li> -->
-            <li>
-              <a href="#ind-tab-aggregate-grid" data-toggle="tab">
-                Aggregate View
-              </a>
-            </li>
-            <li class="active">
-              <a href="#ind-tab-individual-review" data-toggle="tab">
-                Individual Reviews
-              </a>
-            </li>
-            <!-- <li>
-              <a href="#tab-word-tree">
-                Word Tree
-              </a>
-            </li> -->
-            <!-- <li class='pull-right no-link'>
 
-            </li> -->
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane" id="ind-tab-tag-cloud">
-              <div class="tag-cloud-notable"></div>
-              <div class="tag-cloud-constructive"></div>
-              <div class="tag-cloud-questions"></div>
-              <div class="tag-cloud-ideas"></div>
-            </div>
-            <div class="tab-pane" id="ind-tab-aggregate-grid">
-              <div id="aggregate-feedbacks"></div>
-            </div>
-            <div class="tab-pane active" id="ind-tab-individual-review"></div>
-          </div>
         </div>
 
       </div>

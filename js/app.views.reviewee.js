@@ -10,19 +10,30 @@
 
   window.app = window.app || {};
 
+  var total = 0;
+
   //View for the reviewee
   app.RevieweeView = Backbone.View.extend({
+    template: _.template($("#revieweeViewTemplate").html()),
+    el: $("#ind-right-side"),
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
-
-      this.createTagCloud('ind-tab-tag-cloud');
       var that = this;
-      //Register event for render tag cloud when switch to the tab
+      this.viewId = total ++;
+      this.$el.html(this.template(this));
+      this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
+      });
+      this.revieweeDetailView =  new app.RevieweeDetailView({
+        el: this.$el.find("#ind-reviewee-detail-"+this.viewId)
+      });
+      this.createTagCloud('ind-tab-tag-cloud');
       $('a[data-toggle="tab"]').on('shown', function (e) {
         if($(e.target).attr('href') === '#ind-tab-tag-cloud') {
           that.render();
         }
       });
+
+
     },
     loadData: function(reviewee){
       var scores = _.map(reviewee.reviews, function(d, idx) {
@@ -32,7 +43,6 @@
       // var scores = _(d.reviews).pluck("score");
 
       //TODO(kanitw): all these initialization should be in initialize and all these classes should have loadData so we can reuse views
-      this.reviewee = reviewee;
       this.revieweeDetailView =  new app.RevieweeDetailView(reviewee);
       this.indScoreView = new app.IndScoreView(reviewee);
       this.feedbacksView = new app.FeedbacksView({
@@ -44,8 +54,8 @@
         collection:scores,
         el: $('#indscores')
       });
+      this.indScoreView = new app.IndScoreView();
 
-      this.FeedbacksAggregatedView = new app.FeedbacksAggregatedView(reviewee.reviews);
 
       this.render();
     },
@@ -75,16 +85,7 @@
     render: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
-      var that = this;
-      if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud') {
-          console.log("render_tagCloud()", $("#ind-right-side .nav .active a").attr("href"));
-          this.notableTagCloud.loadData(this.reviewee.reviews, "notable");
-          setTimeout(function() {
-            that.constructiveTagCloud.loadData(that.reviewee.reviews, "constructive");
-            that.questionsTagCloud.loadData(that.reviewee.reviews, "questions");
-            that.ideasTagCloud.loadData(that.reviewee.reviews, "ideas");
-          }, 1000);
-      }
+      
     }
   });
 

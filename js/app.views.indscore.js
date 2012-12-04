@@ -12,7 +12,9 @@
   app.IndScoreView = Backbone.View.extend({
       className: "indscore-container",
       template: $("#indScoreTemplate").html(),
+      loadData: function() {
 
+      },
       render: function () {
           var tmpl = _.template(this.template);
           $(this.el).html(tmpl(this.model.toJSON()));
