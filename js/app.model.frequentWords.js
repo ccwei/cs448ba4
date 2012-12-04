@@ -43,10 +43,17 @@
         topWords = topWords.slice(0, 50);
         return topWords;
       };
-
       var processWord = function (review, words, type) {
-        _(review[type].split(" ")).each(function (w) {
-          words.push([w,review]);
+        var feedbacks = "";
+        if(type) {
+          feedbacks = review[type];
+        } else {
+          _(app.FEEDBACK_TYPE).each(function (t) {
+            feedbacks += review[t];
+          });
+        }
+        _(feedbacks.split(" ")).each(function (w) {
+            words.push([w,review]);
         });
       };
 

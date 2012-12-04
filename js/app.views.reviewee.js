@@ -39,6 +39,7 @@
       });
     },
     loadData: function(reviewee){
+      var that = this;
       this.feedbacksAggregatedView.loadData(reviewee.reviews);
       this.revieweeDetailView.loadData(reviewee);
       this.feedbacksView.loadData(reviewee.reviews);
@@ -56,11 +57,10 @@
       });
       this.indScoreView = new app.IndScoreView();
 
-
-      this.frequentWordsNotable = new app.FrequentWords(reviewee.reviews, "notable");
-      this.frequentWordsConstructive = new app.FrequentWords(reviewee.reviews, "constructive");
-      this.frequentWordsQuestions = new app.FrequentWords(reviewee.reviews, "questions");
-      this.frequentWordsIdeas = new app.FrequentWords(reviewee.reviews, "ideas");
+      this.frequentWords = {};
+      _(app.FEEDBACK_TYPE).each(function (type) {
+        that.frequentWords[type] = new app.FrequentWords(reviewee.reviews, type);
+      });
       this.renderTagCloud();
 
     },
@@ -69,32 +69,15 @@
       if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud') {
           console.log("render_tagCloud()", $("#ind-right-side .nav .active a").attr("href"));
 
-          this.notableTagCloud = new app.TagCloud({
-            model: this.frequentWordsNotable,
-            id: "ind-tab-tag-cloud .tag-cloud-notable",
+        this.tagClouds = {};
+        _(app.FEEDBACK_TYPE).each(function (type) {
+          that.tagClouds[type] = new app.TagCloud({
+            model: that.frequentWords[type],
+            id: "ind-tab-tag-cloud .tag-cloud-" + type,
             outer_width: 400,
             outer_height: 400
           });
-          setTimeout(function() {
-            that.constructiveTagCloud = new app.TagCloud({
-              model: that.frequentWordsConstructive,
-              id: "ind-tab-tag-cloud .tag-cloud-constructive",
-              outer_width: 400,
-              outer_height: 400
-            });
-            that.questionsTagCloud = new app.TagCloud({
-              model: that.frequentWordsQuestions,
-              id: "ind-tab-tag-cloud .tag-cloud-questions",
-              outer_width: 400,
-              outer_height: 400
-            });
-            that.ideasTagCloud = new app.TagCloud({
-              model: that.frequentWordsIdeas,
-              id: "ind-tab-tag-cloud .tag-cloud-ideas",
-              outer_width: 400,
-              outer_height: 400
-            });
-          }, 1000);
+        });
       }
     }
   });

@@ -11,7 +11,7 @@
   window.app = window.app || {};
 
   var total = 0;
-
+  var FEEDBACK_TYPE = ["notable","constructive","questions","ideas"];
   //View for the reviewee
   app.RevieweesView = Backbone.View.extend({
     template: _.template($("#revieweesViewTemplate").html()),
@@ -25,15 +25,14 @@
     },
     loadData: function(reviewees){
       var totalReviews = [];
+      var that = this;
       _.each(_(reviewees).pluck('reviews'), function(r) {
         totalReviews = totalReviews.concat(r);
       });
 
-      this.frequentWordsNotable = new app.FrequentWords(totalReviews, "notable");
-      this.frequentWordsConstructive = new app.FrequentWords(totalReviews, "constructive");
-      this.frequentWordsQuestions = new app.FrequentWords(totalReviews, "questions");
-      this.frequentWordsIdeas = new app.FrequentWords(totalReviews, "ideas");
+      this.keywordListsView = new app.KeywordListsView({model: totalReviews});
       this.renderTagCloud();
+      //this.renderKeywordList();
     },
 
     render: function(){
@@ -44,32 +43,29 @@
 
     renderTagCloud: function() {
       var that = this;
-      this.notableTagCloud = new app.TagCloud({
-          model: this.frequentWordsNotable,
-          id: "agg-tab-tag-cloud .tag-cloud-notable",
+      this.tagClouds = {};
+      _(app.FEEDBACK_TYPE).each(function (type) {
+        that.tagClouds[type] = new app.TagCloud({
+          model: that.frequentWords[type],
+          id: "agg-tab-tag-cloud .tag-cloud-" + type,
           outer_width: 400,
           outer_height: 400
+        });
       });
-      setTimeout(function() {
-        that.constructiveTagCloud = new app.TagCloud({
-          model: that.frequentWordsConstructive,
-          id: "agg-tab-tag-cloud .tag-cloud-constructive",
+    },
+
+    renderKeywordList: function() {
+
+      var that = this;
+      this.keywordLists = {};
+      _(app.FEEDBACK_TYPE).each(function (type) {
+        that.keywordLists[type] = new app.KeywordListView({
+          model: that.frequentWords[type],
+          id: "agg-tab-keyword-list-" + that.viewId + " .keyword-list-" + type,
           outer_width: 400,
           outer_height: 400
         });
-        that.questionsTagCloud = new app.TagCloud({
-          model: that.frequentWordsQuestions,
-          id: "agg-tab-tag-cloud .tag-cloud-questions",
-          outer_width: 400,
-          outer_height: 400
-        });
-        that.ideasTagCloud = new app.TagCloud({
-          model: that.frequentWordsIdeas,
-          id: "agg-tab-tag-cloud .tag-cloud-ideas",
-          outer_width: 400,
-          outer_height: 400
-        });
-      }, 1000);
+      });
     }
   });
 
