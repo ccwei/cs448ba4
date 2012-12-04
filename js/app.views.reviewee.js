@@ -14,7 +14,9 @@
   app.RevieweeView = Backbone.View.extend({
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
-       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView();
+      this.feedbacksAggregatedView = new app.FeedbacksAggregatedView();
+      this.revieweeDetailView =  new app.RevieweeDetailView();
+      this.indScoreView = new app.IndScoreView();
     },
     loadData: function(reviewee){
       _.each(reviewee.reviews, function(r) {
@@ -28,18 +30,22 @@
       // var scores = _(d.reviews).pluck("score");
 
       //TODO(kanitw): all these initialization should be in initialize and all these classes should have loadData so we can reuse views
-      this.revieweeDetailView =  new app.RevieweeDetailView(reviewee);
-      this.indScoreView = new app.IndScoreView(reviewee);
+
+
       this.feedbacksView = new app.FeedbacksView({
         collection:reviewee.reviews,
         el: $('#ind-tab-individual-review')
         // id: '#ind-tab-individual-review'
       });
+
       this.indScoresView = new app.IndScoresView({
         collection:scores,
         el: $('#indscores')
       });
+
       this.feedbacksAggregatedView.loadData(reviewee.reviews);
+      this.revieweeDetailView.loadData(reviewee);
+      this.indScoreView.loadData(reviewee);
 
 
       //TODO(kanitw): this junkies for tagCloud should be Backbonified or at least classified

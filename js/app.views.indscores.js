@@ -18,19 +18,19 @@
     // template: $("#indScoreTemplate").html(),
 
     initialize: function (data) {
+      if(data){
+        this.loadData(data);
+      }
 
-      this.collection = new app.IndScoreCollection(this.collection);
-
-      // console.log(data);
-
-
-
-
-
-      // this.model = new app.IndScore({score: 1});
-      this.render();
 
     },
+    loadData: function(){
+      this.collection = new app.IndScoreCollection(this.collection);
+      // console.log(data);
+      // this.model = new app.IndScore({score: 1});
+      this.render();
+    },
+
     render: function () {
       var that =this;
       $(this.el).html("");

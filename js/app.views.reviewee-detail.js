@@ -17,9 +17,13 @@
     className: "reviewee-container",
     template: $("#revieweeDetailTemplate").html(),
     initialize: function (reviewee) {
-        this.model = new app.Reviewee({name: reviewee.teamid});
-
-        this.render(reviewee);
+      if(reviewee){
+        this.loadData(reviewee);
+      }
+    },
+    loadData: function(reviewee){
+      this.model = new app.Reviewee({name: reviewee.teamid});
+      this.render(reviewee);
     },
     render: function (reviewee) {
         var tmpl = _.template(this.template);
