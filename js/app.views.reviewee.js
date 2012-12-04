@@ -25,10 +25,10 @@
       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
       });
       this.revieweeDetailView =  new app.RevieweeDetailView({
-        el: this.$el.find("#ind-reviewee-detail-"+this.viewId)
+        el: this.$el.find("#reviewee-detail-"+this.viewId)
       });
       this.feedbacksView = new app.FeedbacksView({
-        el: $('#ind-tab-individual-review-'+this.viewId)
+        el: this.$el.find('#ind-tab-individual-review-'+this.viewId)
         // id: '#ind-tab-individual-review'
       });
 
