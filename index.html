@@ -134,6 +134,47 @@
   </div>
 </script>
 
+
+
+<script id="revieweesViewTemplate" type="text/template">
+  <div class="alert alert-info alert-small">
+    Showing Submissions Aggregated
+  </div>
+  <ul class="nav nav-tabs">
+    <li>
+      <a href="#agg-tab-tag-cloud" data-toggle="tab">
+        <!-- TODO(kanitw): Wei please add -<%=viewId%> -->
+        Tag Cloud
+      </a>
+    </li>
+    <!-- <li>
+      <a href="#agg-tab-tag-list-<%=viewId%>">
+        Tag List
+      </a>
+    </li> -->
+    <!-- <li>
+      <a href="#agg-tab-word-tree-<%=viewId%>">
+        Word Tree
+      </a>
+    </li> -->
+    <!-- <li class='pull-right no-link'>
+
+    </li> -->
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="agg-tab-tag-cloud">
+    <!-- TODO(kanitw): Wei please add -<%=viewId%> -->
+    <div class="tag-cloud-notable"></div>
+    <div class="tag-cloud-constructive"></div>
+    <div class="tag-cloud-questions"></div>
+    <div class="tag-cloud-ideas"></div>
+  </div>
+    <!-- <div class="tab-pane" id="agg-tab-tag-list-<%=viewId%>"></div> -->
+
+    <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
+
+</script>
+
 <script id="feedbackModalTemplate" type="text/template">
   <div class="feedbackModal modal hide fade" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-header">
@@ -187,48 +228,8 @@
     <div class="span6">
       <div class="white well">
       <div id="right-side" class="tab-content">
-        <div id="agg-right-side" class="tab-pane active">
-          <!--aggregated right side-->
-          <div class="alert alert-info alert-small">
-            Showing Submissions Aggregated
-          </div>
-          <ul class="nav nav-tabs">
-            <li>
-              <a href="#agg-tab-tag-cloud" data-toggle="tab">
-                Tag Cloud
-              </a>
-            </li>
-            <!-- <li>
-              <a href="#agg-tab-tag-list">
-                Tag List
-              </a>
-            </li> -->
-            <!-- <li>
-              <a href="#agg-tab-word-tree">
-                Word Tree
-              </a>
-            </li> -->
-            <!-- <li class='pull-right no-link'>
-
-            </li> -->
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane" id="agg-tab-tag-cloud">
-              <div class="tag-cloud-notable"></div>
-              <div class="tag-cloud-constructive"></div>
-              <div class="tag-cloud-questions"></div>
-              <div class="tag-cloud-ideas"></div>
-            </div>
-            <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
-
-            <!-- <div class="tab-pane" id="tab-wordtree"></div> -->
-          </div>
-
-
-        </div>
-        <div id="ind-right-side" class="tab-pane">
-
-        </div>
+        <div id="agg-right-side" class="tab-pane active"></div>
+        <div id="ind-right-side" class="tab-pane"></div>
 
       </div>
     </div>
@@ -244,6 +245,7 @@
   <script src="./js/app.views.indscore.js"></script>
   <script src="./js/app.views.indscores.js"></script>
   <script src="./js/app.views.reviewee.js"></script>
+  <script src="./js/app.views.reviewees.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
   <script src="./js/app.js"></script>
