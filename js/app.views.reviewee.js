@@ -10,13 +10,26 @@
 
   window.app = window.app || {};
 
+  var total = 0;
+
   //View for the reviewee
   app.RevieweeView = Backbone.View.extend({
+    template: _.template($("#revieweeViewTemplate").html()),
+    el: $("#ind-right-side"),
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
-      this.feedbacksAggregatedView = new app.FeedbacksAggregatedView();
-      this.revieweeDetailView =  new app.RevieweeDetailView();
-      this.indScoreView = new app.IndScoreView();
+      this.viewId = total ++;
+      this.$el.html(this.template(this));
+      this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
+      });
+      this.revieweeDetailView =  new app.RevieweeDetailView({
+        el: this.$el.find("#ind-reviewee-detail-"+this.viewId)
+      });
+
+      this.feedbacksView = new app.FeedbacksView({
+        el: $('#ind-tab-individual-review-'+this.viewId)
+        // id: '#ind-tab-individual-review'
+      });
     },
     loadData: function(reviewee){
       _.each(reviewee.reviews, function(r) {
@@ -29,23 +42,18 @@
       // If you decide not to parse the whole d.reviews object, I would suggest your to use
       // var scores = _(d.reviews).pluck("score");
 
-      //TODO(kanitw): all these initialization should be in initialize and all these classes should have loadData so we can reuse views
+
+      this.feedbacksAggregatedView.loadData(reviewee.reviews);
+      this.revieweeDetailView.loadData(reviewee);
+      this.feedbacksView.loadData(reviewee.reviews);
 
 
-      this.feedbacksView = new app.FeedbacksView({
-        collection:reviewee.reviews,
-        el: $('#ind-tab-individual-review')
-        // id: '#ind-tab-individual-review'
-      });
-
+      //these two classes have to be moved to feedbacksView any so I won't deal with them
       this.indScoresView = new app.IndScoresView({
         collection:scores,
         el: $('#indscores')
       });
-
-      this.feedbacksAggregatedView.loadData(reviewee.reviews);
-      this.revieweeDetailView.loadData(reviewee);
-      this.indScoreView.loadData(reviewee);
+      this.indScoreView = new app.IndScoreView();
 
 
       //TODO(kanitw): this junkies for tagCloud should be Backbonified or at least classified
@@ -61,8 +69,7 @@
       render_tagCloud();
     },
     render: function(){
-      //DO NOTHING since we haven't used the template for this view yet
-      //TODO: not a bad idea to use template here too!
+
     }
   });
 

@@ -15,9 +15,9 @@
   app.FeedbacksAggregatedView = Backbone.View.extend({
     tagName: "div",
     className: "aggregated-feedback-frame",
-    template: $("#aggregatedFeedbackFrameTemplate").html(),
+    template: _.template($("#aggregatedFeedbackFrameTemplate").html()),
 
-    el: $('#aggregate-feedbacks'),
+    el: $('#ind-tab-aggregate-grid'),
     keyword: "",
 
     initialize: function (feedbacks) {
@@ -40,14 +40,12 @@
         that.renderFeedbacks();
       };
 
-      var tmpl = _.template(this.template);
-      this.$el.html(tmpl())
+      this.$el.html(this.template())
         .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
-
-        var reviewIdx = $(this).index() - 1;
-        var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
-        //TODO: link back to one by one view for the review idx reviewIdx
-      });
+          var reviewIdx = $(this).index() - 1;
+          var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
+          //TODO: link back to one by one view for the review idx reviewIdx
+        });
       // console.log(this.$el.find(".search-field"));
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);

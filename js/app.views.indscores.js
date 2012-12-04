@@ -17,15 +17,15 @@
     // className: "indscores-container",
     // template: $("#indScoreTemplate").html(),
 
-    initialize: function (data) {
-      if(data){
-        this.loadData(data);
+    initialize: function (collection) {
+      if(this.collection){
+        this.loadData(this.collection);
       }
 
 
     },
-    loadData: function(){
-      this.collection = new app.IndScoreCollection(this.collection);
+    loadData: function(collection){
+      this.collection = new app.IndScoreCollection(collection);
       // console.log(data);
       // this.model = new app.IndScore({score: 1});
       this.render();
