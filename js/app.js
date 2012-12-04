@@ -70,7 +70,9 @@ $(document).ready(function() {
   var dir = new app.ReviewDir(teamReviews);
   dir.initPos(); //need to be called here
 
-  var theReviewView = new app.RevieweeView();
+  var theRevieweeView = new app.RevieweeView();
+  var theRevieweesView = new app.RevieweesView();
+
 
   var chart = new app.StackedChart({
     collection: dir,
@@ -79,7 +81,7 @@ $(document).ready(function() {
     el: "#chart",
     onItemSelected: function(d){
       showIndividualView(true);
-      theReviewView.loadData(d);
+      theRevieweeView.loadData(d);
     },
     onItemDeselected: function(d){
       showIndividualView(false);
