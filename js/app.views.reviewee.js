@@ -18,6 +18,7 @@
     el: $("#ind-right-side"),
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
+      var that = this;
       this.viewId = total ++;
       this.$el.html(this.template(this));
       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
@@ -25,30 +26,30 @@
       this.revieweeDetailView =  new app.RevieweeDetailView({
         el: this.$el.find("#ind-reviewee-detail-"+this.viewId)
       });
-
-      this.feedbacksView = new app.FeedbacksView({
-        el: $('#ind-tab-individual-review-'+this.viewId)
-        // id: '#ind-tab-individual-review'
+      this.createTagCloud('ind-tab-tag-cloud');
+      $('a[data-toggle="tab"]').on('shown', function (e) {
+        if($(e.target).attr('href') === '#ind-tab-tag-cloud') {
+          that.render();
+        }
       });
+
+
     },
     loadData: function(reviewee){
-      _.each(reviewee.reviews, function(r) {
-        // console.log(r);
-        processWord(r, indNotableFeedbackWords, indConstructiveFeedbackWords, indQuestionsFeedbackWords, indIdeasFeedbackWords);
-      });
       var scores = _.map(reviewee.reviews, function(d, idx) {
         return {score: d.score};
       });
       // If you decide not to parse the whole d.reviews object, I would suggest your to use
       // var scores = _(d.reviews).pluck("score");
 
-
-      this.feedbacksAggregatedView.loadData(reviewee.reviews);
-      this.revieweeDetailView.loadData(reviewee);
-      this.feedbacksView.loadData(reviewee.reviews);
-
-
-      //these two classes have to be moved to feedbacksView any so I won't deal with them
+      //TODO(kanitw): all these initialization should be in initialize and all these classes should have loadData so we can reuse views
+      this.revieweeDetailView =  new app.RevieweeDetailView(reviewee);
+      this.indScoreView = new app.IndScoreView(reviewee);
+      this.feedbacksView = new app.FeedbacksView({
+        collection:reviewee.reviews,
+        el: $('#ind-tab-individual-review')
+        // id: '#ind-tab-individual-review'
+      });
       this.indScoresView = new app.IndScoresView({
         collection:scores,
         el: $('#indscores')
@@ -56,20 +57,35 @@
       this.indScoreView = new app.IndScoreView();
 
 
-      //TODO(kanitw): this junkies for tagCloud should be Backbonified or at least classified
-      var idvNotableFeedbackWords = [];
-      var idvConstructiveFeedbackWords = [];
-      var idvQuestionsFeedbackWords = [];
-      var idvIdeasFeedbackWords = [];
-
-      _(reviewee.reviews).each(function(r) {
-        processWord(r, idvNotableFeedbackWords, idvConstructiveFeedbackWords, idvQuestionsFeedbackWords, idvIdeasFeedbackWords);
-      });
-
-      render_tagCloud();
+      this.render();
+    },
+    createTagCloud: function (parentid) {
+        console.log("createTagCloud()");
+        this.notableTagCloud = new app.TagCloud({
+          id: parentid + " .tag-cloud-notable",
+          outer_width: 400,
+          outer_height: 400
+        });
+        this.constructiveTagCloud = new app.TagCloud({
+        id: parentid + " .tag-cloud-constructive",
+        outer_width: 400,
+        outer_height: 400
+        });
+        this.questionsTagCloud = new app.TagCloud({
+          id: parentid + " .tag-cloud-questions",
+          outer_width: 400,
+          outer_height: 400
+        });
+        this.ideasTagCloud = new app.TagCloud({
+          id: parentid + " .tag-cloud-ideas",
+          outer_width: 400,
+          outer_height: 400
+        });
     },
     render: function(){
-
+      //DO NOTHING since we haven't used the template for this view yet
+      //TODO: not a bad idea to use template here too!
+      
     }
   });
 
