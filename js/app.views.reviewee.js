@@ -14,7 +14,7 @@
   app.RevieweeView = Backbone.View.extend({
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
-
+       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView();
     },
     loadData: function(reviewee){
       _.each(reviewee.reviews, function(r) {
@@ -39,8 +39,8 @@
         collection:scores,
         el: $('#indscores')
       });
+      this.feedbacksAggregatedView.loadData(reviewee.reviews);
 
-      this.FeedbacksAggregatedView = new app.FeedbacksAggregatedView(reviewee.reviews);
 
       //TODO(kanitw): this junkies for tagCloud should be Backbonified or at least classified
       var idvNotableFeedbackWords = [];

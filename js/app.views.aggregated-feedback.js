@@ -21,8 +21,14 @@
     keyword: "",
 
     initialize: function (feedbacks) {
-        this.collection = new app.FeedbackCollection(feedbacks);
-        this.render();
+      if(feedbacks){
+        this.loadData(feedbacks);
+
+      }
+    },
+    loadData: function(feedbacks){
+      this.collection = new app.FeedbackCollection(feedbacks);
+      this.render();
     },
 
     render: function () {
