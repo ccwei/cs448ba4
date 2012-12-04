@@ -91,7 +91,7 @@ $(document).ready(function() {
   });
   //For Tag Cloud
   var cloudContainer = {};
-  createTagCloud('agg-tab-tag-cloud', totalReviews, cloudContainer);
+  //createTagCloud('agg-tab-tag-cloud', totalReviews, cloudContainer);
   });
 });
 

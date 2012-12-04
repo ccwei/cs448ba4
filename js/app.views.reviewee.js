@@ -15,12 +15,12 @@
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
 
-      this.createTagCloud('ind-tab-tag-cloud');
+      //this.createTagCloud('ind-tab-tag-cloud');
       var that = this;
       //Register event for render tag cloud when switch to the tab
       $('a[data-toggle="tab"]').on('shown', function (e) {
         if($(e.target).attr('href') === '#ind-tab-tag-cloud') {
-          that.render();
+          that.renderTagCloud();
         }
       });
     },
@@ -47,42 +47,46 @@
 
       this.FeedbacksAggregatedView = new app.FeedbacksAggregatedView(reviewee.reviews);
 
-      this.render();
+
+      this.frequentWordsNotable = new app.FrequentWords(reviewee.reviews, "notable");
+      this.frequentWordsConstructive = new app.FrequentWords(reviewee.reviews, "constructive");
+      this.frequentWordsQuestions = new app.FrequentWords(reviewee.reviews, "questions");
+      this.frequentWordsIdeas = new app.FrequentWords(reviewee.reviews, "ideas");
+      this.renderTagCloud();
+
     },
-    createTagCloud: function (parentid) {
-        console.log("createTagCloud()");
-        this.notableTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-notable",
-          outer_width: 400,
-          outer_height: 400
-        });
-        this.constructiveTagCloud = new app.TagCloud({
-        id: parentid + " .tag-cloud-constructive",
-        outer_width: 400,
-        outer_height: 400
-        });
-        this.questionsTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-questions",
-          outer_width: 400,
-          outer_height: 400
-        });
-        this.ideasTagCloud = new app.TagCloud({
-          id: parentid + " .tag-cloud-ideas",
-          outer_width: 400,
-          outer_height: 400
-        });
-    },
-    render: function(){
+    renderTagCloud: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
       var that = this;
       if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud') {
           console.log("render_tagCloud()", $("#ind-right-side .nav .active a").attr("href"));
-          this.notableTagCloud.loadData(this.reviewee.reviews, "notable");
+
+          this.notableTagCloud = new app.TagCloud({
+            model: this.frequentWordsNotable,
+            id: "ind-tab-tag-cloud .tag-cloud-notable",
+            outer_width: 400,
+            outer_height: 400
+          });
           setTimeout(function() {
-            that.constructiveTagCloud.loadData(that.reviewee.reviews, "constructive");
-            that.questionsTagCloud.loadData(that.reviewee.reviews, "questions");
-            that.ideasTagCloud.loadData(that.reviewee.reviews, "ideas");
+            that.constructiveTagCloud = new app.TagCloud({
+              model: that.frequentWordsConstructive,
+              id: "ind-tab-tag-cloud .tag-cloud-constructive",
+              outer_width: 400,
+              outer_height: 400
+            });
+            that.questionsTagCloud = new app.TagCloud({
+              model: that.frequentWordsQuestions,
+              id: "ind-tab-tag-cloud .tag-cloud-questions",
+              outer_width: 400,
+              outer_height: 400
+            });
+            that.ideasTagCloud = new app.TagCloud({
+              model: that.frequentWordsIdeas,
+              id: "ind-tab-tag-cloud .tag-cloud-ideas",
+              outer_width: 400,
+              outer_height: 400
+            });
           }, 1000);
       }
     }

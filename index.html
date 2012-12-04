@@ -95,28 +95,56 @@
   </div>
 </script>
 
+<script id="keywordListTemplate" type="text/template">
+  <div class="keywordList">
+     <div class="keywordList_notable span4">
+      <h4>Notable</h4>
+      <ul>
+      </ul>
+    </div>
+
+    <div class="keywordList_constructive span4">
+      <h4>Constructive</h4>
+      <ul>
+      </ul>
+    </div>
+
+    <div class="keywordList_questions span4">
+      <h4>Questions</h4>
+      <ul>
+      </ul>
+    </div>
+
+    <div class="keywordList_ideas span4">
+      <h4>Ideas</h4>
+      <ul>
+      </ul>
+    </div>
+  </div>
+</script>
+
 <script id="aggregatedFeedbackFrameTemplate" type="text/template">
   <input type="text" class="search-field" placeholder="search"></input>
 
-  <div id="feedback_notable">
+  <div class="feedback_notable">
     <h4>Notable</h4>
     <ul>
     </ul>
   </div>
 
-  <div id="feedback_constructive">
+  <div class="feedback_constructive">
     <h4>Constructive</h4>
     <ul>
     </ul>
   </div>
 
-  <div id="feedback_questions">
+  <div class="feedback_questions">
     <h4>Questions</h4>
     <ul>
     </ul>
   </div>
 
-  <div id="feedback_ideas">
+  <div class="feedback_ideas">
     <h4>Ideas</h4>
     <ul>
     </ul>
@@ -147,11 +175,11 @@
                 Tag Cloud
               </a>
             </li>
-            <!-- <li>
-              <a href="#agg-tab-tag-list">
-                Tag List
+            <li>
+              <a href="#agg-tab-keyword-list">
+                Keyword List
               </a>
-            </li> -->
+            </li>
             <!-- <li>
               <a href="#agg-tab-word-tree">
                 Word Tree
@@ -167,6 +195,8 @@
               <div class="tag-cloud-constructive"></div>
               <div class="tag-cloud-questions"></div>
               <div class="tag-cloud-ideas"></div>
+            </div>
+            <div class="tab-pane" id="agg-tab-keyword-list">
             </div>
             <!-- <div class="tab-pane" id="tab-tag-list"></div> -->
 
@@ -240,6 +270,7 @@
   <script src="./js/app.views.indscores.js"></script>
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
+  <script src="./js/app.model.frequentWords.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
   <script src="./js/app.js"></script>
 

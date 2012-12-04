@@ -55,7 +55,7 @@
 
       //clean children first
       _(FEEDBACK_TYPE).each(function(type){
-        $el.find('#feedback_'+type+' ul').children().remove();
+        $el.find('.feedback_'+type+' ul').children().remove();
       });
 
       _.each(this.collection.models, function (item, idx) {
@@ -70,7 +70,7 @@
               console.log(li);
               li.highlight(that.keyword);
             }
-            $el.find('#feedback_'+type+' ul').append(li);
+            $el.find('.feedback_'+type+' ul').append(li);
           }
         });
 
@@ -81,10 +81,10 @@
 
       _(FEEDBACK_TYPE).each(function(type){
 
-        if($el.find('#feedback_'+type+' ul').children().length === 0){
-          $el.find('#feedback_'+type).addClass('display-none');
+        if($el.find('.feedback_'+type+' ul').children().length === 0){
+          $el.find('.feedback_'+type).addClass('display-none');
         }else {
-          $el.find('#feedback_'+type).removeClass('display-none');
+          $el.find('.feedback_'+type).removeClass('display-none');
         }
       });
 
