@@ -43,26 +43,64 @@
 
       //render
       var that = this;
-      var x,y,xAxis,yAxis,svg;
+      var x,y,xAxis,yAxis,svg,brush,rects,state, rangeBand;
       var data=_(this.collection.models).pluck('attributes');
+      /**
+       * Call classed given className for rect in the selection brush
+       * @param  {[type]} className
+       * @param  {[type]} s         d3.event.target.extent();
+       */
+      var classedRectInBrush = function(className,s){
+        if(s[0]===s[1]){
+          // if the selection is empty!
+          rects.classed(className,false);
+        }else{
+          rects.classed(className, function(d) {
+            var _lx = x(d.score);
+            var _rx = _lx + x.rangeBand(d.score);
+
+            // console.log(s[0],_rx,_lx,s[1]);
+            return s[0] <= _rx && _lx <= s[1];
+          });
+        }
+      };
 
       var brushstart = function () {
         svg.classed("selecting", true);
       };
 
       var brushmove = function () {
-
+        var s = d3.event.target.extent();
+        classedRectInBrush("brushing",s);
+        clearSelectedRects();
       };
 
       var brushend = function () {
         svg.classed("selecting", !d3.event.target.empty());
+        rects.classed("brushing",false);
         var s = d3.event.target.extent();
-         /** To be factored **/
+        classedRectInBrush("brushed",s);
+        console.log("brushend");
+        if(!d3.event.target.empty()){
+          app.showView("agg");
+          // aggRevieweesView.loadData()
+
+        }else{
+          app.showView("all");
+        }
+      };
+
+      var clearBrush = function(){
+        d3.select(".brush").call(brush.clear());
+        rects.classed("brushed",false);
+      };
+
+      var clearSelectedRects = function(){
+        rects.classed('selected',false);
       };
 
       //init x, y, xAxis, yAxis, svg
       x = d3.scale.ordinal().rangeRoundBands([0, width], 0.1);
-
       y = d3.scale.linear()
           .rangeRound([height, 0]);
 
@@ -104,21 +142,19 @@
       //For brush
       svg.append("g")
           .attr("class", "brush")
-          .call(d3.svg.brush().x(x)
+          .call((brush = d3.svg.brush().x(x)
           .on("brushstart", brushstart)
           .on("brush", brushmove)
-          .on("brushend", brushend))
+          .on("brushend", brushend)))
         .selectAll("rect")
           .attr("height", height);
 
-
-
-      var state = svg.selectAll(".state")
+      state = svg.selectAll(".state")
                 .data(data)
               .enter().append("g")
                 .attr("class", "g")
                 .attr("transform", function(d) { return "translate(" + x(d.score) + ",0)"; });
-      var rects = state.append("rect");
+      rects = state.append("rect");
 
       rects.classed("bar-rect",true)
           .attr("width", x.rangeBand())
@@ -133,6 +169,7 @@
               });
             });
             if(!selected){
+              clearBrush();
               that.onItemSelected(d);
             }else{
               that.onItemDeselected(d);

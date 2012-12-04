@@ -15,8 +15,6 @@
   //View for the reviewee
   app.RevieweesView = Backbone.View.extend({
     template: _.template($("#revieweesViewTemplate").html()),
-    el: $("#agg-right-side"),
-    // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
       var that = this;
       this.viewId = total ++;
@@ -39,8 +37,9 @@
     render: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
+      if(this.option.hasOwnProperty('all') && this.option.agg){
 
-    },
+ },
 
     renderTagCloud: function() {
       var that = this;
@@ -70,7 +69,7 @@
           outer_height: 400
         });
       }, 1000);
-    }
+    }    }
   });
 
 })(jQuery);

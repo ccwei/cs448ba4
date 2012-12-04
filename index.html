@@ -137,7 +137,10 @@
 
 
 <script id="revieweesViewTemplate" type="text/template">
-  <div class="alert alert-info alert-small">
+  <div class="alert alert-grey alert-small" id="reviewees-show-all-<%=viewId%>">
+    Showing All Submissions
+  </div>
+  <div class="alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
     Showing Submissions Aggregated
   </div>
   <ul class="nav nav-tabs">
@@ -256,7 +259,8 @@
     <div class="span6">
       <div class="white well">
       <div id="right-side" class="tab-content">
-        <div id="agg-right-side" class="tab-pane active"></div>
+        <div id="all-right-side" class="tab-pane active"></div>
+        <div id="agg-right-side" class="tab-pane"></div>
         <div id="ind-right-side" class="tab-pane"></div>
       </div>
     </div>

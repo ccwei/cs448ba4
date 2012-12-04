@@ -3,6 +3,7 @@
 
 @bar-color: #dddddd;
 @selected-bar-color: #17803f;
+@brushed-bar-color: #09f;
 @hover-li-color: #ffff93;
 body {
   font: 10px sans-serif;
@@ -95,7 +96,11 @@ li.feedback:hover {
 .bar-rect{
   fill: @bar-color;
   &:hover {
-    fill: darken(@bar-color,10%);
+    fill: darken(@bar-color,20%);
+  }
+
+  &.brushing {
+    fill: lighten(@brushed-bar-color,30%);
   }
 
   &.selected{
@@ -103,7 +108,9 @@ li.feedback:hover {
     &:hover {
       fill: darken(@selected-bar-color,10%);
     }
-
+  }
+  &.brushed {
+    fill:@brushed-bar-color;
   }
 }
 
@@ -118,5 +125,11 @@ li.feedback:hover {
   fill:#fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;
+}
+
+.alert.alert-grey {
+  color: #9d9d9d;
+  background-color: #f5f5f5;
+  border-color: #eeeeee;
 }
 
