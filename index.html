@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html>
+
 <head>
   <meta charset="utf-8">
 
@@ -55,6 +57,7 @@
       <div class="feedbacks"></div>
     </div>
   </div>
+
 </script>
 
 <script id="feedbackGridTemplate" type="text/template">
@@ -220,7 +223,10 @@
 </script>
 
 <script id="aggregatedFeedbackFrameTemplate" type="text/template">
-  <input type="text" class="search-field" placeholder="search"></input>
+  <div class="search-container">
+    <input type="text" class="search-field" placeholder="search"></input>
+    <span class="found-count"></span>
+  </div>
 
   <div class="feedback_notable">
     <h4>Notable</h4>
@@ -327,3 +333,4 @@
   <div id="feedback-modal">
   </div>
 </body>
+</html>
