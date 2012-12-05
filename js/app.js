@@ -42,10 +42,19 @@ $(document).ready(function() {
     });
 
     //Convert map to an array of object {teamid: id, score: average_score, reviews: reviews}
+    var team_properties = ['first_industry_sector','second_industry_sector','team_score'];
     var teamReviews = [];
     var count = 0;
     for(var key in teamMap) {
-      teamReviews.push({teamid: key, reviews: teamMap[key]});
+      var o = {teamid: key, name:key, reviews: teamMap[key]}; //object to push
+
+      //add team data back from reviews object
+      for(var i=0 ; i<team_properties.length ; i++){
+        var prop = team_properties[i];
+        o[prop] = o.reviews[0][prop];
+      }
+
+      teamReviews.push(o);
     }
     _.each(teamReviews, function(tr) {
       var sum = 0;
