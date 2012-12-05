@@ -23,8 +23,8 @@
 
       render: function(){
         var x,y,xAxis,yAxis,svg;
-        var outer_width = 500,
-            outer_height = 500,
+        var outer_width = 320,
+            outer_height = 320,
             margin = {top: 25, right: 20, bottom: 30, left: 40};
         var fill = d3.scale.category20();
         var width, height;

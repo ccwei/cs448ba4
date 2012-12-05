@@ -14,19 +14,21 @@
   app.RevieweeDetailView = Backbone.View.extend({
     tagName: "reviewee",
     className: "reviewee-container",
-    template: $("#revieweeDetailTemplate").html(),
-    initialize: function (reviewee) {
-      if(reviewee){
-        this.loadData(reviewee);
+    template: _.template($("#revieweeDetailTemplate").html()),
+    initialize: function () {
+      if(this.options.hasOwnProperty['data']){
+        this.loadData(this.options.data);
       }
     },
     loadData: function(reviewee){
-      this.model = new app.Reviewee({name: reviewee.teamid});
+
+      this.model = new app.Reviewee(reviewee);
+      // console.log(this.model);
       this.render(reviewee);
     },
     render: function (reviewee) {
-      var tmpl = _.template(this.template);
-      this.$el.html(tmpl(this.model.toJSON()));
+
+      this.$el.html(this.template(this.model.toJSON()));
 
       var indTeamReviews = [];
       _(reviewee.reviews).each(function (r) {
