@@ -32,7 +32,6 @@
       var that = this;
 
       var onSearchTextChange = function(){
-        console.log(this);
         that.keyword = $(this).val();
         that.renderFeedbacks();
       };
@@ -43,7 +42,8 @@
           var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
           //TODO: link back to one by one view for the review idx reviewIdx
         });
-      // console.log(this.$el.find(".search-field"));
+      //Add search field
+      this.$el.prepend(_.template($("#searchFieldTemplate").html())());
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);
 
