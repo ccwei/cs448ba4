@@ -8,9 +8,6 @@
 (function ($) {
   "use strict"; // use strict mode for sublime linter according to http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 
-
-  var FEEDBACK_TYPE = ["notable","constructive","questions","ideas"];
-
   //TODO(kanitw): should be renamed to FeedbacksGroupedView ???
   app.FeedbacksAggregatedView = Backbone.View.extend({
     tagName: "div",
@@ -58,21 +55,26 @@
       var $el = this.$el;
 
       //clean children first
-      _(FEEDBACK_TYPE).each(function(type){
+      _(app.FEEDBACK_TYPE).each(function(type){
         $el.find('.feedback_'+type+' ul').children().remove();
       });
+
+      var matchCount = 0;
 
       _.each(this.collection.models, function (item, idx) {
         // var frame = $(".aggregated-feedback-frame");
 
         var feedback = item.toJSON();
+
         // console.log("feedback = ", feedback);
-        _(FEEDBACK_TYPE).each(function(type){
+        _(app.FEEDBACK_TYPE).each(function(type){
           if(that.keyword.length === 0 || feedback[type].match(new RegExp(that.keyword, "i"))){
             var li = $('<li/>').addClass('feedback').append(feedback[type]);
+            matchCount++;
             if(that.keyword.length>0){
               console.log(li);
               li.highlight(that.keyword);
+
             }
             $el.find('.feedback_'+type+' ul').append(li);
           }
@@ -81,9 +83,15 @@
         return this;
       }, this);
 
+      if(that.keyword.length>0){
+        $el.find(".found-count").html("("+matchCount+" Found)");
+      }else {
+        $el.find(".found-count").html("");
+      }
+
       //hide empty category
 
-      _(FEEDBACK_TYPE).each(function(type){
+      _(app.FEEDBACK_TYPE).each(function(type){
 
         if($el.find('.feedback_'+type+' ul').children().length === 0){
           $el.find('.feedback_'+type).addClass('display-none');

@@ -14,8 +14,6 @@
 
     return {
       initialize: function(){
-        //not sure if this is the right way to do it
-        //load options
         this.data = this.model.feedbackWords;
         this.maxCount = this.model.maxCount;
         this.render();
@@ -28,12 +26,10 @@
             margin = {top: 25, right: 20, bottom: 30, left: 40};
         var fill = d3.scale.category20();
         var width, height;
-        var id = "#tag-cloud";
         var that = this;
         var draw = function (words) {
-          console.log("render in id = ", id);
-          d3.select(id + " svg").remove();
-          d3.select(id).append("svg")
+          d3.select(that.$el.selector + " svg").remove();
+          d3.select(that.$el.selector).append("svg")
               .attr("width", width)
               .attr("height", height)
             .append("g")
@@ -60,9 +56,6 @@
         }
         if(options.hasOwnProperty('outer_height')){
           outer_height = options.outer_height;
-        }
-        if(options.hasOwnProperty('id')){
-          id = options.id;
         }
         width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;

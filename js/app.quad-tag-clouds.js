@@ -16,7 +16,6 @@
     initialize: function () {
       var that = this;
       this.frequentWords = {};
-      console.log("in tag cloud", that.model);
       _(app.FEEDBACK_TYPE).each(function (type) {
         that.frequentWords[type] = new app.FrequentWords(that.model, type);
       });
@@ -30,7 +29,7 @@
       _(app.FEEDBACK_TYPE).each(function (type) {
         that.tagClouds[type] = new app.TagCloud({
           model: that.frequentWords[type],
-          id: '#' + that.$el.attr('id') + " .tag-cloud-" + type,
+          el: $('#' + that.$el.attr('id') + " .tag-cloud-" + type),
           outer_width: 270,
           outer_height: 270
         });

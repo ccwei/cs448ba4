@@ -25,10 +25,10 @@
       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
       });
       this.revieweeDetailView =  new app.RevieweeDetailView({
-        el: this.$el.find("#ind-reviewee-detail-"+this.viewId)
+        el: this.$el.find("#reviewee-detail-"+this.viewId)
       });
       this.feedbacksView = new app.FeedbacksView({
-        el: $('#ind-tab-individual-review-'+this.viewId)
+        el: this.$el.find('#ind-tab-individual-review-'+this.viewId)
         // id: '#ind-tab-individual-review'
       });
 
@@ -40,7 +40,8 @@
     },
     loadData: function(reviewee){
       var that = this;
-      this.reviewee = reviewee;
+      this.modal = new app.Reviewee(reviewee);
+      console.log(this.modal);
       this.feedbacksAggregatedView.loadData(reviewee.reviews);
       this.revieweeDetailView.loadData(reviewee);
       this.feedbacksView.loadData(reviewee.reviews);
@@ -68,7 +69,7 @@
       var that = this;
       if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud-' + that.viewId) {
           this.tagCloudsView = new app.TagCloudsView({
-            model: that.reviewee.reviews,
+            model: that.modal["attributes"].reviews,
             el: $("#ind-tab-tag-cloud-" + that.viewId)
           });
         }

@@ -17,7 +17,6 @@
       var that = this;
       this.frequentWords = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
-        console.log("in keyword list", that.model);
         that.frequentWords[type] = new app.FrequentWords(that.model, type);
       });
       this.$el.html(this.template());
@@ -30,6 +29,7 @@
 
       _(app.FEEDBACK_TYPE).each(function (type) {
         _(that.frequentWords[type].feedbackWords).each(function (d) {
+          //d is like ["nice", {count:17, reviews: array of review}]
           $('#' + that.$el.attr('id') + " .keyword-list-" + type + ' ol').append($('<li/>').append(d[0]));
         });
       });

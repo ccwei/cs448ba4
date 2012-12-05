@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+<html>
+
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
   <script src="./js/d3.v2.js"></script>
   <script src="./js/jquery.js"></script>
   <script src="./js/jquery.highlight-4.js"></script>
@@ -9,8 +11,9 @@
   <script src="./js/backbone.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="./js/d3.layout.cloud.js"></script>
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
 
 </head>
 
@@ -27,8 +30,8 @@
   <div>
     <div class="icon">
     </div>
-    <h3>Team Name</h3>
-    <%= name %>
+    <h3>Team <%= name %></h3>
+
     <div id="revieweeDetailchart">
     </div>
   </div>
@@ -54,6 +57,7 @@
       <div class="feedbacks"></div>
     </div>
   </div>
+
 </script>
 
 <script id="feedbackGridTemplate" type="text/template">
@@ -133,7 +137,10 @@
 
 
 <script id="revieweesViewTemplate" type="text/template">
-  <div class="alert alert-info alert-small">
+  <div class="alert alert-grey alert-small" id="reviewees-show-all-<%=viewId%>">
+    Showing All Submissions
+  </div>
+  <div class="alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
     Showing Submissions Aggregated
   </div>
   <ul class="nav nav-tabs">
@@ -180,7 +187,10 @@
 
 
 <script id="aggregatedFeedbackFrameTemplate" type="text/template">
-  <input type="text" class="search-field" placeholder="search"></input>
+  <div class="search-container">
+    <input type="text" class="search-field" placeholder="search"></input>
+    <span class="found-count"></span>
+  </div>
 
   <div class="feedback_notable">
     <h4>Notable</h4>
@@ -264,22 +274,64 @@
 
 
 <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
 
-  <div class="row-fluid" id="root">
-    <div class="span6">
-      <div class="white well">
-        <div class="default-padding">
-          <div id="chart"></div>
-        </div>
-    </div>
-    </div>
-    <div class="span6">
-      <div class="white well">
-      <div id="right-side" class="tab-content">
-        <div id="agg-right-side" class="tab-pane active"></div>
-        <div id="ind-right-side" class="tab-pane"></div>
+      <div class="brand">
+        &nbsp; Peereviz
       </div>
+      <ul class="nav pull-right">
+        <li>
+
+          <a id="total-count"></a>
+        </li>
+      </ul>
+      <ul class="nav">
+
+        <!-- <li class="active">
+          <a href="#col-tab"  data-toggle="tab">
+            1. Select Axes
+          </a>
+        </li>
+
+        <li>
+          <a href="#sub-tab"  data-toggle="tab">
+            2. Filter
+          </a>
+        </li> -->
+       <!--  <li>
+          <a href="#color-tab"  data-toggle="tab">
+            Color Coding?? (Just idea)
+          </a>
+        </li> -->
+
+        <li>
+          <a href="#about-tab"  data-toggle="tab">
+            About
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
+
+  <div class="container" id="root">
+    <div class="row-fluid" >
+      <div class="span6">
+        <div class="white well ">
+          <div class="default-padding">
+            <div id="chart"></div>
+          </div>
+      </div>
+      </div>
+      <div class="span6">
+        <div class="white well">
+        <div id="right-side" class="tab-content">
+          <div id="all-right-side" class="tab-pane active"></div>
+          <div id="agg-right-side" class="tab-pane"></div>
+          <div id="ind-right-side" class="tab-pane"></div>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
   <script src="./js/app.models.js"></script>
@@ -296,10 +348,11 @@
   <script src="./js/app.views.reviewees.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
-  <script src="./js/app.tag-clouds.js"></script>
+  <script src="./js/app.quad-tag-clouds.js"></script>
   <script src="./js/app.keyword-lists.js"></script>
   <script src="./js/app.js"></script>
 
   <div id="feedback-modal">
   </div>
 </body>
+</html>

@@ -46,10 +46,10 @@
       var processWord = function (review, words, type) {
         var feedbacks = "";
         if(type) {
-          feedbacks = review[type];
+          feedbacks = review[type]; //If specify type, only select review for that type
         } else {
           _(app.FEEDBACK_TYPE).each(function (t) {
-            feedbacks += review[t];
+            feedbacks += review[t]; //Concat different type review(notable, ideas..) into one string.
           });
         }
         _(feedbacks.split(" ")).each(function (w) {
