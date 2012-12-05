@@ -48,6 +48,10 @@
 
       this.renderFeedbacks();
     },
+    setSearchWord: function (word) {
+      this.$el.find(".search-field").val(word);
+      this.$el.find(".search-field").trigger('change');
+    },
     renderFeedbacks: function(){
       //TODO(kanitw): Add "n items matched"
       var that = this;
@@ -71,7 +75,6 @@
             var li = $('<li/>').addClass('feedback').append(feedback[type]);
             matchCount++;
             if(that.keyword.length>0){
-              console.log(li);
               li.highlight(that.keyword);
 
             }

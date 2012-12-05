@@ -24,6 +24,7 @@
 
       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
       });
+
       this.revieweeDetailView =  new app.RevieweeDetailView({
         el: this.$el.find("#reviewee-detail-"+this.viewId)
       });
@@ -62,6 +63,15 @@
         el: $("#ind-tab-keyword-list-" + that.viewId)
       });
 
+      this.keywordListsView.liOnclick = function (event) {
+        var text = $(event.target).text();
+        console.log("liOnclick", text);
+        that.feedbacksAggregatedView.setSearchWord(text);
+        $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+        console.log('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]');
+      };
+
+      //this.feedbacksAggregatedView.setSearchWord("idea");
       this.renderTagCloud();
     },
 

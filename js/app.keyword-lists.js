@@ -13,6 +13,7 @@
     className: "keywordlists-frame",
     template: _.template($("#keywordListsFrameTemplate").html()),
     keyword: "",
+    liOnclick: function() {},
 
     initialize: function () {
       var that = this;
@@ -37,23 +38,28 @@
 
       this.keywordLists = {};
 
+      this.$el.html(this.template())
+        .delegate('li', 'click', function(event) {
+            that.liOnclick(event);
+        });
+
       _(app.FEEDBACK_TYPE).each(function(type){
         $(that.$el.selector + " .keyword-list-" + type + ' ol').children().remove();
       });
       var matchCount = 0;
       _(app.FEEDBACK_TYPE).each(function (type) {
         _(that.frequentWords[type].feedbackWords).each(function (d) {
+          //d is like ["nice", {count:17, reviews: array of review}]
           if(that.keyword.length === 0 || d[0].match(new RegExp(that.keyword, "i"))){
             var li = $('<li/>').append(d[0]);
+            li.addClass('clickable');
             matchCount++;
             if(that.keyword.length > 0){
               console.log(li);
               li.highlight(that.keyword);
             }
-            $(that.$el.selector + " .keyword-list-" + type + ' ol').append(li);
+            $(that.$el.selector + " .keyword-list-" + type + ' ul').append(li);
           }
-          //d is like ["nice", {count:17, reviews: array of review}]
-          $('#' + that.$el.attr('id') + " .keyword-list-" + type + ' ol').append($('<li/>').append(d[0]));
         });
       });
 
