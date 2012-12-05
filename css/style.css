@@ -58,6 +58,9 @@
 .well.white {
   background-color: #fff;
 }
+.clickable {
+  cursor: hand;
+}
 ul.no-bullet {
   list-style: none;
   margin-left: 0px;
