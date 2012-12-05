@@ -30,7 +30,7 @@
       _(app.FEEDBACK_TYPE).each(function (type) {
         _(that.frequentWords[type].feedbackWords).each(function (d) {
           //d is like ["nice", {count:17, reviews: array of review}]
-          $('#' + that.$el.attr('id') + " .keyword-list-" + type + ' ol').append($('<li/>').append(d[0]));
+          $('#' + that.$el.attr('id') + " .keyword-list-" + type + ' ul').append($('<li/>').append(d[0]));
         });
       });
 
