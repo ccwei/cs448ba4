@@ -88,11 +88,11 @@
         classedRectInBrush("brushed",s);
         console.log("brushend");
         if(!d3.event.target.empty()){
-          this.onBrushed();
+          that.onBrushed();
           // aggRevieweesView.loadData()
 
         }else{
-          this.onUnbrushed();
+          that.onUnbrushed();
 
         }
       };
