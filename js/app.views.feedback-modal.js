@@ -16,11 +16,11 @@
     className: "feedback-modal",
     template: $("#feedbackModalTemplate").html(),
 
-    initialize: function (feedback) {
-        this.render(feedback);
+    initialize: function() {
+
     },
-    render: function (feedback) {
-        var feedbackView = new app.FeedbackView({ model: feedback});
+    render: function () {
+        var feedbackView = new app.FeedbackView({ model: this.model});
         var tmpl = _.template(this.template);
         $(this.el).html(tmpl());
         $(this.el).children('.feedbackModal').children('.modal-body').append($(feedbackView.render().el).children('.feedback-grid'));
