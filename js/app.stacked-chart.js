@@ -84,11 +84,12 @@
         classedRectInBrush("brushed",s);
         console.log("brushend");
         if(!d3.event.target.empty()){
-          app.showView("agg");
+          this.onBrushed();
           // aggRevieweesView.loadData()
 
         }else{
-          app.showView("all");
+          this.onUnbrushed();
+
         }
       };
 
