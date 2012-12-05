@@ -49,12 +49,6 @@
           });
         },
         onItemDeselected: function(d){
-        },
-        onBrushed: function(){
-
-        },
-        onUnbrushed: function(){
-
         }
       });
       indChart.render();

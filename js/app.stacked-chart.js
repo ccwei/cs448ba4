@@ -10,6 +10,7 @@
 
   window.app = window.app || {};
 
+  var DO_NOTHING = function() { /*do nothing*/ };
   /*
    * additional properties
    * - outer_width
@@ -31,10 +32,10 @@
         margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 40: 20)}
       });
       var options = this.options;
-      this.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
-      this.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
-      this.onBrushed = options.onBrushed || function(){ /*Do nothing*/};
-      this.onUnbrushed = options.onUnbrushed || function(){ /*Do nothing*/ };
+      this.onItemSelected = options.onItemSelected || DO_NOTHING;
+      this.onItemDeselected = options.onItemDeselected || DO_NOTHING;
+      this.onBrushed = options.onBrushed || DO_NOTHING;
+      this.onUnbrushed = options.onUnbrushed || DO_NOTHING;
     },
     render: function(){
       var options = this.options;
@@ -98,6 +99,7 @@
       };
 
       var clearBrush = function(){
+        if(!brush) return;  //we might not have a brush in case that we don't have onBrushed and onUnbrushed handlers.
         d3.select(".brush").call(brush.clear());
         rects.classed("brushed",false);
       };
@@ -148,15 +150,19 @@
             .text("# of Teams");
       }
       //For brush
-      svg.append("g")
+
+      if(this.options.onBrushed || this.options.onUnbrushed ){
+        //Don't create brush if we don't have handlers for  brush and unbrush
+        svg.append("g")
           .attr("class", "brush")
           .call((brush = d3.svg.brush().x(x)
-          .on("brushstart", brushstart)
-          .on("brush", brushmove)
-          .on("brushend", brushend)))
-        .selectAll("rect")
-          .attr("height", height);
-
+            .on("brushstart", brushstart)
+            .on("brush", brushmove)
+            .on("brushend", brushend))
+          )
+          .selectAll("rect")
+            .attr("height", height);
+      }
       state = svg.selectAll(".state")
                 .data(data)
               .enter().append("g")
@@ -164,11 +170,15 @@
                 .attr("transform", function(d) { return "translate(" + x(d.score) + ",0)"; });
       rects = state.append("rect");
 
+      var clickable = that.options.hasOwnProperty('onItemSelected') || that.options.hasOwnProperty('onItemDeselected');
+
       rects.classed("bar-rect",true)
           .attr("width", x.rangeBand())
           .attr("y", function(d) { return y(d.y1); })
           .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+          .classed("clickable",clickable)
           .on("click", function(d) {
+            if(!clickable) return;
             var selected = d3.select(this).classed('selected');
             // console.log(this,selected);
             rects.each(function(r){
