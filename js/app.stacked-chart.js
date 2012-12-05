@@ -24,7 +24,11 @@
       _(this.options).defaults({
         outer_width: 960,
         outer_height: 500,
-        margin: {top: 25, right: 20, bottom: 30, left: 40}
+        showYAxis: true
+      });
+
+      _(this.options).defaults({
+        margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 40: 20)}
       });
       var options = this.options;
       this.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
@@ -132,16 +136,17 @@
           .call(xAxis);
 
       //init y axis group on svg
-      svg.append("g")
-          .attr("class", "y axis")
-          .call(yAxis)
-        .append("text")
-          //.attr("transform", "rotate(-90)")
-          .attr("y", 6)
-          .attr("dy", "-15")
-          .style("text-anchor", "middle")
-          .text("# of Teams");
-
+      if(this.options.showYAxis){
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+          .append("text")
+            //.attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "-15")
+            .style("text-anchor", "middle")
+            .text("# of Teams");
+      }
       //For brush
       svg.append("g")
           .attr("class", "brush")

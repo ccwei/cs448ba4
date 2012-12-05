@@ -40,12 +40,19 @@
         outer_width: 200,
         outer_height: 150,
         el: "#revieweeDetailchart",
+        showYAxis:false,
         onItemSelected: function(d){
           // console.log("onItemClick: ");
           // console.log(d);
           var feedbackModal = new app.FeedbackModalView(new app.Feedback(d.reviews[0]));
         },
         onItemDeselected: function(d){
+        },
+        onBrushed: function(){
+
+        },
+        onUnbrushed: function(){
+
         }
       });
       indChart.render();
