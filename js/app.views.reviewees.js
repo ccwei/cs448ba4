@@ -15,13 +15,14 @@
   //View for the reviewee
   app.RevieweesView = Backbone.View.extend({
     template: _.template($("#revieweesViewTemplate").html()),
-    el: $("#agg-right-side"),
-    // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
       var that = this;
       this.viewId = total ++;
       this.$el.html(this.template(this));
-
+      if(this.options['agg']){
+        this.$el.find("#reviewees-show-all-"+this.viewId).addClass("display-none");
+        this.$el.find("#reviewees-show-agg-"+this.viewId).removeClass("display-none");
+      }
     },
     loadData: function(reviewees){
       var totalReviews = [];
@@ -39,7 +40,6 @@
     render: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
-
     },
 
     renderTagCloud: function() {
@@ -71,6 +71,7 @@
         });
       }, 1000);
     }
+
   });
 
 })(jQuery);
