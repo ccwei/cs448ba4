@@ -53,6 +53,7 @@
             $(that.$el.selector + " .keyword-list-" + type + ' ol').append(li);
           }
           //d is like ["nice", {count:17, reviews: array of review}]
+          $('#' + that.$el.attr('id') + " .keyword-list-" + type + ' ol').append($('<li/>').append(d[0]));
         });
       });
 
