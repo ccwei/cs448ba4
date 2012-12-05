@@ -17,11 +17,8 @@
     el: $('#ind-tab-aggregate-grid'),
     keyword: "",
 
-    initialize: function (feedbacks) {
-      if(feedbacks){
-        this.loadData(feedbacks);
+    initialize: function () {
 
-      }
     },
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
@@ -39,7 +36,9 @@
       this.$el.html(this.template())
         .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
           var reviewIdx = $(this).index() - 1;
-          var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
+          var feedbackModal = new app.FeedbackModalView({
+            model: that.collection.models[reviewIdx]
+          });
           //TODO: link back to one by one view for the review idx reviewIdx
         });
       //Add search field
