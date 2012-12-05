@@ -42,9 +42,9 @@
         el: "#revieweeDetailchart",
         showYAxis:false,
         onItemSelected: function(d){
-          // console.log("onItemClick: ");
-          // console.log(d);
-          var feedbackModal = new app.FeedbackModalView(new app.Feedback(d.reviews[0]));
+          var feedbackModal = new app.FeedbackModalView({
+            model: new app.Feedback(d.reviews[0])
+          });
         },
         onItemDeselected: function(d){
         },

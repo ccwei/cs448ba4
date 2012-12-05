@@ -18,6 +18,9 @@
     // template: $("#indScoreTemplate").html(),
 
     initialize: function (collection) {
+
+      // FIXME initialize should not override parameter
+      // put in the collection when calling constructor instead.
       if(this.collection){
         this.loadData(this.collection);
       }
@@ -53,7 +56,7 @@
       $('.' + indScoreViewClassName).delegate('span', 'click', function (d) {
           console.log(" clicked!", d);
           // var reviewIdx = $(this).index() - 1;
-          // var feedbackModal = new app.FeedbackModalView(that.collection.models[reviewIdx]);
+          // var feedbackModal = new app.FeedbackModalView({model: that.collection.models[reviewIdx]});
           // //TODO: link back to one by one view for the review idx reviewIdx
         });
       return this;
