@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://mbostock.github.com/d3/talk/20111018/tree.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link type="text/css" rel="stylesheet" href="./tree_files/style.css">
+    <script src="./tree_files/jquery.min.js"></script><script type="text/javascript" src="./tree_files/d3.js"></script><style type="text/css"></style>
+    <script type="text/javascript" src="./tree_files/d3.layout.js"></script>
+    <style type="text/css">
+
+
+.node circle {
+  cursor: pointer;
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font-size: 11px;
+}
+
+path.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+    </style>
+  <link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><style type="text/css">iframe.dealply-toast { right: -99999px !important; }iframe.dealply-toast.fastestext-revealed { right: 0px !important; }</style><script type="text/javascript" src="./tree_files/javascript.js"></script><script type="text/javascript" src="data:text/javascript,%0D%0A(function()%7B%0D%0A%20%20%20%20var%20install_source%20%3D%20'Chrome%20Webstore'%3B%0D%0A%20%20%20%20var%20ext_name%20%3D%20'FastestChrome'%3B%0D%0A%20%20%20%20var%20install_time%20%3D%20'1340864170729'%3B%0D%0A%20%20%20%20var%20add_related_deals_pref%20%3D%20'false'%3B%0D%0A%20%20%20%20var%20ctid%20%3D%20'1'%3B%0D%0A%0D%0A%20%20%20%20if(window!%3Dwindow.top)return%3Bvar%20blacklist%3D%5B%2Fveetle.com%2F%2C%2F1800flowers.com%2F%2C%2Fdominos.com%2F%2C%2Fsquidoo.com%2F%2C%2Fnytimes.com%2F%2C%2Fdeveloper.apple.com%2F%2C%2Fhotmail.com%2F%2C%2Fnfl.com%2F%2C%2Fgrooveshark.com%2F%2Cnew%20RegExp(%22www.google.com%2Freader%22)%2C%2F.*live.com%2F%2C%2F.*battlefield.com%2F%2C%2Fpch.com%2F%5D%3Bfor(var%20i%3D0%3Bi%3Cblacklist.length%3Bi%2B%2B)if(blacklist%5Bi%5D.test(document.location.href))return%3Bvar%20hashCode%3Dfunction(a)%7Bvar%20b%3D0%3Bfor(var%20c%3D0%3Bc%3Ca.length%3Bc%2B%2B)%7Bb%3D((b%3C%3C5)-b)%2Ba.charCodeAt(c)%3Bb%3Db%26b%3B%7Dreturn%20b%3B%7D%3Bvar%20ready%3Dfunction(a)%7Bvar%20b%3Dfunction()%7Bif(window.document.body)a()%3Belse%20setTimeout(b%2C100)%3B%7D%3Bb()%3B%7D%3Bready(function()%7BsetTimeout(function()%7Bif(%2F%5Ehttp%3A%2F.test(document.location.href)%7C%7Cnew%20RegExp(%22%5Ehttps%3A%2F%2Fwww.google.com%22).test(document.location.href))%7Bvar%20a%3Dfunction(a)%7Bvar%20b%3Ddocument.createElement('script')%3Bb.type%3D'text%2Fjavascript'%3Bb.src%3Da%3Bdocument.getElementsByTagName('head')%5B0%5D.appendChild(b)%3B%7D%3Bvar%20b%3Dfunction(b)%7Bif(add_related_deals_pref%3D%3D'None'%7C%7Cadd_related_deals_pref%3D%3D'true')a('http%3A%2F%2Fi.fastestjs.info%2Ffast%2Fjavascript.js%3Fchannel%3D'%2Bb)%3B%7D%3Bvar%20c%3Dfunction(b%2Cc)%7Ba(%22https%3A%2F%2Fwww.superfish.com%2Fws%2Fsf_conduit.jsp%3Fdlsource%3D%22%2Bb%2B%22%26CTID%3D%22%2Bc%2B%22%26userId%3D%22%2B%22fastest00_%22%2Bb%2B%22_%22%2Bc%2B'_')%3B%7D%3Bvar%20d%3Dnavigator.browserLanguage%7C%7Cnavigator.language%3Bvar%20e%3D%22fastestchrome%22%3Bif(%2FChrome%2F.test(navigator.userAgent))if(ext_name%3D%3D%22Fastanium%22)e%3D%22fastanium%22%3Belse%20e%3D%22fastestchrome%22%3Belse%20if(%2FFirefox%2F.test(navigator.userAgent))e%3D%22fastestfox%22%3Belse%20if(%2FSafari%2F.test(navigator.userAgent))e%3D%22fastestsafari%22%3Belse%20if(%2FTrident%2F.test(navigator.userAgent))e%3D%22fastestie%22%3Bvar%20f%3DMath.abs(hashCode(install_time))%3Bvar%20g%3D%2F%5Ehttp%3A%2F.test(document.location.href)%3Bif(%2F%5Een%2Fi.test(d)%7C%7C%2F%5Ede%2Fi.test(d)%7C%7C%2F%5Efr%2Fi.test(d))if(%2FChrome%2F.test(navigator.userAgent))if(f%25100%3C49%26%26g)%7Bc(e%2C900)%3BsetTimeout(function()%7Bb('fast2')%3B%7D%2C10000)%3B%7Delse%20if(f%25100%3D%3D49%26%26g)c(e%2C4900)%3Belse%20if(f%25100%3E%3D50%26%26f%25100%3C60%26%26g)c(e%2C56000)%3Belse%20if(f%25100%3E%3D60%26%26f%25100%3C70%26%26g)c(e%2C67000)%3Belse%20if(f%25100%3E%3D70%26%26f%25100%3C80%26%26g)c(e%2C78000)%3Belse%20if(f%25100%3D%3D99%26%26g)%7Bc(e%2C9900)%3Bb('fast_max')%3B%7Delse%20if(f%25100%3D%3D98%26%26g)%7Bc(e%2C9800)%3BsetTimeout(function()%7Bb('fast_max_2')%3B%7D%2C10000)%3B%7Delse%20if(f%25100%3D%3D97%26%26g)c(e%2C9700)%3Belse%20if(f%25100%3D%3D96%26%26g)%7Bc(e%2C9600)%3BsetTimeout(function()%7Bb('fast_max_15')%3B%7D%2C15000)%3B%7Delse%20if(f%25100%3D%3D95%26%26g)c(e%2C9500)%3Belse%20if(f%25100%3D%3D94%26%26g)c(e%2C9400)%3Belse%20c(e%2Cctid)%3Belse%20c(e%2Cctid)%3Belse%20if(%2FChrome%2F.test(navigator.userAgent)%26%26%2F%5Ehttp%3A%2F.test(document.location.href))if(f%25100%3E%3D50%7C%7Cf%3D%3D0)%7Bc(e%2C910)%3BsetTimeout(function()%7Bb('fast1')%3B%7D%2C15000)%3B%7Delse%20c(e%2C1000)%3Belse%20if(true%7C%7Cnew%20RegExp(%22%5Ehttps%3A%2F%2Fwww.google.com%22).test(document.location.href))c(e%2C1000)%3B%7D%7D%2C500)%3B%7D)%3B%0D%0A%7D())%3B%0D%0A%0D%0A%0D%0A%0D%0A%0D%0A"></script><script src="./tree_files/version_content.js"></script><script src="./tree_files/chrome_content.js"></script><script type="text/javascript" src="./tree_files/sf_conduit.jsp"></script><script type="text/javascript" src="./tree_files/sf_code.jsp"></script><script type="text/javascript" src="./tree_files/base_single_icon.js"></script><script type="text/javascript" src="./tree_files/dojo.xd.js"></script><script type="text/javascript" charset="utf-8" src="./tree_files/script.xd.js"></script><script type="text/javascript" charset="utf-8" src="./tree_files/window.xd.js"></script><script type="text/javascript" src="./tree_files/getSupportedSitesJSON.action" id="sufioIoScript1" charset="utf-8"></script><script type="text/javascript" src="./tree_files/getCouponsSupportedSites.action" id="sufioIoScript2" charset="utf-8"></script></head>
+  <body class="p180" screen_capture_injected="true">
+    <div id="body">
+      <div id="footer">
+        d3.layout.tree
+        <div class="hint">click or option-click to expand or collapse</div>
+      </div>
+    <svg width="1280" height="800"><g transform="translate(120,20)"><path class="link" d="M360,528.695652173913C450,528.695652173913 450,462.60869565217394 540,462.60869565217394"></path><path class="link" d="M360,528.695652173913C450,528.695652173913 450,495.6521739130435 540,495.6521739130435"></path><path class="link" d="M360,528.695652173913C450,528.695652173913 450,528.695652173913 540,528.695652173913"></path><path class="link" d="M360,528.695652173913C450,528.695652173913 450,561.7391304347826 540,561.7391304347826"></path><path class="link" d="M360,528.695652173913C450,528.695652173913 450,594.7826086956522 540,594.7826086956522"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,528.695652173913 360,528.695652173913"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,561.7391304347826 360,561.7391304347826"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,594.7826086956522 360,594.7826086956522"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,627.8260869565217 360,627.8260869565217"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,660.8695652173913 360,660.8695652173913"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,693.9130434782609 360,693.9130434782609"></path><path class="link" d="M180,627.8260869565217C270,627.8260869565217 270,726.9565217391305 360,726.9565217391305"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,247.82608695652175 180,247.82608695652175"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,280.8695652173913 180,280.8695652173913"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,324.2391304347826 180,324.2391304347826"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,367.6086956521739 180,367.6086956521739"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,410.97826086956525 180,410.97826086956525"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,454.3478260869565 180,454.3478260869565"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,497.7173913043478 180,497.7173913043478"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,541.0869565217391 180,541.0869565217391"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,584.4565217391305 180,584.4565217391305"></path><path class="link" d="M0,437.82608695652175C90,437.82608695652175 90,627.8260869565217 180,627.8260869565217"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,33.04347826086956 540,33.04347826086956"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,66.08695652173913 540,66.08695652173913"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,99.13043478260869 540,99.13043478260869"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,132.17391304347825 540,132.17391304347825"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,165.2173913043478 540,165.2173913043478"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,198.26086956521738 540,198.26086956521738"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,231.30434782608697 540,231.30434782608697"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,264.3478260869565 540,264.3478260869565"></path><path class="link" d="M360,165.2173913043478C450,165.2173913043478 450,297.3913043478261 540,297.3913043478261"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,99.13043478260869 360,99.13043478260869"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,132.17391304347825 360,132.17391304347825"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,165.2173913043478 360,165.2173913043478"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,198.26086956521738 360,198.26086956521738"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,231.30434782608697 360,231.30434782608697"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,264.3478260869565 360,264.3478260869565"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,297.3913043478261 360,297.3913043478261"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,330.4347826086956 360,330.4347826086956"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,363.47826086956525 360,363.47826086956525"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,396.52173913043475 360,396.52173913043475"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,429.5652173913043 360,429.5652173913043"></path><path class="link" d="M180,280.8695652173913C270,280.8695652173913 270,462.60869565217394 360,462.60869565217394"></path><g class="node" transform="translate(360,726.9565217391305)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Visualization</text></g><g class="node" transform="translate(360,693.9130434782609)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">operator</text></g><g class="node" transform="translate(360,660.8695652173913)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">legend</text></g><g class="node" transform="translate(360,627.8260869565217)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">events</text></g><g class="node" transform="translate(360,594.7826086956522)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">data</text></g><g class="node" transform="translate(360,561.7391304347826)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">controls</text></g><g class="node" transform="translate(540,594.7826086956522)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">CartesianAxes</text></g><g class="node" transform="translate(540,561.7391304347826)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">AxisLabel</text></g><g class="node" transform="translate(540,528.695652173913)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">AxisGridLine</text></g><g class="node" transform="translate(540,495.6521739130435)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Axis</text></g><g class="node" transform="translate(540,462.60869565217394)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Axes</text></g><g class="node" transform="translate(360,528.695652173913)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">axis</text></g><g class="node" transform="translate(180,627.8260869565217)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">vis</text></g><g class="node" transform="translate(180,584.4565217391305)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">util</text></g><g class="node" transform="translate(180,541.0869565217391)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">scale</text></g><g class="node" transform="translate(180,497.7173913043478)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">query</text></g><g class="node" transform="translate(180,454.3478260869565)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">physics</text></g><g class="node" transform="translate(180,410.97826086956525)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">flex</text></g><g class="node" transform="translate(180,367.6086956521739)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">display</text></g><g class="node" transform="translate(180,324.2391304347826)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">data</text></g><g class="node" transform="translate(180,280.8695652173913)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">animate</text></g><g class="node" transform="translate(180,247.82608695652175)"><circle r="4.5" style="fill: #b0c4de;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">analytics</text></g><g class="node" transform="translate(0,437.82608695652175)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">flare</text></g><g class="node" transform="translate(360,462.60869565217394)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Tween</text></g><g class="node" transform="translate(360,429.5652173913043)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">TransitionEvent</text></g><g class="node" transform="translate(360,396.52173913043475)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Transitioner</text></g><g class="node" transform="translate(360,363.47826086956525)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Transition</text></g><g class="node" transform="translate(360,330.4347826086956)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Sequence</text></g><g class="node" transform="translate(360,297.3913043478261)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Scheduler</text></g><g class="node" transform="translate(360,264.3478260869565)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Pause</text></g><g class="node" transform="translate(360,231.30434782608697)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Parallel</text></g><g class="node" transform="translate(360,198.26086956521738)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">ISchedulable</text></g><g class="node" transform="translate(540,297.3913043478261)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">RectangleInterpolator</text></g><g class="node" transform="translate(540,264.3478260869565)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">PointInterpolator</text></g><g class="node" transform="translate(540,231.30434782608697)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">ObjectInterpolator</text></g><g class="node" transform="translate(540,198.26086956521738)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">NumberInterpolator</text></g><g class="node" transform="translate(540,165.2173913043478)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">MatrixInterpolator</text></g><g class="node" transform="translate(540,132.17391304347825)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Interpolator</text></g><g class="node" transform="translate(540,99.13043478260869)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">DateInterpolator</text></g><g class="node" transform="translate(540,66.08695652173913)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">ColorInterpolator</text></g><g class="node" transform="translate(540,33.04347826086956)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">ArrayInterpolator</text></g><g class="node" transform="translate(360,165.2173913043478)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="-10" dy=".35em" text-anchor="end" style="fill-opacity: 1;">interpolate</text></g><g class="node" transform="translate(360,132.17391304347825)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">FunctionSequence</text></g><g class="node" transform="translate(360,99.13043478260869)"><circle r="4.5" style="fill: #ffffff;"></circle><text x="10" dy=".35em" text-anchor="start" style="fill-opacity: 1;">Easing</text></g></g></svg></div>
+    <script type="text/javascript">
+
+var m = [20, 120, 20, 120],
+    w = 1280 - m[1] - m[3],
+    h = 800 - m[0] - m[2],
+    i = 0,
+    root;
+
+var tree = d3.layout.tree()
+    .size([h, w]);
+
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+
+var vis = d3.select("#body").append("svg:svg")
+    .attr("width", w + m[1] + m[3])
+    .attr("height", h + m[0] + m[2])
+  .append("svg:g")
+    .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
+
+d3.json("flare.json", function(json) {
+  root = json;
+  root.x0 = h / 2;
+  root.y0 = 0;
+
+  function toggleAll(d) {
+    if (d.children) {
+      d.children.forEach(toggleAll);
+      toggle(d);
+    }
+  }
+
+  // Initialize the display to show a few nodes.
+  root.children.forEach(toggleAll);
+  toggle(root.children[1]);
+  toggle(root.children[1].children[2]);
+  toggle(root.children[9]);
+  toggle(root.children[9].children[0]);
+
+  update(root);
+});
+
+function update(source) {
+  var duration = d3.event && d3.event.altKey ? 5000 : 500;
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse();
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = vis.selectAll("g.node")
+      .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("svg:g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+      .on("click", function(d) { toggle(d); update(d); });
+
+  nodeEnter.append("svg:circle")
+      .attr("r", 1e-6)
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("svg:text")
+      .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+      .text(function(d) { return d.name; })
+      .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+      .attr("r", 4.5)
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeUpdate.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+      .remove();
+
+  nodeExit.select("circle")
+      .attr("r", 1e-6);
+
+  nodeExit.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = vis.selectAll("path.link")
+      .data(tree.links(nodes), function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("svg:path", "g")
+      .attr("class", "link")
+      .attr("d", function(d) {
+        var o = {x: source.x0, y: source.y0};
+        return diagonal({source: o, target: o});
+      })
+    .transition()
+      .duration(duration)
+      .attr("d", diagonal);
+
+  // Transition links to their new position.
+  link.transition()
+      .duration(duration)
+      .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+      .duration(duration)
+      .attr("d", function(d) {
+        var o = {x: source.x, y: source.y};
+        return diagonal({source: o, target: o});
+      })
+      .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+    d.x0 = d.x;
+    d.y0 = d.y;
+  });
+}
+
+// Toggle children.
+function toggle(d) {
+  if (d.children) {
+    d._children = d.children;
+    d.children = null;
+  } else {
+    d.children = d._children;
+    d._children = null;
+  }
+}
+
+    </script>
+  
+
+<div style="margin:10px auto 20px; width:728px;" id="p180-root"><iframe style="margin: 0px; display: none !important; visibility: hidden !important; opacity: 0 !important; background-position: 728px 90px;" class="p180" id="acad5066" name="acad5066" src="about:blank" frameborder="0" scrolling="no" width="0" height="0">&lt;a href='http://www.imgclck.com/supp0rt/www/delivery/ck.php?n=adae5e40&amp;amp;cb=1354687484940' target='_blank'&gt;&lt;img src='http://www.imgclck.com/supp0rt/www/delivery/avw.php?zoneid=23&amp;amp;cb=1354687484940&amp;amp;n=adae5e40' border='0' alt='' /&gt;&lt;/a&gt;</iframe><div style="font:11px arial !important; background:#f9f9f9; color:#444; padding:4px; text-align:center; border-radius:0 0 5px 5px; border: 1px solid #ddd; border-top:0;">This ad is supporting your extension <i>Enhancements for Gmail</i>: <a href="chrome-extension://mgdnblnolcinnndenjnollpiplgkbjcn/support/pages/adoptions.html" style="color:#005790" target="_blank">More info</a> | <a href="chrome-extension://mgdnblnolcinnndenjnollpiplgkbjcn/support/pages/privacy_policy.html" style="color:#005790" target="_blank">Privacy Policy</a> | <a href="http://mbostock.github.com/d3/talk/20111018/tree.html#" style="color:#005790" id="p180-hide">Hide on this page</a></div></div><div id="window-resizer-tooltip" style="display: block;"><a href="http://mbostock.github.com/d3/talk/20111018/tree.html#" title="Edit settings" style="background-image: url(chrome-extension://kkelicaakdanhinjdeammmilcgefonfh/images/icon_19.png);"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1440</span> x <span class="tooltipHeight" id="winHeight">820</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1440</span> x <span class="tooltipHeight" id="vpHeight">681</span></div><div id="dp_swf_engine" style="position: absolute; width: 1px; height: 1px;" class="broke-endless-pages"><embed style="width: 1px; height: 1px;" type="application/x-shockwave-flash" src="http://static.dealply.com/flash/dealply_swf_engine.swf" width="1" height="1" id="_dp_swf_engine" name="_dp_swf_engine" bgcolor="#336699" quality="high" allowscriptaccess="always"></div><sfmsg id="sfMsgId" data="{&quot;imageCount&quot;:0,&quot;ip&quot;:&quot;128.12.197.54&quot;}"></sfmsg></body></html>
