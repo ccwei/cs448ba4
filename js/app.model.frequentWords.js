@@ -43,10 +43,17 @@
         topWords = topWords.slice(0, 50);
         return topWords;
       };
-
       var processWord = function (review, words, type) {
-        _(review[type].split(" ")).each(function (w) {
-          words.push([w,review]);
+        var feedbacks = "";
+        if(type) {
+          feedbacks = review[type]; //If specify type, only select review for that type
+        } else {
+          _(app.FEEDBACK_TYPE).each(function (t) {
+            feedbacks += review[t]; //Concat different type review(notable, ideas..) into one string.
+          });
+        }
+        _(feedbacks.split(" ")).each(function (w) {
+            words.push([w,review]);
         });
       };
 
@@ -60,7 +67,7 @@
 
           this.feedbackWords = findTopWords(this.feedbackWords);
           //TODO: find better count to be maxCount
-          this.maxCount = this.feedbackWords[3][1].count;
+          this.maxCount = this.feedbackWords[0][1].count;
         }
       };
     })()

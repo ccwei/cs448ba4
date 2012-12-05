@@ -26,34 +26,6 @@
     }
   };
 
-function createTagCloud(parentid, reviews, cloudContainer) {
-  console.log("createTagCloud()");
-  cloudContainer["notableTagCloud"] = new app.TagCloud({
-    id: parentid + " .tag-cloud-notable",
-    outer_width: 400,
-    outer_height: 400
-  });
-  cloudContainer["constructiveTagCloud"] = new app.TagCloud({
-  id: parentid + " .tag-cloud-constructive",
-  outer_width: 400,
-  outer_height: 400
-  });
-  cloudContainer["questionsTagCloud"] = new app.TagCloud({
-    id: parentid + " .tag-cloud-questions",
-    outer_width: 400,
-    outer_height: 400
-  });
-  cloudContainer["ideasTagCloud"] = new app.TagCloud({
-    id: parentid + " .tag-cloud-ideas",
-    outer_width: 400,
-    outer_height: 400
-  });
-  cloudContainer["notableTagCloud"].loadData(reviews, "notable");
-  cloudContainer["constructiveTagCloud"].loadData(reviews, "constructive");
-  cloudContainer["questionsTagCloud"].loadData(reviews, "questions");
-  cloudContainer["ideasTagCloud"].loadData(reviews, "ideas");
-}
-
 $(document).ready(function() {
   d3.tsv("./data/a4.tsv", function(data) {
     data = _.filter(data, function(d){
@@ -70,10 +42,19 @@ $(document).ready(function() {
     });
 
     //Convert map to an array of object {teamid: id, score: average_score, reviews: reviews}
+    var team_properties = ['first_industry_sector','second_industry_sector','team_score'];
     var teamReviews = [];
     var count = 0;
     for(var key in teamMap) {
-      teamReviews.push({teamid: key, reviews: teamMap[key]});
+      var o = {teamid: key, name:key, reviews: teamMap[key]}; //object to push
+
+      //add team data back from reviews object
+      for(var i=0 ; i<team_properties.length ; i++){
+        var prop = team_properties[i];
+        o[prop] = o.reviews[0][prop];
+      }
+
+      teamReviews.push(o);
     }
     _.each(teamReviews, function(tr) {
       var sum = 0;
@@ -98,6 +79,8 @@ $(document).ready(function() {
         agg:true
       });
 
+      allRevieweesView.loadData(teamReviews);
+
     var chart = new app.StackedChart({
       collection: dir,
       outer_width: 400,
@@ -121,9 +104,6 @@ $(document).ready(function() {
     _.each(_(teamReviews).pluck('reviews'), function(r) {
       totalReviews = totalReviews.concat(r);
     });
-    //For Tag Cloud
-    var cloudContainer = {};
-    createTagCloud('agg-tab-tag-cloud', totalReviews, cloudContainer);
     });
   });
 
