@@ -4,7 +4,7 @@
 @bar-color: #dddddd;
 @selected-bar-color: #17803f;
 @brushed-bar-color: #09f;
-@hover-li-color: #ffff93;
+@clickable-hover-color: #cde8fe;
 
 .default-padding{
   padding: 10px;
@@ -23,8 +23,18 @@
 }
 
 .clickable{
-  cursor: hand;
+  &:hover{
+    cursor: pointer;
+    background-color: @clickable-hover-color;
+    color: black;
+  }
 }
+
+
+li.feedback {
+  .clickable;
+}
+
 
 ul.no-bullet {
   list-style: none;
@@ -78,11 +88,6 @@ table.feedback-grid
     cursor: default;
     background-color: white !important;
   }
-}
-
-li.feedback:hover {
-  color: black;
-  background-color: @hover-li-color;
 }
 
 
@@ -142,7 +147,6 @@ li.feedback:hover {
 
 .brush .extent {
   stroke: #09f;
-
   fill:#fff;
   fill-opacity: .125;
   shape-rendering: crispEdges;

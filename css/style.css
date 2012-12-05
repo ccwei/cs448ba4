@@ -58,8 +58,15 @@
 .well.white {
   background-color: #fff;
 }
-.clickable {
-  cursor: hand;
+.clickable:hover {
+  cursor: pointer;
+  background-color: #cde8fe;
+  color: black;
+}
+li.feedback:hover {
+  cursor: pointer;
+  background-color: #cde8fe;
+  color: black;
 }
 ul.no-bullet {
   list-style: none;
@@ -113,10 +120,6 @@ table.feedback-grid input[disabled],
 table.feedback-grid textarea[disabled] {
   cursor: default;
   background-color: white !important;
-}
-li.feedback:hover {
-  color: black;
-  background-color: #ffff93;
 }
 .alert.alert-grey {
   color: #9d9d9d;
