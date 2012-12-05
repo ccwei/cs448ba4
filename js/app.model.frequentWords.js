@@ -67,7 +67,7 @@
 
           this.feedbackWords = findTopWords(this.feedbackWords);
           //TODO: find better count to be maxCount
-          this.maxCount = this.feedbackWords[3][1].count;
+          this.maxCount = this.feedbackWords[0][1].count;
         }
       };
     })()

@@ -8,29 +8,31 @@
 (function ($) {
   "use strict"; // use strict mode for sublime linter according to http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 
-  app.KeywordListsView = Backbone.View.extend({
+  app.TagCloudsView = Backbone.View.extend({
     tagName: "div",
-    className: "keywordlists-frame",
-    template: _.template($("#keywordListsFrameTemplate").html()),
+    className: "tagclouds-frame",
+    template: _.template($("#tagCloudsFrameTemplate").html()),
 
     initialize: function () {
       var that = this;
       this.frequentWords = {};
+      console.log("in tag cloud", that.model);
       _(app.FEEDBACK_TYPE).each(function (type) {
-        console.log("in keyword list", that.model);
         that.frequentWords[type] = new app.FrequentWords(that.model, type);
       });
       this.$el.html(this.template());
       this.render();
     },
+
     render: function () {
       var that = this;
-
-      this.keywordLists = {};
-
+      this.tagClouds = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
-        _(that.frequentWords[type].feedbackWords).each(function (d) {
-          $('#' + that.$el.attr('id') + " .keyword-list-" + type + ' ol').append($('<li/>').append(d[0]));
+        that.tagClouds[type] = new app.TagCloud({
+          model: that.frequentWords[type],
+          id: '#' + that.$el.attr('id') + " .tag-cloud-" + type,
+          outer_width: 270,
+          outer_height: 270
         });
       });
 

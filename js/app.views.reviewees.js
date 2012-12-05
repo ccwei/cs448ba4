@@ -30,8 +30,17 @@
         totalReviews = totalReviews.concat(r);
       });
 
-      this.keywordListsView = new app.KeywordListsView({model: totalReviews});
-      this.renderTagCloud();
+      this.keywordListsView = new app.KeywordListsView({
+        model: totalReviews,
+        el: $("#agg-tab-keyword-list-" + that.viewId)
+      });
+
+      this.tagCloudsView = new app.TagCloudsView({
+        model: totalReviews,
+        el: $("#agg-tab-tag-cloud-" + that.viewId)
+      });
+
+      //this.renderTagCloud();
       //this.renderKeywordList();
     },
 
@@ -39,33 +48,6 @@
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
 
-    },
-
-    renderTagCloud: function() {
-      var that = this;
-      this.tagClouds = {};
-      _(app.FEEDBACK_TYPE).each(function (type) {
-        that.tagClouds[type] = new app.TagCloud({
-          model: that.frequentWords[type],
-          id: "agg-tab-tag-cloud .tag-cloud-" + type,
-          outer_width: 400,
-          outer_height: 400
-        });
-      });
-    },
-
-    renderKeywordList: function() {
-
-      var that = this;
-      this.keywordLists = {};
-      _(app.FEEDBACK_TYPE).each(function (type) {
-        that.keywordLists[type] = new app.KeywordListView({
-          model: that.frequentWords[type],
-          id: "agg-tab-keyword-list-" + that.viewId + " .keyword-list-" + type,
-          outer_width: 400,
-          outer_height: 400
-        });
-      });
     }
   });
 
