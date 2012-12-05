@@ -8,9 +8,6 @@
 (function ($) {
   "use strict"; // use strict mode for sublime linter according to http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 
-
-  var FEEDBACK_TYPE = ["notable","constructive","questions","ideas"];
-
   //TODO(kanitw): should be renamed to FeedbacksGroupedView ???
   app.FeedbacksAggregatedView = Backbone.View.extend({
     tagName: "div",
@@ -58,7 +55,7 @@
       var $el = this.$el;
 
       //clean children first
-      _(FEEDBACK_TYPE).each(function(type){
+      _(app.FEEDBACK_TYPE).each(function(type){
         $el.find('.feedback_'+type+' ul').children().remove();
       });
 
@@ -70,7 +67,7 @@
         var feedback = item.toJSON();
 
         // console.log("feedback = ", feedback);
-        _(FEEDBACK_TYPE).each(function(type){
+        _(app.FEEDBACK_TYPE).each(function(type){
           if(that.keyword.length === 0 || feedback[type].match(new RegExp(that.keyword, "i"))){
             var li = $('<li/>').addClass('feedback').append(feedback[type]);
             matchCount++;
@@ -94,7 +91,7 @@
 
       //hide empty category
 
-      _(FEEDBACK_TYPE).each(function(type){
+      _(app.FEEDBACK_TYPE).each(function(type){
 
         if($el.find('.feedback_'+type+' ul').children().length === 0){
           $el.find('.feedback_'+type).addClass('display-none');

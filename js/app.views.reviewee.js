@@ -33,12 +33,15 @@
       });
 
       $('a[data-toggle="tab"]').on('shown', function (e) {
-        if($(e.target).attr('href') === '#ind-tab-tag-cloud') {
+        if($(e.target).attr('href') === '#ind-tab-tag-cloud-' + that.viewId) {
           that.renderTagCloud();
         }
       });
     },
     loadData: function(reviewee){
+      var that = this;
+      this.modal = new app.Reviewee(reviewee);
+      console.log(this.modal);
       this.feedbacksAggregatedView.loadData(reviewee.reviews);
       this.revieweeDetailView.loadData(reviewee);
       this.feedbacksView.loadData(reviewee.reviews);
@@ -48,55 +51,29 @@
       });
       // If you decide not to parse the whole d.reviews object, I would suggest your to use
       // var scores = _(d.reviews).pluck("score");
-
-
       this.indScoresView = new app.IndScoresView({
         collection:scores,
         el: $('#indscores')
       });
       this.indScoreView = new app.IndScoreView();
 
+      this.keywordListsView = new app.KeywordListsView({
+        model: reviewee.reviews,
+        el: $("#ind-tab-keyword-list-" + that.viewId)
+      });
 
-      this.frequentWordsNotable = new app.FrequentWords(reviewee.reviews, "notable");
-      this.frequentWordsConstructive = new app.FrequentWords(reviewee.reviews, "constructive");
-      this.frequentWordsQuestions = new app.FrequentWords(reviewee.reviews, "questions");
-      this.frequentWordsIdeas = new app.FrequentWords(reviewee.reviews, "ideas");
       this.renderTagCloud();
-
     },
+
     renderTagCloud: function(){
       var that = this;
-      if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud') {
-          console.log("render_tagCloud()", $("#ind-right-side .nav .active a").attr("href"));
-
-          this.notableTagCloud = new app.TagCloud({
-            model: this.frequentWordsNotable,
-            id: "ind-tab-tag-cloud .tag-cloud-notable",
-            outer_width: 400,
-            outer_height: 400
+      if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud-' + that.viewId) {
+          this.tagCloudsView = new app.TagCloudsView({
+            model: that.modal["attributes"].reviews,
+            el: $("#ind-tab-tag-cloud-" + that.viewId)
           });
-          setTimeout(function() {
-            that.constructiveTagCloud = new app.TagCloud({
-              model: that.frequentWordsConstructive,
-              id: "ind-tab-tag-cloud .tag-cloud-constructive",
-              outer_width: 400,
-              outer_height: 400
-            });
-            that.questionsTagCloud = new app.TagCloud({
-              model: that.frequentWordsQuestions,
-              id: "ind-tab-tag-cloud .tag-cloud-questions",
-              outer_width: 400,
-              outer_height: 400
-            });
-            that.ideasTagCloud = new app.TagCloud({
-              model: that.frequentWordsIdeas,
-              id: "ind-tab-tag-cloud .tag-cloud-ideas",
-              outer_width: 400,
-              outer_height: 400
-            });
-          }, 1000);
+        }
       }
-    }
   });
 
 })(jQuery);

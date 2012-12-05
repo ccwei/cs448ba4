@@ -11,7 +11,6 @@
   window.app = window.app || {};
 
   var total = 0;
-
   //View for the reviewee
   app.RevieweesView = Backbone.View.extend({
     template: _.template($("#revieweesViewTemplate").html()),
@@ -26,50 +25,27 @@
     },
     loadData: function(reviewees){
       var totalReviews = [];
+      var that = this;
       _.each(_(reviewees).pluck('reviews'), function(r) {
         totalReviews = totalReviews.concat(r);
       });
 
-      this.frequentWordsNotable = new app.FrequentWords(totalReviews, "notable");
-      this.frequentWordsConstructive = new app.FrequentWords(totalReviews, "constructive");
-      this.frequentWordsQuestions = new app.FrequentWords(totalReviews, "questions");
-      this.frequentWordsIdeas = new app.FrequentWords(totalReviews, "ideas");
-      this.renderTagCloud();
+      this.keywordListsView = new app.KeywordListsView({
+        model: totalReviews,
+        el: $("#agg-tab-keyword-list-" + that.viewId)
+      });
+
+      this.tagCloudsView = new app.TagCloudsView({
+        model: totalReviews,
+        el: $("#agg-tab-tag-cloud-" + that.viewId)
+      });
+
+      //this.renderTagCloud();
     },
 
     render: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
-    },
-
-    renderTagCloud: function() {
-      var that = this;
-      this.notableTagCloud = new app.TagCloud({
-          model: this.frequentWordsNotable,
-          id: "agg-tab-tag-cloud .tag-cloud-notable",
-          outer_width: 400,
-          outer_height: 400
-      });
-      setTimeout(function() {
-        that.constructiveTagCloud = new app.TagCloud({
-          model: that.frequentWordsConstructive,
-          id: "agg-tab-tag-cloud .tag-cloud-constructive",
-          outer_width: 400,
-          outer_height: 400
-        });
-        that.questionsTagCloud = new app.TagCloud({
-          model: that.frequentWordsQuestions,
-          id: "agg-tab-tag-cloud .tag-cloud-questions",
-          outer_width: 400,
-          outer_height: 400
-        });
-        that.ideasTagCloud = new app.TagCloud({
-          model: that.frequentWordsIdeas,
-          id: "agg-tab-tag-cloud .tag-cloud-ideas",
-          outer_width: 400,
-          outer_height: 400
-        });
-      }, 1000);
     }
 
   });

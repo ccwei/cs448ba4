@@ -95,16 +95,15 @@
   <div id="reviewee-detail-<%=viewId%>"></div>
   <ul class="nav nav-tabs">
     <li>
-      <a href="#ind-tab-tag-cloud" data-toggle="tab">
-        <!-- TODO this should become ind-tab-tag-cloud-<%=viewId%> -->
+      <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
         Tag Cloud
       </a>
     </li>
-    <!-- <li>
-      <a href="#tab-tag-list-<%=viewId%>">
-        Tag List
+    <li>
+      <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+        Keyword List
       </a>
-    </li> -->
+    </li>
     <li>
       <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
         Aggregate View
@@ -125,12 +124,9 @@
     </li> -->
   </ul>
   <div class="tab-content">
-    <div class="tab-pane" id="ind-tab-tag-cloud">
-      <!-- TODO this should become ind-tab-tag-cloud-<%=viewId%> -->
-      <div class="tag-cloud-notable"></div>
-      <div class="tag-cloud-constructive"></div>
-      <div class="tag-cloud-questions"></div>
-      <div class="tag-cloud-ideas"></div>
+    <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
+    </div>
+    <div class="tab-pane" id="ind-tab-keyword-list-<%=viewId%>">
     </div>
     <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
     </div>
@@ -149,18 +145,17 @@
   </div>
   <ul class="nav nav-tabs">
     <li>
-      <a href="#agg-tab-tag-cloud" data-toggle="tab">
-        <!-- TODO(kanitw): Wei please add -<%=viewId%> -->
+      <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
         Tag Cloud
       </a>
     </li>
-    <!-- <li>
-      <a href="#agg-tab-tag-list-<%=viewId%>">
-        Tag List
+    <li>
+      <a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+        Keyword List
       </a>
-    </li> -->
+    </li>
     <!-- <li>
-      <a href="#agg-tab-word-tree-<%=viewId%>">
+      <a href="#agg-tab-word-tree-<%=viewId%>" data-toggle="tab">
         Word Tree
       </a>
     </li> -->
@@ -169,15 +164,11 @@
     </li> -->
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="agg-tab-tag-cloud">
-    <!-- TODO(kanitw): Wei please add -<%=viewId%> -->
-    <div class="tag-cloud-notable"></div>
-    <div class="tag-cloud-constructive"></div>
-    <div class="tag-cloud-questions"></div>
-    <div class="tag-cloud-ideas"></div>
+    <div class="tab-pane active" id="agg-tab-tag-cloud-<%=viewId%>">
+    </div>
+    <div class="tab-pane" id="agg-tab-keyword-list-<%=viewId%>">
+    </div>
   </div>
-    <!-- <div class="tab-pane" id="agg-tab-tag-list-<%=viewId%>"></div> -->
-
     <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
 
 </script>
@@ -194,33 +185,6 @@
   </div>
 </script>
 
-<script id="keywordListTemplate" type="text/template">
-  <div class="keywordList">
-     <div class="keywordList_notable span4">
-      <h4>Notable</h4>
-      <ul>
-      </ul>
-    </div>
-
-    <div class="keywordList_constructive span4">
-      <h4>Constructive</h4>
-      <ul>
-      </ul>
-    </div>
-
-    <div class="keywordList_questions span4">
-      <h4>Questions</h4>
-      <ul>
-      </ul>
-    </div>
-
-    <div class="keywordList_ideas span4">
-      <h4>Ideas</h4>
-      <ul>
-      </ul>
-    </div>
-  </div>
-</script>
 
 <script id="aggregatedFeedbackFrameTemplate" type="text/template">
   <div class="search-container">
@@ -253,10 +217,64 @@
   </div>
 </script>
 
+<script id="keywordListsFrameTemplate" type="text/template">
+  <div class="row-fluid">
+    <div class="keyword-list-notable span3">
+      <h4>Notable</h4>
+      <ol>
+      </ol>
+    </div>
+
+    <div class="keyword-list-constructive span3">
+      <h4>Constructive</h4>
+      <ol>
+      </ol>
+    </div>
+
+    <div class="keyword-list-questions span3">
+      <h4>Questions</h4>
+      <ol>
+      </ol>
+    </div>
+
+    <div class="keyword-list-ideas span3">
+      <h4>Ideas</h4>
+      <ol>
+      </ol>
+    </div>
+  </div>
+</script>
+
+<script id="tagCloudsFrameTemplate" type="text/template">
+  <div class="tag-cloud-notable">
+    <h4>Notable</h4>
+    <ol>
+    </ol>
+  </div>
+
+  <div class="tag-cloud-constructive">
+    <h4>Constructive</h4>
+    <ol>
+    </ol>
+  </div>
+
+  <div class="tag-cloud-questions">
+    <h4>Questions</h4>
+    <ol>
+    </ol>
+  </div>
+
+  <div class="tag-cloud-ideas">
+    <h4>Ideas</h4>
+    <ol>
+    </ol>
+  </div>
+</script>
+
+
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-
       <div class="brand">
         &nbsp; Peereviz
       </div>
@@ -315,6 +333,7 @@
     </div>
   </div>
   <script src="./js/app.models.js"></script>
+  <script src="./js/app.model.frequentWords.js"></script>
   <script src="./js/app.collections.js"></script>
   <script src="./js/app.views.feedback.js"></script>
   <script src="./js/app.views.feedbacks.js"></script>
@@ -326,8 +345,9 @@
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.views.reviewees.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
-  <script src="./js/app.model.frequentWords.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
+  <script src="./js/app.quad-tag-clouds.js"></script>
+  <script src="./js/app.keyword-lists.js"></script>
   <script src="./js/app.js"></script>
 
   <div id="feedback-modal">
