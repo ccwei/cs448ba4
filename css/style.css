@@ -52,6 +52,9 @@
 .alert.alert-small {
   padding: 4px 15px 4px 6px;
 }
+#root {
+  margin-top: 60px;
+}
 .well.white {
   background-color: #fff;
 }
