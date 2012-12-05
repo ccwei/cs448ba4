@@ -109,6 +109,12 @@ $(document).ready(function() {
       },
       onItemDeselected: function(d){
         app.showView('app');
+      },
+      onBrushed: function(){
+        app.showView("agg");
+      },
+      onUnbrushed: function(){
+        app.showView("all");
       }
     }).render();
     var totalReviews = [];

@@ -29,6 +29,8 @@
       var options = this.options;
       this.onItemSelected = options.onItemSelected || function() { /*do nothing*/ };
       this.onItemDeselected = options.onItemDeselected || function() { /*do nothing*/ };
+      this.onBrushed = options.onBrushed || function(){ /*Do nothing*/};
+      this.onUnbrushed = options.onUnbrushed || function(){ /*Do nothing*/ };
     },
     render: function(){
       var options = this.options;
