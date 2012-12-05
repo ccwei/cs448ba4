@@ -46,7 +46,7 @@
 ========================== */
 /* Misc Group
 ========================== */
-.default-padding {
+li .default-padding {
   padding: 10px;
 }
 .alert.alert-small {
@@ -128,6 +128,13 @@ li.feedback:hover {
 }
 .center {
   text-align: center;
+}
+.keyword-item-bar {
+  background-color: blue;
+  height: 2px;
+}
+.keyword {
+  padding-bottom: .3em;
 }
 .axis path,
 .axis line {
