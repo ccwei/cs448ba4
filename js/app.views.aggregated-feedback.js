@@ -18,7 +18,15 @@
     keyword: "",
 
     initialize: function () {
-
+      var that = this;
+      this.$el.html(this.template())
+        .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
+          var reviewIdx = $(this).index();
+          var feedbackModal = new app.FeedbackModalView({
+            model: that.collection.models[reviewIdx]
+          });
+          //TODO: link back to one by one view for the review idx reviewIdx
+      });
     },
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
@@ -33,15 +41,6 @@
         that.renderFeedbacks();
       };
 
-      this.$el.html(this.template())
-        .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
-          var reviewIdx = $(this).index() - 1;
-          var feedbackModal = new app.FeedbackModalView({
-            model: that.collection.models[reviewIdx]
-          });
-          //TODO: link back to one by one view for the review idx reviewIdx
-        });
-      //Add search field
       this.$el.prepend(_.template($("#searchFieldTemplate").html())());
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);

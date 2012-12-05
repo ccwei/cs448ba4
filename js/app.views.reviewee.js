@@ -63,15 +63,14 @@
         el: $("#ind-tab-keyword-list-" + that.viewId)
       });
 
-      this.keywordListsView.liOnclick = function (event) {
+      this.keywordListsView.setliOnclick (function (event) {
         var text = $(event.target).text();
-        console.log("liOnclick", text);
+        console.log("click on ", text);
+        text = text.substr(0, text.indexOf(" ("));
         that.feedbacksAggregatedView.setSearchWord(text);
         $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
-        console.log('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]');
-      };
+      });
 
-      //this.feedbacksAggregatedView.setSearchWord("idea");
       this.renderTagCloud();
     },
 
