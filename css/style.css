@@ -166,6 +166,9 @@ table.feedback-grid textarea[disabled] {
 .x.axis path {
   display: none;
 }
+.bg-rect {
+  fill: #f5f5f5;
+}
 .bar-rect {
   fill: #dddddd;
 }
