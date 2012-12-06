@@ -15,7 +15,13 @@
   });
 
   app.FeedbackCollection = Backbone.Collection.extend({
-        model: window.app.Feedback
+    model: window.app.Feedback
+  });
+
+  app.TeamReviewsCollection = Backbone.Collection.extend({
+    comparator: function(a, b){
+      return a.get('score') - b.get('score');
+    }
   });
 
 })(jQuery);

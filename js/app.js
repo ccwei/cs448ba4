@@ -66,7 +66,7 @@ $(document).ready(function() {
       tr.score = Math.round(sum * 1.0 / tr.reviews.length);
     });
 
-    var stackableBlocks = new app.StackableBlocks(teamReviews);
+    var teamReviewsCollection = new app.TeamReviewsCollection(teamReviews);
 
     var theRevieweeView = new app.RevieweeView();
     var allRevieweesView = new app.RevieweesView({
@@ -81,7 +81,7 @@ $(document).ready(function() {
     allRevieweesView.loadData(teamReviews);
 
     var chart = new app.StackedChart({
-      collection: new app.StackableBlocks(teamReviews),
+      collection: teamReviewsCollection,
       outer_width: 400,
       outer_height: 300,
       el: "#chart",
@@ -102,7 +102,7 @@ $(document).ready(function() {
 
     var revieweeList = new app.RevieweeList({
       el: $("#reviewee-list"),
-      collection: stackableBlocks
+      collection: teamReviewsCollection
     });
 
     var totalReviews = [];

@@ -19,20 +19,6 @@
    */
 
 
-  app.StackableBlocks = Backbone.Collection.extend({
-    comparator: function(a, b){
-      return a.attributes[this.xName] - b.attributes[this.xName];
-    },
-    initialize: function(models,options) {
-
-      this.xName =  (options ? options.xName : null ) || "score";
-
-      // console.log("ReviewDir.Models");
-      // console.log(this);
-      // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
-    }
-  });
-
   app.StackedChart = Backbone.View.extend({
     //TODO(kanitw): register to ReviewDir's event
 
