@@ -41,13 +41,15 @@
         outer_height: 150,
         el: "#revieweeDetailchart",
         showYAxis:false,
+        showBgRects: true,
         onItemSelected: function(d){
           var feedbackModal = new app.FeedbackModalView({
             model: new app.Feedback(d.get('reviews')[0])
           });
         },
-        onItemDeselected: function(d){
-        }
+        onItemDeselected: function(d){},
+        xDomain: _.range(1,10)
+
       });
       indChart.render();
       return this;
