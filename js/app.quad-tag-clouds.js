@@ -12,7 +12,7 @@
     tagName: "div",
     className: "tagclouds-frame",
     template: _.template($("#tagCloudsFrameTemplate").html()),
-
+    liOnclick: function() {},
     initialize: function () {
       var that = this;
       this.frequentWords = {};
@@ -20,7 +20,6 @@
         that.frequentWords[type] = new app.FrequentWords(that.model, type);
       });
       this.$el.html(this.template());
-      this.render();
     },
 
     render: function () {
@@ -33,9 +32,14 @@
           outer_width: 250,
           outer_height: 250
         });
+        that.tagClouds[type].liOnclick = that.liOnclick;
       });
 
       return this;
+    },
+    setliOnclick: function (liOnclick) {
+      var that = this;
+      this.liOnclick = liOnclick;
     }
 
   });
