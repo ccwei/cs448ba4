@@ -17,7 +17,7 @@
     template: $("#feedbackModalTemplate").html(),
 
     initialize: function() {
-
+      this.render();
     },
     render: function () {
         var feedbackView = new app.FeedbackView({ model: this.model});

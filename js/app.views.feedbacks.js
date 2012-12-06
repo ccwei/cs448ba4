@@ -12,6 +12,7 @@
 
   app.FeedbacksView = Backbone.View.extend({
     template: _.template($("#feedbacksTemplate").html()),
+    item_template: _.template($("#feedbackGridTemplate").html()),
     tagName: "div",
     className: "feedbacks-view",
 
@@ -30,19 +31,14 @@
 
       this.$el.html(this.template());
 
-      var $feedbacks = this.$el.find('.feedbacks');
-      var $indscores = this.$el.find(".indscores");
-
       _.each(this.collection.models, function (item) {
         // that.renderFeedback(item);
-        var feedView = new app.FeedbackView({
-            model: item
-        });
-
-        $feedbacks.append(feedView.render().el)
+        this.$el.find('.feedbacks')
+          .append(this.item_template(item.toJSON()))
           .append("<hr/>");
 
-        $indscores.append("Put your render of indscore view here!");
+
+        this.$el.find(".indscores").append("Put your render of indscore view here!");
 
 
       }, this);
@@ -52,20 +48,6 @@
       // }, this);
 
       return this;
-    },
-    renderFeedback: function (item) {
-      var feedView = new app.FeedbackView({
-          model: item
-      });
-      // console.log(this.el);
-      // console.log(this.$el);
-      console.log(this.$frame);
-      this.$el.find("#feedbacks")
-        .append(feedView.render().el)
-        .append("<hr/>");
-
-      this.$el.find("#indscores")
-        .append("Put your render of indscore view here!");
     }
 
   });
