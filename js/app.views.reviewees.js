@@ -44,7 +44,7 @@
         el: $("#agg-tab-keyword-list-" + that.viewId)
       });
       this.redrawTagCloud = true;
-      this.renderTagCloud(this.totalReviews);
+      this.renderTagCloud();
     },
 
     render: function(){

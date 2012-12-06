@@ -41,6 +41,7 @@
               .style("font-family", "Impact")
               .style("fill", function(d, i) { return fill(i); })
               .attr("text-anchor", "middle")
+              .attr("class", "clickable")
               .attr('id', function(d) { return "id_" + d.text; })
               .attr('rel', 'popover')
               .attr("transform", function(d) {
