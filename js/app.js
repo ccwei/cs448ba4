@@ -76,7 +76,7 @@ $(document).ready(function() {
     var aggRevieweesView = new app.RevieweesView({
       el: $("#agg-right-side"),
       agg:true
-    }).loadData(revieweeCollection);
+    });
     var onReviewee = {
       selected: function(d){
         app.showView('ind');
@@ -85,7 +85,8 @@ $(document).ready(function() {
       deselected: function(d){
         app.showView('app');
       },
-      brushed: function(){
+      brushed: function(filteredModels){
+        aggRevieweesView.loadData(new app.RevieweeCollection(filteredModels));
         app.showView("agg");
       },
       unbrushed: function(){
