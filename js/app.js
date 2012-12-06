@@ -27,7 +27,7 @@
   };
 
 $(document).ready(function() {
-  d3.tsv("./data/a4.tsv", function(data) {
+  d3.tsv("./data/a4_allscores.tsv", function(data) {
     data = _.filter(data, function(d){
       d.score = +d.score;
       return !isNaN(d.score);
