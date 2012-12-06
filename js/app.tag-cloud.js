@@ -13,6 +13,7 @@
   app.TagCloud = Backbone.View.extend((function(){
 
     return {
+      liOnclick: function() {},
       initialize: function(){
         this.data = this.model.feedbackWords;
         this.maxCount = this.model.maxCount;
@@ -47,7 +48,9 @@
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
               })
               .text(function(d) { return d.text; })
-              .on("click", function(d) {console.log("click :", d.text);});
+              .on("click", function(d) {
+                that.liOnclick(d);
+              });
         };
 
         var options = this.options;

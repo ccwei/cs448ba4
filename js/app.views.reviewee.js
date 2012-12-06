@@ -81,6 +81,13 @@
             model: that.modal["attributes"].reviews,
             el: $("#ind-tab-tag-cloud-" + that.viewId)
           });
+          this.tagCloudsView.setliOnclick(function (d) {
+            var text = d.text;
+            that.feedbacksAggregatedView.setSearchWord(text);
+            $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+          });
+
+          this.tagCloudsView.render();
         }
       }
   });
