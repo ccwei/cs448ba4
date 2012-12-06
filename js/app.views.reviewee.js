@@ -41,13 +41,12 @@
     },
     loadData: function(reviewee){
       var that = this;
-      this.modal = new app.Reviewee(reviewee);
-      console.log(this.modal);
+      this.modal = reviewee;
       this.feedbacksAggregatedView.loadData(reviewee.get('reviews'));
       this.revieweeDetailView.loadData(reviewee);
       this.feedbacksView.loadData(reviewee.get('reviews'));
 
-      var scores = _.map(reviewee.reviews, function(d, idx) {
+      var scores = _.map(reviewee.get('reviews'), function(d, idx) {
         return {score: d.score};
       });
       // If you decide not to parse the whole d.reviews object, I would suggest your to use
@@ -57,16 +56,11 @@
         el: $('#indscores')
       });
       this.indScoreView = new app.IndScoreView();
-
+      console.log("reviewee.reviews = ", reviewee.reviews);
       this.keywordListsView = new app.KeywordListsView({
-        model: reviewee.reviews,
+        model: reviewee.get('reviews'),
         el: $("#ind-tab-keyword-list-" + that.viewId),
-      
-
-        onWordClick: function (event) {
-                        var text = $(event.target).text();
-                        console.log("click on ", text);
-                        text = text.substr(0, text.indexOf(" ("));
+        onWordClick: function (text) {
                         that.feedbacksAggregatedView.setSearchWord(text);
                         $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
                      }
