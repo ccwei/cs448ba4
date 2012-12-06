@@ -30,11 +30,11 @@
         showYAxis: true
       });
 
-
-
       _(this.options).defaults({
         margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 40: 20)}
       });
+
+
       var options = this.options;
       this.onItemSelected = options.onItemSelected || DO_NOTHING;
       this.onItemDeselected = options.onItemDeselected || DO_NOTHING;
@@ -61,7 +61,7 @@
     },
     render: function(){
       var options = this.options;
-      var xName = this.collection.xName;
+      var xName = this.xName;
       // console.log(options);
 
       var outer_width = options.outer_width;
