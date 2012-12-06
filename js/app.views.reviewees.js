@@ -26,7 +26,10 @@
     loadData: function(reviewees){
       var totalReviews = [];
       var that = this;
-      _.each(_(reviewees).pluck('reviews'), function(r) {
+      var tmpReviews = _(reviewees.models).map(function (reviewee) {
+        return reviewee.get('reviews');
+      });
+      _.each(tmpReviews, function(r) {
         totalReviews = totalReviews.concat(r);
       });
 

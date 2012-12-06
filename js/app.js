@@ -66,18 +66,17 @@ $(document).ready(function() {
       tr.score = Math.round(sum * 1.0 / tr.reviews.length);
     });
 
-    var teamReviewsCollection = new app.TeamReviewsCollection(teamReviews);
+    var revieweeCollection = new app.RevieweeCollection(teamReviews);
 
     var theRevieweeView = new app.RevieweeView();
     var allRevieweesView = new app.RevieweesView({
       el: $("#all-right-side"),
       agg:false
-    }).loadData(teamReviews);
+    }).loadData(revieweeCollection);
     var aggRevieweesView = new app.RevieweesView({
       el: $("#agg-right-side"),
       agg:true
-    }).loadData(teamReviews);
-
+    }).loadData(revieweeCollection);
     var onReviewee = {
       selected: function(d){
         app.showView('ind');
@@ -95,7 +94,7 @@ $(document).ready(function() {
     };
 
     var chart = new app.StackedChart({
-      collection: teamReviewsCollection,
+      collection: revieweeCollection,
       xName: "score",
       outer_width: 400,
       outer_height: 300,
@@ -108,9 +107,7 @@ $(document).ready(function() {
 
     var revieweeList = new app.RevieweeList({
       el: $("#reviewee-list"),
-      collection: teamReviewsCollection,
-      onItemSelected: onReviewee.selected,
-      onItemDeselected: onReviewee.deselected
+      collection: revieweeCollection
     });
 
     var totalReviews = [];
