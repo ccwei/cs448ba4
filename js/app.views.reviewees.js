@@ -22,31 +22,49 @@
         this.$el.find("#reviewees-show-all-"+this.viewId).addClass("display-none");
         this.$el.find("#reviewees-show-agg-"+this.viewId).removeClass("display-none");
       }
+      $('a[data-toggle="tab"]').on('shown', function (e) {
+        if($(e.target).attr('href') === '#agg-tab-tag-cloud-' + that.viewId) {
+          that.renderTagCloud();
+        }
+      });
     },
     loadData: function(reviewees){
-      var totalReviews = [];
+      this.totalReviews = [];
       var that = this;
-      var tmpReviews = _(reviewees.models).map(function (reviewee) {
-        return reviewee.get('reviews');
-      });
-      _.each(tmpReviews, function(r) {
-        totalReviews = totalReviews.concat(r);
-      });
-
+      if(reviewees && reviewees.length > 0) {
+        var tmpReviews = _(reviewees.models).map(function (reviewee) {
+          return reviewee.get('reviews');
+        });
+        _.each(tmpReviews, function(r) {
+          that.totalReviews = that.totalReviews.concat(r);
+        });
+      }
       this.keywordListsView = new app.KeywordListsView({
-        model: totalReviews,
+        model: this.totalReviews,
         el: $("#agg-tab-keyword-list-" + that.viewId)
       });
-
-      this.tagCloudsView = new app.TagCloudsView({
-        model: totalReviews,
-        el: $("#agg-tab-tag-cloud-" + that.viewId)
-      });
+      this.redrawTagCloud = true;
+      this.renderTagCloud(this.totalReviews);
     },
 
     render: function(){
       //DO NOTHING since we haven't used the template for this view yet
       //TODO: not a bad idea to use template here too!
+    },
+
+    renderTagCloud: function() {
+      var that = this;
+      var displayTagCloud = function () {
+        return ( ($("#all-right-side .nav .active a").attr("href") === '#agg-tab-tag-cloud-' + that.viewId) || ($("#agg-right-side .nav .active a").attr("href") === '#agg-tab-tag-cloud-' + that.viewId) ) && that.redrawTagCloud;
+      };
+
+      if(displayTagCloud()){
+        this.tagCloudsView = new app.TagCloudsView({
+          model: this.totalReviews,
+          el: $("#agg-tab-tag-cloud-" + that.viewId)
+        });
+        this.redrawTagCloud = false;
+      }
     }
 
   });

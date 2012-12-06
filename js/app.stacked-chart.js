@@ -82,8 +82,8 @@
        * @param  {[type]} className
        * @param  {[type]} s         d3.event.target.extent();
        */
-      var classedRectInBrush = function(className,s){
-        if(s[0]===s[1]){
+      var classedRectInBrush = function(className, extent){
+        if(extent[0] === extent[1]){
           // if the selection is empty!
           rects.classed(className,false);
         }else{
@@ -92,9 +92,23 @@
             var _rx = _lx + x.rangeBand(d.get(xName));
 
             // console.log(s[0],_rx,_lx,s[1]);
-            return s[0] <= _rx && _lx <= s[1];
+            return extent[0] <= _rx && _lx <= extent[1];
           });
         }
+      };
+
+      var filterData = function(extent){
+        var filterData = [];
+        if(extent[0] !== extent[1]){
+          _(models).each(function(reviewee) {
+            var _lx = x(reviewee.get(xName));
+            var _rx = _lx + x.rangeBand(reviewee.get(xName));
+            if(extent[0] <= _rx && _lx <= extent[1]) {
+              filterData.push(reviewee);
+            }
+          });
+        }
+        return filterData;
       };
 
       var brushstart = function () {
@@ -114,12 +128,9 @@
         classedRectInBrush("brushed",s);
         console.log("brushend");
         if(!d3.event.target.empty()){
-          that.onBrushed();
-          // aggRevieweesView.loadData()
-
+          that.onBrushed(filterData(s));
         }else{
           that.onUnbrushed();
-
         }
       };
 
