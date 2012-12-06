@@ -43,7 +43,7 @@
       this.keywordLists = {};
 
       _(app.FEEDBACK_TYPE).each(function(type){
-        $(that.$el.selector + " .keyword-list-" + type + ' ol').children().remove();
+        $(that.$el.selector + " .keyword-list-" + type + ' ul').children().remove();
       });
       var matchCount = 0;
       var maxCount = {};
