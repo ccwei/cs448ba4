@@ -81,7 +81,9 @@
 </script>
 
 <script id="feedbackGridTemplate" type="text/template">
-
+  <div class="score-distribution">
+    <%= score_1 %>, <%= score_2 %>, <%= score_3 %>, <%= score_4 %>, <%= score_5 %>
+  </div>
   <table class="feedback-grid">
     <tr>
       <td class="like">
@@ -378,8 +380,6 @@
   <script src="./js/app.views.feedbacks.js"></script>
   <script src="./js/app.views.aggregated-feedback.js"></script>
   <script src="./js/app.views.feedback-modal.js"></script>
-  <script src="./js/app.views.indscore.js"></script>
-  <script src="./js/app.views.indscores.js"></script>
   <script src="./js/app.views.reviewee-detail.js"></script>
   <script src="./js/app.views.reviewee-list.js"></script>
   <script src="./js/app.views.reviewee.js"></script>
