@@ -107,7 +107,9 @@ $(document).ready(function() {
 
     var revieweeList = new app.RevieweeList({
       el: $("#reviewee-list"),
-      collection: revieweeCollection
+      collection: revieweeCollection,
+      onItemSelected: onReviewee.selected,
+      onItemDeselected: onReviewee.deselected
     });
 
     var totalReviews = [];

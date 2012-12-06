@@ -22,13 +22,16 @@
       this.onItemSelected = options.onItemSelected || DO_NOTHING;
       this.onItemDeselected = options.onItemDeselected || DO_NOTHING;
 
-      this.loadData();
+      this.render();
     },
     // events: {
     //   "click .reviewee-list-item": "onItemClicked"
     // },
     loadData: function(newCollection){
       if(newCollection) this.collection = newCollection;
+      this.render();
+    },
+    render: function(){
       var that = this;
       this.collection.each(function(model){
         var $item = $(that.item_template(model.attributes))
