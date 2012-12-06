@@ -42,6 +42,7 @@
       this.onItemDeselected = options.onItemDeselected || DO_NOTHING;
       this.onBrushed = options.onBrushed || DO_NOTHING;
       this.onUnbrushed = options.onUnbrushed || DO_NOTHING;
+      this.tooltip = options.tooltip;
       this.xName = options.xName || "score";
 
       this.initPos();
@@ -250,6 +251,9 @@
 
             // console.log("click :" , d);
           });
+      if(this.tooltip)
+        rects.append("svg:title")
+          .text(this.tooltip);
       return this;
     }
   });
