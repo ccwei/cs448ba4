@@ -27,6 +27,7 @@
           });
           //TODO: link back to one by one view for the review idx reviewIdx
       });
+      this.$el.prepend(_.template($("#searchFieldTemplate").html())());
     },
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
@@ -41,7 +42,6 @@
         that.renderFeedbacks();
       };
 
-      this.$el.prepend(_.template($("#searchFieldTemplate").html())());
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);
 

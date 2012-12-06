@@ -13,7 +13,6 @@
     className: "keywordlists-frame",
     template: _.template($("#keywordListsFrameTemplate").html()),
     keyword: "",
-    liOnclick: function() {},
 
     initialize: function () {
       var that = this;
@@ -31,14 +30,12 @@
       this.$el.prepend(_.template($("#searchFieldTemplate").html())());
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);
-      this.render();
-    },
-    setliOnclick: function (liOnclick) {
-      var that = this;
-      this.liOnclick = liOnclick;
+
+      this.onWordClick = this.options.onWordClick || function() {};
       this.$el.delegate('li', 'click', function(event) {
-            that.liOnclick(event);
-        });
+            that.onWordClick(event);
+      });
+      this.render();
     },
     render: function () {
       var that = this;
@@ -46,7 +43,7 @@
       this.keywordLists = {};
 
       _(app.FEEDBACK_TYPE).each(function(type){
-        $(that.$el.selector + " .keyword-list-" + type + ' ol').children().remove();
+        $(that.$el.selector + " .keyword-list-" + type + ' ul').children().remove();
       });
       var matchCount = 0;
       var maxCount = {};
@@ -56,7 +53,8 @@
           if(that.keyword.length === 0 || d[0].match(new RegExp(that.keyword, "i"))){
             if(!maxCount[type] || maxCount[type] < d[1].count)
               maxCount[type] = d[1].count;
-            var li = $('<li/>').append(d[0] + ' (' + d[1].count + ')');
+            var countSpan = $("<span/>").addClass("count").append(d[1].count);
+            var li = $('<li/>').append(d[0]).append(countSpan);
             li.addClass('clickable keyword');
             matchCount++;
             if(that.keyword.length > 0){
@@ -64,9 +62,10 @@
               li.highlight(that.keyword);
             }
             var bar = $('<div/>').addClass('keyword-item-bar');
-            $(that.$el.selector + " .keyword-list-" + type + ' ul').append(bar).append(li);
+            li.prepend(bar);
+            $(that.$el.selector + " .keyword-list-" + type + ' ul').append(li);
             var percentage = (d[1].count * 1.0) / maxCount[type];
-            bar.width(percentage * 80 + '%');
+            bar.width(percentage * 100 + '%');
           }
         });
       });

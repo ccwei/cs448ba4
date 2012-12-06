@@ -39,8 +39,6 @@
         model: totalReviews,
         el: $("#agg-tab-tag-cloud-" + that.viewId)
       });
-
-      //this.renderTagCloud();
     },
 
     render: function(){

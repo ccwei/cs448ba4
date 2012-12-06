@@ -47,7 +47,9 @@
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
               })
               .text(function(d) { return d.text; })
-              .on("click", function(d) {console.log("click :", d.text);});
+              .on("click", function(d) {
+                that.onWordClick(d);
+              });
         };
 
         var options = this.options;
@@ -57,6 +59,9 @@
         if(options.hasOwnProperty('outer_height')){
           outer_height = options.outer_height;
         }
+
+        this.onWordClick = options.onWordClick || function (){};
+
         width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
         //render
