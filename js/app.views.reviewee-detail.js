@@ -38,7 +38,7 @@
       var indChart = new app.StackedChart({
         collection: new app.RevieweeCollection(indTeamReviews),
         outer_width: 200,
-        outer_height: 150,
+        outer_height: 120,
         el: "#revieweeDetailchart",
         showYAxis:false,
         showBgRects: true,
