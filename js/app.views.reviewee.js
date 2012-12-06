@@ -69,13 +69,13 @@
                         $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
                      }
       });
-
+      this.redrawTagCloud = true;
       this.renderTagCloud();
     },
 
     renderTagCloud: function(){
       var that = this;
-      if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud-' + that.viewId) {
+      if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud-' + that.viewId && this.redrawTagCloud) {
           this.tagCloudsView = new app.TagCloudsView({
             model: that.modal["attributes"].reviews,
             el: $("#ind-tab-tag-cloud-" + that.viewId),
@@ -86,6 +86,7 @@
                           $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
                         }
           });
+          this.redrawTagCloud = false;
         }
       }
   });
