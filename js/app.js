@@ -77,6 +77,8 @@ $(document).ready(function() {
       el: $("#agg-right-side"),
       agg:true
     });
+
+    // handler of onReviewee
     var onReviewee = {
       selected: function(d){
         app.showView('ind');
@@ -104,6 +106,9 @@ $(document).ready(function() {
       onItemDeselected: onReviewee.deselected,
       onBrushed: onReviewee.brushed,
       onUnbrushed: onReviewee.unbrushed,
+      tooltip: function(d,i){
+        return "Team #"+d.get('name');
+      },
       xDomain: _.range(1,10)
     }).render();
 
