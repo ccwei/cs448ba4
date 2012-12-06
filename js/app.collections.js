@@ -18,7 +18,7 @@
     model: window.app.Feedback
   });
 
-  app.TeamReviewsCollection = Backbone.Collection.extend({
+  app.RevieweeCollection = Backbone.Collection.extend({
     comparator: function(a, b){
       return a.get('score') - b.get('score');
     }

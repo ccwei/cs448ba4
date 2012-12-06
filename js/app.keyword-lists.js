@@ -33,7 +33,8 @@
 
       this.onWordClick = this.options.onWordClick || function() {};
       this.$el.delegate('li', 'click', function(event) {
-            that.onWordClick(event);
+            var text = $(this).find('.text').text();
+            that.onWordClick(text);
       });
       this.render();
     },
@@ -53,12 +54,12 @@
           if(that.keyword.length === 0 || d[0].match(new RegExp(that.keyword, "i"))){
             if(!maxCount[type] || maxCount[type] < d[1].count)
               maxCount[type] = d[1].count;
+            var textSpan = $("<span/>").addClass("text").append(d[0]);
             var countSpan = $("<span/>").addClass("count").append(d[1].count);
-            var li = $('<li/>').append(d[0]).append(countSpan);
+            var li = $('<li/>').append(textSpan).append(countSpan);
             li.addClass('clickable keyword');
             matchCount++;
             if(that.keyword.length > 0){
-              console.log(li);
               li.highlight(that.keyword);
             }
             var bar = $('<div/>').addClass('keyword-item-bar');
