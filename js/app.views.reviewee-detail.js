@@ -36,9 +36,7 @@
       });
 
       var indChart = new app.StackedChart({
-        collection: new app.StackableBlocks(indTeamReviews,{
-          xName:"score"
-        }),
+        collection: new app.TeamReviewsCollection(indTeamReviews),
         outer_width: 200,
         outer_height: 150,
         el: "#revieweeDetailchart",

@@ -72,16 +72,15 @@ $(document).ready(function() {
     var allRevieweesView = new app.RevieweesView({
       el: $("#all-right-side"),
       agg:false
-    });
+    }).loadData(teamReviews);
     var aggRevieweesView = new app.RevieweesView({
       el: $("#agg-right-side"),
       agg:true
-    });
-
-    allRevieweesView.loadData(teamReviews);
+    }).loadData(teamReviews);
 
     var chart = new app.StackedChart({
       collection: teamReviewsCollection,
+      xName: "score",
       outer_width: 400,
       outer_height: 300,
       el: "#chart",
