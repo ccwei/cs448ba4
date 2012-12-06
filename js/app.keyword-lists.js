@@ -56,7 +56,8 @@
           if(that.keyword.length === 0 || d[0].match(new RegExp(that.keyword, "i"))){
             if(!maxCount[type] || maxCount[type] < d[1].count)
               maxCount[type] = d[1].count;
-            var li = $('<li/>').append(d[0] + ' (' + d[1].count + ')');
+            var countSpan = $("<span/>").addClass("count").append(d[1].count);
+            var li = $('<li/>').append(d[0]).append(countSpan);
             li.addClass('clickable keyword');
             matchCount++;
             if(that.keyword.length > 0){
@@ -64,9 +65,10 @@
               li.highlight(that.keyword);
             }
             var bar = $('<div/>').addClass('keyword-item-bar');
-            $(that.$el.selector + " .keyword-list-" + type + ' ul').append(bar).append(li);
+            li.prepend(bar);
+            $(that.$el.selector + " .keyword-list-" + type + ' ul').append(li);
             var percentage = (d[1].count * 1.0) / maxCount[type];
-            bar.width(percentage * 80 + '%');
+            bar.width(percentage * 100 + '%');
           }
         });
       });
