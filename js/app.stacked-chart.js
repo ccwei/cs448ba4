@@ -27,7 +27,9 @@
       _(this.options).defaults({
         outer_width: 960,
         outer_height: 500,
-        showYAxis: true
+        showYAxis: true,
+        showBgRects: false,
+        xDomain: false //override with range to for domain of X
       });
 
       _(this.options).defaults({
@@ -138,6 +140,7 @@
 
       xAxis = d3.svg.axis()
         .scale(x)
+        // .tickSize(0)
         .orient("bottom");
 
       yAxis = d3.svg.axis()
@@ -151,8 +154,11 @@
         .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      x.domain(models.map(function(d) { return d.get(xName); }));
-      y.domain([0, d3.max(models, function(d) { return d.total; })]);
+      var xDomain = this.options.xDomain || models.map(function(d) { return d.get(xName); });
+      var yMaxDomain = d3.max(models, function(d) { return d.total; });
+
+      x.domain(xDomain );
+      y.domain([0, yMaxDomain]);
 
       //init x axis group on svg
       svg.append("g")
@@ -185,6 +191,21 @@
           )
           .selectAll("rect")
             .attr("height", height);
+      }
+
+      if(this.options.showBgRects){
+        var bg_rects = svg.append("g").attr("class","bg-rects")
+          .selectAll(".bg-rect")
+            .data(xDomain)
+            .enter()
+            .append("g")
+              .attr("transform", function(d){
+                return "translate("+x(d)+",0)";
+              })
+              .append("rect")
+                .attr('class','bg-rect')
+                .attr("width", x.rangeBand())
+                .attr("height", y(0));
       }
       state = svg.selectAll(".state")
                 .data(models)

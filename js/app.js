@@ -102,7 +102,8 @@ $(document).ready(function() {
       onItemSelected: onReviewee.selected,
       onItemDeselected: onReviewee.deselected,
       onBrushed: onReviewee.brushed,
-      onUnbrushed: onReviewee.unbrushed
+      onUnbrushed: onReviewee.unbrushed,
+      xDomain: _.range(1,10)
     }).render();
 
     var revieweeList = new app.RevieweeList({
