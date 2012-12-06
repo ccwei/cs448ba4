@@ -63,10 +63,16 @@
   background-color: #f0f8ff;
   color: black;
 }
+#global-filter {
+  margin-bottom: 10px;
+}
 li.feedback:hover {
   cursor: pointer;
   background-color: #f0f8ff;
   color: black;
+}
+.reviewee-detail {
+  margin-bottom: 10px;
 }
 ul.no-bullet {
   list-style: none;
