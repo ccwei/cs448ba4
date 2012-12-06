@@ -14,7 +14,7 @@
 
   //View for the reviewee
   app.RevieweeList = Backbone.View.extend({
-    template: _.template($("#revieweeListTemplate").html()),
+    template: _.template($("#revieweeListItemTemplate").html()),
     // el: $("#ind-right-side"), //TODO(kanitw): use this when we use template!
     initialize: function () {
 
