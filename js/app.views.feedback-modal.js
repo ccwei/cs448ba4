@@ -14,18 +14,17 @@
     el: "#feedback-modal",
     tagName: "div",
     className: "feedback-modal",
-    template: $("#feedbackModalTemplate").html(),
+    template: _.template($("#feedbackModalTemplate").html()),
+    item_template: _.template($("#feedbackGridTemplate").html()),
 
     initialize: function() {
       this.render();
     },
     render: function () {
-        var feedbackView = new app.FeedbackView({ model: this.model});
-        var tmpl = _.template(this.template);
-        $(this.el).html(tmpl());
-        $(this.el).children('.feedbackModal').children('.modal-body').append($(feedbackView.render().el).children('.feedback-grid'));
-        $(this.el).children('.feedbackModal').modal('show');
-        return this;
+      $(this.el).html(this.template());
+      $(this.el).children('.feedbackModal').children('.modal-body').append(this.item_template(this.model.attributes));
+      $(this.el).children('.feedbackModal').modal('show');
+      return this;
     }
   });
 })(jQuery);

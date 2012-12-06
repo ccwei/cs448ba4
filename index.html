@@ -26,6 +26,10 @@
   <h1><span><%= name %></span></h1>
 </script>
 
+<script id="revieweeListTemplate" type="text/template">
+  <h1><span><%= name %></span></h1>
+</script>
+
 <script id="revieweeDetailTemplate" type="text/template">
   <div>
     <div class="icon">
@@ -160,7 +164,7 @@
     Showing Submissions Aggregated
   </div>
   <ul class="nav nav-tabs">
-    <li>
+    <li class="active">
       <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
         Tag Cloud
       </a>
@@ -339,8 +343,21 @@
     <div class="row-fluid" >
       <div class="span6">
         <div class="white well ">
-          <div class="default-padding">
-            <div id="chart"></div>
+          <ul class="nav nav-tabs">
+            <li>
+              <a href="#reviewee-list" data-toggle="tab">
+                List
+              </a>
+            </li>
+            <li class="active">
+              <a href="#chart" data-toggle="tab">
+                Chart
+              </a>
+            </li>
+          </ul>
+          <div class="default-padding tab-content">
+            <div id="reviewee-list"></div>
+            <div id="chart" class='tab-pane active'></div>
           </div>
       </div>
       </div>
@@ -361,9 +378,10 @@
   <script src="./js/app.views.feedbacks.js"></script>
   <script src="./js/app.views.aggregated-feedback.js"></script>
   <script src="./js/app.views.feedback-modal.js"></script>
-  <script src="./js/app.views.reviewee-detail.js"></script>
   <script src="./js/app.views.indscore.js"></script>
   <script src="./js/app.views.indscores.js"></script>
+  <script src="./js/app.views.reviewee-detail.js"></script>
+  <script src="./js/app.views.reviewee-list.js"></script>
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.views.reviewees.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
