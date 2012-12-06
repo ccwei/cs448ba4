@@ -17,6 +17,22 @@
    * - outer_height
    * - onItemClick: function()
    */
+
+
+  app.StackableBlocks = Backbone.Collection.extend({
+    comparator: function(a, b){
+      return a.attributes[this.xName] - b.attributes[this.xName];
+    },
+    initialize: function(models,options) {
+
+      this.xName =  (options ? options.xName : null ) || "score";
+
+      // console.log("ReviewDir.Models");
+      // console.log(this);
+      // that.initPos();  -- should be called here but a bug theat cause this.models to be null prevent us from calling it here!!
+    }
+  });
+
   app.StackedChart = Backbone.View.extend({
     //TODO(kanitw): register to ReviewDir's event
 
@@ -28,6 +44,8 @@
         showYAxis: true
       });
 
+
+
       _(this.options).defaults({
         margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 40: 20)}
       });
@@ -36,9 +54,28 @@
       this.onItemDeselected = options.onItemDeselected || DO_NOTHING;
       this.onBrushed = options.onBrushed || DO_NOTHING;
       this.onUnbrushed = options.onUnbrushed || DO_NOTHING;
+      this.xName = options.xName || "score";
+
+      this.initPos();
+    },
+    initPos: function(){
+      var xName = this.xName;
+      var total = {};
+      this.collection.models.forEach(function(d) {
+        if(!total[d.get(xName)]) {
+          d.y0 = total[d.get(xName)] = 0;
+          d.y1 = total[d.get(xName)] = 1;
+        } else {
+          d.y0 = total[d.get(xName)];
+          d.y1 = total[d.get(xName)] = d.y0 + 1;
+        }
+        d.total = d.y1;
+      });
+      return this;
     },
     render: function(){
       var options = this.options;
+      var xName = this.collection.xName;
       // console.log(options);
 
       var outer_width = options.outer_width;
@@ -51,7 +88,7 @@
       //render
       var that = this;
       var x,y,xAxis,yAxis,svg,brush,rects,state, rangeBand;
-      var data=_(this.collection.models).pluck('attributes');
+      var models = this.collection.models;
       /**
        * Call classed given className for rect in the selection brush
        * @param  {[type]} className
@@ -63,8 +100,8 @@
           rects.classed(className,false);
         }else{
           rects.classed(className, function(d) {
-            var _lx = x(d.score);
-            var _rx = _lx + x.rangeBand(d.score);
+            var _lx = x(d.get(xName));
+            var _rx = _lx + x.rangeBand(d.get(xName));
 
             // console.log(s[0],_rx,_lx,s[1]);
             return s[0] <= _rx && _lx <= s[1];
@@ -128,8 +165,8 @@
         .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      x.domain(data.map(function(d) { return d.score; }));
-      y.domain([0, d3.max(data, function(d) { return d.total; })]);
+      x.domain(models.map(function(d) { return d.get(xName); }));
+      y.domain([0, d3.max(models, function(d) { return d.total; })]);
 
       //init x axis group on svg
       svg.append("g")
@@ -164,10 +201,10 @@
             .attr("height", height);
       }
       state = svg.selectAll(".state")
-                .data(data)
+                .data(models)
               .enter().append("g")
                 .attr("class", "g")
-                .attr("transform", function(d) { return "translate(" + x(d.score) + ",0)"; });
+                .attr("transform", function(d) { return "translate(" + x(d.get(xName)) + ",0)"; });
       rects = state.append("rect");
 
       var clickable = that.options.hasOwnProperty('onItemSelected') || that.options.hasOwnProperty('onItemDeselected');

@@ -66,23 +66,22 @@ $(document).ready(function() {
       tr.score = Math.round(sum * 1.0 / tr.reviews.length);
     });
 
-      var dir = new app.ReviewDir(teamReviews);
-      dir.initPos(); //need to be called here
+    var stackableBlocks = new app.StackableBlocks(teamReviews);
 
-      var theRevieweeView = new app.RevieweeView();
-      var allRevieweesView = new app.RevieweesView({
-        el: $("#all-right-side"),
-        agg:false
-      });
-      var aggRevieweesView = new app.RevieweesView({
-        el: $("#agg-right-side"),
-        agg:true
-      });
+    var theRevieweeView = new app.RevieweeView();
+    var allRevieweesView = new app.RevieweesView({
+      el: $("#all-right-side"),
+      agg:false
+    });
+    var aggRevieweesView = new app.RevieweesView({
+      el: $("#agg-right-side"),
+      agg:true
+    });
 
-      allRevieweesView.loadData(teamReviews);
+    allRevieweesView.loadData(teamReviews);
 
     var chart = new app.StackedChart({
-      collection: dir,
+      collection: new app.StackableBlocks(teamReviews),
       outer_width: 400,
       outer_height: 300,
       el: "#chart",
@@ -100,6 +99,12 @@ $(document).ready(function() {
         app.showView("all");
       }
     }).render();
+
+    var revieweeList = new app.RevieweeList({
+      el: $("#reviewee-list"),
+      collection: stackableBlocks
+    });
+
     var totalReviews = [];
     _.each(_(teamReviews).pluck('reviews'), function(r) {
       totalReviews = totalReviews.concat(r);
