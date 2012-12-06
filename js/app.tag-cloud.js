@@ -13,7 +13,6 @@
   app.TagCloud = Backbone.View.extend((function(){
 
     return {
-      liOnclick: function() {},
       initialize: function(){
         this.data = this.model.feedbackWords;
         this.maxCount = this.model.maxCount;
@@ -49,7 +48,7 @@
               })
               .text(function(d) { return d.text; })
               .on("click", function(d) {
-                that.liOnclick(d);
+                that.onWordClick(d);
               });
         };
 
@@ -60,6 +59,9 @@
         if(options.hasOwnProperty('outer_height')){
           outer_height = options.outer_height;
         }
+
+        this.onWordClick = options.onWordClick || function (){};
+
         width = outer_width - margin.left - margin.right,
         height = outer_height - margin.top - margin.bottom;
         //render
