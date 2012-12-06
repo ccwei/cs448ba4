@@ -19,7 +19,7 @@
     initialize: function () {
 
     },
-    loadData: function(reviewee){
+    loadData: function(reviewDir){
 
     }
 

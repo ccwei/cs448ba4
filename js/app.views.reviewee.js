@@ -43,9 +43,9 @@
       var that = this;
       this.modal = new app.Reviewee(reviewee);
       console.log(this.modal);
-      this.feedbacksAggregatedView.loadData(reviewee.reviews);
+      this.feedbacksAggregatedView.loadData(reviewee.get('reviews'));
       this.revieweeDetailView.loadData(reviewee);
-      this.feedbacksView.loadData(reviewee.reviews);
+      this.feedbacksView.loadData(reviewee.get('reviews'));
 
       var scores = _.map(reviewee.reviews, function(d, idx) {
         return {score: d.score};
@@ -59,7 +59,7 @@
       this.indScoreView = new app.IndScoreView();
 
       this.keywordListsView = new app.KeywordListsView({
-        model: reviewee.reviews,
+        model: reviewee.get('reviews'),
         el: $("#ind-tab-keyword-list-" + that.viewId)
       });
 

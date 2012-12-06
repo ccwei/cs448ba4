@@ -22,7 +22,7 @@
     },
     loadData: function(reviewee){
 
-      this.model = new app.Reviewee(reviewee);
+      this.model = reviewee;
       // console.log(this.model);
       this.render(reviewee);
     },
@@ -31,21 +31,21 @@
       this.$el.html(this.template(this.model.toJSON()));
 
       var indTeamReviews = [];
-      _(reviewee.reviews).each(function (r) {
+      _(reviewee.get('reviews')).each(function (r) {
         indTeamReviews.push({teamid: r.user_id, score: Math.round(r.score), reviews:[r]});
       });
-      var reviewDir = new app.ReviewDir(indTeamReviews);
-      reviewDir.initPos(); //need to be called here
 
       var indChart = new app.StackedChart({
-        collection: reviewDir,
+        collection: new app.StackableBlocks(indTeamReviews,{
+          xName:"score"
+        }),
         outer_width: 200,
         outer_height: 150,
         el: "#revieweeDetailchart",
         showYAxis:false,
         onItemSelected: function(d){
           var feedbackModal = new app.FeedbackModalView({
-            model: new app.Feedback(d.reviews[0])
+            model: new app.Feedback(d.get('reviews')[0])
           });
         },
         onItemDeselected: function(d){
