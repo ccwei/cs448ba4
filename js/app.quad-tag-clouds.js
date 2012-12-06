@@ -12,7 +12,6 @@
     tagName: "div",
     className: "tagclouds-frame",
     template: _.template($("#tagCloudsFrameTemplate").html()),
-
     initialize: function () {
       var that = this;
       this.frequentWords = {};
@@ -20,6 +19,7 @@
         that.frequentWords[type] = new app.FrequentWords(that.model, type);
       });
       this.$el.html(this.template());
+      this.onWordClick = this.options.onWordClick || function() {};
       this.render();
     },
 
@@ -31,12 +31,12 @@
           model: that.frequentWords[type],
           el: $('#' + that.$el.attr('id') + " .tag-cloud-" + type),
           outer_width: 250,
-          outer_height: 250
+          outer_height: 250,
+          onWordClick: that.onWordClick
         });
       });
 
       return this;
     }
-
   });
 })(jQuery);

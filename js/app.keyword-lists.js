@@ -13,7 +13,6 @@
     className: "keywordlists-frame",
     template: _.template($("#keywordListsFrameTemplate").html()),
     keyword: "",
-    liOnclick: function() {},
 
     initialize: function () {
       var that = this;
@@ -31,14 +30,12 @@
       this.$el.prepend(_.template($("#searchFieldTemplate").html())());
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);
-      this.render();
-    },
-    setliOnclick: function (liOnclick) {
-      var that = this;
-      this.liOnclick = liOnclick;
+
+      this.onWordClick = this.options.onWordClick || function() {};
       this.$el.delegate('li', 'click', function(event) {
-            that.liOnclick(event);
-        });
+            that.onWordClick(event);
+      });
+      this.render();
     },
     render: function () {
       var that = this;
@@ -46,7 +43,7 @@
       this.keywordLists = {};
 
       _(app.FEEDBACK_TYPE).each(function(type){
-        $(that.$el.selector + " .keyword-list-" + type + ' ol').children().remove();
+        $(that.$el.selector + " .keyword-list-" + type + ' ul').children().remove();
       });
       var matchCount = 0;
       var maxCount = {};

@@ -60,15 +60,14 @@
 
       this.keywordListsView = new app.KeywordListsView({
         model: reviewee.reviews,
-        el: $("#ind-tab-keyword-list-" + that.viewId)
-      });
-
-      this.keywordListsView.setliOnclick (function (event) {
-        var text = $(event.target).text();
-        console.log("click on ", text);
-        text = text.substr(0, text.indexOf(" ("));
-        that.feedbacksAggregatedView.setSearchWord(text);
-        $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+        el: $("#ind-tab-keyword-list-" + that.viewId),
+        onWordClick: function (event) {
+                        var text = $(event.target).text();
+                        console.log("click on ", text);
+                        text = text.substr(0, text.indexOf(" ("));
+                        that.feedbacksAggregatedView.setSearchWord(text);
+                        $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+                     }
       });
 
       this.renderTagCloud();
@@ -79,7 +78,13 @@
       if($("#ind-right-side .nav .active a").attr("href") === '#ind-tab-tag-cloud-' + that.viewId) {
           this.tagCloudsView = new app.TagCloudsView({
             model: that.modal["attributes"].reviews,
-            el: $("#ind-tab-tag-cloud-" + that.viewId)
+            el: $("#ind-tab-tag-cloud-" + that.viewId),
+            onWordClick: function (d) {
+              console.log("clieck ", d);
+                          var text = d.text;
+                          that.feedbacksAggregatedView.setSearchWord(text);
+                          $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+                        }
           });
         }
       }
