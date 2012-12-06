@@ -78,30 +78,39 @@ $(document).ready(function() {
       agg:true
     }).loadData(teamReviews);
 
+    var onReviewee = {
+      selected: function(d){
+        app.showView('ind');
+        theRevieweeView.loadData(d);
+      },
+      deselected: function(d){
+        app.showView('app');
+      },
+      brushed: function(){
+        app.showView("agg");
+      },
+      unbrushed: function(){
+        app.showView("all");
+      }
+    };
+
     var chart = new app.StackedChart({
       collection: teamReviewsCollection,
       xName: "score",
       outer_width: 400,
       outer_height: 300,
       el: "#chart",
-      onItemSelected: function(d){
-        app.showView('ind');
-        theRevieweeView.loadData(d);
-      },
-      onItemDeselected: function(d){
-        app.showView('app');
-      },
-      onBrushed: function(){
-        app.showView("agg");
-      },
-      onUnbrushed: function(){
-        app.showView("all");
-      }
+      onItemSelected: onReviewee.selected,
+      onItemDeselected: onReviewee.deselected,
+      onBrushed: onReviewee.brushed,
+      onUnbrushed: onReviewee.unbrushed
     }).render();
 
     var revieweeList = new app.RevieweeList({
       el: $("#reviewee-list"),
-      collection: teamReviewsCollection
+      collection: teamReviewsCollection,
+      onItemSelected: onReviewee.selected,
+      onItemDeselected: onReviewee.deselected
     });
 
     var totalReviews = [];

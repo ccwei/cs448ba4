@@ -19,15 +19,17 @@
 
 
 <script id="indScoreTemplate" type="text/template">
-  <h4><span><%= score %></span></h4>
+  <h4><%= score %></h4>
 </script>
 
 <script id="revieweeTemplate" type="text/template">
-  <h1><span><%= name %></span></h1>
+  <h1><%= name %></h1>
 </script>
 
 <script id="revieweeListItemTemplate" type="text/template">
-  <h4><span><%= name %></span></h4>
+  <div class="reviewee-list-item clickable">
+    <h4><%= name %></h4>
+  </div>
 </script>
 
 <script id="revieweeDetailTemplate" type="text/template">
@@ -356,7 +358,7 @@
             </li>
           </ul>
           <div class="default-padding tab-content">
-            <div id="reviewee-list"></div>
+            <div id="reviewee-list" class='tab-pane'></div>
             <div id="chart" class='tab-pane active'></div>
           </div>
       </div>
