@@ -12,7 +12,8 @@
 
   app.FeedbacksView = Backbone.View.extend({
     template: _.template($("#feedbacksTemplate").html()),
-    item_template: _.template($("#feedbackGridTemplate").html()),
+    item_template: _.template($("#feedbackGridTemplate").html()),    
+    score_template: _.template($("#indScoreTemplate").html()),
     tagName: "div",
     className: "feedbacks-view",
 
@@ -33,15 +34,23 @@
 
       _.each(this.collection.models, function (item) {
         // that.renderFeedback(item);
+        // console.log(item.atrributes);
+        // d3.select(".score-distribution").append("div").attr("class", "chart");
         this.$el.find('.feedbacks')
           .append(this.item_template(item.toJSON()))
           .append("<hr/>");
+          // .append(this.score_template(item.toJSON()));
 
-
-        this.$el.find(".indscores").append("Put your render of indscore view here!");
+        this.$el.find('.indscores')
+          .append(this.score_template(item.toJSON()))
+          .append("<hr/>");
+        // this.$el.find(".indscores").append("Put your render of indscore view here!");
 
 
       }, this);
+
+      
+
 
       // _.each(this.collection.models, function (item) {
       //     that.renderFeedback(item);
