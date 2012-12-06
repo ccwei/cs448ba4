@@ -28,7 +28,16 @@
 
 <script id="revieweeListItemTemplate" type="text/template">
   <div class="reviewee-list-item clickable">
-    <h4><%= name %></h4>
+    <h4>Team #<%= name %></h4>
+    <div>
+      <b>First Industry: </b>
+      <%=first_industry_sector%>,
+      <b>Second Industry: </b>
+      <%=second_industry_sector%>,
+      <b>Team Score: </b>
+      <%=team_score%>
+    </div>
+    <hr/>
   </div>
 </script>
 
