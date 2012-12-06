@@ -10,14 +10,17 @@
 
   window.app = window.app || {};
 
+  var total = 0;
+
   app.FeedbacksView = Backbone.View.extend({
     template: _.template($("#feedbacksTemplate").html()),
-    item_template: _.template($("#feedbackGridTemplate").html()),    
+    item_template: _.template($("#feedbackGridTemplate").html()),
     score_template: _.template($("#indScoreTemplate").html()),
     tagName: "div",
     className: "feedbacks-view",
 
     initialize: function () {
+      this.viewId = ++total;
       if(this.collection){
         this.loadData(this.collection);
       }
@@ -36,10 +39,22 @@
         // that.renderFeedback(item);
         // console.log(item.atrributes);
         // d3.select(".score-distribution").append("div").attr("class", "chart");
+
+        var $feedbackDiv = $(this.item_template(item.toJSON()) );
+        $feedbackDiv.find(".score-distribution").each(function(){
+          d3.select(this).append("b").html("yay");
+          //
+          // var chart = new StackedChart({
+          //   el: this
+          // })
+        });
         this.$el.find('.feedbacks')
-          .append(this.item_template(item.toJSON()))
+          .append($feedbackDiv)
           .append("<hr/>");
           // .append(this.score_template(item.toJSON()));
+
+        // var d3place = d3.select(".feedbacks .score-distribution");
+        // d3place.append("hahah");
 
         this.$el.find('.indscores')
           .append(this.score_template(item.toJSON()))
@@ -49,7 +64,7 @@
 
       }, this);
 
-      
+
 
 
       // _.each(this.collection.models, function (item) {

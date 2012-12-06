@@ -83,32 +83,33 @@
 </script>
 
 <script id="feedbackGridTemplate" type="text/template">
-  <div class="score-distribution">
-    <%= score_1 %>, <%= score_2 %>, <%= score_3 %>, <%= score_4 %>, <%= score_5 %>
+  <div class="feedback">
+    <div class="score-distribution">
+      <%= score_1 %>, <%= score_2 %>, <%= score_3 %>, <%= score_4 %>, <%= score_5 %>
+    </div>
+    <table class="feedback-grid">
+      <tr>
+        <td class="like">
+          <div class="grid-cell"><%= notable %></div>
+          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
+        </td>
+        <td class="wish">
+          <div class="grid-cell"><%= constructive %></div>
+          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="question">
+          <div class="grid-cell"><%= questions %></div>
+          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
+        </td>
+        <td class="big-idea">
+          <div class="grid-cell"><%= ideas %></div>
+          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
+        </td>
+      </tr>
+    </table>
   </div>
-  <table class="feedback-grid">
-    <tr>
-      <td class="like">
-        <div class="grid-cell"><%= notable %></div>
-        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
-      </td>
-      <td class="wish">
-        <div class="grid-cell"><%= constructive %></div>
-        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
-      </td>
-    </tr>
-    <tr>
-      <td class="question">
-        <div class="grid-cell"><%= questions %></div>
-        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
-      </td>
-      <td class="big-idea">
-        <div class="grid-cell"><%= ideas %></div>
-        <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
-      </td>
-    </tr>
-  </table>
-
 </script>
 
 <script id="revieweeViewTemplate" type="text/template">

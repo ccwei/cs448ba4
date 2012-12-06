@@ -51,11 +51,7 @@
       });
       // If you decide not to parse the whole d.reviews object, I would suggest your to use
       // var scores = _(d.reviews).pluck("score");
-      this.indScoresView = new app.IndScoresView({
-        collection:scores,
-        el: $('#indscores')
-      });
-      this.indScoreView = new app.IndScoreView();
+
       console.log("reviewee.reviews = ", reviewee.reviews);
       this.keywordListsView = new app.KeywordListsView({
         model: reviewee.get('reviews'),
