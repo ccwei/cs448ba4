@@ -63,10 +63,11 @@ body {
   text-transform: uppercase;
 }
 h3.mini-header {
-  padding: 3px 0px 3px 15px;
+  padding: 5px 0px 5px 15px;
   margin: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: #eee;
+  border-bottom: 1px solid #DDD;
 }
 .nav-tabs.full {
   padding-left: 10px;
@@ -79,14 +80,16 @@ h3.mini-header {
   background-color: #eee;
 }
 .mini-header-tabber {
+  padding-top: 1px;
   background-color: #eee;
 }
 .mini-header-tabber ul.nav-tabs.mini {
   margin-top: 0px;
+  margin-bottom: 10px;
 }
 .mini-header-tabber ul.nav-tabs.mini li > a {
-  padding-top: 2px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 2px;
   font-size: 12px;
 }
 .mini-header-tabber ul.nav-tabs.mini li > a.mini-header {
@@ -94,7 +97,7 @@ h3.mini-header {
 }
 .mini-header-tabber ul.nav-tabs.mini li.mini-header a {
   font-size: 11px;
-  padding-bottom: 1px;
+  padding-bottom: 4px;
   padding-top: 2px;
   padding-left: 0;
   text-transform: uppercase;
