@@ -58,7 +58,7 @@
         el: $("#ind-tab-keyword-list-" + that.viewId),
         onWordClick: function (text) {
                         that.feedbacksAggregatedView.setSearchWord(text);
-                        $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+                        $('#ind-tab-reviews-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
                      }
       });
       this.redrawTagCloud = true;
@@ -72,10 +72,10 @@
             model: that.modal["attributes"].reviews,
             el: $("#ind-tab-tag-cloud-" + that.viewId),
             onWordClick: function (d) {
-              console.log("clieck ", d);
+              console.log("click ", d);
                           var text = d.text;
                           that.feedbacksAggregatedView.setSearchWord(text);
-                          $('#ind-tab-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+                          $('#ind-tab-reviews-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
                         }
           });
           this.redrawTagCloud = false;
