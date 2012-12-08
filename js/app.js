@@ -26,6 +26,16 @@
     }
   };
 
+function containerResize() {
+  var H = $(window).height();
+  $('#root').height(H);
+  $('#reviewee-list').height(H-$('.left-side h1').height()-$('.left-side .upeer').height()-$('.left-side h3.mini-header').height());
+}
+$(window).bind('resize', function() { containerResize(); });
+$(document).ready(function() {
+  containerResize();
+});
+
 $(document).ready(function() {
   d3.tsv("./data/a4_allscores.tsv", function(data) {
     data = _.filter(data, function(d){
@@ -99,8 +109,8 @@ $(document).ready(function() {
     var chart = new app.StackedChart({
       collection: revieweeCollection,
       xName: "score",
-      outer_width: 400,
-      outer_height: 300,
+      outer_width: 300,
+      outer_height: 200,
       el: "#chart",
       onItemSelected: onReviewee.selected,
       onItemDeselected: onReviewee.deselected,
