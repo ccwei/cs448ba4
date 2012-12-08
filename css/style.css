@@ -270,6 +270,41 @@ table.feedback-grid textarea[disabled] {
   background-color: #2b8cff;
   height: 3px;
 }
+[class*="keyword-list"] .keyword-item-bar.parent {
+  background-color: #fcfcfc;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-questions {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  background-color: red;
+  height: 3px;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-ideas {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  background-color: yellow;
+  height: 3px;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-notable {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  background-color: green;
+  height: 3px;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-constructive {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  background-color: blue;
+  height: 3px;
+}
 [class*="keyword-list"] .keyword {
   font-size: 12px;
   color: #666;
@@ -313,6 +348,9 @@ div.search-div button {
   right: 3px;
   text-align: right;
   padding: 0;
+}
+.found-count {
+  font-size: 12px;
 }
 .axis path,
 .axis line {

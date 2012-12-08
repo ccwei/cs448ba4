@@ -45,7 +45,7 @@
       };
       var processWord = function (review, words, type) {
         var feedbacks = "";
-        if(type) {
+        if(type && type!=="all") {
           feedbacks = review[type]; //If specify type, only select review for that type
         } else {
           _(app.FEEDBACK_TYPE).each(function (t) {
@@ -66,6 +66,10 @@
           });
 
           this.feedbackWords = findTopWords(this.feedbackWords);
+          this.feedbackWordsCount = {};
+          _(this.feedbackWords).each(function(d){
+            that.feedbackWordsCount[d[0]] = d[1].count;
+          });
           //TODO: find better count to be maxCount
           this.maxCount = this.feedbackWords[0][1].count;
         }

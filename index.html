@@ -274,31 +274,41 @@
 </script>
 
 <script id="keywordListsFrameTemplate" type="text/template">
-  <div class="row-fluid">
-    <div class="keyword-list-notable span3">
-      <h5>Notable</h5>
-      <ul class="no-bullet">
-      </ul>
-    </div>
+  <div class="tab-content">
+    <div class="tab-pane display-none">
+      <div class="row-fluid">
+        <div class="keyword-list-notable span3">
+          <h5>Notable</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
 
-    <div class="keyword-list-constructive span3">
-      <h5>Constructive</h5>
-      <ul class="no-bullet">
-      </ul>
-    </div>
+        <div class="keyword-list-constructive span3">
+          <h5>Constructive</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
 
-    <div class="keyword-list-questions span3">
-      <h5>Questions</h5>
-      <ul class="no-bullet">
-      </ul>
-    </div>
+        <div class="keyword-list-questions span3">
+          <h5>Questions</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
 
-    <div class="keyword-list-ideas span3">
-      <h5>Ideas</h5>
-      <ul class="no-bullet">
-      </ul>
+        <div class="keyword-list-ideas span3">
+          <h5>Ideas</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="tab-pane active">
+      <div class="keyword-list-all">
+        <ul class="no-bullet">
+        </ul>
+      </div>
+    </div>
+  <div>
 </script>
 
 <script id="tagCloudsFrameTemplate" type="text/template">
@@ -370,19 +380,20 @@
     </div>
     </div><div id="right-side" class="half">
 
-        <div class="tab-content">
-          <div id="all-right-side" class="tab-pane active"></div>
-          <div id="agg-right-side" class="tab-pane"></div>
-          <div id="ind-right-side" class="tab-pane"></div>
-        </div>
+    <div class="tab-content">
+      <div id="all-right-side" class="tab-pane active"></div>
+      <div id="agg-right-side" class="tab-pane"></div>
+      <div id="ind-right-side" class="tab-pane"></div>
+    </div>
 
   </div></div>
   <script src="./js/app.models.js"></script>
   <script src="./js/app.model.frequentWords.js"></script>
   <script src="./js/app.collections.js"></script>
-  <script src="./js/app.views.feedbacks.js"></script>
   <script src="./js/app.views.aggregated-feedback.js"></script>
+  <script src="./js/app.views.feedbacks.js"></script>
   <script src="./js/app.views.feedback-modal.js"></script>
+
   <script src="./js/app.views.reviewee-detail.js"></script>
   <script src="./js/app.views.reviewee-list.js"></script>
   <script src="./js/app.views.reviewee.js"></script>
@@ -391,7 +402,8 @@
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
   <script src="./js/app.quad-tag-clouds.js"></script>
-  <script src="./js/app.keyword-lists.js"></script>
+  <script src="./js/app.views.keyword-lists.js"></script>
+
   <script src="./js/app.js"></script>
 
   <div id="feedback-modal">

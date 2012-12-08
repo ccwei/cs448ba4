@@ -272,6 +272,29 @@ table.feedback-grid
   .keyword-item-bar{
     background-color: #2b8cff;
     height: 3px;
+    &.parent{
+      background-color: #fcfcfc;
+    }
+    .keyword-item-bar-questions{
+      .inline-block;
+      background-color: red;
+      height: 3px;
+    }
+    .keyword-item-bar-ideas{
+      .inline-block;
+      background-color: yellow;
+      height: 3px;
+    }
+    .keyword-item-bar-notable{
+      .inline-block;
+      background-color: green;
+      height: 3px;
+    }
+    .keyword-item-bar-constructive{
+      .inline-block;
+      background-color: blue;
+      height: 3px;
+    }
   }
 
   .keyword {
@@ -325,6 +348,9 @@ div.search-div{
      padding:0;
    }
 
+ }
+ .found-count{
+   font-size: 12px;
  }
 
 //////SVG ==========================
