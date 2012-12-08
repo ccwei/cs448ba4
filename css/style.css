@@ -235,6 +235,7 @@ table.feedback-grid td .grid-cell {
   margin-bottom: 0;
   resize: none;
   overflow-y: scroll;
+  font-size: 13px;
   height: 150px;
 }
 table.feedback-grid a.icon {

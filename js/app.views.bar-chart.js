@@ -33,7 +33,7 @@
       });
 
       _(this.options).defaults({
-        margin: {top: 25, right: 20, bottom: 30, left: 100}
+        margin: {top: 3, right: 5, bottom: 3, left: 100}
       });
 
 
@@ -66,7 +66,7 @@
           .range([0, width]);
       var y = d3.scale.ordinal()
           .domain(_(data).pluck('y'))
-          .rangeRoundBands([0, height], 0.1);
+          .rangeRoundBands([0, height], 0.3);
 
       var xAxis = d3.svg.axis()
           .scale(x)
@@ -95,19 +95,21 @@
 
       svg.selectAll(".count")
         .data(data)
-      .enter().append("text")
+      .enter().append("text") //number at the right side of the chart
         .text(function(d){ return d.x+"";})
         .attr("x", function(d, i) {
           return x(d.x) + 8;
         })
         .attr("y", function(d) {
-          return y(d.y) + y.rangeBand()/2 + 2;
+          return y(d.y) + y.rangeBand()/2+4;
         })
         .style("text-anchor", "middle");
 
       svg.append("g")
           .attr("class", "y axis")
+          .attr("transform", "translate(-2,0)")
           .call(yAxis);
+      svg.select("path.domain").style("display","none");
       }
   });
 
