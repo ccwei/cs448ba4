@@ -29,6 +29,7 @@
 function containerResize() {
   var H = $(window).height();
   $('#root').height(H);
+  $('#right-side').height(H);
   $('#reviewee-list').height(H-$('.left-side h1').height()-$('.left-side .upeer').height()-$('.left-side h3.mini-header').height());
 }
 $(window).bind('resize', function() { containerResize(); });

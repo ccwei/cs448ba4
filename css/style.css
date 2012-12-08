@@ -105,6 +105,9 @@ h3.mini-header {
 .left-side .upper {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+#right-side {
+  overflow-y: scroll;
+}
 #right-side .alert.head {
   -webkit-border-radius: 0px;
   border-radius: 0px;
