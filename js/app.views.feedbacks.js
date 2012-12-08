@@ -44,7 +44,7 @@
           var barChart = new app.BarChart({
             model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
             xName: "score",
-            outer_width: 400,
+            outer_width: 250,
             outer_height: 200,
             el: this
           }).render();
