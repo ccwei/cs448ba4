@@ -129,10 +129,6 @@ $(document).ready(function() {
       onItemDeselected: onReviewee.deselected
     });
 
-    var totalReviews = [];
-    _.each(_(teamReviews).pluck('reviews'), function(r) {
-      totalReviews = totalReviews.concat(r);
-    });
     });
   });
 

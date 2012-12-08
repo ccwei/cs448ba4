@@ -39,14 +39,15 @@
         // that.renderFeedback(item);
         // console.log(item.atrributes);
         // d3.select(".score-distribution").append("div").attr("class", "chart");
-
         var $feedbackDiv = $(this.item_template(item.toJSON()) );
         $feedbackDiv.find(".score-distribution").each(function(){
-          d3.select(this).append("b").html("yay");
-          //
-          // var chart = new StackedChart({
-          //   el: this
-          // })
+          var barChart = new app.BarChart({
+            model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
+            xName: "score",
+            outer_width: 400,
+            outer_height: 200,
+            el: this
+          }).render();
         });
         this.$el.find('.feedbacks')
           .append($feedbackDiv)
