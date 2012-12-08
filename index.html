@@ -98,7 +98,6 @@
 <script id="feedbackGridTemplate" type="text/template">
   <div class="feedback">
     <div class="score-distribution">
-      <%= score_1 %>, <%= score_2 %>, <%= score_3 %>, <%= score_4 %>, <%= score_5 %>
     </div>
     <table class="feedback-grid">
       <tr>
@@ -182,12 +181,12 @@
     Showing Submissions Aggregated
   </div>
   <ul class="nav nav-tabs">
-    <li class="active">
+    <li>
       <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
         Tag Cloud
       </a>
     </li>
-    <li>
+    <li class="active">
       <a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
         Keyword List
       </a>
@@ -202,9 +201,9 @@
     </li> -->
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="agg-tab-tag-cloud-<%=viewId%>">
+    <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
     </div>
-    <div class="tab-pane" id="agg-tab-keyword-list-<%=viewId%>">
+    <div class="tab-pane active" id="agg-tab-keyword-list-<%=viewId%>">
     </div>
   </div>
     <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
@@ -359,7 +358,8 @@
       </ul>
     </div>
   </div>
-
+  <div id="barChart">
+  </div>
   <div class="container" id="root">
     <div class="row-fluid" >
       <div class="span6">
@@ -411,6 +411,7 @@
   <script src="./js/app.views.reviewee-list.js"></script>
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.views.reviewees.js"></script>
+  <script src="./js/app.views.bar-chart.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
   <script src="./js/app.quad-tag-clouds.js"></script>
