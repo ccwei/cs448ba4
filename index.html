@@ -42,29 +42,33 @@
 </script>
 
 <script id="revieweeDetailTemplate" type="text/template">
-  <div>
+  <div class="reviewee-detail">
     <div class="icon">
     </div>
-    <h3>Team <%= name %></h3>
-    <div>
-      <b>First Industry: </b>
-      <%=first_industry_sector%>
+    <div class="row-fluid">
+    <div class="span6">
+      <h3>Team <%= name %></h3>
+      <div>
+        <b>First Industry: </b>
+        <%=first_industry_sector%>
+      </div>
+      <div>
+        <b>Second Industry: </b>
+        <%=second_industry_sector%>
+      </div>
+
+      <div>
+        <b>Team Score: </b>
+        <%=team_score%>
+      </div>
     </div>
-    <div>
-      <b>Second Industry: </b>
-      <%=second_industry_sector%>
-    </div>
-
-    <div>
-      <b>Team Score: </b>
-      <%=team_score%>
+    <div class="span6">
+      <div id="revieweeDetailchart"></div>
     </div>
 
 
 
 
-    <div id="revieweeDetailchart">
-    </div>
   </div>
 
 </script>
@@ -360,6 +364,9 @@
     <div class="row-fluid" >
       <div class="span6">
         <div class="white well ">
+          <div id="global-filter" class="collapse">
+            Filter by team size, first_industry, second_industry and other characteristics here.
+          </div>
           <ul class="nav nav-tabs">
             <li>
               <a href="#reviewee-list" data-toggle="tab">
@@ -369,6 +376,11 @@
             <li class="active">
               <a href="#chart" data-toggle="tab">
                 Chart
+              </a>
+            </li>
+            <li class="pull-right" id="show-hide-filter">
+              <a href="#" data-toggle="collapse" data-target="#global-filter">
+                Show Filter
               </a>
             </li>
           </ul>
