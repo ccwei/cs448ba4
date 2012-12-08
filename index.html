@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-
   <script src="./js/d3.v2.js"></script>
   <script src="./js/jquery.js"></script>
   <script src="./js/jquery.highlight-4.js"></script>
@@ -125,89 +124,93 @@
 </script>
 
 <script id="revieweeViewTemplate" type="text/template">
-  <div class="alert alert-success alert-small">
+  <div class="head alert alert-success alert-small">
     Showing Individual Team
     <!---TODO(kanitw): Need better word here-->
   </div>
-  <div id="reviewee-detail-<%=viewId%>"></div>
-  <ul id="ind-tab-menu" class="nav nav-tabs">
-    <li>
-      <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-        Tag Cloud
-      </a>
-    </li>
-    <li>
-      <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-        Keyword List
-      </a>
-    </li>
-    <li>
-      <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
-        Aggregate View
-      </a>
-    </li>
-    <li class="active">
-      <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
-        Individual Reviews
-      </a>
-    </li>
-    <!-- <li>
-      <a href="#tab-word-tree-<%=viewId%>">
-        Word Tree
-      </a>
-    </li> -->
-    <!-- <li class='pull-right no-link'>
+  <div class="padding20">
+    <div id="reviewee-detail-<%=viewId%>"></div>
+    <ul id="ind-tab-menu" class="nav nav-tabs">
+      <li>
+        <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+          Tag Cloud
+        </a>
+      </li>
+      <li>
+        <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+          Keyword List
+        </a>
+      </li>
+      <li>
+        <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
+          Aggregate View
+        </a>
+      </li>
+      <li class="active">
+        <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
+          Individual Reviews
+        </a>
+      </li>
+      <!-- <li>
+        <a href="#tab-word-tree-<%=viewId%>">
+          Word Tree
+        </a>
+      </li> -->
+      <!-- <li class='pull-right no-link'>
 
-    </li> -->
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
+      </li> -->
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
+      </div>
+      <div class="tab-pane" id="ind-tab-keyword-list-<%=viewId%>">
+      </div>
+      <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
+      </div>
+      <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
     </div>
-    <div class="tab-pane" id="ind-tab-keyword-list-<%=viewId%>">
-    </div>
-    <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
-    </div>
-    <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
   </div>
 </script>
 
 
 
 <script id="revieweesViewTemplate" type="text/template">
-  <div class="alert alert-grey alert-small" id="reviewees-show-all-<%=viewId%>">
+  <div class="head alert alert-grey alert-small" id="reviewees-show-all-<%=viewId%>">
     Showing All Submissions
   </div>
-  <div class="alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
+  <div class="head alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
     Showing Submissions Aggregated
   </div>
-  <ul class="nav nav-tabs">
-    <li>
-      <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-        Tag Cloud
-      </a>
-    </li>
-    <li class="active">
-      <a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-        Keyword List
-      </a>
-    </li>
-    <!-- <li>
-      <a href="#agg-tab-word-tree-<%=viewId%>" data-toggle="tab">
-        Word Tree
-      </a>
-    </li> -->
-    <!-- <li class='pull-right no-link'>
+  <div class="padding20">
+    <ul class="nav nav-tabs">
+      <li class="active">
+	<a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+          Keyword List
+        </a>
+      </li>
+      <li>
+        <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+          Tag Cloud
+        </a>
+        
+      </li>
+      <!-- <li>
+        <a href="#agg-tab-word-tree-<%=viewId%>" data-toggle="tab">
+          Word Tree
+        </a>
+      </li> -->
+      <!-- <li class='pull-right no-link'>
 
-    </li> -->
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
+      </li> -->
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
+      </div>
+      <div class="tab-pane active" id="agg-tab-keyword-list-<%=viewId%>">
+      </div>
     </div>
-    <div class="tab-pane active" id="agg-tab-keyword-list-<%=viewId%>">
-    </div>
+      <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
   </div>
-    <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
-
 </script>
 
 <script id="feedbackModalTemplate" type="text/template">
@@ -319,88 +322,49 @@
 
 
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="brand">
-        &nbsp; Peereviz
-      </div>
-      <ul class="nav pull-right">
-        <li>
+  <div class="container" id="root"><div class="left-side half">
 
-          <a id="total-count"></a>
-        </li>
-      </ul>
-
-      <ul class="nav">
-
-        <!-- <li class="active">
-          <a href="#col-tab"  data-toggle="tab">
-            1. Select Axes
-          </a>
-        </li>
-
-        <li>
-          <a href="#sub-tab"  data-toggle="tab">
-            2. Filter
-          </a>
-        </li> -->
-       <!--  <li>
-          <a href="#color-tab"  data-toggle="tab">
-            Color Coding?? (Just idea)
-          </a>
-        </li> -->
-
-        <li>
-          <a href="#about-tab"  data-toggle="tab">
-            About
-          </a>
-        </li>
-      </ul>
+    <div class="half-container">
+        <h1>Peereviz</h1>
+        <!-- <ul class="nav nav-tabs">
+          <li>
+            <a href="#reviewee-list" data-toggle="tab">
+              List
+            </a>
+          </li>
+          <li class="active">
+            <a href="#chart" data-toggle="tab">
+              Chart
+            </a>
+          </li>
+          <li class="pull-right" id="show-hide-filter">
+            <a href="#" data-toggle="collapse" data-target="#global-filter">
+              Show Filter
+            </a>
+          </li>
+        </ul> -->
+        <div class="upper">
+          <h3 class="mini-header">Filters</h3>
+          <div class="padding20">
+            <div id="chart"></div>
+          </div>
+        </div>
+        <div class="lower">
+          <h3 class="mini-header">Teams</h3>
+          <div class='full-height'>
+            <div id="reviewee-list"></div>
+          </div>
+        </div>
     </div>
-  </div>
-  <div id="barChart">
-  </div>
-  <div class="container" id="root">
-    <div class="row-fluid" >
-      <div class="span6">
-        <div class="white well ">
-          <div id="global-filter" class="collapse">
-            Filter by team size, first_industry, second_industry and other characteristics here.
-          </div>
-          <ul class="nav nav-tabs">
-            <li>
-              <a href="#reviewee-list" data-toggle="tab">
-                List
-              </a>
-            </li>
-            <li class="active">
-              <a href="#chart" data-toggle="tab">
-                Chart
-              </a>
-            </li>
-            <li class="pull-right" id="show-hide-filter">
-              <a href="#" data-toggle="collapse" data-target="#global-filter">
-                Show Filter
-              </a>
-            </li>
-          </ul>
-          <div class="default-padding tab-content">
-            <div id="reviewee-list" class='tab-pane'></div>
-            <div id="chart" class='tab-pane active'></div>
-          </div>
-      </div>
-      </div>
-      <div class="span6">
-        <div class="white well">
-        <div id="right-side" class="tab-content">
+    </div><div id="right-side" class="half">
+
+        <div class="tab-content">
           <div id="all-right-side" class="tab-pane active"></div>
           <div id="agg-right-side" class="tab-pane"></div>
           <div id="ind-right-side" class="tab-pane"></div>
         </div>
-      </div>
-      </div>
-    </div>
-  </div>
+
+  </div></div>
   <script src="./js/app.models.js"></script>
   <script src="./js/app.model.frequentWords.js"></script>
   <script src="./js/app.collections.js"></script>
