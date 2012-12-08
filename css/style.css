@@ -154,6 +154,34 @@ table.feedback-grid textarea[disabled] {
   content: "x ";
   font-size: 90%;
 }
+.no-border-no-bg {
+  border: none;
+  background: none;
+}
+div.search-div {
+  position: relative;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+div.search-div input[type="search"] {
+  width: 160px;
+  padding-right: 20px;
+  height: 18px;
+  margin-bottom: 0px;
+}
+div.search-div button {
+  border: none;
+  background: none;
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  text-align: right;
+  padding: 0;
+}
 .axis path,
 .axis line {
   fill: none;

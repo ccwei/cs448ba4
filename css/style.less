@@ -129,6 +129,38 @@ table.feedback-grid
   }
 
 }
+
+.no-border-no-bg{
+
+     border: none;
+     background:none;
+ }
+
+
+div.search-div{
+   position:relative;
+   @search-div-width: 160px;
+   .inline-block;
+
+   margin-top:3px;
+   margin-bottom:10px;
+   input[type="search"]{
+     width: @search-div-width;
+     padding-right:20px;
+     height:18px;
+     margin-bottom:0px;
+   }
+   button {
+     .no-border-no-bg;
+     position:absolute;
+     top:6px;
+     right:7px;
+     text-align: right;
+     padding:0;
+   }
+
+ }
+
 //////SVG ==========================
 
 .axis path,
