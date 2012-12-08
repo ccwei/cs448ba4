@@ -68,6 +68,41 @@ h3.mini-header {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: #eee;
 }
+.nav-tabs.full {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+}
+.nav-tabs.full .mini {
+  margin: 0;
+  font-size: 11px;
+  background-color: #eee;
+}
+.mini-header-tabber {
+  background-color: #eee;
+}
+.mini-header-tabber ul.nav-tabs.mini {
+  margin-top: 0px;
+}
+.mini-header-tabber ul.nav-tabs.mini li > a {
+  padding-top: 2px;
+  padding-bottom: 1px;
+  font-size: 12px;
+}
+.mini-header-tabber ul.nav-tabs.mini li > a.mini-header {
+  padding-bottom: 2px;
+}
+.mini-header-tabber ul.nav-tabs.mini li.mini-header a {
+  font-size: 11px;
+  padding-bottom: 1px;
+  padding-top: 2px;
+  padding-left: 0;
+  text-transform: uppercase;
+  color: #999;
+}
+.mini-header-tabber ul.nav-tabs.mini li.mini-header a:hover {
+  color: #999;
+}
 .container#root {
   background-color: white;
   -webkit-border-bottom-right-radius: 5px;
@@ -116,13 +151,11 @@ h3.mini-header {
   border-right: 0px;
   margin-bottom: 0px;
 }
-.nav-tabs.full {
-  padding-left: 20px;
-  margin-top: 10px;
-}
-.nav-tabs > li > a {
-  padding-top: 4px;
-  padding-bottom: 4px;
+#right-side .upper {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.15);
 }
 .default-padding {
   padding: 10px;
@@ -133,6 +166,9 @@ h3.mini-header {
 .padding-side-20 {
   padding: 0 20px;
 }
+.padding-side-10 {
+  padding: 0 10px;
+}
 .alert.alert-small {
   padding: 4px 15px 4px 6px;
 }
@@ -141,6 +177,10 @@ h3.mini-header {
 }
 #reviewee-list {
   padding-left: 20px;
+}
+.keyword-picker {
+  height: 300px;
+  overflow-y: scroll;
 }
 .well.white {
   background-color: #fff;
@@ -157,9 +197,6 @@ li.feedback:hover {
   cursor: pointer;
   background-color: #f0f8ff;
   color: black;
-}
-.reviewee-detail {
-  margin-bottom: 10px;
 }
 ul.no-bullet {
   list-style: none;

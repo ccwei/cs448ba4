@@ -44,27 +44,28 @@
   <div class="reviewee-detail">
     <div class="icon">
     </div>
+    <h4>Team <%= name %></h4>
     <div class="row-fluid">
-    <div class="span6">
-      <h3>Team <%= name %></h3>
-      <div>
-        <b>First Industry: </b>
-        <%=first_industry_sector%>
-      </div>
-      <div>
-        <b>Second Industry: </b>
-        <%=second_industry_sector%>
-      </div>
+    <!--<div class="span6">
 
-      <div>
-        <b>Team Score: </b>
-        <%=team_score%>
-      </div>
-    </div>
-    <div class="span6">
-      <div id="revieweeDetailchart"></div>
-    </div>
+        <div>
+          <b>First Industry: </b>
+          <%=first_industry_sector%>
+        </div>
+        <div>
+          <b>Second Industry: </b>
+          <%=second_industry_sector%>
+        </div>
 
+        <div>
+          <b>Team Score: </b>
+          <%=team_score%>
+        </div>
+      </div>
+      <div class="span6">
+        <div id="revieweeDetailchart"></div>
+      </div>-->
+    </div>
 
 
 
@@ -128,45 +129,56 @@
     Showing Individual Team
     <!---TODO(kanitw): Need better word here-->
   </div>
-  <div class="padding-side-20">
-    <div id="reviewee-detail-<%=viewId%>"></div>
+  <div class="upper">
+    <div id="reviewee-detail-<%=viewId%>" class="padding-side-10"></div>
+    <!--<h3 class="mini-header">Keywords</h3>-->
+    <div class="mini-header-tabber">
+      <ul id="ind-tab-keyword-menu" class="nav nav-tabs full mini">
+        <li class="mini-header">
+          <a>Keywords</a>
+        </li>
+        <li class="pull-right">
+          <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+            Tag Cloud
+          </a>
+        </li>
+        <li class="active pull-right">
+          <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+            Keyword List
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="padding-side-10 keyword-picker">
+      <div class="tab-content">
+        <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
+        </div>
+        <div class="tab-pane active" id="ind-tab-keyword-list-<%=viewId%>">
+        </div>
+      </div>
+    </div>
   </div>
-  <ul id="ind-tab-menu" class="nav nav-tabs full">
-    <li>
-      <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-        Tag Cloud
-      </a>
-    </li>
-    <li>
-      <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-        Keyword List
-      </a>
-    </li>
-    <li>
-      <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
-        Aggregate View
-      </a>
-    </li>
-    <li class="active">
-      <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
-        Individual Reviews
-      </a>
-    </li>
-    <!-- <li>
-      <a href="#tab-word-tree-<%=viewId%>">
-        Word Tree
-      </a>
-    </li> -->
-    <!-- <li class='pull-right no-link'>
+  <!--<h3 class="mini-header">Reviews</h3>-->
+  <div class="mini-header-tabber">
+    <ul id="ind-tab-reviews-menu" class="nav nav-tabs full mini">
+      <li class="mini-header">
+        <a>Reviews</a>
+      </li>
 
-    </li> -->
-  </ul>
+      <li class="active pull-right">
+        <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
+          Individual Reviews
+        </a>
+      </li>
+      <li class="pull-right">
+        <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
+          Aggregate View
+        </a>
+      </li>
+    </ul>
+  </div>
   <div class="padding-side-20">
     <div class="tab-content">
-      <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
-      </div>
-      <div class="tab-pane" id="ind-tab-keyword-list-<%=viewId%>">
-      </div>
       <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
       </div>
       <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
@@ -183,28 +195,26 @@
   <div class="head alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
     Showing Submissions Aggregated
   </div>
-  <ul class="nav nav-tabs full">
-    <li class="active">
-    	<a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-        Keyword List
-      </a>
-    </li>
-    <li>
-      <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-        Tag Cloud
-      </a>
+  <div class="mini-header-tabber">
+    <ul id="ind-tab-keyword-menu" class="nav nav-tabs full mini">
+      <li class="mini-header">
+        <a>Keywords</a>
+      </li>
+      <!--due to pull-right the order is reversed-->
+      <li class="pull-right">
+        <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+          Tag Cloud
+        </a>
+      </li>
+      <li class="active pull-right">
+        <a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+          Keyword List
+        </a>
+      </li>
+    </ul>
+  </div>
 
-    </li>
-    <!-- <li>
-      <a href="#agg-tab-word-tree-<%=viewId%>" data-toggle="tab">
-        Word Tree
-      </a>
-    </li> -->
-    <!-- <li class='pull-right no-link'>
-
-    </li> -->
-  </ul>
-  <div class="padding-side-20">
+  <div class="padding-side-20 keyword-picker">
     <div class="tab-content">
       <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
       </div>
