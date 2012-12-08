@@ -116,6 +116,10 @@ h3.mini-header {
   border-right: 0px;
   margin-bottom: 0px;
 }
+.nav-tabs.full {
+  padding-left: 20px;
+  margin-top: 10px;
+}
 .nav-tabs > li > a {
   padding-top: 4px;
   padding-bottom: 4px;
@@ -125,6 +129,9 @@ h3.mini-header {
 }
 .padding20 {
   padding: 20px;
+}
+.padding-side-20 {
+  padding: 0 20px;
 }
 .alert.alert-small {
   padding: 4px 15px 4px 6px;

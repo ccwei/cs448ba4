@@ -128,38 +128,40 @@
     Showing Individual Team
     <!---TODO(kanitw): Need better word here-->
   </div>
-  <div class="padding20">
+  <div class="padding-side-20">
     <div id="reviewee-detail-<%=viewId%>"></div>
-    <ul id="ind-tab-menu" class="nav nav-tabs">
-      <li>
-        <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-          Tag Cloud
-        </a>
-      </li>
-      <li>
-        <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-          Keyword List
-        </a>
-      </li>
-      <li>
-        <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
-          Aggregate View
-        </a>
-      </li>
-      <li class="active">
-        <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
-          Individual Reviews
-        </a>
-      </li>
-      <!-- <li>
-        <a href="#tab-word-tree-<%=viewId%>">
-          Word Tree
-        </a>
-      </li> -->
-      <!-- <li class='pull-right no-link'>
+  </div>
+  <ul id="ind-tab-menu" class="nav nav-tabs full">
+    <li>
+      <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+        Tag Cloud
+      </a>
+    </li>
+    <li>
+      <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+        Keyword List
+      </a>
+    </li>
+    <li>
+      <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
+        Aggregate View
+      </a>
+    </li>
+    <li class="active">
+      <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
+        Individual Reviews
+      </a>
+    </li>
+    <!-- <li>
+      <a href="#tab-word-tree-<%=viewId%>">
+        Word Tree
+      </a>
+    </li> -->
+    <!-- <li class='pull-right no-link'>
 
-      </li> -->
-    </ul>
+    </li> -->
+  </ul>
+  <div class="padding-side-20">
     <div class="tab-content">
       <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
       </div>
@@ -181,28 +183,28 @@
   <div class="head alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
     Showing Submissions Aggregated
   </div>
-  <div class="padding20">
-    <ul class="nav nav-tabs">
-      <li class="active">
-	<a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-          Keyword List
-        </a>
-      </li>
-      <li>
-        <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-          Tag Cloud
-        </a>
-        
-      </li>
-      <!-- <li>
-        <a href="#agg-tab-word-tree-<%=viewId%>" data-toggle="tab">
-          Word Tree
-        </a>
-      </li> -->
-      <!-- <li class='pull-right no-link'>
+  <ul class="nav nav-tabs full">
+    <li class="active">
+    	<a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+        Keyword List
+      </a>
+    </li>
+    <li>
+      <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+        Tag Cloud
+      </a>
 
-      </li> -->
-    </ul>
+    </li>
+    <!-- <li>
+      <a href="#agg-tab-word-tree-<%=viewId%>" data-toggle="tab">
+        Word Tree
+      </a>
+    </li> -->
+    <!-- <li class='pull-right no-link'>
+
+    </li> -->
+  </ul>
+  <div class="padding-side-20">
     <div class="tab-content">
       <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
       </div>
