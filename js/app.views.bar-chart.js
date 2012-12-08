@@ -33,7 +33,7 @@
       });
 
       _(this.options).defaults({
-        margin: {top: 25, right: 20, bottom: 30, left: 120}
+        margin: {top: 25, right: 20, bottom: 30, left: 100}
       });
 
 
@@ -59,7 +59,6 @@
 
       //render
       var that = this;
-      var yAxis, brush,rects,state, rangeBand;
       var data = this.model;
       var x0 = Math.max(0, 9);
       var x = d3.scale.linear()
@@ -74,9 +73,10 @@
           .orient("top")
           .tickFormat(d3.format("d"));
 
-          yAxis = d3.svg.axis()
+      var yAxis = d3.svg.axis()
           .scale(y)
-          .orient("left");
+          .orient("left")
+          .tickSize(0);
 
       var svg = d3.select(el).append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -93,18 +93,21 @@
           .attr("width", function(d) { return Math.abs(x(d.x) - x(0)); })
           .attr("height", y.rangeBand());
 
-      svg.append("g")
-          .attr("class", "x axis")
-          .call(xAxis);
+      svg.selectAll(".count")
+        .data(data)
+      .enter().append("text")
+        .text(function(d){ return d.x+"";})
+        .attr("x", function(d, i) {
+          return x(d.x) + 8;
+        })
+        .attr("y", function(d) {
+          return y(d.y) + y.rangeBand()/2 + 2;
+        })
+        .style("text-anchor", "middle");
 
       svg.append("g")
           .attr("class", "y axis")
-          .call(yAxis)
-        .append("line")
-          .attr("x1", x(0))
-          .attr("x2", x(0))
-          .attr("y1", 0)
-          .attr("y2", height);
+          .call(yAxis);
       }
   });
 
