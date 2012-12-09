@@ -18,7 +18,10 @@
 
 
 <script id="indScoreTemplate" type="text/template">
-  <h4><%= score %></h4>
+  <li class="clickable">
+    <%= score %>
+    <i class="icon-chevron-right"></i>
+  </li>
 </script>
 
 <script id="revieweeTemplate" type="text/template">
@@ -81,11 +84,13 @@
       <dt>Ideas:</dt><dd><%= ideas %></dd>
   </dl>
 </script>
+<!-- //http://twitter.github.com/bootstrap/javascript.html#affix  -->
 <script id="feedbacksTemplate" type="text/template">
   <div class="row-fluid">
-    <div class="span3">
-
-      <div class="indscores"></div>
+    <div class="span3">      
+      <div class="indscores">
+        <ul class="nav affix"></ul>
+      </div>
     </div>
     <div class="span9">
 
@@ -160,6 +165,8 @@
         </div>
         <div class="tab-pane active" id="ind-tab-keyword-list-<%=viewId%>">
         </div>
+        <div class="tab-pane" id="ind-tab-phrase-list-<%=viewId%>">
+        </div>
       </div>
     </div>
   </div>
@@ -227,6 +234,8 @@
   <div class="padding-side-10 keyword-picker">
     <div class="tab-content">
       <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
+      </div>
+      <div class="tab-pane" id="agg-tab-phrase-list-<%=viewId%>">
       </div>
       <div class="tab-pane active" id="agg-tab-keyword-list-<%=viewId%>">
       </div>

@@ -31,7 +31,7 @@
             first  = first.toLowerCase();
             second  = second.toLowerCase();
 
-            var bigram = [first, second];
+            var bigram = first + " " + second;
 
             if(bigram in freq){
               freq[bigram].count++;
@@ -50,12 +50,13 @@
         });
         //Filter stop words
         var topWords = tuples.filter(function(w){ 
-          var b = w[0].split(",");
+          var b = w[0].split(" ");
           return stopWords.indexOf(b[0]) == -1 && stopWords.indexOf(b[1]) == -1; 
         });
 
         //Select top frequent k bigram
         topWords = topWords.slice(0, 50);
+
         return topWords;
       };
       var processWord = function (review, words, type) {

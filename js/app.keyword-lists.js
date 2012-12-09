@@ -7,7 +7,7 @@
 
 (function ($) {
   "use strict"; // use strict mode for sublime linter according to http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
-
+  
   app.KeywordListsView = Backbone.View.extend({
     tagName: "div",
     className: "keywordlists-frame",
@@ -18,7 +18,11 @@
       var that = this;
       this.frequentWords = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
-        that.frequentWords[type] = new app.FrequentWords(that.model, type);        
+        if(that.options.bigram){
+          that.frequentWords[type] = new app.FrequentBigram(that.model, type);        
+        }else {
+          that.frequentWords[type] = new app.FrequentWords(that.model, type);        
+        }
       });
       this.$el.html(this.template());
       //Add search field

@@ -39,10 +39,18 @@
           that.totalReviews = that.totalReviews.concat(r);
         });
       }
+      
       this.keywordListsView = new app.KeywordListsView({
         model: this.totalReviews,
         el: $("#agg-tab-keyword-list-" + that.viewId)
       });
+
+      this.keywordListsView = new app.KeywordListsView({
+        model: this.totalReviews,
+        bigram: true,
+        el: $("#agg-tab-phrase-list-" + that.viewId)
+      });
+
       this.redrawTagCloud = true;
       this.renderTagCloud();
     },
