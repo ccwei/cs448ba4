@@ -53,7 +53,7 @@ app.containerResize = function() {
   $rightSide.find('.lower').height(H-
     $rightSide.find(".head").outerHeight()-
     $rightSide.find(".upper").outerHeight()-
-    $rightSide.find(".mini-header-tabber").outerHeight()
+    $rightSide.find(".mini-header-tabber").outerHeight()*2
   );
 
   //notify childrenResize();
