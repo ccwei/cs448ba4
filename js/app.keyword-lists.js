@@ -18,7 +18,7 @@
       var that = this;
       this.frequentWords = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
-        that.frequentWords[type] = new app.FrequentWords(that.model, type);
+        that.frequentWords[type] = new app.FrequentWords(that.model, type);        
       });
       this.$el.html(this.template());
       //Add search field
