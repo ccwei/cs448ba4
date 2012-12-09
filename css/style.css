@@ -85,7 +85,7 @@ h3.mini-header {
 }
 .mini-header-tabber ul.nav-tabs.mini {
   margin-top: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .mini-header-tabber ul.nav-tabs.mini li > a {
   padding-top: 4px;
@@ -149,11 +149,11 @@ h3.mini-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .left-side .upper {
+  height: 250px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 #right-side {
   width: 59.9%;
-  overflow-y: scroll;
 }
 #right-side .alert.head {
   -webkit-border-radius: 0px;
@@ -169,11 +169,17 @@ h3.mini-header {
   -moz-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.15);
 }
+#right-side .lower {
+  overflow-y: scroll;
+}
 .default-padding {
   padding: 10px;
 }
-.padding20 {
+.padding-20 {
   padding: 20px;
+}
+.padding-10 {
+  padding: 10px;
 }
 .padding-side-20 {
   padding: 0 20px;
@@ -280,7 +286,7 @@ table.feedback-grid textarea[disabled] {
 .alert.alert-grey {
   color: #9d9d9d;
   background-color: #f5f5f5;
-  border-color: #eeeeee;
+  border-color: #ddd;
 }
 .center {
   text-align: center;

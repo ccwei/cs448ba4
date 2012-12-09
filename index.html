@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <title>Peereviz: Visualizing Peer Review</title>
   <meta charset="utf-8">
   <script src="./js/d3.v2.js"></script>
   <script src="./js/jquery.js"></script>
@@ -143,32 +144,33 @@
     Showing Individual Team
     <!---TODO(kanitw): Need better word here-->
   </div>
+  <div class="mini-header-tabber">
+    <ul id="ind-tab-keyword-menu" class="nav nav-tabs full mini">
+      <li class="mini-header">
+        <a>Keywords</a>
+      </li>
+      <li class="pull-right">
+        <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
+          Tag Cloud
+        </a>
+      </li>
+      <li class="pull-right">
+        <a href="#ind-tab-phrase-list-<%=viewId%>" data-toggle="tab">
+          Phrase List
+        </a>
+      </li>
+      <li class="active pull-right">
+        <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
+          Keyword List
+        </a>
+      </li>
+    </ul>
+  </div>
   <div class="upper">
-    <div id="reviewee-detail-<%=viewId%>" class="padding-side-10"></div>
+
     <!--<h3 class="mini-header">Keywords</h3>-->
-    <div class="mini-header-tabber">
-      <ul id="ind-tab-keyword-menu" class="nav nav-tabs full mini">
-        <li class="mini-header">
-          <a>Keywords</a>
-        </li>
-        <li class="pull-right">
-          <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
-            Tag Cloud
-          </a>
-        </li>
-        <li class="pull-right">
-          <a href="#ind-tab-phrase-list-<%=viewId%>" data-toggle="tab">
-            Phrase List
-          </a>
-        </li>
-        <li class="active pull-right">
-          <a href="#ind-tab-keyword-list-<%=viewId%>" data-toggle="tab">
-            Keyword List
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="padding-side-10 keyword-picker">
+
+    <div class="padding-10 keyword-picker">
       <div class="tab-content">
         <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
         </div>
@@ -198,7 +200,7 @@
       </li>
     </ul>
   </div>
-  <div class="padding-side-20">
+  <div class="lower">
     <div class="tab-content">
       <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
       </div>
@@ -211,10 +213,10 @@
 
 <script id="revieweesViewTemplate" type="text/template">
   <div class="head alert alert-grey alert-small" id="reviewees-show-all-<%=viewId%>">
-    Showing All Submissions
+    Showing <b>All Submissions</b>
   </div>
   <div class="head alert alert-info alert-small display-none" id="reviewees-show-agg-<%=viewId%>">
-    Showing Submissions Aggregated
+    Showing <b>Brushed Teams</b>
   </div>
   <div class="mini-header-tabber">
     <ul id="ind-tab-keyword-menu" class="nav nav-tabs full mini">
@@ -240,17 +242,19 @@
       </li>
     </ul>
   </div>
+  <div class="upper">
 
-  <div class="padding-side-10 keyword-picker">
-    <div class="tab-content">
-      <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
+    <div class="padding-10 keyword-picker">
+      <div class="tab-content">
+        <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
+        </div>
+        <div class="tab-pane" id="agg-tab-phrase-list-<%=viewId%>">
+        </div>
+        <div class="tab-pane active" id="agg-tab-keyword-list-<%=viewId%>">
+        </div>
       </div>
-      <div class="tab-pane" id="agg-tab-phrase-list-<%=viewId%>">
-      </div>
-      <div class="tab-pane active" id="agg-tab-keyword-list-<%=viewId%>">
-      </div>
+        <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
     </div>
-      <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
   </div>
 </script>
 
@@ -375,6 +379,9 @@
 
 
 <body>
+
+  <div id="feedback-modal">
+  </div>
   <div class="container" id="root"><div class="left-side pull-left">
 
     <div class="half-container">
@@ -398,7 +405,7 @@
         </ul> -->
         <div class="upper">
           <h3 class="mini-header">Filters</h3>
-          <div class="padding20">
+          <div class="padding-20">
             <div id="chart"></div>
           </div>
         </div>
@@ -420,28 +427,26 @@
     </div>
 
   </div></div>
-  <script src="./js/app.models.js"></script>
-  <script src="./js/app.model.frequentWords.js"></script>
-  <script src="./js/app.model.frequentBigram.js"></script>
-  <script src="./js/app.collections.js"></script>
-  <script src="./js/app.views.aggregated-feedback.js"></script>
-  <script src="./js/app.views.feedbacks.js"></script>
-  <script src="./js/app.views.feedback-modal.js"></script>
-
-  <script src="./js/app.views.reviewee-detail.js"></script>
-  <script src="./js/app.views.reviewee-list.js"></script>
-  <script src="./js/app.views.reviewee.js"></script>
-  <script src="./js/app.views.reviewees.js"></script>
-  <script src="./js/app.views.bar-chart.js"></script>
-  <script src="./js/app.views.reviewee-list-item.js"></script>
-  <script src="./js/app.stacked-chart.js"></script>
-  <script src="./js/app.tag-cloud.js"></script>
-  <script src="./js/app.quad-tag-clouds.js"></script>
-  <script src="./js/app.views.keyword-lists.js"></script>
-
-  <script src="./js/app.js"></script>
-
-  <div id="feedback-modal">
-  </div>
 </body>
+
+<script src="./js/app.models.js"></script>
+<script src="./js/app.model.frequentWords.js"></script>
+<script src="./js/app.model.frequentBigram.js"></script>
+<script src="./js/app.collections.js"></script>
+<script src="./js/app.views.aggregated-feedback.js"></script>
+<script src="./js/app.views.feedbacks.js"></script>
+<script src="./js/app.views.feedback-modal.js"></script>
+
+<script src="./js/app.views.reviewee-detail.js"></script>
+<script src="./js/app.views.reviewee-list.js"></script>
+<script src="./js/app.views.reviewee.js"></script>
+<script src="./js/app.views.reviewees.js"></script>
+<script src="./js/app.views.bar-chart.js"></script>
+<script src="./js/app.views.reviewee-list-item.js"></script>
+<script src="./js/app.stacked-chart.js"></script>
+<script src="./js/app.tag-cloud.js"></script>
+<script src="./js/app.quad-tag-clouds.js"></script>
+<script src="./js/app.views.keyword-lists.js"></script>
+
+<script src="./js/app.js"></script>
 </html>
