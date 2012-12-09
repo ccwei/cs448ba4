@@ -62,7 +62,7 @@ h3.mini-header {
 
   ul.nav-tabs.mini{
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     li > a {
        // margin-top: 2px;
       padding-top: 4px;
@@ -129,6 +129,7 @@ h3.mini-header {
 
 .left-side{
   width: @left-side-width;
+
   h1{
     font-size: 30px;
     line-height: 40px;
@@ -147,6 +148,7 @@ h3.mini-header {
 
   .upper {
     // background-color: #f1f1f1;
+    height: 250px;
     border-bottom: 1px solid rgba(0, 0, 0, .1);
   }
 }
@@ -165,7 +167,10 @@ h3.mini-header {
       -moz-box-shadow: 0 2px 3px 1px rgba(0,0,0,.15);
       box-shadow: 0 2px 3px 1px rgba(0, 0, 0, .15);
   }
-  overflow-y:scroll;
+  .lower {
+    overflow-y: scroll;
+  }
+
 }
 
 
@@ -173,8 +178,11 @@ h3.mini-header {
   padding: 10px;
 }
 
-.padding20{
+.padding-20{
   padding: 20px;
+}
+.padding-10{
+  padding: 10px;
 }
 .padding-side-20{
   padding: 0 20px;
@@ -301,7 +309,7 @@ table.feedback-grid
 .alert.alert-grey {
   color: #9d9d9d;
   background-color: #f5f5f5;
-  border-color: #eeeeee;
+  border-color: #ddd;
 }
 
 .center{
