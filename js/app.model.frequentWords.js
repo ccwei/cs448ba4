@@ -49,6 +49,7 @@
           feedbacks = review[type]; //If specify type, only select review for that type
         } else {
           _(app.FEEDBACK_TYPE).each(function (t) {
+            feedbacks += ' ';
             feedbacks += review[t]; //Concat different type review(notable, ideas..) into one string.
           });
         }

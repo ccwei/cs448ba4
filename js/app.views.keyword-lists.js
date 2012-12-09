@@ -15,6 +15,7 @@
     keyword: "",
 
     initialize: function () {
+      this.showAll = true;
       var that = this;
       this.frequentWords = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
@@ -28,9 +29,17 @@
         that.render();
       };
 
-      this.$el.prepend(_.template($("#searchFieldTemplate").html())());
+      var onToggleView = function(){
+        var $this = $(this);
+        $this.toggleClass('toggled');
+        that.showAll = !that.showAll;
+        that.render();
+      };
+
+      this.$el.find(".header-bar").append(_.template($("#searchFieldTemplate").html())());
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);
+      this.$el.find(".toggle-view-btn").on('click',onToggleView);
 
       this.onWordClick = this.options.onWordClick || function() {};
       this.$el.delegate('li', 'click', function(event) {
@@ -40,37 +49,53 @@
       this.render();
     },
     render: function () {
-      // this.renderSeparateList.apply(this);
-      this.renderMergedList.apply(this);
+
+      if(this.showAll){
+        this.renderMergedList.apply(this);
+        this.$el.find(".seperated-view").addClass("display-none");
+        this.$el.find(".all-view").removeClass("display-none");
+      }else {
+        this.renderSeparateList.apply(this);
+        this.$el.find(".seperated-view").removeClass("display-none");
+        this.$el.find(".all-view").addClass("display-none");
+      }
     },
     renderMergedList: function(){
       var that = this;
       var type = 'all';
       var matchCount = 0;
       var maxCount = {};
+
+      that.$el.find(".keyword-list-" + type + ' ul').children().remove();
+
       _(this.frequentWords[type].feedbackWords).each(function(d){
         if(that.keyword.length === 0 || d[0].match(new RegExp(that.keyword, "i"))){
           if(!maxCount[type] || maxCount[type] < d[1].count)
             maxCount[type] = d[1].count;
-          var li = that.renderLi(d,that.keyword);
+          var divInLi = that.renderDivInLi(d,that.keyword);
           var bar = $('<div/>').addClass('keyword-item-bar').addClass('parent');
           var percentage = (d[1].count * 1.0) / maxCount[type];
           bar.width(percentage * 100 + '%');
 
+          var toprint=[];
+          var x=0;
           _(app.FEEDBACK_TYPE).each(function (t) {
             var subbar = $('<div/>').addClass('keyword-item-bar-'+t);
             var count = that.frequentWords[t].feedbackWordsCount[d[0]];
+            toprint.push(count);
             if(_.isNumber(count) && count > 0){
-              var sub_percent = count * 1.0 / d[1].count;
-              subbar.width(sub_percent*100+"%");
+              var sub_percent = Math.floor(count * 10000.0 / d[1].count)/100.0; //need to floor other wise sum of them might slightly exceed 100%.
+              subbar.width(sub_percent+"%");
               bar.append(subbar);
             }
           });
 
+          console.log(d[1].count +": "+toprint.join(","));
 
+          var barparent = $('<div/>').addClass('keyword-item-container').append(bar);
 
-          li.prepend(bar);
-          that.$el.find(".keyword-list-" + type + ' ul').append(li);
+          divInLi.prepend(barparent);
+          that.$el.find(".keyword-list-" + type + ' ul').append($('<li/>').append(divInLi));
           //$(that.$el.selector + " .keyword-list-" + type + ' ul').append(li);
           matchCount++;
         }
@@ -95,14 +120,14 @@
               maxCount[type] = d[1].count;
             //it is sort so we don't have to worry.
 
-            var li = that.renderLi(d,that.keyword);
+            var divInLi = that.renderDivInLi(d,that.keyword);
             var bar = $('<div/>').addClass('keyword-item-bar');
             var percentage = (d[1].count * 1.0) / maxCount[type];
             bar.width(percentage * 100 + '%');
 
-            li.prepend(bar);
+            divInLi.prepend(bar);
 
-            $(that.$el.selector + " .keyword-list-" + type + ' ul').append(li);
+            $(that.$el.selector + " .keyword-list-" + type + ' ul').append($("<li/>").append(divInLi));
             matchCount++;
           }
         });
@@ -116,10 +141,10 @@
 
       return this;
     },
-    renderLi: function(d,keyword){
+    renderDivInLi: function(d,keyword){
       var textSpan = $("<span/>").addClass("text").append(d[0]);
       var countSpan = $("<span/>").addClass("count").append(d[1].count);
-      var li = $('<li/>').append(textSpan).append(countSpan);
+      var li = $('<div/>').addClass("divInLi").append(textSpan).append(countSpan);
       li.addClass('clickable keyword');
 
       if(keyword.length > 0){

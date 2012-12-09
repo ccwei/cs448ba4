@@ -263,47 +263,61 @@ table.feedback-grid textarea[disabled] {
 .center {
   text-align: center;
 }
+.keyword-list-all ul li {
+  width: 25%;
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.keyword-list-all ul li > div {
+  padding-right: 10px;
+  padding-bottom: 2px;
+}
 [class*="keyword-list"] {
   padding-right: 20px;
 }
+[class*="keyword-list"] .keyword-item-container {
+  background-color: #f1f1f1;
+  line-height: 4px;
+  height: 4px;
+  font-size: 1px;
+}
 [class*="keyword-list"] .keyword-item-bar {
   background-color: #2b8cff;
-  height: 3px;
+  height: 4px;
+  line-height: 4px;
 }
 [class*="keyword-list"] .keyword-item-bar.parent {
-  background-color: #fcfcfc;
-}
-[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-questions {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
   *display: inline;
-  background-color: red;
-  height: 3px;
+  background-color: #f1f1f1;
+  padding: 0;
+  font-size: 1px;
 }
-[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-ideas {
+[class*="keyword-list"] .keyword-item-bar [class*="keyword-item-bar"] {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
   *display: inline;
-  background-color: yellow;
-  height: 3px;
-}
-[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-notable {
-  display: -moz-inline-stack;
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  background-color: green;
-  height: 3px;
+  height: 4px;
+  font-size: 1px;
+  line-height: 4px;
+  margin: 0;
 }
 [class*="keyword-list"] .keyword-item-bar .keyword-item-bar-constructive {
-  display: -moz-inline-stack;
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-  background-color: blue;
-  height: 3px;
+  background-color: #ff7f0e;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-notable {
+  background-color: #d62728;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-questions {
+  background-color: #2ca02c;
+}
+[class*="keyword-list"] .keyword-item-bar .keyword-item-bar-ideas {
+  background-color: #1f77b4;
 }
 [class*="keyword-list"] .keyword {
   font-size: 12px;
@@ -324,23 +338,33 @@ table.feedback-grid textarea[disabled] {
   border: none;
   background: none;
 }
-div.search-div {
+.btn-mini {
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 18px;
+}
+.search-container {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+.search-container div.search-div {
   position: relative;
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
   *display: inline;
-  margin-top: 3px;
   margin-bottom: 10px;
 }
-div.search-div input[type="search"] {
+.search-container div.search-div input[type="search"] {
   width: 160px;
   padding: 0 20px 0 3px;
   font-size: 12px;
   height: 18px;
   margin-bottom: 0px;
 }
-div.search-div button {
+.search-container div.search-div button {
   border: none;
   background: none;
   position: absolute;
@@ -351,6 +375,14 @@ div.search-div button {
 }
 .found-count {
   font-size: 12px;
+}
+.btn.toggled {
+  background-image: none;
+  background-color: #ccc;
+  outline: 0;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 .axis path,
 .axis line {
