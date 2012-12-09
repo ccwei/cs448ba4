@@ -72,7 +72,11 @@
             that.feedbackWordsCount[d[0]] = d[1].count;
           });
           //TODO: find better count to be maxCount
-          this.maxCount = this.feedbackWords[0][1].count;
+          if(this.feedbackWords[0]) {
+            this.maxCount = this.feedbackWords[0][1].count;
+          } else {
+            this.maxCount = 1;
+          }
         }
       };
     })()
