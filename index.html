@@ -27,15 +27,23 @@
 
 <script id="revieweeListItemTemplate" type="text/template">
   <div class="reviewee-list-item clickable">
-    <h4>Team #<%= name %></h4>
-    <div>
-      <b>First Industry: </b>
-      <%=first_industry_sector%>,
-      <b>Second Industry: </b>
-      <%=second_industry_sector%>,
-      <b>Team Score: </b>
-      <%=team_score%>
+    <div class="row-fluid">
+      <div class="span6">
+        <h4>Team #<%= name %></h4>
+        <div>
+          <b>First Industry: </b>
+          <%=first_industry_sector%>,
+          <b>Second Industry: </b>
+          <%=second_industry_sector%>,
+          <b>Team Score: </b>
+          <%=team_score%>
+        </div>
+      </div>
+      <div class="span6">
+        <div id="revieweeDetailchart-<%=viewId%>"></div>
+      </div>
     </div>
+
     <hr/>
   </div>
 </script>
@@ -351,6 +359,9 @@
         </div>
         <div class="lower">
           <h3 class="mini-header">Teams</h3>
+          <div id="selected-reviewee-item-list">
+
+          </div>
           <div class='full-height'>
             <div id="reviewee-list"></div>
           </div>
@@ -376,6 +387,7 @@
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.views.reviewees.js"></script>
   <script src="./js/app.views.bar-chart.js"></script>
+  <script src="./js/app.views.reviewee-list-item.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
   <script src="./js/app.quad-tag-clouds.js"></script>

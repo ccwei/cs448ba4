@@ -132,7 +132,10 @@ h3.mini-header {
 .full-height {
   overflow-y: scroll;
 }
-#reviewee-list {
+#selected-reviewee-item-list {
+  background-color: #a9a9a9;
+}
+.reviewee-list-item {
   padding-left: 20px;
 }
 .well.white {
@@ -309,4 +312,7 @@ div.search-div button {
 }
 text {
   font-size: 12px;
+}
+hr {
+  margin: 1px;
 }

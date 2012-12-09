@@ -10,6 +10,8 @@
 
   window.app = window.app || {};
 
+  app.DO_NOTHING = function() { /*do nothing*/ };
+
   app.showView = function showView(view){
     if(view=="ind"){
       $("#all-right-side").removeClass('active');
@@ -89,23 +91,34 @@ $(document).ready(function() {
       agg:true
     });
 
+    var selectedRevieweeListItem = new app.RevieweeListItemView({
+          el: $('#selected-reviewee-item-list')
+        });
+
     // handler of onReviewee
     var onReviewee = {
       selected: function(d){
         app.showView('ind');
         theRevieweeView.loadData(d);
+        selectedRevieweeListItem.loadData(d);
       },
       deselected: function(d){
         app.showView('app');
-      },
-      brushed: function(filteredModels){
-        aggRevieweesView.loadData(new app.RevieweeCollection(filteredModels));
-        app.showView("agg");
+        selectedRevieweeListItem.hide();
       },
       unbrushed: function(){
         app.showView("all");
+        selectedRevieweeListItem.hide();
       }
     };
+
+    var brushed = function(filteredModels){
+        var filteredRevieweeCollection = new app.RevieweeCollection(filteredModels);
+        aggRevieweesView.loadData(filteredRevieweeCollection);
+        revieweeList.loadData(filteredRevieweeCollection);
+        app.showView("agg");
+        selectedRevieweeListItem.hide();
+      };
 
     var chart = new app.StackedChart({
       collection: revieweeCollection,
@@ -115,8 +128,8 @@ $(document).ready(function() {
       el: "#chart",
       onItemSelected: onReviewee.selected,
       onItemDeselected: onReviewee.deselected,
-      onBrushed: onReviewee.brushed,
       onUnbrushed: onReviewee.unbrushed,
+      onBrushed: brushed,
       tooltip: function(d,i){
         return "Team #"+d.get('name');
       },
@@ -127,8 +140,13 @@ $(document).ready(function() {
       el: $("#reviewee-list"),
       collection: revieweeCollection,
       onItemSelected: onReviewee.selected,
-      onItemDeselected: onReviewee.deselected
+      onItemDeselected: onReviewee.deselected,
+      onItemClicked: function(d) {
+        onReviewee.selected(d);
+        chart.highlightItem(d);
+      }
     });
+
 
     });
   });
