@@ -27,7 +27,7 @@
           });
           //TODO: link back to one by one view for the review idx reviewIdx
       });
-      this.$el.prepend(_.template($("#searchFieldTemplate").html())());
+      this.$el.children(".header-bar").append(_.template($("#searchFieldTemplate").html())());
     },
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
