@@ -28,6 +28,7 @@
       this.revieweeDetailView =  new app.RevieweeDetailView({
         el: this.$el.find("#reviewee-detail-"+this.viewId)
       });
+
       this.feedbacksView = new app.FeedbacksView({
         el: this.$el.find('#ind-tab-individual-review-'+this.viewId)
         // id: '#ind-tab-individual-review'
@@ -52,7 +53,7 @@
       // If you decide not to parse the whole d.reviews object, I would suggest your to use
       // var scores = _(d.reviews).pluck("score");
 
-      console.log("reviewee.reviews = ", reviewee.reviews);
+      // console.log("reviewee.reviews = ", reviewee.reviews);
       this.keywordListsView = new app.KeywordListsView({
         model: reviewee.get('reviews'),
         el: $("#ind-tab-keyword-list-" + that.viewId),
@@ -61,6 +62,18 @@
                         $('#ind-tab-reviews-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
                      }
       });
+
+      this.keywordListsView = new app.KeywordListsView({
+        model: reviewee.get('reviews'),
+        bigram: true,
+        el: $("#ind-tab-phrase-list-" + that.viewId),
+        // onWordClick: function (text) {
+        //                 that.feedbacksAggregatedView.setSearchWord(text);
+        //                 $('#ind-tab-reviews-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+        //              }
+      });
+
+
       this.redrawTagCloud = true;
       this.renderTagCloud();
     },

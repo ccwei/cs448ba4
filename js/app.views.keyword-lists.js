@@ -19,9 +19,18 @@
       var that = this;
       this.frequentWords = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
-        that.frequentWords[type] = new app.FrequentWords(that.model, type);
+        if(that.options.bigram){
+          that.frequentWords[type] = new app.FrequentBigram(that.model, type);
+        }else {
+          that.frequentWords[type] = new app.FrequentWords(that.model, type);
+        }
+
       });
-      this.frequentWords['all'] = new app.FrequentWords(that.model,'all');
+      if(that.options.bigram){
+        that.frequentWords['all'] = new app.FrequentBigram(that.model, 'all');
+      }else{
+        this.frequentWords['all'] = new app.FrequentWords(that.model,'all');
+      }
       this.$el.html(this.template());
       //Add search field
       var onSearchTextChange = function(){

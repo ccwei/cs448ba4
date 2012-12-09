@@ -57,7 +57,8 @@
         // var d3place = d3.select(".feedbacks .score-distribution");
         // d3place.append("hahah");
 
-        this.$el.find('.indscores')
+        //this.$el.find('.indscores')
+        this.$el.find('.affix')
           .append(this.score_template(item.toJSON()))
           .append("<hr/>");
         // this.$el.find(".indscores").append("Put your render of indscore view here!");
