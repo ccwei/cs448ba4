@@ -23,23 +23,24 @@
     loadData: function(reviewee){
 
       this.model = reviewee;
-      // console.log(this.model);
       this.render(reviewee);
     },
-    render: function (reviewee) {
+    render: function () {
 
       this.$el.html(this.template(this.model.toJSON()));
 
       var indTeamReviews = [];
-      _(reviewee.get('reviews')).each(function (r) {
+      _(this.model.get('reviews')).each(function (r) {
         indTeamReviews.push({teamid: r.user_id, score: Math.round(r.score), reviews:[r]});
       });
+      console.log(this.$el.selector);
+      console.log(this.$el.find(".revieweeDetailchart").selector);
 
       var indChart = new app.StackedChart({
         collection: new app.RevieweeCollection(indTeamReviews),
         outer_width: 200,
         outer_height: 120,
-        el: "#revieweeDetailchart",
+        el: this.$el.find(".revieweeDetailchart").selector,
         showYAxis:false,
         showBgRects: true,
         onItemSelected: function(d){

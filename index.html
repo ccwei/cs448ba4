@@ -27,14 +27,24 @@
 
 <script id="revieweeListItemTemplate" type="text/template">
   <div class="reviewee-list-item clickable">
-    <h4>Team #<%= name %></h4>
-    <div>
-      <b>First Industry: </b>
-      <%=first_industry_sector%>,
-      <b>Second Industry: </b>
-      <%=second_industry_sector%>,
-      <b>Team Score: </b>
-      <%=team_score%>
+    <div class="row-fluid">
+      <div class="span6">
+        <h4>Team #<%= name %></h4>
+        <div>
+          <b>First Industry: </b>
+          <%=first_industry_sector%>,
+          <b>Second Industry: </b>
+          <%=second_industry_sector%>,
+          <b>Team Score: </b>
+          <%=team_score%>
+        </div>
+      </div>
+      <div class="span6">
+        <div class='cancel-x'>
+          x
+        </div>
+        <div id="revieweeDetailchart-<%=viewId%>"></div>
+      </div>
     </div>
     <hr/>
   </div>
@@ -205,6 +215,7 @@
         <a href="#agg-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
           Tag Cloud
         </a>
+
       </li>
       <li class="active pull-right">
         <a href="#agg-tab-keyword-list-<%=viewId%>" data-toggle="tab">
@@ -304,14 +315,14 @@
 <script id="tagCloudsFrameTemplate" type="text/template">
   <div class='row-fluid'>
     <div class="span6">
-      <h4>Notable</h4>
+      <h5>Notable</h5>
       <div class="tag-cloud-notable center">
 
       </div>
     </div>
 
     <div class="span6">
-      <h4>Constructive</h4>
+      <h5>Constructive</h5>
       <div class="tag-cloud-constructive center">
 
       </div>
@@ -319,13 +330,13 @@
   </div>
   <div class='row-fluid'>
     <div class="span6">
-      <h4>Questions</h4>
+      <h5>Questions</h5>
       <div class="tag-cloud-questions center">
 
       </div>
     </div>
     <div class="span6">
-      <h4>Questions</h4>
+      <h5>Ideas</h5>
       <div class="tag-cloud-ideas center">
       </div>
     </div>
@@ -363,6 +374,8 @@
         </div>
         <div class="lower">
           <h3 class="mini-header">Teams</h3>
+          <div id="selected-reviewee-item-list">
+          </div>
           <div class='full-height'>
             <div id="reviewee-list"></div>
           </div>
@@ -388,6 +401,7 @@
   <script src="./js/app.views.reviewee.js"></script>
   <script src="./js/app.views.reviewees.js"></script>
   <script src="./js/app.views.bar-chart.js"></script>
+  <script src="./js/app.views.reviewee-list-item.js"></script>
   <script src="./js/app.stacked-chart.js"></script>
   <script src="./js/app.tag-cloud.js"></script>
   <script src="./js/app.quad-tag-clouds.js"></script>
