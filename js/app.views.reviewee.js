@@ -25,9 +25,9 @@
       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#ind-tab-aggregate-grid-"+this.viewId)
       });
 
-      this.revieweeDetailView =  new app.RevieweeDetailView({
-        el: this.$el.find("#reviewee-detail-"+this.viewId)
-      });
+      // this.revieweeDetailView =  new app.RevieweeDetailView({
+      //   el: this.$el.find("#reviewee-detail-"+this.viewId)
+      // });
 
       this.feedbacksView = new app.FeedbacksView({
         el: this.$el.find('#ind-tab-individual-review-'+this.viewId)
@@ -44,9 +44,9 @@
       var that = this;
       this.modal = reviewee;
       this.feedbacksAggregatedView.loadData(reviewee.get('reviews'));
-      this.revieweeDetailView.loadData(reviewee);
+      // this.revieweeDetailView.loadData(reviewee);
       this.feedbacksView.loadData(reviewee.get('reviews'));
-
+      this.$el.children(".head").html("Showing <b>Team#"+reviewee.get('name')+"</b>");
       var scores = _.map(reviewee.get('reviews'), function(d, idx) {
         return {score: d.score};
       });
@@ -66,7 +66,7 @@
       this.keywordListsView = new app.KeywordListsView({
         model: reviewee.get('reviews'),
         bigram: true,
-        el: $("#ind-tab-phrase-list-" + that.viewId),
+        el: $("#ind-tab-phrase-list-" + that.viewId)
         // onWordClick: function (text) {
         //                 that.feedbacksAggregatedView.setSearchWord(text);
         //                 $('#ind-tab-reviews-menu' + ' a[href="#ind-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
