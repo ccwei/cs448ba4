@@ -119,17 +119,16 @@ $(document).ready(function() {
             chart.unHighlightAll();
           }
         });
-
     // handler of onReviewee
     var onReviewee = {
       selected: function(d){
         app.showView('ind');
         theRevieweeView.loadData(d);
         selectedRevieweeListItem.loadData(d);
-        selectedRevieweeListItem.showCancel();
+        selectedRevieweeListItem.setupForSelectedItem();
       },
       deselected: function(d){
-        app.showView('app');
+        app.showView("all");
         selectedRevieweeListItem.hide();
       },
       unbrushed: function(){

@@ -39,7 +39,10 @@
           that.totalReviews = that.totalReviews.concat(r);
         });
       }
-      
+
+      this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#agg-tab-aggregate-grid-"+this.viewId)
+      }).loadData(that.totalReviews);
+
       this.keywordListsView = new app.KeywordListsView({
         model: this.totalReviews,
         el: $("#agg-tab-keyword-list-" + that.viewId)

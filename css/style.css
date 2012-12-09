@@ -203,6 +203,9 @@ h3.mini-header {
   float: right;
   margin: 10px 15px 10px 10px;
 }
+.reviewee-list-item .cancel-x:hover {
+  cursor: pointer;
+}
 .keyword-picker {
   height: 200px;
   overflow-y: scroll;
