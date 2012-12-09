@@ -39,6 +39,26 @@ $(document).ready(function() {
   containerResize();
 });
 
+$(document).ready(function() {  
+  window.app.simWord = {};
+  var simWord = window.app.simWord;
+  $.get("./data/similar_words/sim_words_t2.tsv", function(data) {
+    var lines = data.split("\n");            
+    _.each(lines, function(d){
+      var word = $.trim(d).split("\t")              
+      var header;
+      _.each(word, function(w, index){
+        if(index == 0){
+          header = w;
+          simWord[w] = [];
+        }
+        else
+          simWord[header].push(w)
+      });
+    });            
+  }); 
+});
+
 $(document).ready(function() {
   d3.tsv("./data/a4_allscores.tsv", function(data) {
     data = _.filter(data, function(d){
