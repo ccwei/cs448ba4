@@ -101,6 +101,15 @@
         }
       });
 
+      var button = $('<button/>').click(function () {
+        console.log('click button');
+        $('#right-side').animate({
+           scrollTop: ($el.find('.feedback_constructive').offset().top)+'px'}, 'fast');
+
+      });
+
+      $el.prepend(button);
+
     }
   });
 })(jQuery);

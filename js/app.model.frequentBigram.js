@@ -98,8 +98,6 @@
           _(this.feedbackWords).each(function(d){
             that.feedbackWordsCount[d[0]] = d[1].count;
           });
-          //TODO: find better count to be maxCount
-          this.maxCount = this.feedbackWords[0][1].count;
         }
       };
     })()

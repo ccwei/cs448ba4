@@ -76,11 +76,19 @@
     hide: function () {
      this.$el.hide();
     },
-    show: function() {
+    show: function () {
       this.$el.show();
     },
-    showCancel: function() {
+    setupForSelectedItem: function () {
+      this.showCancel();
+      this.makeUnClickable();
+    },
+    showCancel: function () {
       this.$el.find('.cancel-x').show();
+    },
+    makeUnClickable: function () {
+      console.log(this.$el);
+      this.$el.find('.reviewee-list-item').removeClass('clickable');
     }
   });
 })(jQuery);
