@@ -180,7 +180,7 @@ h3.mini-header {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  right: 20px;
   padding: 3px 3px 0px 3px;
   background-color: white;
 }
