@@ -49,7 +49,6 @@
         <div id="revieweeDetailchart-<%=viewId%>"></div>
       </div>
     </div>
-    <hr/>
   </div>
 </script>
 
@@ -97,7 +96,7 @@
 <!-- //http://twitter.github.com/bootstrap/javascript.html#affix  -->
 <script id="feedbacksTemplate" type="text/template">
   <div class="row-fluid">
-    <div class="span3">      
+    <div class="span3">
       <div class="indscores">
         <ul class="nav affix"></ul>
       </div>
@@ -156,7 +155,7 @@
           <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
             Tag Cloud
           </a>
-        </li>        
+        </li>
         <li class="pull-right">
           <a href="#ind-tab-phrase-list-<%=viewId%>" data-toggle="tab">
             Phrase List
@@ -348,29 +347,25 @@
 </script>
 
 <script id="tagCloudsFrameTemplate" type="text/template">
-  <div class='row-fluid'>
-    <div class="span6">
+  <div class="tag-cloud-quad">
+    <div class="quarter">
       <h5>Notable</h5>
       <div class="tag-cloud-notable center">
-
       </div>
     </div>
 
-    <div class="span6">
+    <div class="quarter">
       <h5>Constructive</h5>
       <div class="tag-cloud-constructive center">
-
       </div>
     </div>
-  </div>
-  <div class='row-fluid'>
-    <div class="span6">
+
+    <div class="quarter">
       <h5>Questions</h5>
       <div class="tag-cloud-questions center">
-
       </div>
     </div>
-    <div class="span6">
+    <div class="quarter">
       <h5>Ideas</h5>
       <div class="tag-cloud-ideas center">
       </div>
@@ -380,7 +375,7 @@
 
 
 <body>
-  <div class="container" id="root"><div class="left-side half">
+  <div class="container" id="root"><div class="left-side pull-left">
 
     <div class="half-container">
         <h1>Peereviz</h1>
@@ -416,7 +411,7 @@
           </div>
         </div>
     </div>
-    </div><div id="right-side" class="half">
+    </div><div id="right-side" class="pull-left">
 
     <div class="tab-content">
       <div id="all-right-side" class="tab-pane active"></div>

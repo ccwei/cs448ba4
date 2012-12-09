@@ -30,8 +30,8 @@
         that.tagClouds[type] = new app.TagCloud({
           model: that.frequentWords[type],
           el: $('#' + that.$el.attr('id') + " .tag-cloud-" + type),
-          outer_width: 250,
-          outer_height: 125,
+          outer_width: 170,
+          outer_height: 175,
           onWordClick: that.onWordClick
         });
       });
