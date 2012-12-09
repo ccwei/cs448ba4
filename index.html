@@ -79,11 +79,7 @@
         <div id="revieweeDetailchart"></div>
       </div>-->
     </div>
-
-
-
   </div>
-
 </script>
 
 <script id="feedbackTemplate" type="text/template">
@@ -200,11 +196,13 @@
       </li>
     </ul>
   </div>
-  <div class="lower">
-    <div class="tab-content">
-      <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
+  <div class="relative">
+    <div class="lower">
+      <div class="tab-content">
+        <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
+        </div>
+        <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
       </div>
-      <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
     </div>
   </div>
 </script>
@@ -308,28 +306,33 @@
 </script>
 
 <script id="aggregatedFeedbackFrameTemplate" type="text/template">
-  <div class="feedback_notable">
-    <h4>Notable</h4>
-    <ul>
-    </ul>
-  </div>
+  <div class="header-bar">
 
-  <div class="feedback_constructive">
-    <h4>Constructive</h4>
-    <ul>
-    </ul>
   </div>
+  <div class="below-header-bar">
+    <div class="feedback_notable">
+      <h4>Notable</h4>
+      <ul>
+      </ul>
+    </div>
 
-  <div class="feedback_questions">
-    <h4>Questions</h4>
-    <ul>
-    </ul>
-  </div>
+    <div class="feedback_constructive">
+      <h4>Constructive</h4>
+      <ul>
+      </ul>
+    </div>
 
-  <div class="feedback_ideas">
-    <h4>Ideas</h4>
-    <ul>
-    </ul>
+    <div class="feedback_questions">
+      <h4>Questions</h4>
+      <ul>
+      </ul>
+    </div>
+
+    <div class="feedback_ideas">
+      <h4>Ideas</h4>
+      <ul>
+      </ul>
+    </div>
   </div>
 </script>
 
@@ -340,38 +343,39 @@
       <button class="btn btn-mini toggle-view-btn">Seperate by type</button>
     </div>
   </div>
+  <div class="below-header-bar">
+    <div class="seperated-view display-none">
+      <div class="row-fluid">
+        <div class="keyword-list-notable span3">
+          <h5>Notable</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
 
-  <div class="seperated-view display-none">
-    <div class="row-fluid">
-      <div class="keyword-list-notable span3">
-        <h5>Notable</h5>
-        <ul class="no-bullet">
-        </ul>
-      </div>
+        <div class="keyword-list-constructive span3">
+          <h5>Constructive</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
 
-      <div class="keyword-list-constructive span3">
-        <h5>Constructive</h5>
-        <ul class="no-bullet">
-        </ul>
-      </div>
+        <div class="keyword-list-questions span3">
+          <h5>Questions</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
 
-      <div class="keyword-list-questions span3">
-        <h5>Questions</h5>
-        <ul class="no-bullet">
-        </ul>
-      </div>
-
-      <div class="keyword-list-ideas span3">
-        <h5>Ideas</h5>
-        <ul class="no-bullet">
-        </ul>
+        <div class="keyword-list-ideas span3">
+          <h5>Ideas</h5>
+          <ul class="no-bullet">
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="all-view  active">
-    <div class="keyword-list-all">
-      <ul class="no-bullet">
-      </ul>
+    <div class="all-view  active">
+      <div class="keyword-list-all">
+        <ul class="no-bullet">
+        </ul>
+      </div>
     </div>
   </div>
 
