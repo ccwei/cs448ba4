@@ -97,7 +97,7 @@
 <!-- //http://twitter.github.com/bootstrap/javascript.html#affix  -->
 <script id="feedbacksTemplate" type="text/template">
   <div class="row-fluid">
-    <div class="span3">      
+    <div class="span3">
       <div class="indscores">
         <ul class="nav affix"></ul>
       </div>
@@ -156,7 +156,7 @@
           <a href="#ind-tab-tag-cloud-<%=viewId%>" data-toggle="tab">
             Tag Cloud
           </a>
-        </li>        
+        </li>
         <li class="pull-right">
           <a href="#ind-tab-phrase-list-<%=viewId%>" data-toggle="tab">
             Phrase List
@@ -252,6 +252,33 @@
       </div>
     </div>
       <!-- <div class="tab-pane" id="agg-tab-wordtree-<%=viewId%>"></div> -->
+  </div>
+
+  <!--<h3 class="mini-header">Reviews</h3>-->
+  <div class="mini-header-tabber">
+    <ul id="agg-tab-reviews-menu" class="nav nav-tabs full mini">
+      <li class="mini-header">
+        <a>Reviews</a>
+      </li>
+
+      <li class="active pull-right">
+        <a href="#agg-tab-individual-review-<%=viewId%>" data-toggle="tab">
+          Individual Reviews
+        </a>
+      </li>
+      <li class="pull-right">
+        <a href="#agg-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
+          Aggregate View
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="padding-side-20">
+    <div class="tab-content">
+      <div class="tab-pane" id="agg-tab-aggregate-grid-<%=viewId%>">
+      </div>
+      <div class="tab-pane active" id="agg-tab-individual-review-<%=viewId%>"></div>
+    </div>
   </div>
 </script>
 

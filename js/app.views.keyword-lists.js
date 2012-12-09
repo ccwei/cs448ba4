@@ -99,8 +99,6 @@
             }
           });
 
-          console.log(d[1].count +": "+toprint.join(","));
-
           var barparent = $('<div/>').addClass('keyword-item-container').append(bar);
 
           divInLi.prepend(barparent);
