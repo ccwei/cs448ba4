@@ -152,6 +152,11 @@ h3.mini-header {
     border-bottom: 1px solid rgba(0, 0, 0, .1);
   }
 }
+
+.relative {
+  position: relative;
+}
+
 #right-side{
   width: @right-side-width;
   .alert.head {
@@ -162,13 +167,28 @@ h3.mini-header {
     margin-bottom: 0px;
   }
   .upper{
+    position: relative;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    -webkit-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, .15);
-      -moz-box-shadow: 0 2px 3px 1px rgba(0,0,0,.15);
-      box-shadow: 0 2px 3px 1px rgba(0, 0, 0, .15);
+    -webkit-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, .05);
+      -moz-box-shadow: 0 2px 3px 1px rgba(0,0,0,.05);
+      box-shadow: 0 2px 3px 1px rgba(0, 0, 0, .05);
   }
   .lower {
     overflow-y: scroll;
+    // position: relative;
+  }
+
+  .header-bar {
+    position: absolute;
+    top: 0;
+    left:0;
+    right:0;
+    padding:3px 3px 0px 3px;
+    background-color: white;
+  }
+  .below-header-bar{
+    margin-top: 20px;
+    padding: 10px;
   }
 
 }
