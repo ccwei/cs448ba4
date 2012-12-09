@@ -62,6 +62,18 @@
       });
       return this;
     },
+    highlightItem: function (reviewee) {
+      var that = this;
+      that.rects.classed("selected", function(d) {
+        return d.get('teamid') === reviewee.get('teamid');
+      });
+    },
+    unHighlightAll: function () {
+      var that = this;
+      that.rects.classed("selected", function(d) {
+        return false;
+      });
+    },
     render: function(){
       var options = this.options;
       var xName = this.xName;
@@ -76,7 +88,7 @@
 
       //render
       var that = this;
-      var x,y,xAxis,yAxis,svg,brush,rects,state, rangeBand;
+      var x,y,xAxis,yAxis,svg,brush,state, rangeBand;
       var models = this.collection.models;
       /**
        * Call classed given className for rect in the selection brush
@@ -86,9 +98,9 @@
       var classedRectInBrush = function(className, extent){
         if(extent[0] === extent[1]){
           // if the selection is empty!
-          rects.classed(className,false);
+          that.rects.classed(className,false);
         }else{
-          rects.classed(className, function(d) {
+          that.rects.classed(className, function(d) {
             var _lx = x(d.get(xName));
             var _rx = _lx + x.rangeBand(d.get(xName));
 
@@ -124,7 +136,7 @@
 
       var brushend = function () {
         svg.classed("selecting", !d3.event.target.empty());
-        rects.classed("brushing",false);
+        that.rects.classed("brushing",false);
         var s = d3.event.target.extent();
         classedRectInBrush("brushed",s);
         console.log("brushend");
@@ -138,11 +150,11 @@
       var clearBrush = function(){
         if(!brush) return;  //we might not have a brush in case that we don't have onBrushed and onUnbrushed handlers.
         d3.select(".brush").call(brush.clear());
-        rects.classed("brushed",false);
+        that.rects.classed("brushed",false);
       };
 
       var clearSelectedRects = function(){
-        rects.classed('selected',false);
+        that.rects.classed('selected',false);
       };
 
       //init x, y, xAxis, yAxis, svg
@@ -224,11 +236,11 @@
               .enter().append("g")
                 .attr("class", "g")
                 .attr("transform", function(d) { return "translate(" + x(d.get(xName)) + ",0)"; });
-      rects = state.append("rect");
+      this.rects = state.append("rect");
 
       var clickable = that.options.hasOwnProperty('onItemSelected') || that.options.hasOwnProperty('onItemDeselected');
 
-      rects.classed("bar-rect",true)
+      this.rects.classed("bar-rect",true)
           .attr("width", x.rangeBand())
           .attr("y", function(d) { return y(d.y1); })
           .attr("height", function(d) { return y(d.y0) - y(d.y1); })
@@ -237,7 +249,7 @@
             if(!clickable) return;
             var selected = d3.select(this).classed('selected');
             // console.log(this,selected);
-            rects.each(function(r){
+            that.rects.each(function(r){
               d3.select(this).classed('selected',function(){
                 return !selected && r===d; //the select must not be previously selected and is the clicked item.
               });
@@ -252,7 +264,7 @@
             // console.log("click :" , d);
           });
       if(this.tooltip)
-        rects.append("svg:title")
+        that.rects.append("svg:title")
           .text(this.tooltip);
       return this;
     }

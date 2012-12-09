@@ -68,9 +68,17 @@
         //render
         d3.layout.cloud().size([width, height])
           .words(this.data.map(function(d) {
-            return {text: d[0], size: 5 + (d[1].count * 1.0)/that.maxCount * 90};
+            var size = (d[1].count * 1.0)/that.maxCount;
+            if(size > 0.5) {
+              size *= 40;
+            } else {
+              size *=80;
+            }
+            return {
+              text: d[0],
+              size: size};
           }))
-          .rotate(function() { return ~~(Math.random() * 2) * 90; })
+          .rotate(function() { return 0; })
           .font("Impact")
           .fontSize(function(d) { return d.size; })
           .on("end", draw)
