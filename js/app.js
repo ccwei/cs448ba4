@@ -92,7 +92,12 @@ $(document).ready(function() {
     });
 
     var selectedRevieweeListItem = new app.RevieweeListItemView({
-          el: $('#selected-reviewee-item-list')
+          el: $('#selected-reviewee-item-list'),
+          onCancelClicked: function () {
+            app.showView("all");
+            selectedRevieweeListItem.hide();
+            chart.unHighlightAll();
+          }
         });
 
     // handler of onReviewee
@@ -101,6 +106,7 @@ $(document).ready(function() {
         app.showView('ind');
         theRevieweeView.loadData(d);
         selectedRevieweeListItem.loadData(d);
+        selectedRevieweeListItem.showCancel();
       },
       deselected: function(d){
         app.showView('app');

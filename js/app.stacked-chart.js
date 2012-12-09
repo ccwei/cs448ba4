@@ -68,6 +68,12 @@
         return d.get('teamid') === reviewee.get('teamid');
       });
     },
+    unHighlightAll: function () {
+      var that = this;
+      that.rects.classed("selected", function(d) {
+        return false;
+      });
+    },
     render: function(){
       var options = this.options;
       var xName = this.xName;

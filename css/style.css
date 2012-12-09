@@ -184,6 +184,13 @@ h3.mini-header {
 .reviewee-list-item {
   padding-left: 20px;
 }
+.reviewee-list-item .cancel-x {
+  display: none;
+  width: 10px;
+  height: 10px;
+  float: right;
+  margin: 10px 15px 10px 10px;
+}
 .keyword-picker {
   height: 300px;
   overflow-y: scroll;

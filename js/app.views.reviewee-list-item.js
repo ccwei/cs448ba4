@@ -17,6 +17,7 @@
     className: "revieweeListItem-container",
     template: _.template($("#revieweeListItemTemplate").html()),
     initialize: function () {
+      var that = this;
       this.viewId = ++total;
       if(this.options.hasOwnProperty['data']){
         this.loadData(this.options.data);
@@ -26,6 +27,7 @@
         this.render();
       }
       this.onItemClicked = this.options.onItemClicked || app.DO_NOTHING;
+
     },
     loadData: function (model) {
       if(model) {
@@ -39,6 +41,10 @@
       this.$el.html('');
       this.$el.show();
       this.$el.html(this.template(this.model.toJSON()));
+      this.$el.find('.cancel-x').click(function () {
+        console.log('cancel');
+        that.options.onCancelClicked();
+      });
       this.$el.click(function (d) {
         console.log("click");
         that.onItemClicked(that.model);
@@ -72,6 +78,9 @@
     },
     show: function() {
       this.$el.show();
+    },
+    showCancel: function() {
+      this.$el.find('.cancel-x').show();
     }
   });
 })(jQuery);
