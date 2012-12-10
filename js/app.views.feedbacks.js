@@ -56,8 +56,7 @@
         console.log('score = ', item.get('score'));
         //this.$el.find('.average-score').html(item.get('score'));
         this.$el.find('.feedbacks')
-          .append($feedbackDiv)
-          .append("<hr class='feedback-hr'/>");
+          .append($feedbackDiv);
           // .append(this.score_template(item.toJSON()));
 
         // var d3place = d3.select(".feedbacks .score-distribution");

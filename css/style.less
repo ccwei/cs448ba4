@@ -20,8 +20,11 @@
 @right-side-width:59.9%;
 
 body{
-  background: url(../img/low_contrast_linen.png)
+  background: url(../img/low_contrast_linen.png);
+  background-size: 55px;
+
 }
+
 
 .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
   min-width: 1200px;
@@ -120,8 +123,13 @@ h3.mini-header {
 }
 
 .score-pane-left{
-  border-right: 1px solid #eee;
+  border-right: 1px solid #ccc;
+
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, .10);
+  -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,.10);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .10);
 }
+
 
 
 .quarter3
@@ -148,16 +156,23 @@ h3.mini-header {
 
 .left-side{
   width: @left-side-width;
-
+  .h1-container{
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
   h1{
     font-size: 30px;
     line-height: 40px;
-    padding: 7px 0 7px 15px;
+
+    margin: 10px 0 10px 15px;
+    padding: 0px 0px 0px 32px;
+    background-image: url(../img/icon.png);
+    background-repeat:no-repeat;
+    background-size: 22px;
+    background-position: left center;
+
     // color: white;
     // background-color: bal;
-    margin:0px;
     background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
   }
   background-color: #fafafa;
   border-right: 1px solid rgba(0, 0, 0, .2);
@@ -331,28 +346,41 @@ h3.mini-header {
     line-height: @small-grid-size/2;
     font-size: 1px;
     padding: 0;
-    background-color: @color3 !important;
+    background-color: @color3;
     // background-color: #094c95 !important;
   }
+
   .notable{
     top:0;
     left:0;
-    background-color: @color1;
   }
   .constructive{
     top:0;
     right:0;
-    background-color: @color2;
   }
   .questions{
     bottom: 0;
     left:0;
-    background-color: @color3;
   }
   .ideas {
     bottom: 0;
     right:0;
-    background-color: @color4;
+  }
+
+
+  &.color{
+    .notable{
+      background-color: @color1;
+    }
+    .constructive{
+      background-color: @color2;
+    }
+    .questions{
+      background-color: @color3;
+    }
+    .ideas {
+      background-color: @color4;
+    }
   }
 }
 
@@ -416,6 +444,12 @@ h3.mini-header {
 
 li.feedback {
   .clickable;
+}
+
+div.feedbacks{
+  div.feedback{
+    border-bottom: 1px solid #ddd;
+  }
 }
 
 .reviewee-detail {
