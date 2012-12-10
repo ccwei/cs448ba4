@@ -61,13 +61,13 @@ app.containerResize = function() {
 }
 $(window).bind('resize', function() { app.containerResize(); });
 
-$(document).ready(function() {  
+$(document).ready(function() {
   window.app.simWord = {};
   var simWord = window.app.simWord;
   $.get("./data/similar_words/sim_words_t2.tsv", function(data) {
-    var lines = data.split("\n");            
+    var lines = data.split("\n");
     _.each(lines, function(d){
-      var word = $.trim(d).split("\t")              
+      var word = $.trim(d).split("\t")
       var header;
       _.each(word, function(w, index){
         if(index == 0){
@@ -77,8 +77,8 @@ $(document).ready(function() {
         else
           simWord[header].push(w)
       });
-    });            
-  }); 
+    });
+  });
 });
 
 $(document).ready(function() {
