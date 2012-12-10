@@ -190,16 +190,50 @@ h3.mini-header {
     left:0;
     right:20px;
     font-size: 12px;
-    padding:3px 3px 0px 3px;
+    padding: 5px 5px 0px 5px;
     background-color: white;
+    .links-container{
+      margin-top: 2px;
+      // line-height: 20px;
+    }
   }
   .below-header-bar{
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 10px;
   }
-
 }
 
+.aggregated-list {
+  h5{
+    background-color: #f1f1f1;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 2px 10px;
+  }
+  ul li {
+    font-size: 13px;
+  }
+}
+
+[class^="icon-grid16-"]{
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  &.icon-grid16-notable {
+    background-image: url("../img/feedbackgrid16/notable.png");
+  }
+  &.icon-grid16-constructive {
+    background-image: url("../img/feedbackgrid16/constructive.png");
+  }
+  &.icon-grid16-questions {
+    background-image: url("../img/feedbackgrid16/questions.png");
+  }
+  &.icon-grid16-ideas {
+    background-image: url("../img/feedbackgrid16/ideas.png");
+  }
+}
 
 .default-padding{
   padding: 10px;
@@ -416,7 +450,25 @@ table.feedback-grid
       // margin-right: 2px;
     }
   }
+}
 
+.legend-block{
+  .inline-block;
+  vertical-align: middle;
+  width:8px;
+  height:8px;
+  &.constructive{
+    background-color: @color2;
+  }
+  &.notable{
+    background-color: @color1;
+  }
+  &.questions{
+    background-color: @color3;
+  }
+  &.ideas{
+    background-color: @color4;
+  }
 }
 
 .no-border-no-bg{
@@ -439,7 +491,7 @@ table.feedback-grid
     .inline-block;
 
     // margin-top:3px;
-    margin-bottom:10px;
+    // margin-bottom:10px;
     input[type="search"]{
       width: @search-div-width;
       // padding-right:20px;

@@ -320,28 +320,30 @@
     </div>
   </div>
   <div class="below-header-bar">
-    <div class="feedback_notable">
-      <h4>Notable</h4>
-      <ul>
-      </ul>
-    </div>
+    <div class="aggregated-list">
+      <div class="feedback_notable">
+        <h5> Notable <i class="icon-grid16-notable" /></h5>
+        <ul>
+        </ul>
+      </div>
 
-    <div class="feedback_constructive">
-      <h4>Constructive</h4>
-      <ul>
-      </ul>
-    </div>
+      <div class="feedback_constructive">
+        <h5> Constructive <i class="icon-grid16-constructive" /></h5>
+        <ul>
+        </ul>
+      </div>
 
-    <div class="feedback_questions">
-      <h4>Questions</h4>
-      <ul>
-      </ul>
-    </div>
+      <div class="feedback_questions">
+        <h5> Questions <i class="icon-grid16-questions" /></h5>
+        <ul>
+        </ul>
+      </div>
 
-    <div class="feedback_ideas">
-      <h4>Ideas</h4>
-      <ul>
-      </ul>
+      <div class="feedback_ideas">
+        <h5> Ideas <i class="icon-grid16-ideas" /></h5>
+        <ul>
+        </ul>
+      </div>
     </div>
   </div>
 </script>
@@ -350,6 +352,16 @@
   <div class="header-bar">
 
     <div class="pull-right">
+      <div class="legend-block notable"></div>
+      <a href="#" rel="tooltip" title="notable" class="icon-grid16-notable"></a>
+      <div class="legend-block constructive"></div>
+      <a href="#" rel="tooltip" title="constructive" class="icon-grid16-constructive"></a>
+      <div class="legend-block questions"></div>
+      <a href="#" rel="tooltip" title="questions" class="icon-grid16-questions"></a>
+      <div class="legend-block ideas"></div>
+      <a href="#" rel="tooltip" title="ideas" class="icon-grid16-ideas"></a>
+      <div class="inline-block" style="width:100px;"></div>
+
       <button class="btn btn-mini toggle-view-btn">Seperate by type</button>
     </div>
   </div>
@@ -358,25 +370,25 @@
       <div class="seperated-view display-none">
         <div class="row-fluid">
           <div class="keyword-list-notable span3">
-            <h5>Notable</h5>
+            <h5><i class="icon-grid16-notable" /> Notable</h5>
             <ul class="no-bullet">
             </ul>
           </div>
 
           <div class="keyword-list-constructive span3">
-            <h5>Constructive</h5>
+            <h5><i class="icon-grid16-constructive" /> Constructive</h5>
             <ul class="no-bullet">
             </ul>
           </div>
 
           <div class="keyword-list-questions span3">
-            <h5>Questions</h5>
+            <h5><i class="icon-grid16-questions" /> Questions</h5>
             <ul class="no-bullet">
             </ul>
           </div>
 
           <div class="keyword-list-ideas span3">
-            <h5>Ideas</h5>
+            <h5><i class="icon-grid16-ideas" /> Ideas</h5>
             <ul class="no-bullet">
             </ul>
           </div>
@@ -426,7 +438,6 @@
   <div id="feedback-modal">
   </div>
   <div class="container" id="root"><div class="left-side pull-left">
-
     <div class="half-container">
         <h1>Peereviz</h1>
         <!-- <ul class="nav nav-tabs">
