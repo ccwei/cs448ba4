@@ -54,6 +54,7 @@
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
       this.render();
+      return this;
     },
 
     render: function () {
@@ -80,7 +81,8 @@
 
       //clean children first
       _(app.FEEDBACK_TYPE).each(function(type){
-        $el.find('.feedback_'+type+' ul').children().remove();
+        var className = '[class*=feedback_' + type + ']';
+        $el.find(className + ' ul').children().remove();
       });
 
       var matchCount = 0;
