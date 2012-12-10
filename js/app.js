@@ -69,7 +69,7 @@ $(document).ready(function() {
   $.get("./data/similar_words/sim_words_t2.tsv", function(data) {
     var lines = data.split("\n");
     _.each(lines, function(d){
-      var word = $.trim(d).split("\t");
+      var word = $.trim(d).split("\t");              
       var header;
       _.each(word, function(w, index){
         if(index === 0){
@@ -177,7 +177,7 @@ $(document).ready(function() {
     var chart = new app.StackedChart({
       collection: revieweeCollection,
       xName: "score",
-      outer_width: 300,
+      outer_width: 230,
       outer_height: 200,
       el: "#chart",
       onItemSelected: onReviewee.selected,
@@ -187,7 +187,7 @@ $(document).ready(function() {
       tooltip: function(d,i){
         return "Team #"+d.get('name');
       },
-      xDomain: _.range(1,10)
+      xDomain: _.range(1,11)
     }).render();
 
     var revieweeList = new app.RevieweeList({

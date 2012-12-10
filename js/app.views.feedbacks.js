@@ -35,6 +35,7 @@
 
       this.$el.html(this.template());
 
+
       _.each(this.collection.models, function (item) {
         // that.renderFeedback(item);
         // console.log(item.atrributes);
@@ -60,15 +61,18 @@
         // d3place.append("hahah");
 
         //this.$el.find('.indscores')
+        //
         this.$el.find('.affix')
           .append(this.score_template(item.toJSON()))
           .append("<hr/>");
+
+
         // this.$el.find(".indscores").append("Put your render of indscore view here!");
 
 
       }, this);
 
-
+      var $affix = this.$el.find('.affix');
 
 
       // _.each(this.collection.models, function (item) {

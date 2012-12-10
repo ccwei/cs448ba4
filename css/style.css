@@ -260,13 +260,15 @@ h3.mini-header {
 }
 #selected-reviewee-item-list {
   background-color: #dee7cd !important;
-  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  display: none;
 }
 .reviewee-list-item,
 #selected-reviewee-item-list {
-  padding-left: 20px;
+  padding: 10px 20px;
+}
+.reviewee-list-item h4,
+#selected-reviewee-item-list h4 {
+  margin-top: 0;
 }
 .reviewee-list-item .details,
 #selected-reviewee-item-list .details {
