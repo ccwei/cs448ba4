@@ -33,7 +33,7 @@
       });
 
       _(this.options).defaults({
-        margin: {top: 3, right: 5, bottom: 3, left: 100}
+        margin: {top: 3, right: 50, bottom: 3, left: 100}
       });
 
 

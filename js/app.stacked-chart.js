@@ -33,7 +33,7 @@
       });
 
       _(this.options).defaults({
-        margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 40: 20)}
+        margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 30: 10)}
       });
 
 
@@ -170,7 +170,8 @@
       yAxis = d3.svg.axis()
         .scale(y)
         .orient("left")
-        .tickFormat(d3.format("0d"));
+        .tickFormat(d3.format("0d"))
+        .ticks(5);
 
       svg = d3.select(el).append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -198,7 +199,7 @@
           .append("text")
             //.attr("transform", "rotate(-90)")
             .attr("y", 6)
-            .attr("dy", "-15")
+            .attr("dy", "-20")
             .style("text-anchor", "middle")
             .text("# of Teams");
       }

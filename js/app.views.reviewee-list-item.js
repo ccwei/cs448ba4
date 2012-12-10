@@ -28,6 +28,7 @@
       }
       this.onItemClicked = this.options.onItemClicked || app.DO_NOTHING;
 
+      this.isShown = false;
     },
     loadData: function (model) {
       if(model) {
@@ -54,30 +55,31 @@
         indTeamReviews.push({teamid: r.user_id, score: Math.round(r.score), reviews:[r]});
       });
 
-      var indChart = new app.StackedChart({
-        collection: new app.RevieweeCollection(indTeamReviews),
-        outer_width: 180,
-        outer_height: 100,
-        el: "#revieweeDetailchart-" + that.viewId,
-        showYAxis:false,
-        showBgRects: true,
-        onItemSelected: function(d){
-          var feedbackModal = new app.FeedbackModalView({
-            model: new app.Feedback(d.get('reviews')[0])
-          });
-        },
-        onItemDeselected: function(d){},
-        xDomain: _.range(1,10)
-
-      });
-      indChart.render();
+      // var indChart = new app.StackedChart({
+      //   collection: new app.RevieweeCollection(indTeamReviews),
+      //   outer_width: 180,
+      //   outer_height: 100,
+      //   el: "#revieweeDetailchart-" + that.viewId,
+      //   showYAxis:false,
+      //   // showBgRects: true,
+      //   onItemSelected: function(d){
+      //     var feedbackModal = new app.FeedbackModalView({
+      //       model: new app.Feedback(d.get('reviews')[0])
+      //     });
+      //   },
+      //   onItemDeselected: function(d){},
+      //   xDomain: _.range(1,10)
+      // });
+      // indChart.render();
       return this;
     },
     hide: function () {
      this.$el.hide();
+     this.isShown = false;
     },
     show: function () {
       this.$el.show();
+      this.isShown = true;
     },
     setupForSelectedItem: function () {
       this.showCancel();

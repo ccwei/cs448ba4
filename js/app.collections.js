@@ -15,12 +15,16 @@
   });
 
   app.FeedbackCollection = Backbone.Collection.extend({
-    model: window.app.Feedback
+    model: window.app.Feedback,
+    comparator: function(a, b){
+      return b.get('score') - a.get('score');
+      //show highest score first
+    }
   });
 
   app.RevieweeCollection = Backbone.Collection.extend({
     comparator: function(a, b){
-      return a.get('score') - b.get('score');
+      return b.get('score') - a.get('score');
     }
   });
 
