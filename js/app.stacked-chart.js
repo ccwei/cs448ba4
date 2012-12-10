@@ -33,7 +33,7 @@
       });
 
       _(this.options).defaults({
-        margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 40: 20)}
+        margin: {top: 25, right: 20, bottom: 30, left: (this.options.showYAxis? 30: 10)}
       });
 
 

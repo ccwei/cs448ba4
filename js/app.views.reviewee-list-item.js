@@ -54,23 +54,23 @@
         indTeamReviews.push({teamid: r.user_id, score: Math.round(r.score), reviews:[r]});
       });
 
-      var indChart = new app.StackedChart({
-        collection: new app.RevieweeCollection(indTeamReviews),
-        outer_width: 180,
-        outer_height: 100,
-        el: "#revieweeDetailchart-" + that.viewId,
-        showYAxis:false,
-        showBgRects: true,
-        onItemSelected: function(d){
-          var feedbackModal = new app.FeedbackModalView({
-            model: new app.Feedback(d.get('reviews')[0])
-          });
-        },
-        onItemDeselected: function(d){},
-        xDomain: _.range(1,10)
+      // var indChart = new app.StackedChart({
+      //   collection: new app.RevieweeCollection(indTeamReviews),
+      //   outer_width: 180,
+      //   outer_height: 100,
+      //   el: "#revieweeDetailchart-" + that.viewId,
+      //   showYAxis:false,
+      //   // showBgRects: true,
+      //   onItemSelected: function(d){
+      //     var feedbackModal = new app.FeedbackModalView({
+      //       model: new app.Feedback(d.get('reviews')[0])
+      //     });
+      //   },
+      //   onItemDeselected: function(d){},
+      //   xDomain: _.range(1,10)
 
-      });
-      indChart.render();
+      // });
+      // indChart.render();
       return this;
     },
     hide: function () {

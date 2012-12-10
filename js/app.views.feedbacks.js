@@ -35,6 +35,7 @@
 
       this.$el.html(this.template());
 
+
       _.each(this.collection.models, function (item) {
         // that.renderFeedback(item);
         // console.log(item.atrributes);
@@ -44,7 +45,7 @@
           var barChart = new app.BarChart({
             model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
             xName: "score",
-            outer_width: 300,
+            outer_width: 400,
             outer_height: 100,
             el: this
           }).render();
@@ -58,15 +59,18 @@
         // d3place.append("hahah");
 
         //this.$el.find('.indscores')
+        //
         this.$el.find('.affix')
           .append(this.score_template(item.toJSON()))
           .append("<hr/>");
+
+
         // this.$el.find(".indscores").append("Put your render of indscore view here!");
 
 
       }, this);
 
-
+      var $affix = this.$el.find('.affix');
 
 
       // _.each(this.collection.models, function (item) {

@@ -30,31 +30,33 @@
 </script>
 
 <script id="revieweeListItemTemplate" type="text/template">
-
-  <div class="row-fluid">
-    <div class="span6">
-      <h4>Team #<%= name %></h4>
-      <div class="details">
-        <div class="detail-industries">
-          <b>Industries: </b>
-          <%=first_industry_sector%>,
-          <%=second_industry_sector%>
-        </div>
-        <div class="detail team-score">
-          <b>Team Score: </b>
-          <%=team_score%>
-        </div>
-      </div>
-    </div>
-    <div class="span6">
-      <div class='cancel-x'>
-        x
-      </div>
-      <div id="revieweeDetailchart-<%=viewId%>"></div>
-    </div>
+  <h4>Team #<%= name %></h4>
+  <div class="details">
+    <span class="detail-industries">
+      <b>Industries: </b>
+      <%=first_industry_sector%>,
+      <%=second_industry_sector%>
+    </span>
+    <span class="detail team-score">
+      <b>Team Score: </b>
+      <%=team_score%>
+    </span>
   </div>
 
+
 </script>
+<!-- Old unused reviewee list item template
+<div class="row-fluid">
+  <div class="span6">
+
+  </div>
+  <div class="span6">
+    <div class='cancel-x'>
+      x
+    </div>
+    <div id="revieweeDetailchart-<%=viewId%>"></div>
+  </div>
+</div>-->
 
 <script id="revieweeDetailTemplate" type="text/template">
   <div class="reviewee-detail">
@@ -97,13 +99,13 @@
 <script id="feedbacksTemplate" type="text/template">
   <div class="row-fluid">
     <div class="span3">
-      <div class="indscores">
+      <div class="indscores padding-10">
         <ul class="nav affix"></ul>
       </div>
     </div>
     <div class="span9">
 
-      <div class="feedbacks"></div>
+      <div class="feedbacks padding-10"></div>
     </div>
   </div>
 
