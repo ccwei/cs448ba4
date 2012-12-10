@@ -43,6 +43,7 @@
         // that.renderFeedback(item);
         // console.log(item.atrributes);
         // d3.select(".score-distribution").append("div").attr("class", "chart");
+        item.set('viewId', that.viewId);
         item.set('itemCount', itemCount++);
         var $feedbackDiv = $(this.item_template(item.toJSON()));
         $feedbackDiv.find(".score-distribution").each(function(){
@@ -95,7 +96,7 @@
           for(var j=0 ;j<items.length ; j++){
             var item = items[j];
 
-            var $grid = $(this.smallgrid_template({itemCount: smallGridCount++}));
+            var $grid = $(this.smallgrid_template({itemCount: smallGridCount++, viewId: that.viewId}));
 
             for(var t=0 ; t<4 ; t++){
               var type = app.FEEDBACK_TYPE[t];
@@ -111,8 +112,9 @@
               $grid.find("."+type).attr('style',"opacity:"+opacity+";");
             }
             $grid.click(function (event) {
-              var icount = parseInt($(this).attr('id').substr(10));
-              document.location = '#item-' + icount;
+              var icount = parseInt($(this).attr('id').substr($(this).attr('id').lastIndexOf('-') + 1));
+              console.log('click', icount);
+              document.location = '#item-' + that.viewId + '-' +icount;
             });
             $groupGrids.append($grid);
           }

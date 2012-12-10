@@ -67,7 +67,7 @@
 
 </script>
 <script id="smallGridTemplate" type="text/template">
-  <div class="smallgrid clickable" id="smallGrid-<%=itemCount%>">
+  <div class="smallgrid clickable" id="smallGrid-<%=viewId%>-<%=itemCount%>">
       <div class="notable"></div>
       <div class="constructive"></div>
       <div class="questions"></div>
@@ -132,7 +132,7 @@
 <script id="feedbackGridTemplate" type="text/template">
   <div class="feedback">
     <div class="row-fluid">
-      <a name="item-<%=itemCount%>"></a>
+      <a name="item-<%=viewId%>-<%=itemCount%>"></a>
       <div class="span8 score-distribution">
       </div>
       <div class="span4 average-score-container">
