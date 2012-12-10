@@ -193,6 +193,28 @@ h3.mini-header {
   margin-top: 20px;
   padding: 10px;
 }
+.aggregated-list ul li {
+  font-size: 13px;
+}
+[class^="icon-grid16-"] {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+}
+[class^="icon-grid16-"].icon-grid16-notable {
+  background-image: url("../img/feedbackgrid16/notable.png");
+}
+[class^="icon-grid16-"].icon-grid16-constructive {
+  background-image: url("../img/feedbackgrid16/constructive.png");
+}
+[class^="icon-grid16-"].icon-grid16-questions {
+  background-image: url("../img/feedbackgrid16/questions.png");
+}
+[class^="icon-grid16-"].icon-grid16-ideas {
+  background-image: url("../img/feedbackgrid16/ideas.png");
+}
 .default-padding {
   padding: 10px;
 }
@@ -410,7 +432,6 @@ table.feedback-grid textarea[disabled] {
   display: inline-block;
   zoom: 1;
   *display: inline;
-  margin-bottom: 10px;
 }
 .search-container div.search-div input[type="search"] {
   width: 160px;
