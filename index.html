@@ -30,27 +30,30 @@
 </script>
 
 <script id="revieweeListItemTemplate" type="text/template">
-  <div class="reviewee-list-item clickable">
-    <div class="row-fluid">
-      <div class="span6">
-        <h4>Team #<%= name %></h4>
-        <div>
-          <b>First Industry: </b>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <h4>Team #<%= name %></h4>
+      <div class="details">
+        <div class="detail-industries">
+          <b>Industries: </b>
           <%=first_industry_sector%>,
-          <b>Second Industry: </b>
-          <%=second_industry_sector%>,
+          <%=second_industry_sector%>
+        </div>
+        <div class="detail team-score">
           <b>Team Score: </b>
           <%=team_score%>
         </div>
       </div>
-      <div class="span6">
-        <div class='cancel-x'>
-          x
-        </div>
-        <div id="revieweeDetailchart-<%=viewId%>"></div>
+    </div>
+    <div class="span6">
+      <div class='cancel-x'>
+        x
       </div>
+      <div id="revieweeDetailchart-<%=viewId%>"></div>
     </div>
   </div>
+
 </script>
 
 <script id="revieweeDetailTemplate" type="text/template">
@@ -166,7 +169,7 @@
 
     <!--<h3 class="mini-header">Keywords</h3>-->
 
-    <div class="padding-10 keyword-picker">
+    <div class="keyword-picker">
       <div class="tab-content">
         <div class="tab-pane" id="ind-tab-tag-cloud-<%=viewId%>">
         </div>
@@ -241,7 +244,7 @@
   </div>
   <div class="upper">
 
-    <div class="padding-10 keyword-picker">
+    <div class="keyword-picker">
       <div class="tab-content">
         <div class="tab-pane" id="agg-tab-tag-cloud-<%=viewId%>">
         </div>
@@ -320,28 +323,30 @@
     </div>
   </div>
   <div class="below-header-bar">
-    <div class="feedback_notable-<%=viewId%>">
-      <h4>Notable</h4>
-      <ul>
-      </ul>
-    </div>
-    <a name="feedback_constructive-<%=viewId%>"></a>
-    <div class="feedback_constructive-<%=viewId%> paddingtop-20">
-      <h4>Constructive</h4>
-      <ul>
-      </ul>
-    </div>
-    <a name="feedback_questions-<%=viewId%>"></a>
-    <div class="feedback_questions-<%=viewId%> paddingtop-20">
-      <h4>Questions</h4>
-      <ul>
-      </ul>
-    </div>
-    <a name="feedback_ideas-<%=viewId%>"></a>
-    <div class="feedback_ideas-<%=viewId%> paddingtop-20">
-      <h4>Ideas</h4>
-      <ul>
-      </ul>
+    <div class="aggregated-list">
+      <div class="feedback_notable-<%=viewId%>">
+        <h5> Notable <i class="icon-grid16-notable" /></h5>
+        <ul>
+        </ul>
+      </div>
+      <a name="feedback_constructive-<%=viewId%>"></a>
+      <div class="feedback_constructive-<%=viewId%> paddingtop-20">
+        <h5> Constructive <i class="icon-grid16-constructive" /></h5>
+        <ul>
+        </ul>
+      </div>
+      <a name="feedback_questions-<%=viewId%>"></a>
+      <div class="feedback_questions-<%=viewId%> paddingtop-20">
+        <h5> Questions <i class="icon-grid16-questions" /></h5>
+        <ul>
+        </ul>
+      </div>
+      <a name="feedback_ideas-<%=viewId%>"></a>
+      <div class="feedback_ideas-<%=viewId%> paddingtop-20">
+        <h5> Ideas <i class="icon-grid16-ideas" /></h5>
+        <ul>
+        </ul>
+      </div>
     </div>
   </div>
 </script>
@@ -350,41 +355,53 @@
   <div class="header-bar">
 
     <div class="pull-right">
+      <div class="legend-block notable"></div>
+      <a href="#" rel="tooltip" title="notable" class="icon-grid16-notable"></a>
+      <div class="legend-block constructive"></div>
+      <a href="#" rel="tooltip" title="constructive" class="icon-grid16-constructive"></a>
+      <div class="legend-block questions"></div>
+      <a href="#" rel="tooltip" title="questions" class="icon-grid16-questions"></a>
+      <div class="legend-block ideas"></div>
+      <a href="#" rel="tooltip" title="ideas" class="icon-grid16-ideas"></a>
+      <div class="inline-block" style="width:100px;"></div>
+
       <button class="btn btn-mini toggle-view-btn">Seperate by type</button>
     </div>
   </div>
   <div class="below-header-bar">
-    <div class="seperated-view display-none">
-      <div class="row-fluid">
-        <div class="keyword-list-notable span3">
-          <h5>Notable</h5>
-          <ul class="no-bullet">
-          </ul>
-        </div>
+    <div class="padding-10">
+      <div class="seperated-view display-none">
+        <div class="row-fluid">
+          <div class="keyword-list-notable span3">
+            <h5><i class="icon-grid16-notable" /> Notable</h5>
+            <ul class="no-bullet">
+            </ul>
+          </div>
 
-        <div class="keyword-list-constructive span3">
-          <h5>Constructive</h5>
-          <ul class="no-bullet">
-          </ul>
-        </div>
+          <div class="keyword-list-constructive span3">
+            <h5><i class="icon-grid16-constructive" /> Constructive</h5>
+            <ul class="no-bullet">
+            </ul>
+          </div>
 
-        <div class="keyword-list-questions span3">
-          <h5>Questions</h5>
-          <ul class="no-bullet">
-          </ul>
-        </div>
+          <div class="keyword-list-questions span3">
+            <h5><i class="icon-grid16-questions" /> Questions</h5>
+            <ul class="no-bullet">
+            </ul>
+          </div>
 
-        <div class="keyword-list-ideas span3">
-          <h5>Ideas</h5>
-          <ul class="no-bullet">
-          </ul>
+          <div class="keyword-list-ideas span3">
+            <h5><i class="icon-grid16-ideas" /> Ideas</h5>
+            <ul class="no-bullet">
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="all-view  active">
-      <div class="keyword-list-all">
-        <ul class="no-bullet">
-        </ul>
+      <div class="all-view  active">
+        <div class="keyword-list-all">
+          <ul class="no-bullet">
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -424,7 +441,6 @@
   <div id="feedback-modal">
   </div>
   <div class="container" id="root"><div class="left-side pull-left">
-
     <div class="half-container">
         <h1>Peereviz</h1>
         <!-- <ul class="nav nav-tabs">

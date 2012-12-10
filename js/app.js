@@ -39,7 +39,8 @@ app.containerResize = function() {
     $('.left-side h1').outerHeight() -
     $('.left-side .upper').outerHeight() -
     $('.left-side h3.mini-header').outerHeight() -
-    $('#selected-reviewee-item-list').outerHeight()
+    ( app.selectedRevieweeListItem && app.selectedRevieweeListItem.isShown ? $('#selected-reviewee-item-list').outerHeight() : 0
+      )
   );
 
   var $rightSide = $("#ind-right-side");
@@ -58,7 +59,8 @@ app.containerResize = function() {
 
   //notify childrenResize();
 
-}
+};
+
 $(window).bind('resize', function() { app.containerResize(); });
 
 $(document).ready(function() {
@@ -67,15 +69,15 @@ $(document).ready(function() {
   $.get("./data/similar_words/sim_words_t2.tsv", function(data) {
     var lines = data.split("\n");
     _.each(lines, function(d){
-      var word = $.trim(d).split("\t")
+      var word = $.trim(d).split("\t");
       var header;
       _.each(word, function(w, index){
-        if(index == 0){
+        if(index === 0){
           header = w;
           simWord[w] = [];
         }
         else
-          simWord[header].push(w)
+          simWord[header].push(w);
       });
     });
   });
@@ -139,8 +141,11 @@ $(document).ready(function() {
             app.showView("all");
             selectedRevieweeListItem.hide();
             chart.unHighlightAll();
+            app.containerResize();
           }
         });
+    app.selectedRevieweeListItem  = selectedRevieweeListItem;
+
     // handler of onReviewee
     var onReviewee = {
       selected: function(d){
@@ -148,10 +153,12 @@ $(document).ready(function() {
         theRevieweeView.loadData(d);
         selectedRevieweeListItem.loadData(d);
         selectedRevieweeListItem.setupForSelectedItem();
+        app.containerResize();
       },
       deselected: function(d){
         app.showView("all");
         selectedRevieweeListItem.hide();
+        app.containerResize();
       },
       unbrushed: function(){
         app.showView("all");
