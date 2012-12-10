@@ -69,9 +69,8 @@
       //   },
       //   onItemDeselected: function(d){},
       //   xDomain: _.range(1,10)
-
-      });
-      indChart.render();
+      // });
+      // indChart.render();
       return this;
     },
     hide: function () {
