@@ -125,6 +125,16 @@ h3.mini-header {
   width: 24.95%;
   float: left;
 }
+#chart {
+  text-align: center;
+}
+.score-pane-left {
+  border-right: 1px solid #eee;
+}
+.quarter3 {
+  width: 74.85%;
+  float: left;
+}
 .tag-cloud-quad h5 {
   text-align: center;
   margin-top: 5px;
@@ -230,6 +240,12 @@ h3.mini-header {
 }
 .padding-20 {
   padding: 20px;
+}
+.paddingtop-10 {
+  padding-top: 10px;
+}
+.paddingtop-20 {
+  padding-top: 20px;
 }
 .padding-5 {
   padding: 5px;
@@ -374,7 +390,7 @@ ul.no-bullet {
 }
 table.feedback-grid {
   width: 100%;
-  margin: 8px 4px 0;
+  margin: 0px 4px 5px;
 }
 table.feedback-grid div.rel {
   position: relative;
@@ -494,6 +510,13 @@ table.feedback-grid textarea[disabled] {
 [class*="keyword-list"] .count:before {
   content: "x ";
   font-size: 90%;
+}
+.average-score-text {
+  padding-top: 5px;
+}
+.average-score {
+  font-size: 48px;
+  padding: 20px 15px;
 }
 .legend-block {
   display: -moz-inline-stack;

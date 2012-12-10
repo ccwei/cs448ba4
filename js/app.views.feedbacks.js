@@ -48,14 +48,16 @@
           var barChart = new app.BarChart({
             model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
             xName: "score",
-            outer_width: 400,
+            outer_width: 300,
             outer_height: 100,
             el: this
           }).render();
         });
+        console.log('score = ', item.get('score'));
+        //this.$el.find('.average-score').html(item.get('score'));
         this.$el.find('.feedbacks')
           .append($feedbackDiv)
-          .append("<hr/>");
+          .append("<hr class='feedback-hr'/>");
           // .append(this.score_template(item.toJSON()));
 
         // var d3place = d3.select(".feedbacks .score-distribution");
@@ -91,11 +93,21 @@
           var $groupGrids = $group.find(".grids");
 
           for(var j=0 ;j<items.length ; j++){
+            var item = items[j];
+
             var $grid = $(this.smallgrid_template());
 
             for(var t=0 ; t<4 ; t++){
               var type = app.FEEDBACK_TYPE[t];
-              var opacity =Math.random()*0.8 + 0.2 ;
+              var text = item.get(type);
+              var len = _.isString(text) ? text.length : 0;
+
+              var max = 260;
+              var min = 20;
+
+              var scale = (len-min)/(max-min);
+              scale = Math.max(0,Math.min(1,scale));
+              var opacity =scale *0.8 + 0.2 ;
               $grid.find("."+type).attr('style',"opacity:"+opacity+";");
             }
 
