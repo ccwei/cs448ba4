@@ -125,6 +125,16 @@ h3.mini-header {
   width: 24.95%;
   float: left;
 }
+#chart {
+  text-align: center;
+}
+.score-pane-left {
+  border-right: 1px solid #eee;
+}
+.quarter3 {
+  width: 74.85%;
+  float: left;
+}
 .tag-cloud-quad h5 {
   text-align: center;
   margin-top: 5px;
@@ -261,6 +271,64 @@ h3.mini-header {
 .full-height {
   overflow-y: scroll;
 }
+.indscores h5 {
+  margin-top: 0px;
+}
+.score-list-item {
+  min-height: 20px;
+  border-bottom: 1px #eee solid;
+}
+.score-list-item .score-val {
+  float: left;
+  width: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: right;
+}
+.score-list-item .grids {
+  margin-left: 25px;
+}
+.smallgrid {
+  display: -moz-inline-stack;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  margin-right: 3px;
+}
+.smallgrid div {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  line-height: 6px;
+  font-size: 1px;
+  padding: 0;
+  background-color: #2ca02c !important;
+}
+.smallgrid .notable {
+  top: 0;
+  left: 0;
+  background-color: #d62728;
+}
+.smallgrid .constructive {
+  top: 0;
+  right: 0;
+  background-color: #ff7f0e;
+}
+.smallgrid .questions {
+  bottom: 0;
+  left: 0;
+  background-color: #2ca02c;
+}
+.smallgrid .ideas {
+  bottom: 0;
+  right: 0;
+  background-color: #1f77b4;
+}
 #selected-reviewee-item-list {
   background-color: #dee7cd !important;
   display: none;
@@ -324,7 +392,7 @@ ul.no-bullet {
 }
 table.feedback-grid {
   width: 100%;
-  margin: 8px 4px 0;
+  margin: 0px 4px 5px;
 }
 table.feedback-grid div.rel {
   position: relative;

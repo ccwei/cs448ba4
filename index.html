@@ -44,9 +44,9 @@
       <b>Team Score: </b>
       <%=team_score%>
     </span>
-
   </div>
 </script>
+
 <!-- Old unused reviewee list item template
 <div class="row-fluid">
   <div class="span6">
@@ -59,7 +59,21 @@
     <div id="revieweeDetailchart-<%=viewId%>"></div>
   </div>
 </div>-->
+<script id="scoreListItem" type="text/template">
+  <div class="score-list-item">
+    <div class="score-val"><%=score%></div>
+    <div class="grids"></div>
+  </div>
 
+</script>
+<script id="smallGridTemplate" type="text/template">
+  <div class="smallgrid clickable">
+      <div class="notable"></div>
+      <div class="constructive"></div>
+      <div class="questions"></div>
+      <div class="ideas"></div>
+  </div>
+</script>
 <script id="revieweeDetailTemplate" type="text/template">
   <div class="reviewee-detail">
     <div class="icon">
@@ -100,23 +114,24 @@
 </script>
 <!-- //http://twitter.github.com/bootstrap/javascript.html#affix  -->
 <script id="feedbacksTemplate" type="text/template">
-  <div class="row-fluid">
-    <div class="span3">
-      <div class="indscores padding-10">
-        <ul class="nav affix"></ul>
-      </div>
-    </div>
-    <div class="span9">
 
-      <div class="feedbacks padding-10"></div>
+  <div class="quarter score-pane-left lower">
+    <div class="indscores padding-10">
+      <h5>By Score</h5>
+      <!--<ul class="nav affix"></ul>-->
     </div>
   </div>
+  <div class="quarter3 lower">
+
+    <div class="feedbacks padding-10"></div>
+  </div>
+
 
 </script>
 
 <script id="feedbackGridTemplate" type="text/template">
   <div class="feedback">
-    <div class="row-fluid padding-20">
+    <div class="row-fluid">
       <div class="span8 score-distribution">
       </div>
       <div class="span4 average-score-container">
