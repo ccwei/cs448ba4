@@ -91,11 +91,21 @@
           var $groupGrids = $group.find(".grids");
 
           for(var j=0 ;j<items.length ; j++){
+            var item = items[j];
+
             var $grid = $(this.smallgrid_template());
 
             for(var t=0 ; t<4 ; t++){
               var type = app.FEEDBACK_TYPE[t];
-              var opacity =Math.random()*0.8 + 0.2 ;
+              var text = item.get(type);
+              var len = _.isString(text) ? text.length : 0;
+
+              var max = 260;
+              var min = 20;
+
+              var scale = (len-min)/(max-min);
+              scale = Math.max(0,Math.min(1,scale));
+              var opacity =scale *0.8 + 0.2 ;
               $grid.find("."+type).attr('style',"opacity:"+opacity+";");
             }
 
