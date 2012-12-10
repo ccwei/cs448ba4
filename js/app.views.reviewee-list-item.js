@@ -28,6 +28,7 @@
       }
       this.onItemClicked = this.options.onItemClicked || app.DO_NOTHING;
 
+      this.isShown = false;
     },
     loadData: function (model) {
       if(model) {
@@ -71,13 +72,16 @@
 
       });
       indChart.render();
+      this.isShown= true;
       return this;
     },
     hide: function () {
      this.$el.hide();
+     this.isShown = false;
     },
     show: function () {
       this.$el.show();
+      this.isShown = true;
     },
     setupForSelectedItem: function () {
       this.showCancel();
