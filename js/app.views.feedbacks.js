@@ -38,12 +38,14 @@
       this.$el.html(this.template());
 
       var byScore = {};
-
+      var itemCount = 0;
       _.each(this.collection.models, function (item) {
         // that.renderFeedback(item);
         // console.log(item.atrributes);
         // d3.select(".score-distribution").append("div").attr("class", "chart");
-        var $feedbackDiv = $(this.item_template(item.toJSON()) );
+        item.set('viewId', that.viewId);
+        item.set('itemCount', itemCount++);
+        var $feedbackDiv = $(this.item_template(item.toJSON()));
         $feedbackDiv.find(".score-distribution").each(function(){
           var barChart = new app.BarChart({
             model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
@@ -53,7 +55,6 @@
             el: this
           }).render();
         });
-        console.log('score = ', item.get('score'));
         //this.$el.find('.average-score').html(item.get('score'));
         this.$el.find('.feedbacks')
           .append($feedbackDiv)
@@ -84,7 +85,7 @@
       }, this);
 
       var $indscores = this.$el.find('.indscores');
-
+      var smallGridCount = 0;
       for(var i=10 ; i>0 ; i--){
         if(byScore[i]){
           var items = byScore[i];
@@ -95,7 +96,7 @@
           for(var j=0 ;j<items.length ; j++){
             var item = items[j];
 
-            var $grid = $(this.smallgrid_template());
+            var $grid = $(this.smallgrid_template({itemCount: smallGridCount++, viewId: that.viewId}));
 
             for(var t=0 ; t<4 ; t++){
               var type = app.FEEDBACK_TYPE[t];
@@ -110,11 +111,14 @@
               var opacity =scale *0.8 + 0.2 ;
               $grid.find("."+type).attr('style',"opacity:"+opacity+";");
             }
-
+            $grid.click(function (event) {
+              var icount = parseInt($(this).attr('id').substr($(this).attr('id').lastIndexOf('-') + 1));
+              console.log('click', icount);
+              document.location = '#item-' + that.viewId + '-' +icount;
+            });
             $groupGrids.append($grid);
           }
           // var len = group;
-
           $indscores.append($group);
 
         }
