@@ -28,6 +28,25 @@
           //TODO: link back to one by one view for the review idx reviewIdx
       });
       this.$el.children(".header-bar").append(_.template($("#searchFieldTemplate").html())());
+      console.log('initialize feedbacks aggregate view');
+      _(app.FEEDBACK_TYPE).each(function (t) {
+        var linkSelector = '.link-' + t;
+        that.$el.find(linkSelector).click(function (event) {
+          that.$el.find('.lower').animate({
+            scrollTop: (that.$el.find('.feedback_' + t).offset().top)+'px'}, 'fast'
+          );
+          console.log(that.$el.find('.lower'));
+          console.log('.feedback_' + t, ': ', (that.$el.find('.feedback_' + t).offset().top));
+        });
+        //console.log('link = ', that.$el.find(linkSelector));
+      });
+      //this.$el.children(".header-bar").append(_.template($("#navigateButtonsTemplate").html())());
+      //ap
+      console.log(this.$el.find(''));
+
+      /*this.$el.find('.lower').animate({
+        scrollTop: (this.$el.find('.feedback_constructive').offset().top)+'px'}, 'fast'
+        );*/
     },
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
@@ -100,16 +119,6 @@
           $el.find('.feedback_'+type).removeClass('display-none');
         }
       });
-
-      var button = $('<button/>').click(function () {
-        console.log('click button');
-        $('#right-side').animate({
-           scrollTop: ($el.find('.feedback_constructive').offset().top)+'px'}, 'fast');
-
-      });
-
-      $el.prepend(button);
-
     }
   });
 })(jQuery);
