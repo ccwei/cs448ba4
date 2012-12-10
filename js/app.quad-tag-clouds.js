@@ -31,7 +31,7 @@
           model: that.frequentWords[type],
           el: $('#' + that.$el.attr('id') + " .tag-cloud-" + type),
           outer_width: 170,
-          outer_height: 175,
+          outer_height: 165,
           onWordClick: that.onWordClick
         });
       });

@@ -127,6 +127,8 @@ h3.mini-header {
 }
 .tag-cloud-quad h5 {
   text-align: center;
+  margin-top: 5px;
+  margin-bottom: 3px;
 }
 .half {
   width: 49.95%;
@@ -165,6 +167,9 @@ h3.mini-header {
   border-left: 0px;
   border-right: 0px;
   margin-bottom: 0px;
+  -webkit-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.05);
 }
 #right-side .upper {
   position: relative;
@@ -193,6 +198,9 @@ h3.mini-header {
 }
 .padding-20 {
   padding: 20px;
+}
+.padding-5 {
+  padding: 5px;
 }
 .padding-10 {
   padding: 10px;
