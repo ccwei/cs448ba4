@@ -56,6 +56,7 @@
 
       this.redrawTagCloud = true;
       this.renderTagCloud();
+      app.containerResize();
     },
 
     render: function(){
