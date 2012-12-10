@@ -10,6 +10,9 @@
 @color2:#ff7f0e;
 @color3:#2ca02c;
 @color1:#d62728;
+
+// @notable-color
+
 @keyword-list-bg:#f1f1f1;
 @keyword-list-bar-height: 4px;
 
@@ -269,6 +272,69 @@ h3.mini-header {
 
 .score-distribution{
 
+}
+
+.indscores{
+  h5{
+    margin-top: 0px;
+  }
+}
+
+.score-list-item{
+  min-height: 20px;
+  .score-val{
+    float: left;
+    width: 18px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: right;
+  }
+  .grids {
+    margin-left: 25px;
+  }
+  border-bottom: 1px #eee solid;
+}
+
+@small-grid-size: 12px;
+
+.smallgrid{
+  .inline-block;
+  position: relative;
+  width: @small-grid-size;
+  height:@small-grid-size;
+  padding: 0;
+  margin-right: 3px;
+  div {
+    position: absolute;
+    width:@small-grid-size/2;
+    height:@small-grid-size/2;
+    line-height: @small-grid-size/2;
+    font-size: 1px;
+    padding: 0;
+    background-color: @color3 !important;
+    // background-color: #094c95 !important;
+  }
+  .notable{
+    top:0;
+    left:0;
+    background-color: @color1;
+  }
+  .constructive{
+    top:0;
+    right:0;
+    background-color: @color2;
+  }
+  .questions{
+    bottom: 0;
+    left:0;
+    background-color: @color3;
+  }
+  .ideas {
+    bottom: 0;
+    right:0;
+    background-color: @color4;
+  }
 }
 
 #selected-reviewee-item-list{

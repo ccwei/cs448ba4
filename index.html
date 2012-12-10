@@ -42,9 +42,8 @@
       <%=team_score%>
     </span>
   </div>
-
-
 </script>
+
 <!-- Old unused reviewee list item template
 <div class="row-fluid">
   <div class="span6">
@@ -57,7 +56,21 @@
     <div id="revieweeDetailchart-<%=viewId%>"></div>
   </div>
 </div>-->
+<script id="scoreListItem" type="text/template">
+  <div class="score-list-item">
+    <div class="score-val"><%=score%></div>
+    <div class="grids"></div>
+  </div>
 
+</script>
+<script id="smallGridTemplate" type="text/template">
+  <div class="smallgrid clickable">
+      <div class="notable"></div>
+      <div class="constructive"></div>
+      <div class="questions"></div>
+      <div class="ideas"></div>
+  </div>
+</script>
 <script id="revieweeDetailTemplate" type="text/template">
   <div class="reviewee-detail">
     <div class="icon">
@@ -100,7 +113,8 @@
   <div class="row-fluid">
     <div class="span3">
       <div class="indscores padding-10">
-        <ul class="nav affix"></ul>
+        <h5>By Score</h5>
+        <!--<ul class="nav affix"></ul>-->
       </div>
     </div>
     <div class="span9">
