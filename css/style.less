@@ -268,23 +268,37 @@ h3.mini-header {
 }
 
 #selected-reviewee-item-list{
-  background-color: #dee7cd;
+  background-color: #dee7cd !important;
+
+
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, .15);
+  -moz-box-shadow: 0 0 10px 1px rgba(0,0,0,.15);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, .15);
 }
 
-.reviewee-list-item {
+.reviewee-list-item, #selected-reviewee-item-list {
   padding-left: 20px;
-}
+  .details {
+    font-size: 13px;
+  }
+  .cancel-x {
+    display: none;
+    width: 10px;
+    height: 10px;
+    float: right;
+    margin: 10px 15px 10px 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  &:nth-child(odd){
 
-.reviewee-list-item .cancel-x {
-  display: none;
-  width: 10px;
-  height: 10px;
-  float: right;
-  margin: 10px 15px 10px 10px;
-  &:hover{
-    cursor: pointer;
+  }
+  &:nth-child(even){
+    background-color:#f1f1f1;
   }
 }
+
 
 .keyword-picker{
   height:200px;

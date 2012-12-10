@@ -36,7 +36,7 @@
       var that = this;
       this.$el.html('');
       this.collection.each(function(model){
-        var div = $('<div > </div>');
+        var div = $('<div/>').addClass("reviewee-list-item clickable");
         that.$el.append(div);
         var revieweeListItemView = new app.RevieweeListItemView({
           model: model,

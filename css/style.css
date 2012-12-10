@@ -253,20 +253,34 @@ h3.mini-header {
   overflow-y: scroll;
 }
 #selected-reviewee-item-list {
-  background-color: #dee7cd;
+  background-color: #dee7cd !important;
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
 }
-.reviewee-list-item {
+.reviewee-list-item,
+#selected-reviewee-item-list {
   padding-left: 20px;
 }
-.reviewee-list-item .cancel-x {
+.reviewee-list-item .details,
+#selected-reviewee-item-list .details {
+  font-size: 13px;
+}
+.reviewee-list-item .cancel-x,
+#selected-reviewee-item-list .cancel-x {
   display: none;
   width: 10px;
   height: 10px;
   float: right;
   margin: 10px 15px 10px 10px;
 }
-.reviewee-list-item .cancel-x:hover {
+.reviewee-list-item .cancel-x:hover,
+#selected-reviewee-item-list .cancel-x:hover {
   cursor: pointer;
+}
+.reviewee-list-item:nth-child(even),
+#selected-reviewee-item-list:nth-child(even) {
+  background-color: #f1f1f1;
 }
 .keyword-picker {
   height: 200px;

@@ -30,27 +30,30 @@
 </script>
 
 <script id="revieweeListItemTemplate" type="text/template">
-  <div class="reviewee-list-item clickable">
-    <div class="row-fluid">
-      <div class="span6">
-        <h4>Team #<%= name %></h4>
-        <div>
-          <b>First Industry: </b>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <h4>Team #<%= name %></h4>
+      <div class="details">
+        <div class="detail-industries">
+          <b>Industries: </b>
           <%=first_industry_sector%>,
-          <b>Second Industry: </b>
-          <%=second_industry_sector%>,
+          <%=second_industry_sector%>
+        </div>
+        <div class="detail team-score">
           <b>Team Score: </b>
           <%=team_score%>
         </div>
       </div>
-      <div class="span6">
-        <div class='cancel-x'>
-          x
-        </div>
-        <div id="revieweeDetailchart-<%=viewId%>"></div>
+    </div>
+    <div class="span6">
+      <div class='cancel-x'>
+        x
       </div>
+      <div id="revieweeDetailchart-<%=viewId%>"></div>
     </div>
   </div>
+
 </script>
 
 <script id="revieweeDetailTemplate" type="text/template">
