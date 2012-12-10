@@ -28,12 +28,12 @@
         outer_width: 200,
         outer_height: 200,
         showYAxis: true,
-        showBgRects: false,
+        showBgRects: true,
         xDomain: false //override with range to for domain of X
       });
 
       _(this.options).defaults({
-        margin: {top: 3, right: 5, bottom: 3, left: 100}
+        margin: {top: 3, right: 20, bottom: 3, left: 100}
       });
 
 
@@ -60,7 +60,7 @@
       //render
       var that = this;
       var data = this.model;
-      var x0 = Math.max(0, 9);
+      var x0 = Math.max(0, 10);
       var x = d3.scale.linear()
           .domain([0, x0])
           .range([0, width]);
@@ -84,6 +84,21 @@
         .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      if(this.options.showBgRects){
+        var bg_rects = svg.append("g").attr("class","bg-rects")
+          .selectAll(".bg-rect")
+            .data(data)
+            .enter()
+            .append("g")
+              .attr("transform", function(d){
+                return "translate(0," + y(d.y) + ")";
+              })
+            .append("rect")
+              .attr('class','bg-rect')
+              .attr("width", x(10))
+              .attr("height", y.rangeBand());
+      }
+
       svg.selectAll(".bar")
           .data(data)
         .enter().append("rect")
@@ -93,12 +108,14 @@
           .attr("width", function(d) { return Math.abs(x(d.x) - x(0)); })
           .attr("height", y.rangeBand());
 
+
       svg.selectAll(".count")
         .data(data)
       .enter().append("text") //number at the right side of the chart
         .text(function(d){ return d.x+"";})
         .attr("x", function(d, i) {
-          return x(d.x) + 8;
+          return x(10) + 10;
+          //return x(d.x) + 8;
         })
         .attr("y", function(d) {
           return y(d.y) + y.rangeBand()/2+4;

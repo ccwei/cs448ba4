@@ -49,6 +49,8 @@
             el: this
           }).render();
         });
+        console.log('score = ', item.get('score'));
+        //this.$el.find('.average-score').html(item.get('score'));
         this.$el.find('.feedbacks')
           .append($feedbackDiv)
           .append("<hr/>");

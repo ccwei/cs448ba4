@@ -441,6 +441,13 @@ table.feedback-grid textarea[disabled] {
   content: "x ";
   font-size: 90%;
 }
+.average-score-text {
+  padding-top: 5px;
+}
+.average-score {
+  font-size: 48px;
+  padding: 20px 15px;
+}
 .legend-block {
   display: -moz-inline-stack;
   display: inline-block;
