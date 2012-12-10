@@ -45,7 +45,10 @@
         that.render();
       };
 
-      this.$el.find(".header-bar").append(_.template($("#searchFieldTemplate").html())());
+      this.$el.find(".header-bar").append(_.template($("#searchFieldTemplate").html())())
+        .find('a[rel="tooltip"]').tooltip({placement:'bottom'});
+
+
       this.$el.find(".search-field").on('change',onSearchTextChange);
       this.$el.find(".search-field").on('keyup',onSearchTextChange);
       this.$el.find(".toggle-view-btn").on('click',onToggleView);
