@@ -127,7 +127,17 @@
 
 <script id="feedbackGridTemplate" type="text/template">
   <div class="feedback">
-    <div class="score-distribution">
+    <div class="row-fluid padding-20">
+      <div class="span8 score-distribution">
+      </div>
+      <div class="span4 average-score-container">
+        <div class="average-score-text">
+          Average Score:
+        </div>
+        <div class="average-score">
+          <%= score %>
+        </div>
+      </div>
     </div>
     <table class="feedback-grid">
       <tr>
@@ -331,34 +341,34 @@
     <div class="links-container pull-right">
       <a href='#' class='link-notable'>Notable</a>
       |
-      <a href='#' class='link-constructive'>Constructive</a>
+      <a href='#feedback_constructive-<%=viewId%>' class='link-constructive'>Constructive</a>
       |
-      <a href='#' class='link-questions'>Questions</a>
+      <a href='#feedback_questions-<%=viewId%>' class='link-questions'>Questions</a>
       |
-      <a href='#' class='link-ideas'>Ideas</a>
+      <a href='#feedback_ideas-<%=viewId%>' class='link-ideas'>Ideas</a>
     </div>
   </div>
   <div class="below-header-bar">
     <div class="aggregated-list">
-      <div class="feedback_notable">
+      <div class="feedback_notable-<%=viewId%>">
         <h5> Notable <i class="icon-grid16-notable" /></h5>
         <ul>
         </ul>
       </div>
-
-      <div class="feedback_constructive">
+      <a name="feedback_constructive-<%=viewId%>"></a>
+      <div class="feedback_constructive-<%=viewId%> paddingtop-20">
         <h5> Constructive <i class="icon-grid16-constructive" /></h5>
         <ul>
         </ul>
       </div>
-
-      <div class="feedback_questions">
+      <a name="feedback_questions-<%=viewId%>"></a>
+      <div class="feedback_questions-<%=viewId%> paddingtop-20">
         <h5> Questions <i class="icon-grid16-questions" /></h5>
         <ul>
         </ul>
       </div>
-
-      <div class="feedback_ideas">
+      <a name="feedback_ideas-<%=viewId%>"></a>
+      <div class="feedback_ideas-<%=viewId%> paddingtop-20">
         <h5> Ideas <i class="icon-grid16-ideas" /></h5>
         <ul>
         </ul>
@@ -427,24 +437,24 @@
 <script id="tagCloudsFrameTemplate" type="text/template">
   <div class="tag-cloud-quad">
     <div class="quarter">
-      <h5>Notable</h5>
+      <h5>Notable <i class="icon-grid16-notable" /></h5>
       <div class="tag-cloud-notable center">
       </div>
     </div>
 
     <div class="quarter">
-      <h5>Constructive</h5>
+      <h5>Constructive <i class="icon-grid16-constructive" /></h5>
       <div class="tag-cloud-constructive center">
       </div>
     </div>
 
     <div class="quarter">
-      <h5>Questions</h5>
+      <h5>Questions <i class="icon-grid16-questions" /></h5>
       <div class="tag-cloud-questions center">
       </div>
     </div>
     <div class="quarter">
-      <h5>Ideas</h5>
+      <h5>Ideas <i class="icon-grid16-ideas" /></h5>
       <div class="tag-cloud-ideas center">
       </div>
     </div>
