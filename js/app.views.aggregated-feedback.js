@@ -8,6 +8,7 @@
 (function ($) {
   "use strict"; // use strict mode for sublime linter according to http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 
+  var total = 0;
   //TODO(kanitw): should be renamed to FeedbacksGroupedView ???
   app.FeedbacksAggregatedView = Backbone.View.extend({
     tagName: "div",
@@ -19,7 +20,8 @@
 
     initialize: function () {
       var that = this;
-      this.$el.html(this.template())
+      this.viewId = total++;
+      this.$el.html(this.template({viewId: this.viewId}))
         .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
           var reviewIdx = $(this).index();
           var feedbackModal = new app.FeedbackModalView({
@@ -29,24 +31,25 @@
       });
       this.$el.children(".header-bar").append(_.template($("#searchFieldTemplate").html())());
       console.log('initialize feedbacks aggregate view');
-      _(app.FEEDBACK_TYPE).each(function (t) {
+      that.$el.find('[class*=link-notable]').click(function (event) {
+        $('#all-right-side .lower').animate({
+            scrollTop: '0px'}, 'fast'
+          );
+        $('#ind-right-side .lower').animate({
+            scrollTop: '0px'}, 'fast'
+          );
+      });
+      /*_(app.FEEDBACK_TYPE).each(function (t) {
         var linkSelector = '.link-' + t;
         that.$el.find(linkSelector).click(function (event) {
-          that.$el.find('.lower').animate({
-            scrollTop: (that.$el.find('.feedback_' + t).offset().top)+'px'}, 'fast'
+          $('#all-right-side .lower').animate({
+            scrollTop: (that.$el.find('.feedback_' + t).offset().top)+'px'}, 'slow'
           );
+          event.preventDefault();
+          console.log(that.$el.find('.feedback_' + t));
           console.log(that.$el.find('.lower'));
-          console.log('.feedback_' + t, ': ', (that.$el.find('.feedback_' + t).offset().top));
         });
-        //console.log('link = ', that.$el.find(linkSelector));
-      });
-      //this.$el.children(".header-bar").append(_.template($("#navigateButtonsTemplate").html())());
-      //ap
-      console.log(this.$el.find(''));
-
-      /*this.$el.find('.lower').animate({
-        scrollTop: (this.$el.find('.feedback_constructive').offset().top)+'px'}, 'fast'
-        );*/
+      });*/
     },
     loadData: function(feedbacks){
       this.collection = new app.FeedbackCollection(feedbacks);
@@ -96,7 +99,8 @@
               li.highlight(that.keyword);
 
             }
-            $el.find('.feedback_'+type+' ul').append(li);
+            var className = '[class*=feedback_' + type + ']';
+            $el.find(className + ' ul').append(li);
           }
         });
 

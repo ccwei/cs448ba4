@@ -231,6 +231,12 @@ h3.mini-header {
 .padding-20 {
   padding: 20px;
 }
+.paddingtop-10 {
+  padding-top: 10px;
+}
+.paddingtop-20 {
+  padding-top: 20px;
+}
 .padding-5 {
   padding: 5px;
 }
@@ -494,6 +500,13 @@ table.feedback-grid textarea[disabled] {
 [class*="keyword-list"] .count:before {
   content: "x ";
   font-size: 90%;
+}
+.average-score-text {
+  padding-top: 5px;
+}
+.average-score {
+  font-size: 48px;
+  padding: 20px 15px;
 }
 .legend-block {
   display: -moz-inline-stack;
