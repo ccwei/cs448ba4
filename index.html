@@ -30,6 +30,9 @@
 </script>
 
 <script id="revieweeListItemTemplate" type="text/template">
+  <div class='cancel-x'>
+        x
+  </div>
   <h4>Team #<%= name %></h4>
   <div class="details">
     <span class="detail-industries">
@@ -92,6 +95,7 @@
           <b>Team Score: </b>
           <%=team_score%>
         </div>
+
       </div>
       <div class="span6">
         <div id="revieweeDetailchart"></div>
@@ -379,24 +383,24 @@
 
 <script id="keywordListsFrameTemplate" type="text/template">
   <div class="header-bar">
-
     <div class="pull-right">
-      <div class="legend-block notable"></div>
-      <a href="#" rel="tooltip" title="notable" class="icon-grid16-notable"></a>
-      <div class="legend-block constructive"></div>
-      <a href="#" rel="tooltip" title="constructive" class="icon-grid16-constructive"></a>
-      <div class="legend-block questions"></div>
-      <a href="#" rel="tooltip" title="questions" class="icon-grid16-questions"></a>
-      <div class="legend-block ideas"></div>
-      <a href="#" rel="tooltip" title="ideas" class="icon-grid16-ideas"></a>
-      <div class="inline-block" style="width:100px;"></div>
-
+      <span class="legend-blocks-container">
+        <div class="legend-block notable"></div>
+        <a href="#" rel="tooltip" title="notable" class="icon-grid16-notable"></a>
+        <div class="legend-block constructive"></div>
+        <a href="#" rel="tooltip" title="constructive" class="icon-grid16-constructive"></a>
+        <div class="legend-block questions"></div>
+        <a href="#" rel="tooltip" title="questions" class="icon-grid16-questions"></a>
+        <div class="legend-block ideas"></div>
+        <a href="#" rel="tooltip" title="ideas" class="icon-grid16-ideas"></a>
+        <div class="inline-block" style="width:100px;"></div>
+      </span>
       <button class="btn btn-mini toggle-view-btn">Seperate by type</button>
     </div>
   </div>
   <div class="below-header-bar">
-    <div class="padding-10">
-      <div class="seperated-view display-none">
+    <div>
+      <div class="seperated-view display-none padding-10-notop">
         <div class="row-fluid">
           <div class="keyword-list-notable span3">
             <h5><i class="icon-grid16-notable" /> Notable</h5>
@@ -423,7 +427,7 @@
           </div>
         </div>
       </div>
-      <div class="all-view  active">
+      <div class="all-view  active padding-10">
         <div class="keyword-list-all">
           <ul class="no-bullet">
           </ul>

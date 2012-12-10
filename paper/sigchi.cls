@@ -1521,16 +1521,16 @@
 \newtoks\copyrightetc
 \global\copyrightetc{\ } %  Need to have 'something' so that adequate space is left for pasting in a line if "confinfo" is supplied.
 
-\toappear{
-Permission to make digital or hard copies of all or part of this work for
-personal or classroom use is granted without fee provided that copies are
-not made or distributed for profit or commercial advantage and that copies
-bear this notice and the full citation on the first page. To copy otherwise,
-or republish, to post on servers or to redistribute to lists, requires prior
-specific permission and/or a fee.\\
-{\confname{CHI'13}}, April 27--May 2, 2013, Paris, France.\\
-Copyright 2013 ACM 978-1-XXXX-XXXX-X/XX/XX...\$10.00.
-}
+%\toappear{
+%Permission to make digital or hard copies of all or part of this work for
+%personal or classroom use is granted without fee provided that copies are
+%not made or distributed for profit or commercial advantage and that copies
+%bear this notice and the full citation on the first page. To copy otherwise,
+%or republish, to post on servers or to redistribute to lists, requires prior
+%specific permission and/or a fee.\\
+%{\confname{CHI'13}}, April 27--May 2, 2013, Paris, France.\\
+%Copyright 2013 ACM 978-1-XXXX-XXXX-X/XX/XX...\$10.00.
+%}
 % End of chi2012.cls - version 0.01	
 
 

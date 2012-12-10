@@ -45,13 +45,23 @@
 
       this.keywordListsView = new app.KeywordListsView({
         model: this.totalReviews,
-        el: $("#agg-tab-keyword-list-" + that.viewId)
+        el: $("#agg-tab-keyword-list-" + that.viewId),
+        onWordClick: function (text) {
+          console.log('click ', text);
+          that.feedbacksAggregatedView.setSearchWord(text);
+          $('#agg-tab-reviews-menu' + ' a[href="#agg-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+       }
       });
 
-      this.keywordListsView = new app.KeywordListsView({
+      this.phraseListsView = new app.KeywordListsView({
         model: this.totalReviews,
         bigram: true,
-        el: $("#agg-tab-phrase-list-" + that.viewId)
+        el: $("#agg-tab-phrase-list-" + that.viewId),
+        onWordClick: function (text) {
+          console.log('click ', text);
+          that.feedbacksAggregatedView.setSearchWord(text);
+          $('#agg-tab-reviews-menu' + ' a[href="#agg-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+        }
       });
 
       this.redrawTagCloud = true;
