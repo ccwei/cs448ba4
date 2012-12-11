@@ -164,27 +164,27 @@ $(document).ready(function() {
       },
       unbrushed: function(){
         console.log("unbrushed");
-        $("#waitModal").modal('show');
-        setTimeout(function () {
+        //$("#waitModal").modal('show');
+        //setTimeout(function () {
           app.showView("all");
           selectedRevieweeListItem.hide();
           revieweeList.loadData(revieweeCollection);
-          $("#waitModal").modal('hide');
-        }, 200);
+          //$("#waitModal").modal('hide');
+        //}, 200);
 
       }
     };
 
     var brushed = function(filteredModels){
-      $("#waitModal").modal('show');
-      setTimeout(function () {
+     // $("#waitModal").modal('show');
+      //setTimeout(function () {
         var filteredRevieweeCollection = new app.RevieweeCollection(filteredModels);
         aggRevieweesView.loadData(filteredRevieweeCollection);
         revieweeList.loadData(filteredRevieweeCollection);
         app.showView("agg");
         selectedRevieweeListItem.hide();
-        $("#waitModal").modal('hide');
-      }, 200);
+        //$("#waitModal").modal('hide');
+      //}, 200);
       };
 
 
