@@ -517,7 +517,7 @@ table.feedback-grid textarea[disabled] {
   padding-top: 5px;
 }
 .average-score {
-  font-size: 48px;
+  font-size: 32px;
   padding: 20px 15px;
 }
 .legend-block {
@@ -637,4 +637,13 @@ text {
 }
 hr {
   margin: 1px;
+}
+.feedbackModal {
+  width: 800px;
+  height: 600px;
+  margin-left: -400px;
+  margin-top: -320px;
+}
+.modal-body {
+  overflow: visible;
 }

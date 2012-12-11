@@ -115,6 +115,7 @@
               var icount = parseInt($(this).attr('id').substr($(this).attr('id').lastIndexOf('-') + 1));
               console.log('click', icount);
               document.location = '#item-' + that.viewId + '-' +icount;
+              app.containerResize();
             });
             $groupGrids.append($grid);
           }

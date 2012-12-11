@@ -133,9 +133,12 @@
   <div class="feedback">
     <div class="row-fluid">
       <a name="item-<%=viewId%>-<%=itemCount%>"></a>
-      <div class="span8 score-distribution">
+      <div class="span2 team-name padding-10">
+        Team #<%= name %>
       </div>
-      <div class="span4 average-score-container">
+      <div class="span7 score-distribution">
+      </div>
+      <div class="span2 average-score-container">
         <div class="average-score-text">
           Average Score:
         </div>
@@ -148,21 +151,21 @@
       <tr>
         <td class="like">
           <div class="grid-cell"><%= notable %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
         </td>
         <td class="wish">
           <div class="grid-cell"><%= constructive %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
         </td>
       </tr>
       <tr>
         <td class="question">
           <div class="grid-cell"><%= questions %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
         </td>
         <td class="big-idea">
           <div class="grid-cell"><%= ideas %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
         </td>
       </tr>
     </table>
@@ -499,9 +502,10 @@
           </div>
         </div>
         <div class="lower">
-          <h3 class="mini-header">Teams</h3>
+          <h3 class="mini-header">Selected Teams</h3>
           <div id="selected-reviewee-item-list">
           </div>
+          <h3 class="mini-header">Teams</h3>
           <div class='full-height'>
             <div id="reviewee-list"></div>
           </div>
@@ -525,6 +529,7 @@
 <script src="./js/app.views.aggregated-feedback.js"></script>
 <script src="./js/app.views.feedbacks.js"></script>
 <script src="./js/app.views.feedback-modal.js"></script>
+
 <script src="./js/app.views.reviewee-detail.js"></script>
 <script src="./js/app.views.reviewee-list.js"></script>
 <script src="./js/app.views.reviewee.js"></script>
@@ -535,5 +540,6 @@
 <script src="./js/app.tag-cloud.js"></script>
 <script src="./js/app.quad-tag-clouds.js"></script>
 <script src="./js/app.views.keyword-lists.js"></script>
+
 <script src="./js/app.js"></script>
 </html>

@@ -24,6 +24,7 @@
       this.$el.html(this.template({viewId: this.viewId}))
         .delegate('li', 'click', function () { //WARNING(kanitw): delegate is deprecated
           var reviewIdx = $(this).index();
+          console.log("reviewIdx", reviewIdx);
           var feedbackModal = new app.FeedbackModalView({
             model: that.collection.models[reviewIdx]
           });
@@ -90,10 +91,11 @@
       });
 
       var matchCount = 0;
-
+      var itemCount = 0;
       _.each(this.collection.models, function (item, idx) {
         // var frame = $(".aggregated-feedback-frame");
-
+        item.set('viewId', that.viewId);
+        item.set('itemCount', itemCount++);
         var feedback = item.toJSON();
 
         // console.log("feedback = ", feedback);

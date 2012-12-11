@@ -62,7 +62,7 @@ app.containerResize = function() {
 };
 
 $(window).bind('resize', function() { app.containerResize(); });
-
+/*
 $(document).ready(function() {
   window.app.simWord = {};
   var simWord = window.app.simWord;
@@ -81,7 +81,7 @@ $(document).ready(function() {
       });
     });
   });
-});
+});*/
 
 $(document).ready(function() {
   d3.tsv("./data/a4_allscores.tsv", function(data) {
@@ -182,7 +182,13 @@ $(document).ready(function() {
       outer_width: 350,
       outer_height: 200,
       el: "#chart",
-      onItemSelected: onReviewee.selected,
+      onItemSelected: function (d) {
+        //Hack
+        $(".left-side .team-search-container .search-field").val("");
+        this.filterDataByTeamId("");
+
+        onReviewee.selected(d);
+      },
       onItemDeselected: onReviewee.deselected,
       onUnbrushed: onReviewee.unbrushed,
       onBrushed: brushed,
