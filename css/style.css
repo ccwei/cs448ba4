@@ -320,6 +320,9 @@ h3.mini-header {
   padding: 0;
   background-color: #2ca02c;
 }
+.smallgrid div.green0 {
+  background-color: #CEE9CD;
+}
 .smallgrid div.green1 {
   background-color: #CEE9CD;
 }

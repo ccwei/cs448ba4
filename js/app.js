@@ -33,7 +33,7 @@
 
 app.containerResize = function() {
   var H = $(window).height();
-  $('#root').height(H);
+  //$('#root').height(H);
   $('#right-side').height(H);
   $('#reviewee-list').height(H-
     $('.left-side h1-container').outerHeight() -
