@@ -107,6 +107,7 @@
 
               var scale = (len-min)/(max-min);
               scale = Math.max(0,Math.min(1,scale));
+              scale = Math.round(scale*5)/5.0;
               var opacity =scale *0.8 + 0.2 ;
               $grid.find("."+type).attr('style',"opacity:"+opacity+";");
             }
