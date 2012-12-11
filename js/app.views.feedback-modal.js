@@ -21,8 +21,19 @@
       this.render();
     },
     render: function () {
+      var item = this.model;
+      var that = this;
       $(this.el).html(this.template());
       $(this.el).children('.feedbackModal').children('.modal-body').append(this.item_template(this.model.attributes));
+      console.log($(that.el).find(".score-distribution"));
+      var barChart = new app.BarChart({
+        model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
+        xName: "score",
+        outer_width: 300,
+        outer_height: 100,
+        el: $(that.el).find(".score-distribution").selector
+      }).render();
+
       $(this.el).children('.feedbackModal').modal('show');
       return this;
     }

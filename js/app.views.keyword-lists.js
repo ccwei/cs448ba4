@@ -42,6 +42,7 @@
         var $this = $(this);
         $this.toggleClass('toggled');
         that.showAll = !that.showAll;
+        that.$el.find('.legend-blocks-container').toggle();
         that.render();
       };
 

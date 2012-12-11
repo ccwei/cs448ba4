@@ -43,15 +43,30 @@
       this.feedbacksAggregatedView = new app.FeedbacksAggregatedView({el: this.$el.find("#agg-tab-aggregate-grid-"+this.viewId)
       }).loadData(that.totalReviews);
 
-      this.keywordListsView = new app.KeywordListsView({
-        model: this.totalReviews,
-        el: $("#agg-tab-keyword-list-" + that.viewId)
-      });
+
+      this.feedbacksView = new app.FeedbacksView({
+        el: this.$el.find('#agg-tab-individual-review-'+this.viewId)
+      }).loadData(that.totalReviews);
 
       this.keywordListsView = new app.KeywordListsView({
         model: this.totalReviews,
+        el: $("#agg-tab-keyword-list-" + that.viewId),
+        onWordClick: function (text) {
+          console.log('click ', text);
+          that.feedbacksAggregatedView.setSearchWord(text);
+          $('#agg-tab-reviews-menu' + ' a[href="#agg-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+       }
+      });
+
+      this.phraseListsView = new app.KeywordListsView({
+        model: this.totalReviews,
         bigram: true,
-        el: $("#agg-tab-phrase-list-" + that.viewId)
+        el: $("#agg-tab-phrase-list-" + that.viewId),
+        onWordClick: function (text) {
+          console.log('click ', text);
+          that.feedbacksAggregatedView.setSearchWord(text);
+          $('#agg-tab-reviews-menu' + ' a[href="#agg-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+        }
       });
 
       this.redrawTagCloud = true;
@@ -73,7 +88,13 @@
       if(displayTagCloud()){
         this.tagCloudsView = new app.TagCloudsView({
           model: this.totalReviews,
-          el: $("#agg-tab-tag-cloud-" + that.viewId)
+          el: $("#agg-tab-tag-cloud-" + that.viewId),
+          onWordClick: function (d) {
+              console.log("click ", d);
+              var text = d.text;
+              that.feedbacksAggregatedView.setSearchWord(text);
+              $('#agg-tab-reviews-menu' + ' a[href="#agg-tab-aggregate-grid-' + that.viewId + '"]').tab('show');
+            }
         });
         this.redrawTagCloud = false;
       }

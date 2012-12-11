@@ -62,7 +62,7 @@ app.containerResize = function() {
 };
 
 $(window).bind('resize', function() { app.containerResize(); });
-
+/*
 $(document).ready(function() {
   window.app.simWord = {};
   var simWord = window.app.simWord;
@@ -81,7 +81,7 @@ $(document).ready(function() {
       });
     });
   });
-});
+});*/
 
 $(document).ready(function() {
   d3.tsv("./data/a4_allscores.tsv", function(data) {
@@ -163,6 +163,7 @@ $(document).ready(function() {
       unbrushed: function(){
         app.showView("all");
         selectedRevieweeListItem.hide();
+        revieweeList.loadData(revieweeCollection);
       }
     };
 
@@ -174,13 +175,20 @@ $(document).ready(function() {
         selectedRevieweeListItem.hide();
       };
 
+
     var chart = new app.StackedChart({
       collection: revieweeCollection,
       xName: "score",
       outer_width: 350,
       outer_height: 200,
       el: "#chart",
-      onItemSelected: onReviewee.selected,
+      onItemSelected: function (d) {
+        //Hack
+        $(".left-side .team-search-container .search-field").val("");
+        this.filterDataByTeamId("");
+
+        onReviewee.selected(d);
+      },
       onItemDeselected: onReviewee.deselected,
       onUnbrushed: onReviewee.unbrushed,
       onBrushed: brushed,
@@ -189,6 +197,15 @@ $(document).ready(function() {
       },
       xDomain: _.range(1,11)
     }).render();
+
+    var onSearchTextChange = function () {
+      var teamid = $(this).val();
+      chart.filterDataByTeamId(teamid);
+    };
+    //Since we don't have left side class I would just hack it here.
+    $(".left-side .team-search-container").append(_.template($("#searchFieldTemplate").html())());
+    $(".left-side .team-search-container .search-field").on('change',onSearchTextChange);
+    $(".left-side .team-search-container .search-field").on('keyup',onSearchTextChange);
 
     var revieweeList = new app.RevieweeList({
       el: $("#reviewee-list"),

@@ -30,6 +30,9 @@
 </script>
 
 <script id="revieweeListItemTemplate" type="text/template">
+  <div class='cancel-x'>
+        x
+  </div>
   <h4>Team #<%= name %></h4>
   <div class="details">
     <span class="detail-industries">
@@ -64,7 +67,7 @@
 
 </script>
 <script id="smallGridTemplate" type="text/template">
-  <div class="smallgrid clickable">
+  <div class="smallgrid clickable" id="smallGrid-<%=viewId%>-<%=itemCount%>">
       <div class="notable"></div>
       <div class="constructive"></div>
       <div class="questions"></div>
@@ -92,6 +95,7 @@
           <b>Team Score: </b>
           <%=team_score%>
         </div>
+
       </div>
       <div class="span6">
         <div id="revieweeDetailchart"></div>
@@ -128,9 +132,13 @@
 <script id="feedbackGridTemplate" type="text/template">
   <div class="feedback">
     <div class="row-fluid">
-      <div class="span8 score-distribution">
+      <a name="item-<%=viewId%>-<%=itemCount%>"></a>
+      <div class="span2 team-name padding-10">
+        Team #<%= name %>
       </div>
-      <div class="span4 average-score-container">
+      <div class="span7 score-distribution">
+      </div>
+      <div class="span2 average-score-container">
         <div class="average-score-text">
           Average Score:
         </div>
@@ -143,21 +151,21 @@
       <tr>
         <td class="like">
           <div class="grid-cell"><%= notable %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/plus.png"/></a></div>
         </td>
         <td class="wish">
           <div class="grid-cell"><%= constructive %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/delta.png"/></a></div>
         </td>
       </tr>
       <tr>
         <td class="question">
           <div class="grid-cell"><%= questions %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/question.png"/></a></div>
         </td>
         <td class="big-idea">
           <div class="grid-cell"><%= ideas %></div>
-          <div class="rel"><a href="" class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
+          <div class="rel"><a class="icon" rel="tooltip"><img src="img/feedbackgrid/lightbulb.png"/></a></div>
         </td>
       </tr>
     </table>
@@ -379,24 +387,24 @@
 
 <script id="keywordListsFrameTemplate" type="text/template">
   <div class="header-bar">
-
     <div class="pull-right">
-      <div class="legend-block notable"></div>
-      <a href="#" rel="tooltip" title="notable" class="icon-grid16-notable"></a>
-      <div class="legend-block constructive"></div>
-      <a href="#" rel="tooltip" title="constructive" class="icon-grid16-constructive"></a>
-      <div class="legend-block questions"></div>
-      <a href="#" rel="tooltip" title="questions" class="icon-grid16-questions"></a>
-      <div class="legend-block ideas"></div>
-      <a href="#" rel="tooltip" title="ideas" class="icon-grid16-ideas"></a>
-      <div class="inline-block" style="width:100px;"></div>
-
+      <span class="legend-blocks-container">
+        <div class="legend-block notable"></div>
+        <a href="#" rel="tooltip" title="notable" class="icon-grid16-notable"></a>
+        <div class="legend-block constructive"></div>
+        <a href="#" rel="tooltip" title="constructive" class="icon-grid16-constructive"></a>
+        <div class="legend-block questions"></div>
+        <a href="#" rel="tooltip" title="questions" class="icon-grid16-questions"></a>
+        <div class="legend-block ideas"></div>
+        <a href="#" rel="tooltip" title="ideas" class="icon-grid16-ideas"></a>
+        <div class="inline-block" style="width:100px;"></div>
+      </span>
       <button class="btn btn-mini toggle-view-btn">Seperate by type</button>
     </div>
   </div>
   <div class="below-header-bar">
-    <div class="padding-10">
-      <div class="seperated-view display-none">
+    <div>
+      <div class="seperated-view display-none padding-10-notop">
         <div class="row-fluid">
           <div class="keyword-list-notable span3">
             <h5><i class="icon-grid16-notable" /> Notable</h5>
@@ -423,7 +431,7 @@
           </div>
         </div>
       </div>
-      <div class="all-view  active">
+      <div class="all-view  active padding-10">
         <div class="keyword-list-all">
           <ul class="no-bullet">
           </ul>
@@ -488,14 +496,16 @@
         </ul> -->
         <div class="upper">
           <h3 class="mini-header">Filters</h3>
-          <div class="padding-20">
+          <div class="padding-10">
+            <div class="team-search-container pull-right"></div>
             <div id="chart"></div>
           </div>
         </div>
         <div class="lower">
-          <h3 class="mini-header">Teams</h3>
+          <h3 class="mini-header">Selected Teams</h3>
           <div id="selected-reviewee-item-list">
           </div>
+          <h3 class="mini-header">Teams</h3>
           <div class='full-height'>
             <div id="reviewee-list"></div>
           </div>
