@@ -67,7 +67,7 @@
 
 </script>
 <script id="smallGridTemplate" type="text/template">
-  <div class="smallgrid clickable">
+  <div class="smallgrid clickable" id="smallGrid-<%=viewId%>-<%=itemCount%>">
       <div class="notable"></div>
       <div class="constructive"></div>
       <div class="questions"></div>
@@ -132,6 +132,7 @@
 <script id="feedbackGridTemplate" type="text/template">
   <div class="feedback">
     <div class="row-fluid">
+      <a name="item-<%=viewId%>-<%=itemCount%>"></a>
       <div class="span8 score-distribution">
       </div>
       <div class="span4 average-score-container">
@@ -523,7 +524,6 @@
 <script src="./js/app.views.aggregated-feedback.js"></script>
 <script src="./js/app.views.feedbacks.js"></script>
 <script src="./js/app.views.feedback-modal.js"></script>
-
 <script src="./js/app.views.reviewee-detail.js"></script>
 <script src="./js/app.views.reviewee-list.js"></script>
 <script src="./js/app.views.reviewee.js"></script>
@@ -534,6 +534,5 @@
 <script src="./js/app.tag-cloud.js"></script>
 <script src="./js/app.quad-tag-clouds.js"></script>
 <script src="./js/app.views.keyword-lists.js"></script>
-
 <script src="./js/app.js"></script>
 </html>
