@@ -48,6 +48,7 @@
 ========================== */
 body {
   background: url(../img/low_contrast_linen.png);
+  background-size: 55px;
 }
 .container,
 .navbar-static-top .container,
@@ -129,7 +130,10 @@ h3.mini-header {
   text-align: center;
 }
 .score-pane-left {
-  border-right: 1px solid #eee;
+  border-right: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 }
 .quarter3 {
   width: 74.85%;
@@ -152,13 +156,20 @@ h3.mini-header {
   -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
 }
+.left-side .h1-container {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
 .left-side h1 {
   font-size: 30px;
   line-height: 40px;
-  padding: 7px 0 7px 15px;
-  margin: 0px;
+  margin: 10px 0 10px 15px;
+  padding: 0px 0px 0px 32px;
+  background-image: url(../img/icon.png);
+  background-repeat: no-repeat;
+  background-size: 22px;
+  background-position: left center;
   background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .left-side .upper {
   height: 250px;
@@ -307,26 +318,49 @@ h3.mini-header {
   line-height: 6px;
   font-size: 1px;
   padding: 0;
-  background-color: #2ca02c !important;
+  background-color: #2ca02c;
+}
+.smallgrid div.green1 {
+  background-color: #CEE9CD;
+}
+.smallgrid div.green2 {
+  background-color: #B1DBB0;
+}
+.smallgrid div.green3 {
+  background-color: #5BB159;
+}
+.smallgrid div.green4 {
+  background-color: #299323;
+}
+.smallgrid div.green5 {
+  background-color: #2CA02C;
 }
 .smallgrid .notable {
   top: 0;
   left: 0;
-  background-color: #d62728;
 }
 .smallgrid .constructive {
   top: 0;
   right: 0;
-  background-color: #ff7f0e;
 }
 .smallgrid .questions {
   bottom: 0;
   left: 0;
-  background-color: #2ca02c;
 }
 .smallgrid .ideas {
   bottom: 0;
   right: 0;
+}
+.smallgrid.color .notable {
+  background-color: #d62728;
+}
+.smallgrid.color .constructive {
+  background-color: #ff7f0e;
+}
+.smallgrid.color .questions {
+  background-color: #2ca02c;
+}
+.smallgrid.color .ideas {
   background-color: #1f77b4;
 }
 #selected-reviewee-item-list {
@@ -379,6 +413,9 @@ li.feedback:hover {
   cursor: pointer;
   background-color: #f0f8ff;
   color: black;
+}
+div.feedbacks div.feedback {
+  border-bottom: 1px solid #ddd;
 }
 ul.no-bullet {
   list-style: none;
