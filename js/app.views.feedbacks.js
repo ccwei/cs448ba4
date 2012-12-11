@@ -50,15 +50,14 @@
           var barChart = new app.BarChart({
             model:[{x: item.get('score_1'), y: 'Presentation'}, {x: item.get('score_2'), y: 'The Market'}, {x: item.get('score_3'), y: 'Business Model'}, {x: item.get('score_4'), y: 'Marketing Page'}, {x: item.get('score_5'), y: 'Prototype'}],
             xName: "score",
-            outer_width: 300,
+            outer_width: 270,
             outer_height: 100,
             el: this
           }).render();
         });
         //this.$el.find('.average-score').html(item.get('score'));
         this.$el.find('.feedbacks')
-          .append($feedbackDiv)
-          .append("<hr class='feedback-hr'/>");
+          .append($feedbackDiv);
           // .append(this.score_template(item.toJSON()));
 
         // var d3place = d3.select(".feedbacks .score-distribution");
@@ -108,8 +107,9 @@
 
               var scale = (len-min)/(max-min);
               scale = Math.max(0,Math.min(1,scale));
+              scale = Math.ceil(scale*5);
               var opacity =scale *0.8 + 0.2 ;
-              $grid.find("."+type).attr('style',"opacity:"+opacity+";");
+              $grid.find("."+type).addClass("green"+scale);
             }
             $grid.click(function (event) {
               var icount = parseInt($(this).attr('id').substr($(this).attr('id').lastIndexOf('-') + 1));

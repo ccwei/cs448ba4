@@ -36,7 +36,7 @@ app.containerResize = function() {
   $('#root').height(H);
   $('#right-side').height(H);
   $('#reviewee-list').height(H-
-    $('.left-side h1').outerHeight() -
+    $('.left-side h1-container').outerHeight() -
     $('.left-side .upper').outerHeight() -
     $('.left-side h3.mini-header').outerHeight() -
     ( app.selectedRevieweeListItem && app.selectedRevieweeListItem.isShown ? $('#selected-reviewee-item-list').outerHeight() : 0
