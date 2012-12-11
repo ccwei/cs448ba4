@@ -107,9 +107,9 @@
 
               var scale = (len-min)/(max-min);
               scale = Math.max(0,Math.min(1,scale));
-              scale = Math.round(scale*5)/5.0;
+              scale = Math.ceil(scale*5);
               var opacity =scale *0.8 + 0.2 ;
-              $grid.find("."+type).attr('style',"opacity:"+opacity+";");
+              $grid.find("."+type).addClass("green"+scale);
             }
             $grid.click(function (event) {
               var icount = parseInt($(this).attr('id').substr($(this).attr('id').lastIndexOf('-') + 1));
