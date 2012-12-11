@@ -17,11 +17,12 @@
 
           // simply remove all punctuations and digits e.g. awesome and awesome! should mean the same
           // use jQuery.trim() for instead
-          first = first.replace(/\d+|[\.,-\/#"!?+<>'$%\^&\*;:{}=\[\]\-_`~()]/g, '');
           first = $.trim(first);
-
-          second = second.replace(/\d+|[\.,-\/#"!?+<>'$%\^&\*;:{}=\[\]\-_`~()]/g, '');
+          first = first.replace(/\d+|[\.,-\/#"!?+<>'$%\^&\*;:{}=\[\]\-_`~()]/g, '');
+          
           second = $.trim(second);
+          second = second.replace(/\d+|[\.,-\/#"!?+<>'$%\^&\*;:{}=\[\]\-_`~()]/g, '');
+          
 
           if(first.length>0 && second.length>0){
 
@@ -46,10 +47,12 @@
         tuples.sort(function(a, b){
           return b[1].count - a[1].count;
         });
-        //Filter stop words
+
+        //Filter stop words and length limit
+        var max_length = 12;
         var topWords = tuples.filter(function(w){
           var b = w[0].split(" ");
-          return app.stopWords.indexOf(b[0]) == -1 && app.stopWords.indexOf(b[1]) == -1;
+          return b[0].length < max_length && b[1].length < max_length && b.length <= 2 && app.stopWords.indexOf(b[0]) == -1 && app.stopWords.indexOf(b[1]) == -1;
         });
 
         //Select top frequent k bigram
