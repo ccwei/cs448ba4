@@ -163,6 +163,7 @@ $(document).ready(function() {
       unbrushed: function(){
         app.showView("all");
         selectedRevieweeListItem.hide();
+        revieweeList.loadData(revieweeCollection);
       }
     };
 
@@ -173,6 +174,7 @@ $(document).ready(function() {
         app.showView("agg");
         selectedRevieweeListItem.hide();
       };
+
 
     var chart = new app.StackedChart({
       collection: revieweeCollection,
@@ -189,6 +191,15 @@ $(document).ready(function() {
       },
       xDomain: _.range(1,11)
     }).render();
+
+    var onSearchTextChange = function () {
+      var teamid = $(this).val();
+      chart.filterDataByTeamId(teamid);
+    };
+    //Since we don't have left side class I would just hack it here.
+    $(".left-side .team-search-container").append(_.template($("#searchFieldTemplate").html())());
+    $(".left-side .team-search-container .search-field").on('change',onSearchTextChange);
+    $(".left-side .team-search-container .search-field").on('keyup',onSearchTextChange);
 
     var revieweeList = new app.RevieweeList({
       el: $("#reviewee-list"),
