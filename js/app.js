@@ -169,6 +169,8 @@ $(document).ready(function() {
           app.showView("all");
           selectedRevieweeListItem.hide();
           revieweeList.loadData(revieweeCollection);
+          $('#reviewee-item-list-header').text('all teams');
+        $('#reviewee-item-list-header').removeClass('filtered-team');
           //$("#waitModal").modal('hide');
         //}, 200);
 
@@ -183,6 +185,8 @@ $(document).ready(function() {
         revieweeList.loadData(filteredRevieweeCollection);
         app.showView("agg");
         selectedRevieweeListItem.hide();
+        $('#reviewee-item-list-header').text('filtered teams');
+        $('#reviewee-item-list-header').addClass('filtered-team');
         //$("#waitModal").modal('hide');
       //}, 200);
       };
