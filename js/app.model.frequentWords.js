@@ -34,8 +34,10 @@
         tuples.sort(function(a, b){
           return b[1].count - a[1].count;
         });
+
         //Filter stop words
-        var topWords = tuples.filter(function(w){ return app.stopWords.indexOf(w[0]) == -1; });
+        var max_length = 12;
+        var topWords = tuples.filter(function(w){ return w[0].length < max_length && app.stopWords.indexOf(w[0]) == -1; });
 
         //Select top frequent k words
         topWords = topWords.slice(0, 50);
