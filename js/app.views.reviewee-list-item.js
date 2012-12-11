@@ -37,6 +37,9 @@
       }
       this.render();
     },
+    setupEl: function ($el) {
+      this.$el = $el;
+    },
     render: function () {
       var that = this;
       this.$el.html('');

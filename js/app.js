@@ -23,6 +23,8 @@
       $("#all-right-side").addClass('active');
       $("#agg-right-side").removeClass('active');
       $("#ind-right-side").removeClass('active');
+
+      $('#agg-tab-reviews-menu li:eq(2) a').tab('show');
     }else{
       $("#all-right-side").removeClass('active');
       $("#agg-right-side").addClass('active');
@@ -161,18 +163,28 @@ $(document).ready(function() {
         app.containerResize();
       },
       unbrushed: function(){
-        app.showView("all");
-        selectedRevieweeListItem.hide();
-        revieweeList.loadData(revieweeCollection);
+        console.log("unbrushed");
+        $("#waitModal").modal('show');
+        setTimeout(function () {
+          app.showView("all");
+          selectedRevieweeListItem.hide();
+          revieweeList.loadData(revieweeCollection);
+          $("#waitModal").modal('hide');
+        }, 200);
+
       }
     };
 
     var brushed = function(filteredModels){
+      $("#waitModal").modal('show');
+      setTimeout(function () {
         var filteredRevieweeCollection = new app.RevieweeCollection(filteredModels);
         aggRevieweesView.loadData(filteredRevieweeCollection);
         revieweeList.loadData(filteredRevieweeCollection);
         app.showView("agg");
         selectedRevieweeListItem.hide();
+        $("#waitModal").modal('hide');
+      }, 200);
       };
 
 
@@ -184,8 +196,8 @@ $(document).ready(function() {
       el: "#chart",
       onItemSelected: function (d) {
         //Hack
-        $(".left-side .team-search-container .search-field").val("");
-        this.filterDataByTeamId("");
+        //$(".left-side .team-search-container .search-field").val("");
+        //this.filterDataByTeamId("");
 
         onReviewee.selected(d);
       },

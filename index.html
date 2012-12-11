@@ -221,12 +221,12 @@
         <a>Reviews</a>
       </li>
 
-      <li class="active pull-right">
+      <li class=" pull-right">
         <a href="#ind-tab-individual-review-<%=viewId%>" data-toggle="tab">
           Individual Reviews
         </a>
       </li>
-      <li class="pull-right">
+      <li class="active pull-right">
         <a href="#ind-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
           Aggregate View
         </a>
@@ -236,9 +236,9 @@
   <div class="relative">
     <div class="lower">
       <div class="tab-content">
-        <div class="tab-pane" id="ind-tab-aggregate-grid-<%=viewId%>">
+        <div class="tab-pane active" id="ind-tab-aggregate-grid-<%=viewId%>">
         </div>
-        <div class="tab-pane active" id="ind-tab-individual-review-<%=viewId%>"></div>
+        <div class="tab-pane " id="ind-tab-individual-review-<%=viewId%>"></div>
       </div>
     </div>
   </div>
@@ -298,12 +298,12 @@
         <a>Reviews</a>
       </li>
 
-      <li class="active pull-right">
+      <li class="pull-right">
         <a href="#agg-tab-individual-review-<%=viewId%>" data-toggle="tab">
           Individual Reviews
         </a>
       </li>
-      <li class="pull-right">
+      <li class="active pull-right">
         <a href="#agg-tab-aggregate-grid-<%=viewId%>" data-toggle="tab">
           Aggregate View
         </a>
@@ -313,9 +313,9 @@
   <div class="relative">
     <div class="lower">
       <div class="tab-content">
-        <div class="tab-pane" id="agg-tab-aggregate-grid-<%=viewId%>">
+        <div class="active tab-pane" id="agg-tab-aggregate-grid-<%=viewId%>">
         </div>
-        <div class="tab-pane active" id="agg-tab-individual-review-<%=viewId%>"></div>
+        <div class="tab-pane" id="agg-tab-individual-review-<%=viewId%>"></div>
       </div>
     </div>
   </div>
@@ -522,6 +522,10 @@
     </div>
 
   </div></div>
+
+
+  <div id="waitModal" class="modal hide fade">
+  </div>
 </body>
 
 <script src="./js/app.models.js"></script>
