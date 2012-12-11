@@ -647,3 +647,7 @@ hr {
 .modal-body {
   overflow: visible;
 }
+.team-name {
+  font-weight: bold;
+  font-size: 20px;
+}
