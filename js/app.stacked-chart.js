@@ -74,6 +74,35 @@
         return false;
       });
     },
+    filterDataByTeamId: function (teamid) {
+      var that = this;
+      var filterData = [];
+      //Hack when teamid lenght is less than than 2
+      var classedRectInFiltered = function(className, teamid){
+          that.rects.classed(className, function(d) {
+            if(teamid.length < 2)
+              return false;
+            var id = d.get('teamid');
+            return id.indexOf(teamid) != -1;
+          });
+      };
+
+      if(teamid.length < 2) {
+        classedRectInFiltered('brushed', "");
+        that.onUnbrushed();
+        return;
+      }
+
+      _(this.collection.models).each(function(reviewee) {
+        var id = reviewee.get('teamid');
+        if(id.indexOf(teamid) != -1) {
+          filterData.push(reviewee);
+        }
+      });
+      classedRectInFiltered('brushed', teamid);
+      this.onBrushed(filterData);
+      return filterData;
+    },
     render: function(){
       var options = this.options;
       var xName = this.xName;

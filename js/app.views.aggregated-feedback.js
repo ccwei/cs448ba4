@@ -52,6 +52,7 @@
       });*/
     },
     loadData: function(feedbacks){
+      this.cleanSearchWord();
       this.collection = new app.FeedbackCollection(feedbacks);
       this.render();
       return this;
@@ -73,6 +74,9 @@
     setSearchWord: function (word) {
       this.$el.find(".search-field").val(word);
       this.$el.find(".search-field").trigger('change');
+    },
+    cleanSearchWord: function () {
+      this.setSearchWord("");
     },
     renderFeedbacks: function(){
       //TODO(kanitw): Add "n items matched"
