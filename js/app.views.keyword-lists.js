@@ -15,7 +15,7 @@
     keyword: "",
 
     initialize: function () {
-      this.showAll = true;
+      this.showAll = false;
       var that = this;
       this.frequentWords = {};
       _(app.FEEDBACK_TYPE).each(function (type) {
