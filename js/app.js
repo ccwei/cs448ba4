@@ -23,6 +23,8 @@
       $("#all-right-side").addClass('active');
       $("#agg-right-side").removeClass('active');
       $("#ind-right-side").removeClass('active');
+
+      $('#agg-tab-reviews-menu li:eq(2) a').tab('show');
     }else{
       $("#all-right-side").removeClass('active');
       $("#agg-right-side").addClass('active');
@@ -109,10 +111,6 @@ $(document).ready(function() {
       for(var i=0 ; i<team_properties.length ; i++){
         var prop = team_properties[i];
         o[prop] = o.reviews[0][prop];
-        if(o[prop] == null || o[prop].length == 0 || o[prop] == "NULL"){          
-          o[prop] = "Unknown";
-        }
-
       }
 
       teamReviews.push(o);
@@ -165,18 +163,32 @@ $(document).ready(function() {
         app.containerResize();
       },
       unbrushed: function(){
-        app.showView("all");
-        selectedRevieweeListItem.hide();
-        revieweeList.loadData(revieweeCollection);
+        console.log("unbrushed");
+        //$("#waitModal").modal('show');
+        //setTimeout(function () {
+          app.showView("all");
+          selectedRevieweeListItem.hide();
+          revieweeList.loadData(revieweeCollection);
+          $('#reviewee-item-list-header').text('all teams');
+        $('#reviewee-item-list-header').removeClass('filtered-team');
+          //$("#waitModal").modal('hide');
+        //}, 200);
+
       }
     };
 
     var brushed = function(filteredModels){
+     // $("#waitModal").modal('show');
+      //setTimeout(function () {
         var filteredRevieweeCollection = new app.RevieweeCollection(filteredModels);
         aggRevieweesView.loadData(filteredRevieweeCollection);
         revieweeList.loadData(filteredRevieweeCollection);
         app.showView("agg");
         selectedRevieweeListItem.hide();
+        $('#reviewee-item-list-header').text('filtered teams');
+        $('#reviewee-item-list-header').addClass('filtered-team');
+        //$("#waitModal").modal('hide');
+      //}, 200);
       };
 
 
@@ -188,8 +200,8 @@ $(document).ready(function() {
       el: "#chart",
       onItemSelected: function (d) {
         //Hack
-        $(".left-side .team-search-container .search-field").val("");
-        this.filterDataByTeamId("");
+        //$(".left-side .team-search-container .search-field").val("");
+        //this.filterDataByTeamId("");
 
         onReviewee.selected(d);
       },
