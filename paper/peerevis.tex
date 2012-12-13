@@ -157,6 +157,21 @@ followed by the evaluation and feedbacks from users.
 Finally, we suggest the possible directions for future work
 and then summarize our work.
 
+
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{images/review-form}
+\caption{the actual evaluation form on the Venture lab platform.
+The top part shows the quantitative feedbacks which are score ranging
+from Low (1) to High (10) while the bottom part shows the feedback capture grid
+which a form where the reviewers give their opinions
+on four different aspect: notable, constructive, questions, and ideas.}
+\label{fig:review-form}
+\end{figure}
+
+
+
 \section{Related Work}
 
 A number of studies has confirmed the usefulness of the peer review system
@@ -185,19 +200,6 @@ in the recently emerging large-scale online classrooms.
 
 describe: An Interactive Analytic Tool for Peer-Review Exploration How are we
 different?: focus on multiview, navigation, qualitative + quantitative feedback
-
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\columnwidth]{images/review-form}
-\caption{the actual evaluation form on the Venture lab platform.
-The top part shows the quantitative feedbacks which are score ranging
-from Low (1) to High (10) while the bottom part shows the feedback capture grid
-which a form where the reviewers give their opinions
-on four different aspect: notable, constructive, questions, and ideas.}
-\label{fig:review-form}
-\end{figure}
-
 
 
 \begin{figure*}[!t]
@@ -238,12 +240,12 @@ browser on the right side which consists of two sub-parts: the keyword
 visualization for browsing keyword on the upper part and review display view on
 the bottom part.
 
-\begin{figure}[tb]
+\begin{figure*}[tb]
 \centering
 \includegraphics[width=2.0\columnwidth]{images/3charts-hor}
-\caption{SOMEONE PLEASE EDIT CAPTION}
+\caption{Different selection modes in the team browser.}
 \label{fig:keyword-lists}
-\end{figure}
+\end{figure*}
 
 \subsection{Team Browser}
 The team browser serves as the main part of the overview
@@ -276,17 +278,17 @@ In any of the three mode, users can click any word to see the actual occurrence
 of the word to further understand the context of the word.
 
 
-\begin{figure}[b]
+\begin{figure*}[b]
 \centering
-\includegraphics[width=\columnwidth]{images/phrase-list}
-\includegraphics[width=\columnwidth]{images/keyword-list}
-\includegraphics[width=\columnwidth]{images/clouds}
+\includegraphics[width=2.0\columnwidth]{images/phrase-list}
+\includegraphics[width=2.0\columnwidth]{images/keyword-list}
+\includegraphics[width=2.0\columnwidth]{images/clouds}
 \caption{Three views of the keyword browser:
 (top) the phrase list in integrated mode,
 (middle) the keyword list in group-by-type mode,
 (bottom) the tag clouds grouped by type.}
 \label{fig:keyword-lists}
-\end{figure}
+\end{figure*}
 
 The keyword list and phrase list are basically frequency lists of unigram and
 bigram respectively.  Each word in the frequently list show a histogram of their
@@ -301,6 +303,14 @@ also use the search box to search for unigram or bigram they are interested in.
 Meanwhile, the tag clouds view show four tag clouds of keywords group by each
 dimension in the feedback capture grid.  Our tag clouds display all words
 horizontally for easy reading.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\columnwidth]{images/aggregate-view}
+\caption{SOMEONE PLEASE EDIT CAPTION}
+\label{fig:aggregate-view}
+\end{figure}
 
 \subsubsection{Aggregate View and Individual Review View}
 
@@ -325,12 +335,6 @@ From these extracted keywords, a keyword browser is provided to let users
 quickly browse through the reviews.
 
 
-\begin{figure}[]
-\centering
-\includegraphics[width=\columnwidth]{images/aggregate-view}
-\caption{SOMEONE PLEASE EDIT CAPTION}
-\label{fig:keyword-lists}
-\end{figure}
 
 
 \section{Implementation Notes}
@@ -354,7 +358,8 @@ directly into an one-page web application.
 \section{Acknowledgments}
 The authors of this paper would like to thank Farnaz Ronaghi and Venture Lab
 team for providing data and suggestions.
- Jeff Heer and CS448b's comment and suggestions are also appreciated.
+Jeff Heer and CS448b (Data Visualization) course teaching team's comment
+and suggestions are also appreciated.
 
 % Balancing columns in a ref list is a bit of a pain because you
 % either use a hack like flushend or balance, or manually insert
@@ -375,7 +380,7 @@ team for providing data and suggestions.
 %
 % Or, just remove \balance and give up on balancing the last page.
 %
-\balance
+%\balance
 
 % If you want to use smaller typesetting for the reference list,
 % uncomment the following line:
