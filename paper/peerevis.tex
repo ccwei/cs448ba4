@@ -131,10 +131,15 @@ feedbacks.
 Massive open online courses(MOOCs) including Khan Academy, Udacity, Coursera and
 Venture Lab are increasing in numbers. \cite{nytimes} One emerging challenge is
 how to scale assessment to these high student-teacher ratio environments.
+For assignment that have clear representative answer
+such as multiple choices questions,
+automated grading system can be employed.
+However, assessment of open-ended assignment still need to rely on human graders.
 
-Using peer review system \cite{cpr} to evaluate students’ work is one possible solution.
-However, in the massive online courses,
-the number of reviews done in each class is large and it is overly difficult
+Using peer review system, i.e. having each student grade each other, \cite{cpr}
+to assess students’ work is another possible solution.
+However, in the massive online courses, the number of reviews done in each class
+is large and it is overly difficult
 and time-consuming for instructors to get a comprehensive understanding
 of the review of each task.
 
@@ -142,9 +147,12 @@ To address this problem, we developed Peereviz, a peer review exploration tool
 on top of Venture Lab platform. It aims for helping instructors to understand
 the massive amount of peer review results. The design goal of the tool is to
 create a visualization tool that helps course instructors in three ways:
-1) get the overall understanding of peer review activities;
-2) be able to dive into specific part of the review results;
-3) quick browse and select higher quality reviews to read.
+
+\begin{enumerate}
+\item get the overall understanding of peer review activities;
+\item be able to dive into specific part of the review results;
+\item quick browse and select higher quality reviews to read.
+\end{enumerate}
 
 As a data explorer, it follows "overview first, zoom and filter, then details-
 on-demand" mantra. \cite{card1999readings}
@@ -162,7 +170,7 @@ and then summarize our work.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.7\columnwidth]{images/review-form-old}
+\includegraphics[width=\columnwidth]{images/review-form}
 \caption{the actual evaluation form on the Venture lab platform.
 The top part shows the quantitative feedbacks which are score ranging
 from Low (1) to High (10) while the bottom part shows the feedback capture grid
@@ -281,11 +289,11 @@ cloud. In any of the three modes, users can click any word to see the actual
 occurrence of the word to further understand the context of the word.
 
 
-\begin{figure*}[b]
+\begin{figure*}[]
 \centering
-\includegraphics[width=1.7\columnwidth]{images/phrase-list}
-\includegraphics[width=1.7\columnwidth]{images/keyword-list}
-\includegraphics[width=1.7\columnwidth]{images/clouds}
+\includegraphics[width=1.4\columnwidth]{images/phrase-list}
+\includegraphics[width=1.4\columnwidth]{images/keyword-list}
+\includegraphics[width=1.4\columnwidth]{images/clouds}
 \caption{Three views of the keyword browser:
 (top) the phrase list in integrated mode,
 (middle) the keyword list in group-by-type mode,
@@ -310,28 +318,28 @@ type in the feedback capture grid.  Our tag clouds display all words
 horizontally for ease of reading.
 
 
-\begin{figure}[h]
+\begin{figure*}[]
 \centering
-\includegraphics[width=\columnwidth]{images/aggregate-view}
+\includegraphics[width=1.4\columnwidth]{images/aggregate-view}
 \caption{Aggregate View.}
 \label{fig:aggregate-view}
-\end{figure}
+\end{figure*}
 
 \subsubsection{Aggregate View and Individual Review View}
 
 
-\begin{figure}[]
+\begin{figure*}[]
 \centering
-\includegraphics[width=\columnwidth]{images/modal}
+\includegraphics[width=1.4\columnwidth]{images/modal}
 \caption{A Modal dialog showing original review rata after
  a user click on a review data in the Aggregate View.}
 \label{fig:modal}
-\end{figure}
+\end{figure*}
 
 
-\begin{figure*}[t]
+\begin{figure*}[]
 \centering
-\includegraphics[width=1.7\columnwidth]{images/ind-review-view}
+\includegraphics[width=1.4\columnwidth]{images/ind-review-view}
 \caption{Individual Review View.}
 \label{fig:ind-view}
 \end{figure*}
@@ -357,7 +365,6 @@ the average score, and the feedback capture grid as in the original form.
 
 
 
-\ref{fig:ind-view}
 
 \section{Implementation Notes} Peereviz was written in HTML, CSS and
 Javascript using the d3.js visualization toolkit \cite{d3} and a combination
