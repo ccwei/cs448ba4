@@ -230,7 +230,9 @@ project (\emph{ideas}).
 
 
 \section{Visualization Design}
+We use multiple coordinated views techniques to show data in different representations which enable users to interact, explore and understand intricate data \cite{State-of-the-art}. Furthermore, we also use text visualization techniques, including word count list and tag cloud, which are often used to visualize and understand various large text data \cite{TagClouds} [http://www.wordcount.org/main.php]. 
 
+\subsection{Layout}
 The layout as shown in Figure \ref{fig:overview-annotated} consists of two
 parts, the team browser and the review browser.  The first is the team browser
 on the left side, which contains a team list and a bar chart that visualizes
@@ -308,6 +310,14 @@ horizontally for ease of reading.
 
 \subsubsection{Aggregate View and Individual Review View}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{images/ind-review-view}
+\caption{Aggregate View.}
+\label{fig:ind-view}
+\end{figure}
+
+
 In aggregate view, all of the original reviews for the teams selected from team
 browser are are shown categorized by their types from feedback capture grid.
 This view provides instructors a quick way to read through a number of reviews
@@ -315,7 +325,7 @@ for each feedback type at the same time. As usual, we provide a search tool so
 users can search original reviews.
 
 To provide more details for each review, we can use individual review view
-consisting of two main parts. First part on the left is a list of small
+consisting of two main parts as shown in Figure \ref{fig:ind-view}. First part on the left is a list of small
 multiples each of which represents a review. We use color encoding in the small
 grid to represent the length of the review text: the more intensity, the longer
 the review text, so that the instructors can quickly see and select longer
