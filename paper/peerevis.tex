@@ -231,9 +231,7 @@ project (\emph{ideas}).
 
 
 \section{Visualization Design}
-We use multiple coordinated views techniques to show data in different representations which
-enable users to interact, explore and understand intricate data \cite{State-of-the-art}.
-Furthermore, we also use text visualization techniques, including word count list and tag cloud, which are often used to visualize and understand various large text data \cite{TagClouds} [http://www.wordcount.org/main.php].
+We use multiple coordinated views techniques to show data in different representations which enable users to interact, explore and understand intricate data \cite{State-of-the-art}. Furthermore, we also use text visualization techniques, including word count list and tag cloud, which are often used to visualize and understand various large text data \cite{TagClouds} [http://www.wordcount.org/main.php].
 
 \subsection{Layout}
 As one of our design goals is to provide fast navigation, we put all views in one page
@@ -282,7 +280,7 @@ There are three representations: keyword list, phrase list and tag cloud.
 In any of the three modes, users can click any word to see the actual occurrence of the word to further understand the context of the word.
 
 
-\begin{figure*}[t]
+\begin{figure*}[b]
 \centering
 \includegraphics[width=1.7\columnwidth]{images/phrase-list}
 \includegraphics[width=1.7\columnwidth]{images/keyword-list}
@@ -306,12 +304,14 @@ type in the feedback capture grid.  Our tag clouds display all words
 horizontally for ease of reading.
 
 
-\begin{figure}[t]
+\begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{images/aggregate-view}
 \caption{Aggregate View.}
 \label{fig:aggregate-view}
 \end{figure}
+
+\subsubsection{Aggregate View and Individual Review View}
 
 
 \begin{figure}[]
@@ -331,31 +331,24 @@ horizontally for ease of reading.
 \end{figure*}
 
 
-\subsubsection{Aggregate View and Individual Review View}
-
-
-In aggregate view, all of the original reviews for the teams selected from team
-browser are are shown categorized by their types from feedback capture grid.
+In aggregate view, the text feedbacks for the selected teams are shown separately categorized by their types from feedback capture grid.
 This view provides instructors a quick way to read through a number of reviews
-for each feedback type at the same time. As usual, we provide a search tool so
-users can search original reviews.
+for each feedback type at a time. As usual, it provides a search tool so
+users can search through the text feedbacks.
 
-To provide more details for each review, we can use individual review view
-consisting of two main parts as shown in Figure \ref{fig:ind-view}. First part on the left is a list of small
-multiples each of which represents a review. We use color encoding in the small
-grid to represent the length of the review text: the more intensity, the longer
-the review text, so that the instructors can quickly see and select longer
-reviews which are potentially more valuable to read. We can select small
-multiple to navigate to the view on the right which is a list of detailed
-review. Each item in the list contains all the the score distribution according
-to the score rubrics, the average score, and the feedback capture grid as in the
+Individual reviews view is used to browse through the original reviews. It
+consists of two main parts as shown in Figure \ref{fig:ind-view}. First part on the left is a list of small
+multiples, and each small grid corresponds to single original review. We use color encoding in the small
+grid to represent the length of the review text: the longer
+the review text, the more intense the color is; so that the instructors can quickly read and select longer
+reviews which are potentially more valuable to read. The user can click small
+multiples to navigate through the original review list. Each original review item in the list contains the original scores distribution for the rubrics, the average score, and the feedback capture grid as in the
 original form.
 
-From these extracted keywords, a keyword browser is provided to let users
-quickly browse through the reviews.
 
 
 
+\ref{fig:ind-view}
 
 \section{Implementation Notes}
 Peereviz was written in HTML, CSS and Javascript using the d3.js visualization
