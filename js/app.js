@@ -216,7 +216,7 @@ $(document).ready(function() {
       collection: revieweeCollection,
       xName: "score",
       outer_width: 350,
-      outer_height: 200,
+      outer_height: 190,
       el: "#chart",
       onItemSelected: function (d) {
         //Hack

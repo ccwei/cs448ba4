@@ -508,6 +508,18 @@ table.feedback-grid textarea[disabled] {
   height: 4px;
   font-size: 1px;
 }
+[class*="keyword-list"].keyword-list-notable .keyword-item-bar {
+  background-color: #d62728;
+}
+[class*="keyword-list"].keyword-list-constructive .keyword-item-bar {
+  background-color: #ff7f0e;
+}
+[class*="keyword-list"].keyword-list-questions .keyword-item-bar {
+  background-color: #2ca02c;
+}
+[class*="keyword-list"].keyword-list-ideas .keyword-item-bar {
+  background-color: #1f77b4;
+}
 [class*="keyword-list"] .keyword-item-bar {
   background-color: #2b8cff;
   height: 4px;
