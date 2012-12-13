@@ -195,19 +195,15 @@ large text data.[Tag clouds for summarizing web search
 results][http://www.wordcount.org/main.php]
 
 
-However, to the best of our knowledge, work that combine visualization techniques
-to help instructors understand peer review data is still limited.
-The only work we discovered is  an interactive tool for peer-review exploration
-proposed by Xiong et al. \cite{xiong}
-They primarily work on the improvement of semantic information
-to help instructor discover interesting patterns and
-compare different groups of student in the writing class on SWoRD system \cite{Cho2007}.
-In contrast to the prior work, we mainly focuses on the visualization
-and interaction design for exploring multi-dimensional peer review data
-in the recently emerging large-scale online classrooms.
-
-describe: An Interactive Analytic Tool for Peer-Review Exploration How are we
-different?: focus on multiview, navigation, qualitative + quantitative feedback
+However, to the best of our knowledge, work that combine visualization
+techniques to help instructors understand peer review data is still limited.
+The only work we discovered is  an interactive tool for peer-review
+exploration proposed by Xiong et al. \cite{xiong} They primarily work on the
+improvement of semantic information to help instructor discover interesting
+patterns and compare different groups of student in the writing class on SWoRD
+system \cite{Cho2007}. In contrast to the prior work, we mainly focuses on the
+visualization and interaction design for exploring multi-dimensional peer
+review data in the recently emerging large-scale online classrooms.
 
 
 \begin{figure*}[!t]
@@ -238,19 +234,24 @@ project (\emph{ideas}).
 
 
 
-\section{Visualization Design}
-We use multiple coordinated views techniques to show data in different representations which enable users to interact, explore and understand intricate data \cite{State-of-the-art}. Furthermore, we also use text visualization techniques, including word count list and tag cloud, which are often used to visualize and understand various large text data \cite{TagClouds} [http://www.wordcount.org/main.php].
+\section{Visualization Design} 
+We use multiple coordinated views techniques to
+show data in different representations which enable users to interact, explore
+and understand intricate data \cite{State-of-the-art}. Furthermore, we also
+use text visualization techniques, including word count list and tag cloud,
+which are often used to visualize and understand various large text data
+\cite{TagClouds} [http://www.wordcount.org/main.php].
 
-\subsection{Layout}
-As one of our design goals is to provide fast navigation, we put all views in one page
-so the user do not need to scroll or find hidden menu to achieve their intended tasks.
-The layout, as shown in Figure \ref{fig:overview-annotated}, consists of two
-parts, the team browser and the review browser.  The first is the team browser
-on the left side, which contains a team list and a bar chart that visualizes
-overall score distribution for all team projects. The second is the review
-browser on the right side which consists of two sub-parts: the keyword
-visualization for browsing keyword on the upper part and review display view on
-the bottom part.
+\subsection{Layout} 
+As one of our design goals is to provide fast navigation,
+we put all views in one page so the user do not need to scroll or find hidden
+menu to achieve their intended tasks. The layout, as shown in Figure \ref{fig
+:overview-annotated}, consists of two parts, the team browser and the review
+browser.  The first is the team browser on the left side, which contains a
+team list and a bar chart that visualizes overall score distribution for all
+team projects. The second is the review browser on the right side which
+consists of two sub-parts: the keyword visualization for browsing keyword on
+the upper part and review display view on the bottom part.
 
 \begin{figure}[tb]
 \centering
@@ -274,18 +275,18 @@ well.
 
 
 \subsection{Review Browser}
-
 The review browser shows data for the selected team(s) in the team browser. If
-the user has not selected any team in the team browser, the review browser provides overview by showing aggregated data of all teams.
+the user has not selected any team in the team browser, the review browser
+provides overview by showing aggregated data of all teams.
 
-\subsubsection{Keyword List, Phrase List and Tag Clouds}
-
-Since one major component of the review is qualitative text feedbacks,
-we extracted keywords from text feedbacks based on their term frequency in bag-of-
-words model \cite{bag-of-words} to provide an overview of what students
-wrote the most in their reviews.
-There are three representations: keyword list, phrase list and tag cloud.
-In any of the three modes, users can click any word to see the actual occurrence of the word to further understand the context of the word.
+\subsubsection{Keyword List, Phrase List and Tag Clouds}  
+Since one major
+component of the review is qualitative text feedbacks, we extracted keywords
+from text feedbacks based on their term frequency in bag-of- words model \cite
+{bag-of-words} to provide an overview of what students wrote the most in their
+reviews. There are three representations: keyword list, phrase list and tag
+cloud. In any of the three modes, users can click any word to see the actual
+occurrence of the word to further understand the context of the word.
 
 
 \begin{figure*}[]
@@ -300,10 +301,15 @@ In any of the three modes, users can click any word to see the actual occurrence
 \label{fig:keyword-lists}
 \end{figure*}
 
-The keyword list and phrase list are sorted lists by unigram and
-bigram term frequency respectively.  Each word in the frequently list shows a bar representing their
-frequencies in the histogram on top of the word.  There are two representations for the frequency lists: The first view shows keywords in four columns, in which each column represent keywords from different types of feedback in the original feedback capture grid.
-The second view (Upper in Figure \ref{fig:keyword-lists}) shows the total frequency of the words aggregated from all the feedback types.  In this view, we use color to encoding the proportion of the keyword from each type.
+The keyword list and phrase list are sorted lists by unigram and bigram term
+frequency respectively.  Each word in the frequently list shows a bar
+representing their frequencies in the histogram on top of the word.  There are
+two representations for the frequency lists: The first view shows keywords in
+four columns, in which each column represent keywords from different types of
+feedback in the original feedback capture grid. The second view (Upper in
+Figure \ref{fig:keyword-lists}) shows the total frequency of the words
+aggregated from all the feedback types.  In this view, we use color to
+encoding the proportion of the keyword from each type.
 
 Both frequency list views show the most frequent words on the top.  User can
 also use the search box to search for unigram or bigram they are interested in.
@@ -339,32 +345,46 @@ horizontally for ease of reading.
 \end{figure*}
 
 
-In aggregate view, the text feedbacks for the selected teams are shown separately categorized by their types from feedback capture grid.
-This view provides instructors a quick way to read through a number of reviews
-for each feedback type at a time. As usual, it provides a search tool so
-users can search through the text feedbacks.
+In aggregate view, the text feedbacks for the selected teams are shown
+separately categorized by their types from feedback capture grid. This view
+provides instructors a quick way to read through a number of reviews for each
+feedback type at a time. As usual, it provides a search tool so users can
+search through the text feedbacks.
 
 Individual reviews view is used to browse through the original reviews. It
-consists of two main parts as shown in Figure \ref{fig:ind-view}. First part on the left is a list of small
-multiples, and each small grid corresponds to single original review. We use color encoding in the small
-grid to represent the length of the review text: the longer
-the review text, the more intense the color is; so that the instructors can quickly read and select longer
+consists of two main parts as shown in Figure \ref{fig:ind-view}. First part
+on the left is a list of small multiples, and each small grid corresponds to
+single original review. We use color encoding in the small grid to represent
+the length of the review text: the longer the review text, the more intense
+the color is; so that the instructors can quickly read and select longer
 reviews which are potentially more valuable to read. The user can click small
-multiples to navigate through the original review list. Each original review item in the list contains the original scores distribution for the rubrics, the average score, and the feedback capture grid as in the
-original form.
+multiples to navigate through the original review list. Each original review
+item in the list contains the original scores distribution for the rubrics,
+the average score, and the feedback capture grid as in the original form.
 
 
 
 
 
-\section{Implementation Notes}
-Peereviz was written in HTML, CSS and Javascript using the d3.js visualization
-toolkit \cite{d3} and a combination of javascript libraries including jQuery,
-Underscore.js, Backbone.js \cite{jquery,underscore,backbone}.
-The d3’s design that utilizes
-existing web standards including SVG and HTML has greatly facilitated our
-implementation.  Additionally, we performed data preprocessing and imported it
-directly into an one-page web application.
+\section{Implementation Notes} Peereviz was written in HTML, CSS and
+Javascript using the d3.js visualization toolkit \cite{d3} and a combination
+of javascript libraries including jQuery, Underscore.js, Backbone.js
+\cite{jquery,underscore,backbone}.  The d3’s design that utilizes existing web
+standards including SVG and HTML has greatly facilitated our implementation.
+
+One advantage of developing Peereviz in Javascript and HTML is that it could
+be easily integrated to any other online platforms since no other server-side
+setup is needed as opposed to developing the entire system using Ruby on rails
+and implementing different controllers to handle different pages.
+
+As for the data processing, we performed SQL queries to get all the data we
+need and imported it directly at once. It also provides the plug-and-play
+convenience since users don't have to have a database or remote server to
+provide the data. But it might not be a good idea when the data size becomes
+too large. Directly loaded it from database or split the data into separate
+files and load them as needed might be another alternative but it might slow
+it down due to the data I/O as well.
+
 
 
 % this can be 'Usage Observation' (http://www.danah.org/papers/InfoViz2005.pdf)
