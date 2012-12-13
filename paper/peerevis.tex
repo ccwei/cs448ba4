@@ -191,6 +191,19 @@ on four different aspect: notable, constructive, questions, and ideas.}
 \end{figure}
 
 
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=2.0\columnwidth]{images/overview-annotated}
+\caption{The layout for Peereviz is divided into two parts:
+the team browser (1,2) and the review browser (3,4).
+(1) shows the overall score distribution,
+(2) team description list,
+(3) keyword list, and
+(4) Aggregate and individual reviews.}
+\label{fig:overview-annotated}
+\end{figure*}
+
 \section{Data Set Description}
 We use a sample data set from a final project peer review result in the Spring
 2012 Entrepreneurship class on the Venture Lab platform. A total of 1,206 peer
@@ -206,31 +219,29 @@ they have about the work (\emph{questions}), and any additional ideas for the
 project (\emph{ideas}).
 
 
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=2.0\columnwidth]{images/overview-annotated}
-\caption{The layout for Peereviz is divided into two parts:
-the team browser (1,2) and the review browser (3,4).
-(1) shows the overall score distribution,
-(2) team description list,
-(3) keyword list, and
-(4) Aggregate and individual reviews.}
-\label{fig:overview-annotated}
-\end{figure*}
 
 \section{Visualization Design}
 
-\begin{figure}[]
-\centering
-\includegraphics[width=0.9\columnwidth]{Figure1}
-\caption{For images, be sure to have a good resolution image
-  (see item D within the preparation instructions).}
-\label{fig:figure1}
-\end{figure}
+The layout as shown in Figure \ref{fig:overview-annotated} consists of two
+parts, the team browser and the review browser.  The first is the team browser
+on the left side, which contains a team list and a bar chart that visualizes
+overall score distribution for all team projects. The second is the review
+browser on the right side which consists of two sub-parts: the keyword
+visualization for browsing keyword on the upper part and review display view on
+the bottom part.
+
 
 \subsection{Team Browser}
 The team browser serves as the main part of the overview
 where we can select one or multiple teams using different ways of filtering.
+
+We can select one team by clicking one of the small block on the stacked bar
+chart or select multiple teams at the same time by brushing over the bar chart.
+After the selection, the team descriptions will be listed below as noted by (2)
+in Figure \ref{fig:overview-annotated}. The information provided in the review
+browser will be updated accordingly with the data of the selected team(s). In
+addition, it provides a search tool to select teams by their descriptions as
+well.
 
 \subsection{Review Browser}
 
@@ -238,8 +249,9 @@ The review browser shows data from the selected team(s) in the team browser. If
 user has not selected any team in the team browser,  the review browsers also
 provide overview by showing aggregated data of all teams.
 
+\subsubsection{Keyword Browsers: Keyword List, Phrase List and Tag Clouds}
 
-\begin{figure}[]
+\begin{figure}[b]
 \centering
 \includegraphics[width=\columnwidth]{images/phrase-list}
 \includegraphics[width=\columnwidth]{images/keyword-list}
@@ -248,14 +260,62 @@ provide overview by showing aggregated data of all teams.
 (top) the phrase list in integrated mode,
 (middle) the keyword list in group-by-type mode,
 (bottom) the tag clouds grouped by type.}
-\label{fig:figure1}
+\label{fig:keyword-lists}
 \end{figure}
 
-\subsection{Interaction}
+The keyword list and phrase list are basically frequency lists of unigram and
+bigram respectively.  Each word in the frequently list show a histogram of their
+frequencies on the top of the word.  These frequency lists have two views.  The
+first view (Upper in Figure \ref{fig:keyword-lists}) show the total frequency of the
+word aggregated from all the feedback types.  In this first view, we use color
+to encoding the proportion of keyword found from each type on the histogram.
+The second view shows keywords in four columns, in which each column represent
+keywords from different types of feedback in the original feedback capture grid.
+Both frequency list views show the most frequent words on the top.  User can
+also use the search box to search for unigram or bigram they are interested in.
+Meanwhile, the tag clouds view show four tag clouds of keywords group by each
+dimension in the feedback capture grid.  Our tag clouds display all words
+horizontally for easy reading.
 
-%\subsection{Exploring ?}
-\subsection{Navigation}
-\subsection{Search}
+\subsubsection{Aggregate View and Individual Review View}
+
+In aggregate view, all of the original reviews for the teams selected from team
+browser are are shown categorized by their types from feedback capture grid.
+This view provides instructors a quick way to read through a number of reviews
+for each feedback type at the same time. As usual, we provide a search tool so
+users can search original reviews.
+
+To provide more details for each review, we can use individual review view
+consisting of two main parts. First part on the left is a list of small
+multiples each of which represents a review. We use color encoding in the small
+grid to represent the length of the review text: the more intensity, the longer
+the review text, so that the instructors can quickly see and select longer
+reviews which are potentially more valuable to read. We can select small
+multiple to navigate to the view on the right which is a list of detailed
+review. Each item in the list contains all the the score distribution according
+to the score rubrics, the average score, and the feedback capture grid as in the
+original form.
+
+From these extracted keywords, a keyword browser is provided to let users
+quickly browse through the reviews.
+
+
+\begin{figure}[]
+\centering
+\includegraphics[width=\columnwidth]{images/aggregate_view}
+\caption{SOMEONE PLEASE EDIT CAPTION}
+\label{fig:keyword-lists}
+\end{figure}
+
+
+\section{Implementation Notes}
+Peereviz was written in HTML, CSS and Javascript using the d3.js visualization
+toolkit [ref] and a combination of javascript libraries including jQuery,
+Underscore.js, Backbone.js [ref for each one].  The d3’s design that utilizes
+existing web standards including SVG and HTML has greatly facilitated our
+implementation.  Additionally, we performed data preprocessing and imported it
+directly into an one-page web application.
+
 
 % this can be 'Usage Observation' (http://www.danah.org/papers/InfoViz2005.pdf)
 \section{Evaluation}
