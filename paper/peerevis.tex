@@ -287,19 +287,16 @@ In any of the three modes, users can click any word to see the actual occurrence
 \label{fig:keyword-lists}
 \end{figure*}
 
-The keyword list and phrase list are basically frequency lists of unigram and
-bigram respectively.  Each word in the frequently list show a histogram of their
-frequencies on the top of the word.  These frequency lists have two views.  The
-first view (Upper in Figure \ref{fig:keyword-lists}) show the total frequency of the
-word aggregated from all the feedback types.  In this first view, we use color
-to encoding the proportion of keyword found from each type on the histogram.
-The second view shows keywords in four columns, in which each column represent
-keywords from different types of feedback in the original feedback capture grid.
+The keyword list and phrase list are sorted lists by unigram and
+bigram term frequency respectively.  Each word in the frequently list shows a bar representing their
+frequencies in the histogram on top of the word.  There are two representations for the frequency lists: The first view shows keywords in four columns, in which each column represent keywords from different types of feedback in the original feedback capture grid.
+The second view (Upper in Figure \ref{fig:keyword-lists}) shows the total frequency of the words aggregated from all the feedback types.  In this view, we use color to encoding the proportion of the keyword from each type.
+
 Both frequency list views show the most frequent words on the top.  User can
 also use the search box to search for unigram or bigram they are interested in.
 Meanwhile, the tag clouds view show four tag clouds of keywords group by each
-dimension in the feedback capture grid.  Our tag clouds display all words
-horizontally for easy reading.
+type in the feedback capture grid.  Our tag clouds display all words
+horizontally for ease of reading.
 
 
 \begin{figure}[h]
