@@ -129,14 +129,14 @@ feedbacks.
 
 \section{Introduction}
 Massive open online courses(MOOCs) including Khan Academy, Udacity, Coursera and
-Venture Lab are increasing in numbers. \cite{nytimes} One emerging challenge is
+Venture Lab are increasing in numbers \cite{nytimes}. One emerging challenge is
 how to scale assessment to these high student-teacher ratio environments.
 For assignment that have clear representative answer
 such as multiple choices questions,
 automated grading system can be employed.
 However, assessment of open-ended assignment still need to rely on human graders.
 
-Using peer review system, i.e. having each student grade each other, \cite{cpr}
+Using peer review system \cite{cpr}, i.e. having each student grade each other,
 to assess students’ work is another possible solution.
 However, in the massive online courses, the number of reviews done in each class
 is large and it is overly difficult
@@ -154,8 +154,8 @@ create a visualization tool that helps course instructors in three ways:
 \item quick browse and select higher quality reviews to read.
 \end{enumerate}
 
-As a data explorer, it follows "overview first, zoom and filter, then details-
-on-demand" mantra. \cite{card1999readings}
+As a data explorer, it follows ``overview first, zoom and filter, then details-
+on-demand mantra'' \cite{card1999readings}.
 
 
 The paper organization is as follows.
@@ -206,7 +206,7 @@ visualization and interaction design for exploring multi-dimensional peer
 review data in the recently emerging large-scale online classrooms.
 
 
-\begin{figure*}[!t]
+\begin{figure*}[ht]
 \centering
 \includegraphics[width=2.0\columnwidth]{images/overview-annotated}
 \caption{The layout for Peereviz is divided into two parts:
@@ -234,7 +234,7 @@ project (\emph{ideas}).
 
 
 
-\section{Visualization Design} 
+\section{Visualization Design}
 We use multiple coordinated views techniques to
 show data in different representations which enable users to interact, explore
 and understand intricate data \cite{State-of-the-art}. Furthermore, we also
@@ -242,7 +242,7 @@ use text visualization techniques, including word count list and tag cloud,
 which are often used to visualize and understand various large text data
 \cite{TagClouds} [http://www.wordcount.org/main.php].
 
-\subsection{Layout} 
+\subsection{Layout}
 As one of our design goals is to provide fast navigation,
 we put all views in one page so the user do not need to scroll or find hidden
 menu to achieve their intended tasks. The layout, as shown in Figure \ref{fig
@@ -253,7 +253,7 @@ team projects. The second is the review browser on the right side which
 consists of two sub-parts: the keyword visualization for browsing keyword on
 the upper part and review display view on the bottom part.
 
-\begin{figure}[tb]
+\begin{figure}[]
 \centering
 \includegraphics[width=\columnwidth]{images/3charts}
 \caption{Different selection modes in the team browser.}
@@ -279,7 +279,7 @@ The review browser shows data for the selected team(s) in the team browser. If
 the user has not selected any team in the team browser, the review browser
 provides overview by showing aggregated data of all teams.
 
-\subsubsection{Keyword List, Phrase List and Tag Clouds}  
+\subsubsection{Keyword List, Phrase List and Tag Clouds}
 Since one major
 component of the review is qualitative text feedbacks, we extracted keywords
 from text feedbacks based on their term frequency in bag-of- words model \cite
@@ -385,18 +385,32 @@ too large. Directly loaded it from database or split the data into separate
 files and load them as needed might be another alternative but it might slow
 it down due to the data I/O as well.
 
+\section{Discussion and Future Work}
 
+This visualization has provided an effective way for course instructors to
+quickly browse the peer review data and get senses of the ongoing peer review
+activities.  Furthermore, the MOOC platform designer can also use this
+information to improve the system by having more proper evaluation form and
+mechanism to encourage student engagements.
+
+One area that we can improve is the text visualization techniques. Our current
+work has only ranked it by the word frequency, while we could easily replace the
+underlying calculation for ranking the words. For example, we could instead use
+TF-IDF model \cite{manning2008} or other score calculations to find more
+expressive words.
+
+We have also learned that visualization of the review also largely depends on
+the peer review form.  Pre-structured form facilitates greatly in making the
+visualization.  Our visualization benefits from the feedback capture employed in
+the platform.  Thus, we suggest that providing scaffolding structure in the peer
+evaluation form does not only improve the review quality but also help the
+teaching teams to better understand the result as well.
+
+Finally, one possible improvement is to enhance system’s ability to compare
+different group of students by demographic such as GPA, academic major, or
+nationality.
 
 % this can be 'Usage Observation' (http://www.danah.org/papers/InfoViz2005.pdf)
-\section{Evaluation}
-
-Administator of the Venture Lab Platform
-
-We plan to deploy this system on the Venture Lab platform and allow course
-instructors to examine its utility.
-
-\section{Future Work}
-... -> generalize for other platform
 
 \section{Conclusion}
 
