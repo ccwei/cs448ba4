@@ -2,7 +2,7 @@
 
 % Remove or comment out these two lines for final version
 % \toappearbox{\Large Submitted to CHI'13. \\Do not cite, do not circulate.}
-\pagenumbering{arabic}% Arabic page numbers for submission. 
+\pagenumbering{arabic}% Arabic page numbers for submission.
 
 % Use \toappear{...} to override the default ACM copyright statement (e.g. for preprints).
 
@@ -11,6 +11,7 @@
 \usepackage{graphics} % for EPS, load graphicx instead
 \usepackage{times}    % comment if you want LaTeX's default font
 \usepackage{url}      % llt: nicely formatted URLs
+\usepackage{cite}      % llt: nicely formatted URLs
 
 % llt: Define a global style for URLs, rather that the default one
 \makeatletter
@@ -29,8 +30,8 @@
 \setlength{\pdfpagewidth}{\pprw}
 \setlength{\pdfpageheight}{\pprh}
 
-% Make sure hyperref comes last of your loaded packages, 
-% to give it a fighting chance of not being over-written, 
+% Make sure hyperref comes last of your loaded packages,
+% to give it a fighting chance of not being over-written,
 % since its job is to redefine many LaTeX commands.
 \usepackage[pdftex]{hyperref}
 \hypersetup{
@@ -62,15 +63,15 @@ breaklinks=true,
   \alignauthor Chih-Chiang Wei\\
     \affaddr{Affiliation}\\
     \affaddr{Address}\\
-    \email{e-mail address}\\    
+    \email{e-mail address}\\
   \alignauthor Kanit Wongsuphasawat\\
     \affaddr{Affiliation}\\
     \affaddr{Address}\\
-    \email{e-mail address}\\    
+    \email{e-mail address}\\
   \alignauthor Thiraphat Charoensripongsa\\
     \affaddr{Computer Science Department}\\
     \affaddr{Stanford University}\\
-    \email{tchar@stanford.edu}    
+    \email{tchar@stanford.edu}
 }
 
 % Teaser figure can go here
@@ -85,64 +86,170 @@ breaklinks=true,
 
 \begin{abstract}
 
-% rephase this... let's abstract away vecture lab first!
-Peer reviews are important in project-based classes. In the massive online open classroom (MOOC), the data from peer review process is huge and it becomes very difficult to explore the data and understand. Our goal is to design a visualization tool for peer review exploration which helps course instructors and platform designers understand and gain insights from the peer review activities, the engagement of students, and the quality of the reviews. We utilize existing text visualization techniques as well as multiview coordination to visualize and navigate through score distributions and the text feedbacks.
+% TODO rewrite this at the end!
+
+Peer reviews are important and commonly used in many project-based classes. In
+massive online open classrooms (MOOCs), the data from peer review process is
+huge and it becomes very difficult to explore and understand. Our goal is to
+design a visualization tool for large-scale peer review exploration which helps
+course instructors to understand and gain insights from the peer review
+activities, the engagement of students, and the quality of the reviews. We
+utilize existing text visualization techniques as well as multi-view
+coordination and enable the navigation through score distributions and the text
+feedbacks.
 
 \end{abstract}
 
 \keywords{
-	peer review; group collaboration; visualization; MOOC; exploration
-}	
+	peer review; group collaboration; visualization; MOOC; exploration;
+  text visualization
+}
 	% \\\textcolor{red}{Mandatory section to be included in your final version.}
 % }
 
 % \category{H.5.m.}{Information Interfaces and Presentation (e.g. HCI)}{Miscellaneous
 % \\
 % \textcolor{red}{See: \url{http://www.acm.org/about/class/1998/}
-% for more information and the full list of ACM classifiers and descriptors. 
+% for more information and the full list of ACM classifiers and descriptors.
 % Mandatory section: On the submission page
 % only the classifiers' letter-number combination will need to be entered.}
 % }
 
 % \terms{
-% 	Human Factors; Design; Measurement. 
-% 	If you choose more than one ACM General Term, 
+% 	Human Factors; Design; Measurement.
+% 	If you choose more than one ACM General Term,
 % 	separate the terms with a semi-colon.
 % \\
-% \textcolor{red}{If you choose more than one ACM General Term, 
+% \textcolor{red}{If you choose more than one ACM General Term,
 % separate the terms with a semi-colon. See list of ACM terms at:
 % \url{http://www.sheridanprinting.com/sigchi/generalterms.htm}.
 % Optional section to be included in your final version.}
 % }
 
 \section{Introduction}
-A massive open online course has just begun its breakthrough in recent years.
+Massive open online courses(MOOCs) including Khan Academy, Udacity, Coursera and Venture Lab are increasing in numbers. \cite{nytimes}
+One emerging challenge is how to scale assessment to these high student-teacher ratio environments.
 
-....
+Using peer review system \cite{cpr} to evaluate students’ work is one possible solution.
+However, in the massive online courses,
+the number of reviews done in each class is large and it is overly difficult
+and time-consuming for instructors to get a comprehensive understanding
+of the review of each task.
 
-why peer review important?
+To address this problem, we developed Peereviz, a peer review exploration tool on top of Venture Lab platform.
+It aims for helping instructors to understand the massive amount of peer review results.
+The design goal of the tool is to create a visualization tool
+that helps course instructors in three ways:
+1) get the overall understanding of peer review activities;
+2) be able to dive into specific part of the review results;
+3) quick browse and select higher quality reviews to read.
+As a data explorer, it follows "overview first, zoom and filter, then details-on-demand" mantra. \cite{overviewfirst}
 
-..
-Our goal is to design a visualization tool for exploring peer review data so that the course instructor 
 
-The paper organization is as follows. We first summarize previous work in peer review visualization. We then describe the Venture Lab platform and the peer review process and feedback data. In the next section, we present our design and visualization techniques, followed by the evaluation and feedbacks from [course instructor/designer?]. Finally, we suggest the possible directions for future work and then summarize our work.
+The paper organization is as follows.
+We first summarize previous work in peer review system and visualization.
+We then describe the peer review data we used.
+Next, we present our design and visualization techniques,
+followed by the evaluation and feedbacks from users.
+Finally, we suggest the possible directions for future work
+and then summarize our work.
 
 \section{Related Work}
+
+A number of studies has confirmed the usefulness of the peer review system
+to the students in various domains including programming and writing class
+\cite{MyPeerReview,WebBasedPeerReview}.
+
+
+However, to the best of our knowledge, work that combine visualization techniques
+to help instructors understand peer review data is still limited.
+The only work we discovered is  an interactive tool for peer-review exploration
+proposed by Xiong et al. \cite{xiong}
+They primarily work on the improvement of semantic information
+to help instructor discover interesting patterns and
+compare different groups of student in the writing class on SWoRD system \cite{Cho2007}.
+In contrast to the prior work, we mainly focuses on the visualization
+and interaction design for exploring multi-dimensional peer review data
+in the recently emerging large-scale online classrooms.
+
 describe: An Interactive Analytic Tool for Peer-Review Exploration
 How are we different?: focus on multiview, navigation, qualitative + quantitative feedback
 
-\section{Venture Lab Description}
-What's venture lab? project based
-The group selection algorithm
 
-The review mechanics: 
-quantitative 1-10
-qualitative feedback capture grid,
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{images/review-form}
+\caption{the actual evaluation form on the Venture lab platform.
+The top part shows the quantitative feedbacks which are score ranging
+from Low (1) to High (10) while the bottom part shows the feedback capture grid
+which a form where the reviewers give their opinions
+on four different aspect: notable, constructive, questions, and ideas.}
+\label{fig:review-form}
+\end{figure}
 
+
+\section{Data Set Description}
+We use a sample data set from a final project peer review result
+in the Spring 2012 Entrepreneurship class on the Venture Lab platform.
+A total of 1,206 peer reviews are collected,
+which consists of 116 teams being reviewed and 212 individual reviewers.
+For privacy reasons, the team names are anonymized
+and we presented team description as much as needed.
+The actual peer review form has two parts, including
+(1) multiple quantitative score ranging from low(1) to high(10)
+for different aspects of the final project and
+(2) qualitative text feedback, which utilizes a feedback capture grid \cite{dbootcamp}
+where reviewers could express their opinions
+in four dimensions–what they like(\emph{notable}),
+constructive criticisms (\emph{constructive}),
+questions they have about the work (\emph{questions}),
+and any additional ideas for the project (\emph{ideas}).
+
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=2.0\columnwidth]{images/overview-annotated}
+\caption{The layout for Peereviz is divided into two parts:
+the team browser (1,2) and the review browser (3,4).
+(1) shows the overall score distribution,
+(2) team description list,
+(3) keyword list, and
+(4) Aggregate and individual reviews.}
+\label{fig:overview-annotated}
+\end{figure*}
 
 \section{Visualization Design}
 
-\subsection{Layout}
+\begin{figure}[]
+\centering
+\includegraphics[width=0.9\columnwidth]{Figure1}
+\caption{For images, be sure to have a good resolution image
+  (see item D within the preparation instructions).}
+\label{fig:figure1}
+\end{figure}
+
+\subsection{Team Browser}
+The team browser serves as the main part of the overview
+where we can select one or multiple teams using different ways of filtering.
+
+\subsection{Review Browser}
+
+The review browser shows data from the selected team(s) in the team browser. If
+user has not selected any team in the team browser,  the review browsers also
+provide overview by showing aggregated data of all teams.
+
+
+\begin{figure}[]
+\centering
+\includegraphics[width=\columnwidth]{images/phrase-list}
+\includegraphics[width=\columnwidth]{images/keyword-list}
+\includegraphics[width=\columnwidth]{images/clouds}
+\caption{Three views of the keyword browser:
+(top) the phrase list in integrated mode,
+(middle) the keyword list in group-by-type mode,
+(bottom) the tag clouds grouped by type.}
+\label{fig:figure1}
+\end{figure}
 
 \subsection{Interaction}
 
