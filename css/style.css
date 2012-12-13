@@ -63,12 +63,18 @@ body {
   color: #999;
   text-transform: uppercase;
 }
+.selected-team-container h3.mini-header {
+  color: #2ca02c;
+}
 h3.mini-header {
   padding: 5px 0px 5px 15px;
   margin: 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: #eee;
   border-bottom: 1px solid #DDD;
+}
+h3.mini-header.filtered-team {
+  color: #0099ff;
 }
 .nav-tabs.full {
   padding-left: 10px;
@@ -367,7 +373,7 @@ h3.mini-header {
   background-color: #1f77b4;
 }
 #selected-reviewee-item-list {
-  background-color: #dee7cd !important;
+  background-color: #DFF0D8 !important;
   display: none;
 }
 .reviewee-list-item,
@@ -554,11 +560,15 @@ table.feedback-grid textarea[disabled] {
   font-size: 90%;
 }
 .average-score-text {
-  padding-top: 5px;
+  padding-top: 10px;
+  text-align: center;
+}
+.score-distribution {
+  padding-left: 15px;
 }
 .average-score {
   font-size: 32px;
-  padding: 20px 15px;
+  padding: 10px 15px;
 }
 .legend-block {
   display: -moz-inline-stack;

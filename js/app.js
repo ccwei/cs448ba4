@@ -23,6 +23,8 @@
       $("#all-right-side").addClass('active');
       $("#agg-right-side").removeClass('active');
       $("#ind-right-side").removeClass('active');
+
+      $('#agg-tab-reviews-menu li:eq(2) a').tab('show');
     }else{
       $("#all-right-side").removeClass('active');
       $("#agg-right-side").addClass('active');
@@ -31,16 +33,28 @@
     app.containerResize();
   };
 
+app.showSelectedTeam = function(show){
+  if(show){
+    $(".left-side .selected-team-container").removeClass("display-none");
+    app.showSelectedTeam.isShown = true;
+  }else {
+    $(".left-side .selected-team-container").addClass("display-none");
+    app.showSelectedTeam.isShown = false;
+  }
+};
+
 app.containerResize = function() {
   var H = $(window).height();
-  //$('#root').height(H);
+  // $('#root').height(H);
+
+  var $leftSide = $('.left-side');
+
   $('#right-side').height(H);
   $('#reviewee-list').height(H-
-    $('.left-side h1-container').outerHeight() -
-    $('.left-side .upper').outerHeight() -
-    $('.left-side h3.mini-header').outerHeight() -
-    ( app.selectedRevieweeListItem && app.selectedRevieweeListItem.isShown ? $('#selected-reviewee-item-list').outerHeight() : 0
-      )
+    $leftSide.find('.h1-container').outerHeight() -
+    $leftSide.find('.upper').outerHeight() -
+    $leftSide.find('h3.mini-header').outerHeight() -
+    ( app.showSelectedTeam.isShown ? $leftSide.find('.selected-item-container').outerHeight() : 0 )
   );
 
   var $rightSide = $("#ind-right-side");
@@ -109,10 +123,6 @@ $(document).ready(function() {
       for(var i=0 ; i<team_properties.length ; i++){
         var prop = team_properties[i];
         o[prop] = o.reviews[0][prop];
-        if(o[prop] == null || o[prop].length == 0 || o[prop] == "NULL"){          
-          o[prop] = "Unknown";
-        }
-
       }
 
       teamReviews.push(o);
@@ -144,6 +154,8 @@ $(document).ready(function() {
           onCancelClicked: function () {
             app.showView("all");
             selectedRevieweeListItem.hide();
+            app.showSelectedTeam(false);
+
             chart.unHighlightAll();
             app.containerResize();
           }
@@ -157,26 +169,46 @@ $(document).ready(function() {
         theRevieweeView.loadData(d);
         selectedRevieweeListItem.loadData(d);
         selectedRevieweeListItem.setupForSelectedItem();
+        app.showSelectedTeam(true);
         app.containerResize();
       },
       deselected: function(d){
         app.showView("all");
         selectedRevieweeListItem.hide();
+        app.showSelectedTeam(false);
+
         app.containerResize();
       },
       unbrushed: function(){
-        app.showView("all");
-        selectedRevieweeListItem.hide();
-        revieweeList.loadData(revieweeCollection);
+        console.log("unbrushed");
+        //$("#waitModal").modal('show');
+        //setTimeout(function () {
+          app.showView("all");
+
+          selectedRevieweeListItem.hide();
+          app.showSelectedTeam(false);
+
+          revieweeList.loadData(revieweeCollection);
+          $('#reviewee-item-list-header').text('all teams');
+        $('#reviewee-item-list-header').removeClass('filtered-team');
+          //$("#waitModal").modal('hide');
+        //}, 200);
+
       }
     };
 
     var brushed = function(filteredModels){
+     // $("#waitModal").modal('show');
+      //setTimeout(function () {
         var filteredRevieweeCollection = new app.RevieweeCollection(filteredModels);
         aggRevieweesView.loadData(filteredRevieweeCollection);
         revieweeList.loadData(filteredRevieweeCollection);
         app.showView("agg");
         selectedRevieweeListItem.hide();
+        $('#reviewee-item-list-header').text('filtered teams');
+        $('#reviewee-item-list-header').addClass('filtered-team');
+        //$("#waitModal").modal('hide');
+      //}, 200);
       };
 
 
@@ -188,8 +220,8 @@ $(document).ready(function() {
       el: "#chart",
       onItemSelected: function (d) {
         //Hack
-        $(".left-side .team-search-container .search-field").val("");
-        this.filterDataByTeamId("");
+        //$(".left-side .team-search-container .search-field").val("");
+        //this.filterDataByTeamId("");
 
         onReviewee.selected(d);
       },
