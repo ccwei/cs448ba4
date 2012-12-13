@@ -58,21 +58,13 @@ breaklinks=true,
 \title{Peereviz: Visualizing Peer Reviews}
 
 % Note that submissions are blind, so author information should be omitted
-\numberofauthors{3}
+
 \author{
-  \alignauthor Chih-Chiang Wei\\
-    \affaddr{Computer Science Department}\\
+  \alignauthor Kanit Wongsuphasawat, Chih-Chiang Wei, Thiraphat Charoensripongsa\\
     \affaddr{Stanford University}\\
-    \email{ccwei@stanford.edu}\\
-  \alignauthor Kanit Wongsuphasawat\\
-    \affaddr{Management Science \& Engineering Department}\\
-    \affaddr{Stanford University}\\
-    \email{kanitw@stanford.edu}\\
-  \alignauthor Thiraphat Charoensripongsa\\
-    \affaddr{Computer Science Department}\\
-    \affaddr{Stanford University}\\
-    \email{tchar@stanford.edu}
+    \email{\{kanitw, ccwei, tchar\}@stanford.edu}\\
 }
+
 
 % Teaser figure can go here
 %\teaser{
@@ -89,14 +81,11 @@ breaklinks=true,
 % TODO rewrite this at the end!
 
 Peer reviews are important and commonly used in many project-based classes. In
-massive online open classrooms (MOOCs), the data from peer review process is
-huge and it becomes very difficult to explore and understand. Our goal is to
+massive online open courses (MOOCs), the amount of data from peer review process is huge and it becomes very difficult to explore and understand. Our goal is to
 design a visualization tool for large-scale peer review exploration which helps
 course instructors to understand and gain insights from the peer review
 activities, the engagement of students, and the quality of the reviews. We
-utilize existing text visualization techniques as well as multi-view
-coordination and enable the navigation through score distributions and the text
-feedbacks.
+utilize existing text visualization techniques as well as  Multiple Coordinated Views and enable the quick navigation through original feedbacks.
 
 \end{abstract}
 
@@ -253,6 +242,17 @@ The top one shows brushing mode, which can be used to select teams within a rang
 The middle one shows search mode, which user can use text by-description search.
 The bottom one show one team selection, by click on a block on the stacked bar chart.}
 \label{fig:keyword-lists}
+\end{figure}
+
+
+\begin{figure}[]
+\centering
+\includegraphics[width=.8\columnwidth]{images/selected-team}
+\vspace{2.00mm}
+\caption{If the user select a team, either from the stacked bar chart or from the list,
+a selected team page will appear to help user recognize that a team has been selected.}
+\label{fig:selected-team}
+
 \end{figure}
 
 \subsection{Team Browser}
