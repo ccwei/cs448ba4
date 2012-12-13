@@ -33,16 +33,28 @@
     app.containerResize();
   };
 
+app.showSelectedTeam = function(show){
+  if(show){
+    $(".left-side .selected-team-container").removeClass("display-none");
+    app.showSelectedTeam.isShown = true;
+  }else {
+    $(".left-side .selected-team-container").addClass("display-none");
+    app.showSelectedTeam.isShown = false;
+  }
+};
+
 app.containerResize = function() {
   var H = $(window).height();
-  //$('#root').height(H);
+  // $('#root').height(H);
+
+  var $leftSide = $('.left-side');
+
   $('#right-side').height(H);
   $('#reviewee-list').height(H-
-    $('.left-side h1-container').outerHeight() -
-    $('.left-side .upper').outerHeight() -
-    $('.left-side h3.mini-header').outerHeight() -
-    ( app.selectedRevieweeListItem && app.selectedRevieweeListItem.isShown ? $('#selected-reviewee-item-list').outerHeight() : 0
-      )
+    $leftSide.find('.h1-container').outerHeight() -
+    $leftSide.find('.upper').outerHeight() -
+    $leftSide.find('h3.mini-header').outerHeight() -
+    ( app.showSelectedTeam.isShown ? $leftSide.find('.selected-item-container').outerHeight() : 0 )
   );
 
   var $rightSide = $("#ind-right-side");
@@ -142,6 +154,8 @@ $(document).ready(function() {
           onCancelClicked: function () {
             app.showView("all");
             selectedRevieweeListItem.hide();
+            app.showSelectedTeam(false);
+
             chart.unHighlightAll();
             app.containerResize();
           }
@@ -155,11 +169,14 @@ $(document).ready(function() {
         theRevieweeView.loadData(d);
         selectedRevieweeListItem.loadData(d);
         selectedRevieweeListItem.setupForSelectedItem();
+        app.showSelectedTeam(true);
         app.containerResize();
       },
       deselected: function(d){
         app.showView("all");
         selectedRevieweeListItem.hide();
+        app.showSelectedTeam(false);
+
         app.containerResize();
       },
       unbrushed: function(){
@@ -167,7 +184,10 @@ $(document).ready(function() {
         //$("#waitModal").modal('show');
         //setTimeout(function () {
           app.showView("all");
+
           selectedRevieweeListItem.hide();
+          app.showSelectedTeam(false);
+
           revieweeList.loadData(revieweeCollection);
           $('#reviewee-item-list-header').text('all teams');
         $('#reviewee-item-list-header').removeClass('filtered-team');

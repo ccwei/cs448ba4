@@ -80,13 +80,11 @@
      this.$el.hide();
      this.isShown = false;
     },
-    show: function () {
-      this.$el.show();
-      this.isShown = true;
-    },
+
     setupForSelectedItem: function () {
       this.showCancel();
       this.makeUnClickable();
+      this.isShown = true;
     },
     showCancel: function () {
       this.$el.find('.cancel-x').show();

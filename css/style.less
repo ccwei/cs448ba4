@@ -43,6 +43,15 @@ body{
   text-transform: uppercase;
 }
 
+
+.selected-team-container{
+  h3.mini-header{
+    color: @color3;
+    // background-color: #eff6ed;
+  }
+}
+
+
 h3.mini-header {
   // margin-top: -8px;
   padding: 5px 0px 5px 15px;
@@ -50,6 +59,9 @@ h3.mini-header {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: #eee;
   border-bottom: 1px solid #DDD;
+  &.filtered-team {
+    color: @brushed-bar-color;
+  }
 }
 .nav-tabs.full{
   padding-left: 10px;
@@ -615,12 +627,17 @@ table.feedback-grid
 }
 
 .average-score-text{
-  padding-top: 5px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.score-distribution{
+  padding-left: 15px;
 }
 
 .average-score {
   font-size: 32px;
-  padding: 20px 15px;
+  padding: 10px 15px;
 }
 
 .legend-block{
@@ -771,7 +788,4 @@ hr{
 .team-name {
   font-weight: bold;
   font-size: 20px;
-}
-.filtered-team {
-  color: @brushed-bar-color;
 }
