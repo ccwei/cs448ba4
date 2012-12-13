@@ -61,13 +61,13 @@ breaklinks=true,
 \numberofauthors{3}
 \author{
   \alignauthor Chih-Chiang Wei\\
-    \affaddr{Affiliation}\\
-    \affaddr{Address}\\
-    \email{e-mail address}\\
+    \affaddr{Computer Science Department}\\
+    \affaddr{Stanford University}\\
+    \email{ccwei@stanford.edu}\\
   \alignauthor Kanit Wongsuphasawat\\
-    \affaddr{Affiliation}\\
-    \affaddr{Address}\\
-    \email{e-mail address}\\
+    \affaddr{Management Science \& Engineering Department}\\
+    \affaddr{Stanford University}\\
+    \email{kanitw@stanford.edu}\\
   \alignauthor Thiraphat Charoensripongsa\\
     \affaddr{Computer Science Department}\\
     \affaddr{Stanford University}\\
@@ -163,6 +163,14 @@ A number of studies has confirmed the usefulness of the peer review system
 to the students in various domains including programming and writing class
 \cite{MyPeerReview,WebBasedPeerReview}.
 
+As for visualization, Multiple Coordinated Views is an exploratory visualization
+technique that shows data in different representations, enabling users to
+interact and explore intricate data to understand the data.  [State of the art:
+coordinated \& multiple views....] And text visualization techniques including
+word count list and tag cloud are often used to visualize and understand various
+large text data.[Tag clouds for summarizing web search
+results][http://www.wordcount.org/main.php]
+
 
 However, to the best of our knowledge, work that combine visualization techniques
 to help instructors understand peer review data is still limited.
@@ -179,7 +187,7 @@ describe: An Interactive Analytic Tool for Peer-Review Exploration How are we
 different?: focus on multiview, navigation, qualitative + quantitative feedback
 
 
-\begin{figure}[!t]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=\columnwidth]{images/review-form}
 \caption{the actual evaluation form on the Venture lab platform.
@@ -230,6 +238,12 @@ browser on the right side which consists of two sub-parts: the keyword
 visualization for browsing keyword on the upper part and review display view on
 the bottom part.
 
+\begin{figure}[tb]
+\centering
+\includegraphics[width=2.0\columnwidth]{images/3charts-hor}
+\caption{SOMEONE PLEASE EDIT CAPTION}
+\label{fig:keyword-lists}
+\end{figure}
 
 \subsection{Team Browser}
 The team browser serves as the main part of the overview
@@ -243,13 +257,24 @@ browser will be updated accordingly with the data of the selected team(s). In
 addition, it provides a search tool to select teams by their descriptions as
 well.
 
+
+
 \subsection{Review Browser}
 
 The review browser shows data from the selected team(s) in the team browser. If
 user has not selected any team in the team browser,  the review browsers also
 provide overview by showing aggregated data of all teams.
 
-\subsubsection{Keyword Browsers: Keyword List, Phrase List and Tag Clouds}
+\subsubsection{Keyword List, Phrase List and Tag Clouds}
+
+Since one major component of the review is qualitative text feedbacks,
+we extracted keywords from text feedbacks based on their term frequency in bag-of-
+words model \cite{bag-of-words} to provide an overview of what students
+wrote the most in their reviews.
+There are three representations: keyword list, phrase list and tag cloud.
+In any of the three mode, users can click any word to see the actual occurrence
+of the word to further understand the context of the word.
+
 
 \begin{figure}[b]
 \centering
@@ -302,7 +327,7 @@ quickly browse through the reviews.
 
 \begin{figure}[]
 \centering
-\includegraphics[width=\columnwidth]{images/aggregate_view}
+\includegraphics[width=\columnwidth]{images/aggregate-view}
 \caption{SOMEONE PLEASE EDIT CAPTION}
 \label{fig:keyword-lists}
 \end{figure}
@@ -327,7 +352,9 @@ directly into an one-page web application.
 ...
 
 \section{Acknowledgments}
-Farnaz, thanks a lot!
+The authors of this paper would like to thank Farnaz Ronaghi and Venture Lab
+team for providing data and suggestions.
+ Jeff Heer and CS448b's comment and suggestions are also appreciated.
 
 % Balancing columns in a ref list is a bit of a pain because you
 % either use a hack like flushend or balance, or manually insert
